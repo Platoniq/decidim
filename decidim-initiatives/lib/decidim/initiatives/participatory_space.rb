@@ -18,8 +18,6 @@ Decidim.register_participatory_space(:initiatives) do |participatory_space|
     Decidim::Initiative.where(organization: organization)
   end
 
-  participatory_space.query_type = "Decidim::Initiatives::InitiativeType"
-
   participatory_space.register_resource(:initiative) do |resource|
     resource.model_class_name = "Decidim::Initiative"
     resource.card = "decidim/initiatives/initiative"
