@@ -4,6 +4,10 @@
 
 **Upgrade notes**:
 
+- **Assembly types**
+
+In order to prevent errors while upgrading multi-servers envirnoments, the fields `assembly_type` and `assembly_type_other` are maintained. Future releases will take care of this.
+
 **Added**:
 
 - **Organization Time Zones**
@@ -49,6 +53,7 @@ Decidim::Blogs::Post.find_each(&:add_to_index_as_search_resource)
 - **decidim-surveys**: Added a setting to surveys to allow unregistered (aka: anonymous) users to answer a survey. [\#4996](https://github.com/decidim/decidim/pull/4996)
 - **decidim-core**: Added Devise :lockable to Users [#5478](https://github.com/decidim/decidim/pull/5478)
 - **decidim-meetings**: Added help texts for meetings forms to solve doubts about Geocoder fields. [\# #5487](https://github.com/decidim/decidim/pull/5487)
+- **decidim-assemblies**: Added configurable assembly types. [\#5616](https://github.com/decidim/decidim/pull/5616)
 
 **Changed**:
 
