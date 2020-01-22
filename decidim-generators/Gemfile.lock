@@ -148,6 +148,8 @@ PATH
       wisper-rspec (~> 1.0)
     decidim-forms (0.21.0.pre.dev)
       decidim-core (= 0.21.0.pre.dev)
+      wicked_pdf (~> 1.4)
+      wkhtmltopdf-binary (~> 0.12)
     decidim-generators (0.21.0.pre.dev)
       decidim-core (= 0.21.0.pre.dev)
     decidim-initiatives (0.21.0.pre.dev)
