@@ -687,6 +687,50 @@ shared_examples_for "has questionnaire" do
           end
         end
       end
+
+      context "when the submission is not correct" do
+        let!(:max_choices) { 2 }
+
+        it "preserves the chosen answers" do
+          visit questionnaire_public_path
+
+          checkboxes = page.all(".check-box-collection input[type=checkbox]")
+          check checkboxes[0][:id]
+          check checkboxes[1][:id]
+          check checkboxes[2][:id]
+          check checkboxes[5][:id]
+
+          check "questionnaire_tos_agreement"
+          accept_confirm { click_button "Submit" }
+
+          within ".alert.flash" do
+            expect(page).to have_content("There was a problem answering")
+          end
+
+          checkboxes = page.all(".check-box-collection input[type=checkbox]")
+          expect(checkboxes.map { |c| c[:checked] }).to eq(["true", "true", "true", nil, nil, "true"])
+        end
+      end
+
+      context "when the question is mandatory and the answer is not complete" do
+        let!(:mandatory) { true }
+
+        it "shows an error" do
+          visit questionnaire_public_path
+
+          checkboxes = page.all(".check-box-collection input[type=checkbox]")
+          check checkboxes[0][:id]
+
+          check "questionnaire_tos_agreement"
+          accept_confirm { click_button "Submit" }
+
+          within ".alert.flash" do
+            expect(page).to have_content("There was a problem answering")
+          end
+
+          expect(page).to have_content("Choices are not complete")
+        end
+      end
     end
 
     describe "display conditions" do
@@ -1120,50 +1164,6 @@ shared_examples_for "has questionnaire" do
               expect_question_to_be_visible(false)
             end
           end
-        end
-      end
-
-      context "when the submission is not correct" do
-        let!(:max_choices) { 2 }
-
-        it "preserves the chosen answers" do
-          visit questionnaire_public_path
-
-          checkboxes = page.all(".check-box-collection input[type=checkbox]")
-          check checkboxes[0][:id]
-          check checkboxes[1][:id]
-          check checkboxes[2][:id]
-          check checkboxes[5][:id]
-
-          check "questionnaire_tos_agreement"
-          accept_confirm { click_button "Submit" }
-
-          within ".alert.flash" do
-            expect(page).to have_content("There was a problem answering")
-          end
-
-          checkboxes = page.all(".check-box-collection input[type=checkbox]")
-          expect(checkboxes.map { |c| c[:checked] }).to eq(["true", "true", "true", nil, nil, "true"])
-        end
-      end
-
-      context "when the question is mandatory and the answer is not complete" do
-        let!(:mandatory) { true }
-
-        it "shows an error" do
-          visit questionnaire_public_path
-
-          checkboxes = page.all(".check-box-collection input[type=checkbox]")
-          check checkboxes[0][:id]
-
-          check "questionnaire_tos_agreement"
-          accept_confirm { click_button "Submit" }
-
-          within ".alert.flash" do
-            expect(page).to have_content("There was a problem answering")
-          end
-
-          expect(page).to have_content("Choices are not complete")
         end
       end
 
