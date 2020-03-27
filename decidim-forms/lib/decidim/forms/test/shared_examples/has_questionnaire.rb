@@ -684,6 +684,11 @@ shared_examples_for "has questionnaire" do
 
           within ".success.flash" do
             expect(page).to have_content("successfully")
+          end
+        end
+      end
+    end
+
     describe "display conditions" do
       let(:answer_options) do
         3.times.to_a.map do |x|
@@ -693,6 +698,7 @@ shared_examples_for "has questionnaire" do
           }
         end
       end
+
       let(:condition_question_options) { [] }
       let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, position: 2) }
       let!(:conditioned_question_id) { "#questionnaire_answers_1" }
@@ -1159,6 +1165,7 @@ shared_examples_for "has questionnaire" do
           expect(page).to have_content("Choices are not complete")
         end
       end
+
       context "when a question has multiple display conditions" do
         before do
           visit questionnaire_public_path
