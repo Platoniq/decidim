@@ -702,6 +702,7 @@ shared_examples_for "has questionnaire" do
       let(:condition_question_options) { [] }
       let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, position: 2) }
       let!(:conditioned_question_id) { "#questionnaire_answers_1" }
+      let!(:condition_question_type) { "short_answer" }
       let!(:condition_question) do
         create(:questionnaire_question,
                questionnaire: questionnaire,

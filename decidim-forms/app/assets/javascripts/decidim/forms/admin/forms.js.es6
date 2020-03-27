@@ -147,9 +147,7 @@
 
   const dynamicFieldsForMatrixRows = {};
 
-  const isMultipleChoiceOption = ($selectField) => {
-    const value = $selectField.val();
-
+  const isMultipleChoiceOption = (value) => {
     return MULTIPLE_CHOICE_VALUES.indexOf(value) >= 0;
   }
 
@@ -302,7 +300,6 @@
 
     const dynamicFieldsAnswerOptions = dynamicFieldsForAnswerOptions[fieldId];
     const dynamicFieldsMatrixRows = dynamicFieldsForMatrixRows[fieldId];
-    const dynamicFields = dynamicFieldsForAnswerOptions[fieldId];
 
     const onQuestionTypeChange = () => {
       if (isMultipleChoiceOption($fieldQuestionTypeSelect.val())) {
