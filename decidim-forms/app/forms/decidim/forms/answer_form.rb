@@ -18,8 +18,6 @@ module Decidim
       validate :all_choices, if: -> { question.question_type == "sorting" }
       validate :min_choices, if: -> { question.matrix? && question.mandatory? }
 
-      delegate :mandatory_body?, :mandatory_choices?, :matrix?, to: :question
-
       attr_writer :question
 
       def question
@@ -49,14 +47,29 @@ module Decidim
         choices.select(&:body)
       end
 
+      def conditions_fulfilled?
+        question.display_conditions.all? do |condition|
+          answer = question.questionnaire.answers.find_by(question: condition.condition_question)
+          condition.fulfilled?(answer)
+        end
+      end
+
       private
 
       def grouped_choices
         selected_choices.group_by(&:matrix_row_id).values
       end
 
+      def mandatory_body?
+        question.mandatory_body? if conditions_fulfilled?
+      end
+
+      def mandatory_choices?
+        question.mandatory_choices? if conditions_fulfilled?
+      end
+
       def max_choices
-        if matrix?
+        if question.matrix?
           errors.add(:choices, :too_many) if grouped_choices.any? { |choices| choices.count > question.max_choices }
         elsif selected_choices.size > question.max_choices
           errors.add(:choices, :too_many)
