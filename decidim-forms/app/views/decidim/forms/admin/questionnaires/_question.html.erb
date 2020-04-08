@@ -5,7 +5,9 @@
     <h2 class="card-title">
     <span>
       <% if editable %>
-        <%== icon("move") %>
+        <%== "#{icon("move")} #{t(".question")}" %>
+      <% else %>
+        <%= t(".question") %>
       <% end %>
       <%= dynamic_title(translated_attribute(question.body), class: "question-title-statement", max_length: 50, omission: "...", placeholder: t(".question")) %>
     </span>
@@ -127,6 +129,21 @@
           disabled: !editable
         )
       %>
+    </div>
+
+    <div class="questionnaire-question-display-conditions" data-template="<%= display_condition_template_selector %>">
+      <div class="questionnaire-question-display-conditions-list">
+        <% question.display_conditions.each do |display_condition| %>
+          <%= fields_for "questionnaire[questions][#{question.to_param}][display_conditions][]", display_condition do |display_condition_form| %>
+            <%= render "decidim/forms/admin/questionnaires/display_condition", form: display_condition_form, question: question, editable: editable %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% if editable %>
+        <% disabled = !question.persisted? %>
+        <button <%= "disabled" if disabled %> title="<%= disabled ? t(".add_display_condition_info") : t(".add_display_condition_info") %>" class="button add-display-condition"><%= t(".add_display_condition") %></button>
+      <% end %>
     </div>
   </div>
 </div>

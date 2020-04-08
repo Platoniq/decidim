@@ -12,6 +12,7 @@ module Decidim
         attribute :question_type, String
         attribute :answer_options, Array[AnswerOptionForm]
         attribute :matrix_rows, Array[QuestionMatrixRowForm]
+        attribute :display_conditions, Array[DisplayConditionForm]
         attribute :max_choices, Integer
         attribute :deleted, Boolean, default: false
 

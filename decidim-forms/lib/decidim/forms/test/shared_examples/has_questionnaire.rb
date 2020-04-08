@@ -205,7 +205,6 @@ shared_examples_for "has questionnaire" do
           :questionnaire_question,
           questionnaire: questionnaire,
           question_type: question_type,
-          position: 1,
           options: [
             { "body" => answer_option_bodies[0] },
             { "body" => answer_option_bodies[1] },
@@ -220,7 +219,6 @@ shared_examples_for "has questionnaire" do
           questionnaire: questionnaire,
           question_type: "multiple_option",
           max_choices: 2,
-          position: 2,
           options: [
             { "body" => Decidim::Faker::Localized.sentence },
             { "body" => Decidim::Faker::Localized.sentence },
@@ -239,16 +237,16 @@ shared_examples_for "has questionnaire" do
         it "renders them as radio buttons with attached text fields disabled by default" do
           expect(page).to have_selector(".radio-button-collection input[type=radio]", count: 3)
 
-          expect(page).to have_field("questionnaire_answers_0_choices_2_custom_body", disabled: true, count: 1)
+          expect(page).to have_field("questionnaire_responses_0_choices_2_custom_body", disabled: true, count: 1)
 
           choose answer_option_bodies[2]["en"]
 
-          expect(page).to have_field("questionnaire_answers_0_choices_2_custom_body", disabled: false, count: 1)
+          expect(page).to have_field("questionnaire_responses_0_choices_2_custom_body", disabled: false, count: 1)
         end
 
         it "saves the free text in a separate field if submission correct" do
           choose answer_option_bodies[2]["en"]
-          fill_in "questionnaire_answers_0_choices_2_custom_body", with: "Cacatua"
+          fill_in "questionnaire_responses_0_choices_2_custom_body", with: "Cacatua"
 
           check "questionnaire_tos_agreement"
           accept_confirm { click_button "Submit" }
@@ -266,7 +264,7 @@ shared_examples_for "has questionnaire" do
           check other_question.answer_options.third.body["en"]
 
           choose answer_option_bodies[2]["en"]
-          fill_in "questionnaire_answers_0_choices_2_custom_body", with: "Cacatua"
+          fill_in "questionnaire_responses_0_choices_2_custom_body", with: "Cacatua"
 
           check "questionnaire_tos_agreement"
           accept_confirm { click_button "Submit" }
@@ -275,7 +273,7 @@ shared_examples_for "has questionnaire" do
             expect(page).to have_content("There was a problem answering")
           end
 
-          expect(page).to have_field("questionnaire_answers_0_choices_2_custom_body", with: "Cacatua")
+          expect(page).to have_field("questionnaire_responses_0_choices_2_custom_body", with: "Cacatua")
         end
       end
 
@@ -332,7 +330,7 @@ shared_examples_for "has questionnaire" do
       it "renders the answer as a textarea" do
         visit questionnaire_public_path
 
-        expect(page).to have_selector("textarea#questionnaire_answers_0")
+        expect(page).to have_selector("textarea#questionnaire_responses_0")
       end
     end
 
@@ -342,7 +340,7 @@ shared_examples_for "has questionnaire" do
       it "renders the answer as a text field" do
         visit questionnaire_public_path
 
-        expect(page).to have_selector("input[type=text]#questionnaire_answers_0")
+        expect(page).to have_selector("input[type=text]#questionnaire_responses_0")
       end
     end
 
@@ -433,6 +431,33 @@ shared_examples_for "has questionnaire" do
       end
     end
 
+    context "when question type is multiple option" do
+      let(:answer_options) { Array.new(2) { { "body" => Decidim::Faker::Localized.sentence } } }
+      let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, question_type: "multiple_option", options: answer_options) }
+
+      it "renders the question answers as a collection of radio buttons" do
+        visit questionnaire_public_path
+
+        expect(page).to have_selector(".check-box-collection input[type=checkbox]", count: 2)
+
+        check answer_options[0]["body"][:en]
+        check answer_options[1]["body"][:en]
+
+        check "questionnaire_tos_agreement"
+
+        accept_confirm { click_button "Submit" }
+
+        within ".success.flash" do
+          expect(page).to have_content("successfully")
+        end
+
+        visit questionnaire_public_path
+
+        expect(page).to have_content("You have already answered this form.")
+        expect(page).to have_no_i18n_content(question.body)
+      end
+    end
+
     context "when question type is sorting" do
       let!(:question) do
         create(
@@ -502,7 +527,544 @@ shared_examples_for "has questionnaire" do
       end
     end
 
-    context "when question type is matrix_single" do
+    describe "display conditions" do
+      let(:answer_options) do
+        3.times.to_a.map do |x|
+          {
+            "body" => Decidim::Faker::Localized.sentence,
+            "free_text" => x == 2
+          }
+        end
+      end
+      let(:condition_question_options) { [] }
+      let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, position: 2) }
+      let!(:conditioned_question_id) { "#questionnaire_responses_1" }
+      let!(:condition_question) do
+        create(:questionnaire_question,
+               questionnaire: questionnaire,
+               question_type: condition_question_type,
+               position: 1,
+               options: condition_question_options)
+      end
+
+      context "when a question has a display condition" do
+        context "when condition is of type 'answered'" do
+          let!(:display_condition) do
+            create(:display_condition,
+                   condition_type: "answered",
+                   question: question,
+                   condition_question: condition_question)
+          end
+
+          before do
+            visit questionnaire_public_path
+          end
+
+          context "when the condition_question type is short answer" do
+            let!(:condition_question_type) { "short_answer" }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              fill_in "questionnaire_responses_0", with: "Cacatua"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: ""
+              change_focus
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is long answer" do
+            let!(:condition_question_type) { "long_answer" }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              fill_in "questionnaire_responses_0", with: "Cacatua"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: ""
+              change_focus
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is single option" do
+            let!(:condition_question_type) { "single_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              choose condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+
+              choose condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is multiple option" do
+            let!(:condition_question_type) { "multiple_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+
+              uncheck condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+            end
+          end
+        end
+
+        context "when a question has a display condition of type 'not_answered'" do
+          let!(:display_condition) do
+            create(:display_condition,
+                   condition_type: "not_answered",
+                   question: question,
+                   condition_question: condition_question)
+          end
+
+          before do
+            visit questionnaire_public_path
+          end
+
+          context "when the condition_question type is short answer" do
+            let!(:condition_question_type) { "short_answer" }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: "Cacatua"
+              change_focus
+
+              expect_question_to_be_visible(false)
+
+              fill_in "questionnaire_responses_0", with: ""
+              change_focus
+
+              expect_question_to_be_visible(true)
+            end
+          end
+
+          context "when the condition_question type is long answer" do
+            let!(:condition_question_type) { "long_answer" }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: "Cacatua"
+              change_focus
+
+              expect_question_to_be_visible(false)
+
+              fill_in "questionnaire_responses_0", with: ""
+              change_focus
+
+              expect_question_to_be_visible(true)
+            end
+          end
+
+          context "when the condition_question type is single option" do
+            let!(:condition_question_type) { "single_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(true)
+
+              choose condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is multiple option" do
+            let!(:condition_question_type) { "multiple_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(true)
+
+              check condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(false)
+
+              uncheck condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+            end
+          end
+        end
+
+        context "when a question has a display condition of type 'equal'" do
+          let!(:display_condition) do
+            create(:display_condition,
+                   condition_type: "equal",
+                   question: question,
+                   condition_question: condition_question,
+                   answer_option: condition_question.answer_options.first)
+          end
+
+          before do
+            visit questionnaire_public_path
+          end
+
+          context "when the condition_question type is single option" do
+            let!(:condition_question_type) { "single_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              choose condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+
+              choose condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is multiple option" do
+            let!(:condition_question_type) { "multiple_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+
+              uncheck condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+            end
+          end
+        end
+
+        context "when a question has a display condition of type 'not_equal'" do
+          let!(:display_condition) do
+            create(:display_condition,
+                   condition_type: "not_equal",
+                   question: question,
+                   condition_question: condition_question,
+                   answer_option: condition_question.answer_options.first)
+          end
+
+          before do
+            visit questionnaire_public_path
+          end
+
+          context "when the condition_question type is single option" do
+            let!(:condition_question_type) { "single_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              choose condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(true)
+
+              choose condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is multiple option" do
+            let!(:condition_question_type) { "multiple_option" }
+            let!(:condition_question_options) { answer_options }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(true)
+
+              uncheck condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.second.body["en"]
+
+              expect_question_to_be_visible(true)
+            end
+          end
+        end
+
+        context "when a question has a display condition of type 'match'" do
+          let!(:condition_value) { { en: "something" } }
+          let!(:display_condition) do
+            create(:display_condition,
+                   condition_type: "match",
+                   question: question,
+                   condition_question: condition_question,
+                   condition_value: condition_value)
+          end
+
+          before do
+            visit questionnaire_public_path
+          end
+
+          context "when the condition_question type is short answer" do
+            let!(:condition_question_type) { "short_answer" }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              fill_in "questionnaire_responses_0", with: "Aren't we all expecting #{condition_value[:en]}?"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: "Now upcase #{condition_value[:en].upcase}!"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: "Cacatua"
+              change_focus
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is long answer" do
+            let!(:condition_question_type) { "long_answer" }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              fill_in "questionnaire_responses_0", with: "Aren't we all expecting #{condition_value[:en]}?"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: "Now upcase #{condition_value[:en].upcase}!"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              fill_in "questionnaire_responses_0", with: "Cacatua"
+              change_focus
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is single option" do
+            let!(:condition_question_type) { "single_option" }
+            let!(:condition_question_options) { answer_options }
+            let!(:condition_value) { { en: condition_question.answer_options.first.body["en"].split.second.upcase } }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              choose condition_question.answer_options.first.body["en"]
+
+              expect_question_to_be_visible(true)
+            end
+          end
+
+          context "when the condition_question type is single option with free text" do
+            let!(:condition_question_type) { "single_option" }
+            let!(:condition_question_options) { answer_options }
+            let!(:condition_value) { { en: "forty two" } }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              choose condition_question.answer_options.third.body["en"]
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "The answer is #{condition_value[:en]}"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              choose condition_question.answer_options.first.body["en"]
+              expect_question_to_be_visible(false)
+
+              choose condition_question.answer_options.third.body["en"]
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "oh no not 42 again"
+              change_focus
+
+              expect_question_to_be_visible(false)
+            end
+          end
+
+          context "when the condition_question type is multiple option" do
+            let!(:condition_question_type) { "multiple_option" }
+            let!(:condition_question_options) { answer_options }
+            let!(:condition_value) { { en: "forty two" } }
+
+            it "shows the question only if the condition is fulfilled" do
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.third.body["en"]
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "The answer is #{condition_value[:en]}"
+              change_focus
+
+              expect_question_to_be_visible(true)
+
+              check condition_question.answer_options.first.body["en"]
+              expect_question_to_be_visible(true)
+
+              uncheck condition_question.answer_options.third.body["en"]
+              expect_question_to_be_visible(false)
+
+              check condition_question.answer_options.third.body["en"]
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "oh no not 42 again"
+              change_focus
+
+              expect_question_to_be_visible(false)
+            end
+          end
+        end
+      end
+
+      context "when a question has multiple display conditions" do
+        before do
+          visit questionnaire_public_path
+        end
+
+        context "when all conditions are mandatory" do
+          let!(:condition_question_type) { "single_option" }
+          let!(:condition_question_options) { answer_options }
+          let!(:display_conditions) do
+            [
+              create(:display_condition,
+                     condition_type: "answered",
+                     question: question,
+                     condition_question: condition_question,
+                     mandatory: true),
+              create(:display_condition,
+                     condition_type: "not_equal",
+                     question: question,
+                     condition_question: condition_question,
+                     mandatory: true,
+                     answer_option: condition_question.answer_options.second)
+            ]
+          end
+
+          it "is displayed only if all conditions are fulfilled" do
+            expect_question_to_be_visible(false)
+
+            choose condition_question.answer_options.second.body["en"]
+
+            expect_question_to_be_visible(false)
+
+            choose condition_question.answer_options.first.body["en"]
+
+            expect_question_to_be_visible(true)
+          end
+        end
+
+        context "when all conditions are non-mandatory" do
+          let!(:condition_question_type) { "multiple_option" }
+          let!(:condition_question_options) { answer_options }
+          let!(:display_conditions) do
+            [
+              create(:display_condition,
+                     condition_type: "equal",
+                     question: question,
+                     condition_question: condition_question,
+                     mandatory: false,
+                     answer_option: condition_question.answer_options.first),
+              create(:display_condition,
+                     condition_type: "not_equal",
+                     question: question,
+                     condition_question: condition_question,
+                     mandatory: false,
+                     answer_option: condition_question.answer_options.third)
+            ]
+          end
+
+          it "is displayed if any of the conditions is fulfilled" do
+            expect_question_to_be_visible(false)
+
+            check condition_question.answer_options.first.body["en"]
+
+            expect_question_to_be_visible(true)
+
+            uncheck condition_question.answer_options.first.body["en"]
+            check condition_question.answer_options.second.body["en"]
+
+            expect_question_to_be_visible(true)
+
+            check condition_question.answer_options.first.body["en"]
+
+            expect_question_to_be_visible(true)
+          end
+        end
+
+        context "when a mandatory question has conditions that have not been fulfilled" do
+          let!(:condition_question_type) { "short_answer" }
+          let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, position: 2, mandatory: true) }
+          let!(:display_conditions) do
+            [
+              create(:display_condition,
+                     condition_type: "match",
+                     question: question,
+                     condition_question: condition_question,
+                     condition_value: { en: "hey", es: "ey", ca: "ei" },
+                     mandatory: true)
+            ]
+          end
+
+          it "doesn't throw error" do
+            visit questionnaire_public_path
+
+            fill_in condition_question.body["en"], with: "My first answer"
+
+            check "questionnaire_tos_agreement"
+
+            accept_confirm { click_button "Submit" }
+
+            within ".success.flash" do
+              expect(page).to have_content("successfully")
+            end
+          end
+        end
+      end
+
+          context "when question type is matrix_single" do
       let(:matrix_rows) { Array.new(2) { { "body" => Decidim::Faker::Localized.sentence } } }
       let(:answer_options) { Array.new(2) { { "body" => Decidim::Faker::Localized.sentence } } }
       let(:mandatory) { false }
@@ -730,6 +1292,16 @@ shared_examples_for "has questionnaire" do
 
           expect(page).to have_content("Choices are not complete")
         end
+      end
+
+      private
+
+      def expect_question_to_be_visible(visible)
+        expect(page).to have_css(conditioned_question_id, visible: visible)
+      end
+
+      def change_focus
+        check "questionnaire_tos_agreement"
       end
     end
   end

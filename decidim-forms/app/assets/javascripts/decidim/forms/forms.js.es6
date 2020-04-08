@@ -1,10 +1,11 @@
 // = require ./option_attached_inputs.component
 // = require ./autosortable_checkboxes.component
+// = require ./display_conditions.component
 // = require ./max_choices_alert.component
 
 ((exports) => {
-  const { createOptionAttachedInputs, createAutosortableCheckboxes, createMaxChoicesAlertComponent } = exports.Decidim;
-
+  const { createOptionAttachedInputs, createAutosortableCheckboxes, createDisplayConditions, createMaxChoicesAlertComponent } = exports.Decidim;
+  
   $(".radio-button-collection, .check-box-collection").each((idx, el) => {
     createOptionAttachedInputs({
       wrapperField: $(el),
@@ -31,4 +32,11 @@
       wrapperField: $(el)
     })
   });
+
+  $(".answer-questionnaire .question[data-conditioned='true']").each((idx, el) => {
+    createDisplayConditions({
+      wrapperField: $(el)
+    });
+  });
+
 })(window);

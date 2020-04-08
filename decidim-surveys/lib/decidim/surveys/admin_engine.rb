@@ -10,6 +10,7 @@ module Decidim
       paths["lib/tasks"] = nil
 
       routes do
+        get "/answer_options", to: "surveys#answer_options", as: :answer_options_survey
         get "/answer/:session_token", to: "surveys#show", as: :show_survey
         get "/answer/:session_token/export", to: "surveys#export_response", as: :export_response_survey
         get "/answers", to: "surveys#index", as: :index_survey
