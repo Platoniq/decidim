@@ -22,6 +22,9 @@ module Decidim
 
       validates :question_type, inclusion: { in: TYPES }
 
+      scope :with_body, -> { where(question_type: %w(short_answer long_answer)) }
+      scope :with_choices, -> { where.not(question_type: %w(short_answer long_answer)) }
+
       def matrix?
         %w(matrix_single matrix_multiple).include?(question_type)
       end
