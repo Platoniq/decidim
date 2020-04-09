@@ -11,6 +11,8 @@ shared_examples_for "add questions" do
 
       expect(page).to have_selector(".questionnaire-question", count: 2)
 
+      expand_all_questions
+
       page.all(".questionnaire-question").each_with_index do |question, idx|
         within question do
           fill_in find_nested_form_field_locator("body_en"), with: questions_body[idx]
@@ -22,7 +24,7 @@ shared_examples_for "add questions" do
 
     expect(page).to have_admin_callout("successfully")
 
-    visit questionnaire_edit_path
+    visit_questionnaire_edit_path_and_expand_all
 
     expect(page).to have_selector("input[value='This is the first question']")
     expect(page).to have_selector("input[value='This is the second question']")
@@ -31,6 +33,7 @@ shared_examples_for "add questions" do
   it "adds a question with a rich text description" do
     within "form.edit_questionnaire" do
       click_button "Add question"
+      expand_all_questions
 
       within ".questionnaire-question" do
         fill_in find_nested_form_field_locator("body_en"), with: "Body"
@@ -74,6 +77,7 @@ shared_examples_for "add questions" do
     within "form.edit_questionnaire" do
       click_button "Add question"
       click_button "Add question"
+      expand_all_questions
 
       page.all(".questionnaire-question").each_with_index do |question, idx|
         within question do
@@ -103,7 +107,7 @@ shared_examples_for "add questions" do
 
     expect(page).to have_admin_callout("successfully")
 
-    visit questionnaire_edit_path
+    visit_questionnaire_edit_path_and_expand_all
 
     expect(page).to have_selector("input[value='This is the first question']")
     expect(page).to have_selector("input[value='This is the Q1 first option']")
@@ -117,6 +121,7 @@ shared_examples_for "add questions" do
 
   it "adds a sane number of options for each attribute type" do
     click_button "Add question"
+    expand_all_questions
 
     select "Long answer", from: "Type"
     expect(page).to have_no_selector(".questionnaire-question-answer-option")
@@ -136,6 +141,8 @@ shared_examples_for "add questions" do
 
   it "does not incorrectly reorder when clicking answer options" do
     click_button "Add question"
+    expand_all_questions
+
     select "Single option", from: "Type"
     2.times { click_button "Add answer option" }
 
@@ -192,14 +199,19 @@ shared_examples_for "add questions" do
 
   it "preserves question form across submission failures" do
     click_button "Add question"
+    expand_all_questions
+
     select "Long answer", from: "Type"
     click_button "Save"
 
+    expand_all_questions
     expect(page).to have_select("Type", selected: "Long answer")
   end
 
   it "does not preserve spurious answer options from previous type selections" do
     click_button "Add question"
+    expand_all_questions
+
     select "Single option", from: "Type"
 
     within ".questionnaire-question-answer-option:first-of-type" do
@@ -209,6 +221,7 @@ shared_examples_for "add questions" do
     select "Long answer", from: "Type"
 
     click_button "Save"
+    expand_all_questions
 
     select "Single option", from: "Type"
 
@@ -238,6 +251,8 @@ shared_examples_for "add questions" do
 
   it "preserves answer options form across submission failures" do
     click_button "Add question"
+    expand_all_questions
+
     select "Multiple option", from: "Type"
 
     within ".questionnaire-question-answer-option:first-of-type" do
@@ -253,6 +268,7 @@ shared_examples_for "add questions" do
     select "3", from: "Maximum number of choices"
 
     click_button "Save"
+    expand_all_questions
 
     within ".questionnaire-question-answer-option:first-of-type" do
       expect(page).to have_nested_field("body_en", with: "Something")
@@ -286,6 +302,8 @@ shared_examples_for "add questions" do
     click_button "Add question"
     click_button "Save"
 
+    expand_all_questions
+
     within ".questionnaire-question:first-of-type" do
       fill_in find_nested_form_field_locator("body_en"), with: "Bye"
       click_link "Català", match: :first
@@ -305,6 +323,8 @@ shared_examples_for "add questions" do
 
       within "form.edit_questionnaire" do
         click_button "Add question"
+
+        expand_all_questions
 
         within ".questionnaire-question" do
           fill_in find_nested_form_field_locator("body_en"), with: "This is the first question"
@@ -347,6 +367,7 @@ shared_examples_for "add questions" do
       expect(page).to have_select("Maximum number of choices", options: %w(Any 2))
 
       click_button "Add question"
+      expand_all_questions
 
       within(".questionnaire-question:last-of-type") do
         select "Multiple option", from: "Type"

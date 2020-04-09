@@ -8,6 +8,7 @@ shared_examples_for "update questions" do
 
     before do
       visit questionnaire_edit_path
+      expand_all_questions
     end
 
     it "modifies the question when the information is valid" do
@@ -23,7 +24,7 @@ shared_examples_for "update questions" do
 
       expect(page).to have_admin_callout("successfully")
 
-      visit questionnaire_edit_path
+      visit_questionnaire_edit_path_and_expand_all
 
       expect(page).to have_selector("input[value='Modified question']")
       expect(page).to have_no_selector("input[value='This is the first question']")
@@ -32,6 +33,8 @@ shared_examples_for "update questions" do
     end
 
     it "re-renders the form when the information is invalid and displays errors" do
+      expand_all_questions
+
       within "form.edit_questionnaire" do
         within ".questionnaire-question" do
           expect(page).to have_content("Statement*")
@@ -43,6 +46,8 @@ shared_examples_for "update questions" do
 
         click_button "Save"
       end
+
+      expand_all_questions
 
       expect(page).to have_admin_callout("There was a problem saving")
       expect(page).to have_content("can't be blank", count: 3) # emtpy question, 2 empty default answer options
@@ -129,13 +134,15 @@ shared_examples_for "update questions" do
     end
 
     it "allows deleting answer options" do
+      expand_all_questions
+
       within ".questionnaire-question-answer-option:last-of-type" do
         click_button "Remove"
       end
 
       click_button "Save"
 
-      visit questionnaire_edit_path
+      visit_questionnaire_edit_path_and_expand_all
 
       expect(page).to have_selector(".questionnaire-question-answer-option", count: 2)
     end
@@ -143,6 +150,8 @@ shared_examples_for "update questions" do
     it "still removes the question even if previous editions rendered the options invalid" do
       within "form.edit_questionnaire" do
         expect(page).to have_selector(".questionnaire-question", count: 1)
+
+        expand_all_questions
 
         within ".questionnaire-question-answer-option:first-of-type" do
           fill_in find_nested_form_field_locator("body_en"), with: ""
@@ -157,7 +166,7 @@ shared_examples_for "update questions" do
 
       expect(page).to have_admin_callout("successfully")
 
-      visit questionnaire_edit_path
+      visit_questionnaire_edit_path_and_expand_all
 
       within "form.edit_questionnaire" do
         expect(page).to have_selector(".questionnaire-question", count: 0)
@@ -250,6 +259,7 @@ shared_examples_for "update questions" do
 
     before do
       visit questionnaire_edit_path
+      expand_all_questions
     end
 
     shared_examples_for "switching questions order" do
@@ -288,6 +298,7 @@ shared_examples_for "update questions" do
 
     it "properly decides which button to show after adding/removing questions" do
       click_button "Add question"
+      expand_all_questions
 
       expect(page.find(".questionnaire-question:nth-of-type(1)")).to look_like_first_question
       expect(page.find(".questionnaire-question:nth-of-type(2)")).to look_like_intermediate_question
@@ -302,11 +313,15 @@ shared_examples_for "update questions" do
     end
 
     it "does not duplicate editors when adding new questions" do
-      expect { click_button "Add question" }.to change { page.all(".ql-toolbar").size }.by(1)
+      expect do
+        click_button "Add question"
+        expand_all_questions
+      end.to change { page.all(".ql-toolbar").size }.by(1)
     end
 
     it "properly decides which button to show after adding/removing answer options" do
       click_button "Add question"
+      expand_all_questions
 
       within ".questionnaire-question:last-of-type" do
         select "Single option", from: "Type"
@@ -329,6 +344,7 @@ shared_examples_for "update questions" do
       end
 
       click_button "Save"
+      expand_all_questions
 
       within ".questionnaire-question:last-of-type" do
         within ".questionnaire-question-answer-options-list" do
