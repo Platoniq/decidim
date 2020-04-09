@@ -41,6 +41,8 @@ module Decidim
 
       scope :conditioned, -> { includes(:display_conditions).where.not(decidim_forms_display_conditions: { id: nil }) }
       scope :not_conditioned, -> { includes(:display_conditions).where(decidim_forms_display_conditions: { id: nil }) }
+      scope :with_body, -> { where(question_type: %w(short_answer long_answer)) }
+      scope :with_choices, -> { where.not(question_type: %w(short_answer long_answer)) }
 
       def matrix?
         %w(matrix_single matrix_multiple).include?(question_type)
