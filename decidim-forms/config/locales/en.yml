@@ -83,6 +83,7 @@ en:
             add_answer_option: Add answer option
             add_matrix_row: Add row
             add_display_condition: Add display condition
+            add_display_condition_info: Save the form to configure display conditions
             any: Any
             collapse: Collapse
             description: Description

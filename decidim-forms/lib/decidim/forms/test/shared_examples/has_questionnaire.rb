@@ -239,16 +239,16 @@ shared_examples_for "has questionnaire" do
         it "renders them as radio buttons with attached text fields disabled by default" do
           expect(page).to have_selector(".radio-button-collection input[type=radio]", count: 3)
 
-          expect(page).to have_field("questionnaire_answers_0_choices_2_custom_body", disabled: true, count: 1)
+          expect(page).to have_field("questionnaire_responses_0_choices_2_custom_body", disabled: true, count: 1)
 
           choose answer_option_bodies[2]["en"]
 
-          expect(page).to have_field("questionnaire_answers_0_choices_2_custom_body", disabled: false, count: 1)
+          expect(page).to have_field("questionnaire_responses_0_choices_2_custom_body", disabled: false, count: 1)
         end
 
         it "saves the free text in a separate field if submission correct" do
           choose answer_option_bodies[2]["en"]
-          fill_in "questionnaire_answers_0_choices_2_custom_body", with: "Cacatua"
+          fill_in "questionnaire_responses_0_choices_2_custom_body", with: "Cacatua"
 
           check "questionnaire_tos_agreement"
           accept_confirm { click_button "Submit" }
@@ -266,7 +266,7 @@ shared_examples_for "has questionnaire" do
           check other_question.answer_options.third.body["en"]
 
           choose answer_option_bodies[2]["en"]
-          fill_in "questionnaire_answers_0_choices_2_custom_body", with: "Cacatua"
+          fill_in "questionnaire_responses_0_choices_2_custom_body", with: "Cacatua"
 
           check "questionnaire_tos_agreement"
           accept_confirm { click_button "Submit" }
@@ -275,7 +275,7 @@ shared_examples_for "has questionnaire" do
             expect(page).to have_content("There was a problem answering")
           end
 
-          expect(page).to have_field("questionnaire_answers_0_choices_2_custom_body", with: "Cacatua")
+          expect(page).to have_field("questionnaire_responses_0_choices_2_custom_body", with: "Cacatua")
         end
       end
 
@@ -332,7 +332,7 @@ shared_examples_for "has questionnaire" do
       it "renders the answer as a textarea" do
         visit questionnaire_public_path
 
-        expect(page).to have_selector("textarea#questionnaire_answers_0")
+        expect(page).to have_selector("textarea#questionnaire_responses_0")
       end
     end
 
@@ -342,7 +342,7 @@ shared_examples_for "has questionnaire" do
       it "renders the answer as a text field" do
         visit questionnaire_public_path
 
-        expect(page).to have_selector("input[type=text]#questionnaire_answers_0")
+        expect(page).to have_selector("input[type=text]#questionnaire_responses_0")
       end
     end
 
@@ -745,7 +745,7 @@ shared_examples_for "has questionnaire" do
 
       let(:condition_question_options) { [] }
       let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, position: 2) }
-      let!(:conditioned_question_id) { "#questionnaire_answers_1" }
+      let!(:conditioned_question_id) { "#questionnaire_responses_1" }
       let!(:condition_question_type) { "short_answer" }
       let!(:condition_question) do
         create(:questionnaire_question,
@@ -774,12 +774,12 @@ shared_examples_for "has questionnaire" do
             it "shows the question only if the condition is fulfilled" do
               expect_question_to_be_visible(false)
 
-              fill_in "questionnaire_answers_0", with: "Cacatua"
+              fill_in "questionnaire_responses_0", with: "Cacatua"
               change_focus
 
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: ""
+              fill_in "questionnaire_responses_0", with: ""
               change_focus
 
               expect_question_to_be_visible(false)
@@ -792,12 +792,12 @@ shared_examples_for "has questionnaire" do
             it "shows the question only if the condition is fulfilled" do
               expect_question_to_be_visible(false)
 
-              fill_in "questionnaire_answers_0", with: "Cacatua"
+              fill_in "questionnaire_responses_0", with: "Cacatua"
               change_focus
 
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: ""
+              fill_in "questionnaire_responses_0", with: ""
               change_focus
 
               expect_question_to_be_visible(false)
@@ -865,12 +865,12 @@ shared_examples_for "has questionnaire" do
             it "shows the question only if the condition is fulfilled" do
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: "Cacatua"
+              fill_in "questionnaire_responses_0", with: "Cacatua"
               change_focus
 
               expect_question_to_be_visible(false)
 
-              fill_in "questionnaire_answers_0", with: ""
+              fill_in "questionnaire_responses_0", with: ""
               change_focus
 
               expect_question_to_be_visible(true)
@@ -883,12 +883,12 @@ shared_examples_for "has questionnaire" do
             it "shows the question only if the condition is fulfilled" do
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: "Cacatua"
+              fill_in "questionnaire_responses_0", with: "Cacatua"
               change_focus
 
               expect_question_to_be_visible(false)
 
-              fill_in "questionnaire_answers_0", with: ""
+              fill_in "questionnaire_responses_0", with: ""
               change_focus
 
               expect_question_to_be_visible(true)
@@ -1058,17 +1058,17 @@ shared_examples_for "has questionnaire" do
             it "shows the question only if the condition is fulfilled" do
               expect_question_to_be_visible(false)
 
-              fill_in "questionnaire_answers_0", with: "Aren't we all expecting #{condition_value[:en]}?"
+              fill_in "questionnaire_responses_0", with: "Aren't we all expecting #{condition_value[:en]}?"
               change_focus
 
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: "Now upcase #{condition_value[:en].upcase}!"
+              fill_in "questionnaire_responses_0", with: "Now upcase #{condition_value[:en].upcase}!"
               change_focus
 
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: "Cacatua"
+              fill_in "questionnaire_responses_0", with: "Cacatua"
               change_focus
 
               expect_question_to_be_visible(false)
@@ -1081,17 +1081,17 @@ shared_examples_for "has questionnaire" do
             it "shows the question only if the condition is fulfilled" do
               expect_question_to_be_visible(false)
 
-              fill_in "questionnaire_answers_0", with: "Aren't we all expecting #{condition_value[:en]}?"
+              fill_in "questionnaire_responses_0", with: "Aren't we all expecting #{condition_value[:en]}?"
               change_focus
 
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: "Now upcase #{condition_value[:en].upcase}!"
+              fill_in "questionnaire_responses_0", with: "Now upcase #{condition_value[:en].upcase}!"
               change_focus
 
               expect_question_to_be_visible(true)
 
-              fill_in "questionnaire_answers_0", with: "Cacatua"
+              fill_in "questionnaire_responses_0", with: "Cacatua"
               change_focus
 
               expect_question_to_be_visible(false)
@@ -1121,7 +1121,7 @@ shared_examples_for "has questionnaire" do
               expect_question_to_be_visible(false)
 
               choose condition_question.answer_options.third.body["en"]
-              fill_in "questionnaire_answers_0_choices_2_custom_body", with: "The answer is #{condition_value[:en]}"
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "The answer is #{condition_value[:en]}"
               change_focus
 
               expect_question_to_be_visible(true)
@@ -1130,7 +1130,7 @@ shared_examples_for "has questionnaire" do
               expect_question_to_be_visible(false)
 
               choose condition_question.answer_options.third.body["en"]
-              fill_in "questionnaire_answers_0_choices_2_custom_body", with: "oh no not 42 again"
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "oh no not 42 again"
               change_focus
 
               expect_question_to_be_visible(false)
@@ -1146,7 +1146,7 @@ shared_examples_for "has questionnaire" do
               expect_question_to_be_visible(false)
 
               check condition_question.answer_options.third.body["en"]
-              fill_in "questionnaire_answers_0_choices_2_custom_body", with: "The answer is #{condition_value[:en]}"
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "The answer is #{condition_value[:en]}"
               change_focus
 
               expect_question_to_be_visible(true)
@@ -1158,7 +1158,7 @@ shared_examples_for "has questionnaire" do
               expect_question_to_be_visible(false)
 
               check condition_question.answer_options.third.body["en"]
-              fill_in "questionnaire_answers_0_choices_2_custom_body", with: "oh no not 42 again"
+              fill_in "questionnaire_responses_0_choices_2_custom_body", with: "oh no not 42 again"
               change_focus
 
               expect_question_to_be_visible(false)
