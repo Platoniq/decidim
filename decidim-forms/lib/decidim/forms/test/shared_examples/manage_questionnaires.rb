@@ -47,73 +47,77 @@ shared_examples_for "manage questionnaires" do
     it_behaves_like "add display conditions"
     it_behaves_like "update display conditions"
 
-    context "when a questionnaire has multiple existing questions" do
-      describe "collapsible questions" do
-        context "when clicking on Expand all button" do
-          it "expands all questions" do
-            click_button "Expand all questions"
-            expect(page).to have_selector(".collapsible", visible: true)
-            expect(page).to have_selector(".question--collapse .icon-collapse", count: questionnaire.questions.count)
+    describe "collapsible questions" do
+      let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, body: body) }
+
+      before do
+        visit questionnaire_edit_path
+      end
+
+      context "when clicking on Expand all button" do
+        it "expands all questions" do
+          click_button "Expand all questions"
+          expect(page).to have_selector(".collapsible", visible: true)
+          expect(page).to have_selector(".question--collapse .icon-collapse", count: questionnaire.questions.count)
+        end
+      end
+
+      context "when clicking on Collapse all button" do
+        it "collapses all questions" do
+          click_button "Collapse all questions"
+          expect(page).not_to have_selector(".collapsible", visible: true)
+          expect(page).to have_selector(".question--collapse .icon-expand", count: questionnaire.questions.count)
+        end
+      end
+
+      shared_examples_for "collapsing a question" do
+        it "changes the toggle button" do
+          within ".questionnaire-question:last-of-type" do
+            expect(page).to have_selector(".icon-expand")
           end
         end
 
-        context "when clicking on Collapse all button" do
-          it "collapses all questions" do
-            click_button "Collapse all questions"
+        it "hides the question card section" do
+          within ".questionnaire-question:last-of-type" do
             expect(page).not_to have_selector(".collapsible", visible: true)
-            expect(page).to have_selector(".question--collapse .icon-expand", count: questionnaire.questions.count)
+          end
+        end
+      end
+
+      shared_examples_for "uncollapsing a question" do
+        it "changes the toggle button" do
+          within ".questionnaire-question:last-of-type" do
+            expect(page).to have_selector(".icon-collapse")
           end
         end
 
-        shared_examples_for "collapsing a question" do
-          it "changes the toggle button" do
-            within ".questionnaire-question:last-of-type" do
-              expect(page).to have_selector(".icon-expand")
-            end
-          end
+        it "shows the question card section" do
+          expect(page).to have_selector(".collapsible", visible: true)
+        end
+      end
 
-          it "hides the question card section" do
-            within ".questionnaire-question:last-of-type" do
-              expect(page).not_to have_selector(".collapsible", visible: true)
-            end
+      context "when collapsing an existing question" do
+        before do
+          expand_all_questions
+          within ".questionnaire-question:last-of-type" do
+            page.find(".question--collapse").click
           end
         end
 
-        shared_examples_for "uncollapsing a question" do
-          it "changes the toggle button" do
-            within ".questionnaire-question:last-of-type" do
-              expect(page).to have_selector(".icon-collapse")
-            end
-          end
+        it_behaves_like "collapsing a question"
+      end
 
-          it "shows the question card section" do
-            expect(page).to have_selector(".collapsible", visible: true)
+      context "when adding a new question" do
+        before do
+          click_button "Add question"
+          expand_all_questions
+
+          within ".questionnaire-question:last-of-type" do
+            page.find(".question--collapse").click
           end
         end
 
-        context "when collapsing an existing question" do
-          before do
-            expand_all_questions
-            within ".questionnaire-question:last-of-type" do
-              page.find(".question--collapse").click
-            end
-          end
-
-          it_behaves_like "collapsing a question"
-        end
-
-        context "when adding a new question" do
-          before do
-            click_button "Add question"
-            expand_all_questions
-
-            within ".questionnaire-question:last-of-type" do
-              page.find(".question--collapse").click
-            end
-          end
-
-          it_behaves_like "collapsing a question"
-        end
+        it_behaves_like "collapsing a question"
       end
     end
   end

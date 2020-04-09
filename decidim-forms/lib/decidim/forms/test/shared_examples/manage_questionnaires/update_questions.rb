@@ -197,7 +197,7 @@ shared_examples_for "update questions" do
     end
 
     before do
-      visit questionnaire_edit_path
+      visit_questionnaire_edit_path_and_expand_all
     end
 
     it "allows deleting matrix rows" do
@@ -207,7 +207,7 @@ shared_examples_for "update questions" do
 
       click_button "Save"
 
-      visit questionnaire_edit_path
+      visit_questionnaire_edit_path_and_expand_all
 
       within ".questionnaire-question:last-of-type" do
         expect(page).to have_selector(".questionnaire-question-matrix-row", count: 2)
@@ -232,7 +232,7 @@ shared_examples_for "update questions" do
 
       expect(page).to have_admin_callout("successfully")
 
-      visit questionnaire_edit_path
+      visit_questionnaire_edit_path_and_expand_all
 
       within "form.edit_questionnaire" do
         expect(page).to have_selector(".questionnaire-question", count: 1)

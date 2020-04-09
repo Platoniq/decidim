@@ -171,6 +171,8 @@ shared_examples_for "add questions" do
 
   it "does not incorrectly reorder when clicking matrix rows" do
     click_button "Add question"
+    expand_all_questions
+
     select "Matrix (Multiple option)", from: "Type"
     2.times { click_button "Add row" }
 
@@ -232,6 +234,8 @@ shared_examples_for "add questions" do
 
   it "does not preserve spurious matrix rows from previous type selections" do
     click_button "Add question"
+    expand_all_questions
+
     select "Matrix (Single option)", from: "Type"
 
     within ".questionnaire-question-matrix-row:first-of-type" do
@@ -241,6 +245,7 @@ shared_examples_for "add questions" do
     select "Long answer", from: "Type"
 
     click_button "Save"
+    expand_all_questions
 
     select "Matrix (Single option)", from: "Type"
 
@@ -283,6 +288,8 @@ shared_examples_for "add questions" do
 
   it "preserves matrix rows form across submission failures" do
     click_button "Add question"
+    expand_all_questions
+
     select "Matrix (Multiple option)", from: "Type"
 
     within ".questionnaire-question-matrix-row:first-of-type" do
@@ -290,8 +297,9 @@ shared_examples_for "add questions" do
     end
 
     click_button "Add row"
-
     click_button "Save"
+
+    expand_all_questions
 
     within ".questionnaire-question-matrix-row:first-of-type" do
       expect(page).to have_nested_field("body_en", with: "Something")
@@ -381,10 +389,11 @@ shared_examples_for "add questions" do
 
   context "when adding a matrix question" do
     before do
-      visit questionnaire_edit_path
+      visit_questionnaire_edit_path_and_expand_all
 
       within "form.edit_questionnaire" do
         click_button "Add question"
+        expand_all_questions
 
         within ".questionnaire-question" do
           fill_in find_nested_form_field_locator("body_en"), with: "This is the first question"
@@ -428,6 +437,8 @@ shared_examples_for "add questions" do
       expect(page).to have_select("Maximum number of choices", options: %w(Any 2))
 
       click_button "Add question"
+
+      expand_all_questions
 
       within(".questionnaire-question:last-of-type") do
         select "Matrix (Multiple option)", from: "Type"
