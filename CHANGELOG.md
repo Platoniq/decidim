@@ -22,6 +22,7 @@ Due to [\#5553](https://github.com/decidim/decidim/pull/5553), SSL is turned on 
 ### Added
 
 - **decidim-forms**: Collapse and expand questions when editing questionnaire [\#5945](https://github.com/decidim/decidim/pull/5945)
+- **decidim-forms**: Update move up and down buttons after dragging questions when managing questionnaire. [\#5947](https://github.com/decidim/decidim/pull/5947)
 - **decidim-core**: Allow users to register with a preferred language. [\#5789](https://github.com/decidim/decidim/pull/5789
 - **decidim-dev**: Retry failed test to avoid flaky. [\#5894](https://github.com/decidim/decidim/pull/5894)
 - **decidim-forms**: New question type "Matrix" [\#5876](https://github.com/decidim/decidim/pull/5876)
