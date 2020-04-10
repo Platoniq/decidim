@@ -10,10 +10,10 @@ module Decidim
     class FormPDF < PDF
       # i18n-tasks-use t('decidim.admin.exports.formats.FormPDF')
 
-      def controller
+      def view
         super.class_eval do
-          helper Decidim::TranslationsHelper
-          helper Decidim::Forms::Admin::QuestionnaireAnswersHelper
+          include Decidim::TranslationsHelper
+          include Decidim::Forms::Admin::QuestionnaireAnswersHelper
         end
         super
       end
@@ -23,7 +23,7 @@ module Decidim
       end
 
       def layout
-        "decidim/forms/admin/questionnaires/questionnaire_answers.html.erb"
+        "layouts/decidim/forms/admin/questionnaires/questionnaire_answers.html.erb"
       end
     end
   end

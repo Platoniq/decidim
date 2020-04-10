@@ -58,6 +58,11 @@ shared_examples_for "manage questionnaire answers" do
         expect(page).to have_link("Export")
       end
 
+      it "can be exported" do
+        click_link "Export", match: :first
+        expect(page).to have_admin_callout("Your export is currently in progress")
+      end
+
       context "when no short answer exist" do
         let(:first_type) { "long_answer" }
 

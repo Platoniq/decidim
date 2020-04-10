@@ -15,8 +15,8 @@ module Decidim
       #
       # Returns an ExportData instance.
       def export
-        html = controller.render_to_string(
-          template: template,
+        html = view.render(
+          file: template,
           layout: layout,
           locals: { collection: participants }
         )
@@ -43,8 +43,8 @@ module Decidim
 
       protected
 
-      def controller
-        @controller ||= ActionController::Base.new
+      def view
+        @view ||= ActionView::Base.new(ActionController::Base.view_paths, {})
       end
 
       def participants
