@@ -24,6 +24,9 @@ The use case that originated this change is the persistence of the user's gender
 - **decidim-meeting**: Backport "Avoid deleting a meeting when it has at least one proposal originated in it". [\#6250](https://github.com/decidim/decidim/pull/6250)
 - **decidim-core**: Backport "Fix crash when proposals meeting author is deleted". [\#6243](https://github.com/decidim/decidim/pull/6243)
 - **decidim-proposals**: Fix participatory text newline absence. [\#6159](https://github.com/decidim/decidim/pull/6159)
+- **decidim-core**: Fix user's avatar icon in CSS. [\#5990](https://github.com/decidim/decidim/pull/5990)
+- **decidim-core**: Use internal Organization class in migration. [\#6052](https://github.com/decidim/decidim/pull/6052)
+- **decidim-core**: Fix email not being sent to some users when uploading a CSV file. [\#6011](https://github.com/decidim/decidim/pull/6011)
 - **decidim-core**: Fix broken puma version in generator's Gemfile. [\#6060](https://github.com/decidim/decidim/pull/6060)
 - **decidim-core,decidim-system**: Fix using Decidim as a provider for omniauth authentication. [\#6081](https://github.com/decidim/decidim/pull/6081)
 
