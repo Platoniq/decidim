@@ -31,6 +31,9 @@ The use case that originated this change is the persistence of the user's gender
 - **decidim-core,decidim-system**: Fix using Decidim as a provider for omniauth authentication. [\#6081](https://github.com/decidim/decidim/pull/6081)
 
 ### Removed
+- **decidim-api**: Use organization time zone [\#6088](https://github.com/decidim/decidim/pull/6088)
+- **decidim-docs**: Add helpful info to install docs for seed errors during installation process. [\#6085](https://github.com/decidim/decidim/pull/6085)
+- **decidim-forms**: Collapse and expand questions when editing questionnaire [\#5945](https://github.com/decidim/decidim/pull/5945)
 - **decidim-forms**: New question type "Matrix" [\#5948](https://github.com/decidim/decidim/pull/5948)
 - **decidim-core**: Notify admins o user_group created or updated. [\#5906](https://github.com/decidim/decidim/pull/5906)
 - **decidim-comments**: Notify user_group followers when it posts a comment. [\#5906](https://github.com/decidim/decidim/pull/5906)
