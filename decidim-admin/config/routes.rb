@@ -89,6 +89,7 @@ Decidim::Admin::Engine.routes.draw do
     end
 
     resources :oauth_applications
+    resources :questionnaire_templates
 
     root to: "dashboard#show"
   end
