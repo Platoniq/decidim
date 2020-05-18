@@ -96,6 +96,13 @@ module Decidim
                     position: 11,
                     active: [%w(decidim/admin/oauth_applications), []],
                     if: allowed_to?(:read, :oauth_application)
+
+          menu.item I18n.t("menu.questionnaire_templates", scope: "decidim.admin"),
+                    decidim_admin.questionnaire_templates_path,
+                    icon_name: "document",
+                    position: 12,
+                    active: [%w(decidim/admin/questionnaire_templates), []],
+                    if: allowed_to?(:read, :questionnaire_template)
         end
       end
 
