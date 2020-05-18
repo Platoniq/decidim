@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-divider">
+    <h2 class="card-title">
+      <%= t ".title" %>
+      <% if allowed_to?(:create, :questionnaire_template) %>
+        <%= link_to t("actions.new", scope: "decidim.admin", name: t("models.questionnaire_template.name", scope: "decidim.admin").downcase), ["new", "questionnaire_template"], class: "button tiny button--title new" %>
+      <% end %>
+    </h2>
+  </div>
+  <div class="card-section">
+  <% if @questionnaire_templates.any? %>
+    <div class="table-scroll">
+      <table class="table-list">
+        <thead>
+          <tr>
+            <th><%= t("models.questionnaire_template.fields.title", scope: "decidim.admin") %></th>
+            <th><%= t("models.questionnaire_template.fields.created_at", scope: "decidim.admin") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @questionnaire_templates.each do |questionnaire_template| %>
+            <tr data-questionnaire_template-id="<%= questionnaire_template.id %>">
+              <td><%= link_to translated_attribute(questionnaire_template.title), decidim_admin.questionnaire_template_path(questionnaire_template) %></td>
+              <td><%= l questionnaire_template.created_at, format: :long %></td>
+              <td class="table-list__actions">
+                <% if allowed_to?(:update, :questionnaire_template, questionnaire_template: questionnaire_template) %>
+                  <%= icon_link_to "pencil", decidim_admin.edit_questionnaire_template_path(questionnaire_template), t("actions.edit", scope: "decidim.admin"), class: "edit" %>
+                <% end %>
+
+                <% if allowed_to?(:destroy, :questionnaire_template, questionnaire_template: questionnaire_template) %>
+                  <%= icon_link_to "circle-x", decidim_admin.questionnaire_template_path(questionnaire_template), t("actions.destroy", scope: "decidim.admin"), method: :delete, data: { confirm: t(".confirm_delete") }, class: "action-icon--remove" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <%= t(".empty") %>
+  <% end %>
+  </div>
+</div>
