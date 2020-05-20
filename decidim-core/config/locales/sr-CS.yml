@@ -1,0 +1,34 @@
+sr:
+  decidim:
+    admin_terms_of_use:
+      default_body: "<h2>USLOVI KORIŠĆENJA ZA ADMINISTRATORE</h2><p> Verujemo da si već čuo uobičajeno predavanje od svog lokalnog Administratora Sistema. Obično se svodi na ove tri stvari </p><ol><li>Poštuj privatnost drugih</li><li>Razmisli pre nego što klikneš</li><li>Sa velikom moći dolazi velika odgovornost</li></ol>"
+    amendments:
+      wizard_step_form:
+        steps:
+          '1': Create your amendment
+          '2': Compare your amendment
+          '3': Complete your amendment
+          '4': Publish your amendment
+    content_blocks:
+      stats:
+        name: Statistika organizacije
+    export_mailer:
+      data_portability_export:
+        click_button: 'Kliknite na sledeće dugme da bi preuzeli svoje podatke u obliku datoteke.<br/> Moći ćete da pristupite ovom linku do %{date}. <br/> Biće vam potreban program kao što je <a href=''https://www.7-zip.org/''>7-zip</a> da bi ga otvorili. Šifra za otpakivanje datoteke:%{password}'
+    follows:
+      create:
+        participatory_space: Već pratite prostor za diskusiju
+    pages:
+      home:
+        metrics:
+          headline: Metrika
+      participatory_space:
+        metrics:
+          headline: Metrika
+          link: Prikaži svu metriku
+  errors:
+    messages:
+      invalid_time_zone: nije validna vremenska zona
+  versions:
+    dropdown:
+      choose_diff_view_html: 'HTML režim gledanja:'
