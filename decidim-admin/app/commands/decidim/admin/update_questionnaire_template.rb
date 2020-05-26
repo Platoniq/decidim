@@ -27,9 +27,6 @@ module Decidim
         )
 
         broadcast(:ok, @template)
-      rescue ActiveRecord::RecordInvalid
-        @form.errors.add(:organization_logo, @template.errors[:organization_logo]) if @template.errors.include? :organization_logo
-        broadcast(:invalid)
       end
     end
   end

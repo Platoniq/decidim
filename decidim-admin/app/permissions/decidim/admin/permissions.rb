@@ -53,6 +53,15 @@ module Decidim
           allow! if permission_action.subject == :authorization_workflow
           allow! if permission_action.subject == :static_page_topic
           allow! if permission_action.subject == :help_sections
+
+          if permission_action.subject == :questionnaire
+            # case permission_action.action
+            # when :export_answers, :update
+            #   permission_action.allow!
+            # else
+            allow!
+            # end
+          end
         end
 
         permission_action

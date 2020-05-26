@@ -90,6 +90,8 @@ Decidim::Admin::Engine.routes.draw do
 
     resources :oauth_applications
     resources :questionnaire_templates do
+      resource :questionnaire, only: [:edit, :update], controller: "questionnaire_template_questionnaires"
+
       member do
         post :duplicate
         get :preview
