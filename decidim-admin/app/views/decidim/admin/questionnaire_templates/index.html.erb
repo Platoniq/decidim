@@ -14,6 +14,8 @@
         <thead>
           <tr>
             <th><%= t("models.questionnaire_template.fields.title", scope: "decidim.admin") %></th>
+            <th><%= t("models.questionnaire_template.fields.questionnaire_title", scope: "decidim.admin") %></th>
+            <th><%= t("models.questionnaire_template.fields.questions", scope: "decidim.admin") %></th>
             <th><%= t("models.questionnaire_template.fields.created_at", scope: "decidim.admin") %></th>
             <th></th>
           </tr>
@@ -21,23 +23,25 @@
         <tbody>
           <% @questionnaire_templates.each do |questionnaire_template| %>
             <tr data-questionnaire_template-id="<%= questionnaire_template.id %>">
-              <td><%= link_to translated_attribute(questionnaire_template.title), decidim_admin.questionnaire_template_path(questionnaire_template) %></td>
+              <td><%= link_to translated_attribute(questionnaire_template.title), edit_questionnaire_template_path(questionnaire_template) %></td>
+              <td><%= link_to translated_attribute(questionnaire_template.questionnaire.title), edit_questionnaire_template_questionnaire_path(questionnaire_template) %></td>
+              <td><%= questionnaire_template.questionnaire&.questions&.count.to_i %></td>
               <td><%= l questionnaire_template.created_at, format: :long %></td>
               <td class="table-list__actions">
                 <% if allowed_to?(:update, :questionnaire_template, questionnaire_template: questionnaire_template) %>
-                  <%= icon_link_to "pencil", decidim_admin.edit_questionnaire_template_path(questionnaire_template), t("actions.edit", scope: "decidim.admin"), class: "edit" %>
+                  <%= icon_link_to "pencil", edit_questionnaire_template_path(questionnaire_template), t("actions.edit", scope: "decidim.admin"), class: "edit" %>
                 <% end %>
 
-                <% if allowed_to?(:duplicate, :questionnaire_template, questionnaire_template: questionnaire_template) %>
-                  <%= icon_link_to "clipboard", decidim_admin.duplicate_questionnaire_template_path(questionnaire_template), t("actions.duplicate", scope: "decidim.admin"), method: :post %>
+                <% if allowed_to?(:copy, :questionnaire_template, questionnaire_template: questionnaire_template) %>
+                  <%= icon_link_to "clipboard", copy_questionnaire_template_path(questionnaire_template), t("actions.duplicate", scope: "decidim.admin"), method: :post %>
                 <% end %>
 
                 <% if allowed_to?(:preview, :questionnaire_template, questionnaire_template: questionnaire_template) %>
-                  <%= icon_link_to "eye", decidim_admin.preview_questionnaire_template_path(questionnaire_template), t("actions.preview", scope: "decidim.admin") %>
+                  <%= icon_link_to "eye", preview_questionnaire_template_path(questionnaire_template), t("actions.preview", scope: "decidim.admin") %>
                 <% end %>
 
                 <% if allowed_to?(:destroy, :questionnaire_template, questionnaire_template: questionnaire_template) %>
-                  <%= icon_link_to "circle-x", decidim_admin.questionnaire_template_path(questionnaire_template), t("actions.destroy", scope: "decidim.admin"), method: :delete, data: { confirm: t(".confirm_delete") }, class: "action-icon--remove" %>
+                  <%= icon_link_to "circle-x", questionnaire_template_path(questionnaire_template), t("actions.destroy", scope: "decidim.admin"), method: :delete, data: { confirm: t(".confirm_delete") }, class: "action-icon--remove" %>
                 <% end %>
               </td>
             </tr>

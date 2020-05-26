@@ -35,36 +35,32 @@ module Decidim
         end
       end
 
-      def duplicate
-        @questionnaire_template = collection.find(params[:id])
-
+      def copy
         enforce_permission_to :create, :questionnaire_template
 
-        DuplicateQuestionnaireTemplate.call(@questionnaire_template) do
+        CopyQuestionnaireTemplate.call(questionnaire_template) do
           on(:ok) do
-            flash[:notice] = I18n.t("questionnaire_templates.duplicate.success", scope: "decidim.admin")
+            flash[:notice] = I18n.t("questionnaire_templates.copy.success", scope: "decidim.admin")
             redirect_to action: :index
           end
 
           on(:invalid) do
-            flash.now[:alert] = I18n.t("questionnaire_templates.duplicate.error", scope: "decidim.admin")
+            flash.now[:alert] = I18n.t("questionnaire_templates.copy.error", scope: "decidim.admin")
             render :index
           end
         end
       end
 
       def edit
-        @questionnaire_template = collection.find(params[:id])
-        enforce_permission_to :update, :questionnaire_template, questionnaire_template: @questionnaire_template
-        @form = form(QuestionnaireTemplateForm).from_model(@questionnaire_template)
+        enforce_permission_to :update, :questionnaire_template, questionnaire_template: questionnaire_template
+        @form = form(QuestionnaireTemplateForm).from_model(questionnaire_template)
       end
 
       def update
-        @questionnaire_template = collection.find(params[:id])
-        enforce_permission_to :update, :questionnaire_template, questionnaire_template: @questionnaire_template
+        enforce_permission_to :update, :questionnaire_template, questionnaire_template: questionnaire_template
         @form = form(QuestionnaireTemplateForm).from_params(params)
 
-        UpdateQuestionnaireTemplate.call(@questionnaire_template, @form, current_user) do
+        UpdateQuestionnaireTemplate.call(questionnaire_template, @form, current_user) do
           on(:ok) do |_template|
             flash[:notice] = I18n.t("questionnaire_templates.update.success", scope: "decidim.admin")
             redirect_to action: :index
@@ -79,10 +75,9 @@ module Decidim
       end
 
       def destroy
-        @questionnaire_template = collection.find(params[:id])
-        enforce_permission_to :destroy, :questionnaire_template, questionnaire_template: @questionnaire_template
+        enforce_permission_to :destroy, :questionnaire_template, questionnaire_template: questionnaire_template
 
-        DestroyQuestionnaireTemplate.call(@questionnaire_template, current_user) do
+        DestroyQuestionnaireTemplate.call(questionnaire_template, current_user) do
           on(:ok) do
             flash[:notice] = I18n.t("questionnaire_templates.destroy.success", scope: "decidim.admin")
             redirect_to action: :index
@@ -96,10 +91,9 @@ module Decidim
       end
 
       def preview
-        @questionnaire_template = collection.find(params[:id])
-        enforce_permission_to :preview, :questionnaire_template, questionnaire_template: @questionnaire_template
+        enforce_permission_to :preview, :questionnaire_template, questionnaire_template: questionnaire_template
 
-        @form = form(Decidim::Forms::QuestionnaireForm).from_model(@questionnaire_template.questionnaire)
+        @form = form(Decidim::Forms::QuestionnaireForm).from_model(questionnaire_template.questionnaire)
 
         render "decidim/forms/questionnaires/show"
       end

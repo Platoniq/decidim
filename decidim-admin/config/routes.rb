@@ -93,7 +93,7 @@ Decidim::Admin::Engine.routes.draw do
       resource :questionnaire, only: [:edit, :update], controller: "questionnaire_template_questionnaires"
 
       member do
-        post :duplicate
+        post :copy
         get :preview
       end
     end
