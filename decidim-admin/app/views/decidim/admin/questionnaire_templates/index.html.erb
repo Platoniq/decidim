@@ -28,6 +28,14 @@
                   <%= icon_link_to "pencil", decidim_admin.edit_questionnaire_template_path(questionnaire_template), t("actions.edit", scope: "decidim.admin"), class: "edit" %>
                 <% end %>
 
+                <% if allowed_to?(:duplicate, :questionnaire_template, questionnaire_template: questionnaire_template) %>
+                  <%= icon_link_to "clipboard", decidim_admin.duplicate_questionnaire_template_path(questionnaire_template), t("actions.duplicate", scope: "decidim.admin"), method: :post %>
+                <% end %>
+
+                <% if allowed_to?(:preview, :questionnaire_template, questionnaire_template: questionnaire_template) %>
+                  <%= icon_link_to "eye", decidim_admin.preview_questionnaire_template_path(questionnaire_template), t("actions.preview", scope: "decidim.admin") %>
+                <% end %>
+
                 <% if allowed_to?(:destroy, :questionnaire_template, questionnaire_template: questionnaire_template) %>
                   <%= icon_link_to "circle-x", decidim_admin.questionnaire_template_path(questionnaire_template), t("actions.destroy", scope: "decidim.admin"), method: :delete, data: { confirm: t(".confirm_delete") }, class: "action-icon--remove" %>
                 <% end %>
