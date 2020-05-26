@@ -89,7 +89,12 @@ Decidim::Admin::Engine.routes.draw do
     end
 
     resources :oauth_applications
-    resources :questionnaire_templates
+    resources :questionnaire_templates do
+      member do
+        post :duplicate
+        get :preview
+      end
+    end
 
     root to: "dashboard#show"
   end
