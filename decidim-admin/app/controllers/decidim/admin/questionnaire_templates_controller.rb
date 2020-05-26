@@ -25,7 +25,7 @@ module Decidim
         CreateQuestionnaireTemplate.call(@form) do
           on(:ok) do
             flash[:notice] = I18n.t("questionnaire_templates.create.success", scope: "decidim.admin")
-            redirect_to decidim.edit_questionnaire_path(id: @form.questionnaire_id)
+            redirect_to action: :index
           end
 
           on(:invalid) do
@@ -65,9 +65,9 @@ module Decidim
         @form = form(QuestionnaireTemplateForm).from_params(params)
 
         UpdateQuestionnaireTemplate.call(@questionnaire_template, @form, current_user) do
-          on(:ok) do |template|
+          on(:ok) do |_template|
             flash[:notice] = I18n.t("questionnaire_templates.update.success", scope: "decidim.admin")
-            redirect_to decidim.edit_questionnaire_path(template.questionnaire)
+            redirect_to action: :index
           end
 
           on(:invalid) do |template|

@@ -657,11 +657,12 @@ en:
           error: There was a problem destroying this template.
           success: Template destroyed successfully.
         edit:
-          save: Save
           title: Edit template
-          questionnaire: Edit questionnaire
         form:
-          title: Questionnaire
+          save: Save
+          questionnaire: Questionnaire
+          edit: Edit
+          title: Questionnaire template
         index:
           confirm_delete: Are you sure you want to delete this template?
           title: Questionnaire templates
