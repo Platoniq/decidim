@@ -161,5 +161,7 @@ Decidim::Core::Engine.routes.draw do
     get "/me" => "doorkeeper/credentials#me"
   end
 
+  resources :questionnaire_template_previews, only: [:show]
+  
   root to: "homepage#show"
 end

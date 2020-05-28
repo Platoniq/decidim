@@ -90,14 +90,6 @@ module Decidim
         end
       end
 
-      def preview
-        enforce_permission_to :preview, :questionnaire_template, questionnaire_template: questionnaire_template
-
-        @form = form(Decidim::Forms::QuestionnaireForm).from_model(questionnaire_template.questionnaire)
-
-        render "decidim/forms/questionnaires/show"
-      end
-
       private
 
       def collection

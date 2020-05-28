@@ -37,7 +37,7 @@
                 <% end %>
 
                 <% if allowed_to?(:preview, :questionnaire_template, questionnaire_template: questionnaire_template) %>
-                  <%= icon_link_to "eye", preview_questionnaire_template_path(questionnaire_template), t("actions.preview", scope: "decidim.admin") %>
+                  <%= icon_link_to "eye", decidim.questionnaire_template_preview_path(questionnaire_template), t("actions.preview", scope: "decidim.admin"), target: :blank %>
                 <% end %>
 
                 <% if allowed_to?(:destroy, :questionnaire_template, questionnaire_template: questionnaire_template) %>

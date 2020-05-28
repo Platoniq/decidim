@@ -94,7 +94,6 @@ Decidim::Admin::Engine.routes.draw do
 
       member do
         post :copy
-        get :preview
       end
     end
 

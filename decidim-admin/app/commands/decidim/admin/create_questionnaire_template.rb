@@ -19,7 +19,8 @@ module Decidim
           @form.current_user,
           title: @form.title,
           description: @form.description,
-          organization: @form.current_organization
+          organization: @form.current_organization,
+          questionnaire: Decidim::Forms::Questionnaire.new(title: @form.title)
         )
 
         broadcast(:ok, @application)
