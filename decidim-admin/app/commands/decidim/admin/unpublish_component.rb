@@ -18,6 +18,7 @@ module Decidim
       # Broadcasts :ok if unpublished, :invalid otherwise.
       def call
         unpublish_component
+        unpublish_event
 
         broadcast(:ok)
       end
@@ -35,6 +36,15 @@ module Decidim
           component.unpublish!
           component
         end
+      end
+
+      def unpublish_event
+        Decidim::EventsManager.publish(
+          event: "decidim.events.components.component_unpublished",
+          event_class: Decidim::ComponentUnpublishedEvent,
+          resource: component,
+          followers: component.participatory_space.followers
+        )
       end
     end
   end
