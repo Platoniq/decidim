@@ -14,12 +14,14 @@ The use case that originated this change is the persistence of the user's gender
 
 ### Added
 
+- **decidim-api**: Use organization time zone [\#6112](https://github.com/decidim/decidim/pull/6112)
 - **decidim-initiatives**: Ignore new "extras" key when checking authorization/variation metadata [\#6097](https://github.com/decidim/decidim/pull/6097)
 
 ### Changed
 
 ### Fixed
 
+- **decidim-proposals**: Fix participatory text newline absence. [\#6159](https://github.com/decidim/decidim/pull/6159)
 - **decidim-core**: Fix broken puma version in generator's Gemfile. [\#6060](https://github.com/decidim/decidim/pull/6060)
 - **decidim-core,decidim-system**: Fix using Decidim as a provider for omniauth authentication. [\#6081](https://github.com/decidim/decidim/pull/6081)
 
@@ -198,6 +200,8 @@ Thanks to [#5342](https://github.com/decidim/decidim/pull/5342), Decidim now sup
 
 **Fixed**:
 
+- **decidim-admin**: Fix: let components without step settings be added [\#6144](https://github.com/decidim/decidim/pull/6144)
+- **decidim-core** Patch various security alerts reported by GitHub. [\#6149](https://github.com/decidim/decidim/pull/6149)
 - **decidim-debates**: Fix a notification failure when the creating a new debate event is fired. [\#6017](https://github.com/decidim/decidim/pull/6017)
 - **decidim-proposals**: Fix proposals that have their state not published. [\#5833](https://github.com/decidim/decidim/pull/5833)
 - **decidim-core** adapt API classes to the release of the graphql gem v1.10.4 [\#5829](https://github.com/decidim/decidim/pull/5829)
@@ -231,6 +235,6 @@ Thanks to [#5342](https://github.com/decidim/decidim/pull/5342), Decidim now sup
 
 **Removed**:
 
-## Previous versions
+### Previous versions
 
 Please check [0.20-stable](https://github.com/decidim/decidim/blob/0.20-stable/CHANGELOG.md) for previous changes.

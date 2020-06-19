@@ -67,12 +67,12 @@ fi:
         state_eq:
           label: Tila
           values:
-            accepted: Hyväksytty
+            accepted: Hyväksytyt
             created: Luotu
             discarded: Hylätty
             published: Julkaistu
             rejected: Torjuttu
-            validating: Teknisessä validoinnissa
+            validating: Teknisessä tarkastuksessa
       menu:
         initiatives: Aloitteet
         initiatives_types: Aloitetyypit
@@ -133,7 +133,7 @@ fi:
       badges:
         initiatives:
           conditions:
-            - Siirry aloitteiden osallisuustilaan
+            - Siirry aloitteiden osallistumistilaan
             - Luo uusi aloite ohjeiden mukaisesti
           description: Tämä kunniamerkki myönnetään, kun laadit uusia aloitteita ja keräät verkoston ihmisiä toteuttamaan niitä.
           description_another: Tämä käyttäjä on julkaissut %{score} aloitetta.
@@ -145,8 +145,8 @@ fi:
     help:
       participatory_spaces:
         initiatives:
-          contextual: "<p><strong>Aloite</strong> on ehdotus, jota kuka tahansa voi itsenäisesti edistää ​​(muista kanavista tai osallisuustiloista riippumatta) kokoamalla (digitaaliset) tarvittavat allekirjoitukset organisaatiolle tietyn toimen toteuttamiseksi (asetuksen muuttaminen, hankkeen käynnistys, alueen tai kadun nimen muuttaminen, jne.).</p> <p>Aloitteen edistäjät voivat määritellä tavoitteet, kerätä tukijoukkoja, järjestää keskustelua, levittää aloitetta ja määritellä kohtaamispaikkoja, joissa allekirjoituksia voidaan kerätä osallistujilta tai keskustella avoimesti muiden osallistujien kanssa.</p> <p>Esimerkiksi, aloite voi: kerätä allekirjoituksia kutsuakseen koolle tietyn joukon organisaation edustajia, panna aluilleen ryhmän tai käynnistää prosessin määrärahojen lisäämisestä alueelle tai organisaatiolle. Allekirjoitusten keräysprosessin aikana useammat ihmiset voivat antaa panoksensa aloitteen vaatimuksille ja viedä sitä eteenpäin organisaatiossa.</p>\n"
-          page: "<p><strong>Aloite</strong> on ehdotus, jota kuka tahansa voi itsenäisesti edistää ​​(muista kanavista tai osallisuustiloista riippumatta) kokoamalla (digitaaliset) tarvittavat allekirjoitukset organisaatiolle tietyn toimen toteuttamiseksi (asetuksen muuttaminen, hankkeen käynnistys, alueen tai kadun nimen muuttaminen, jne.).</p> <p>Aloitteen edistäjät voivat määritellä tavoitteet, kerätä tukea, järjestää keskustelua, levittää aloitetta ja määritellä kohtaamispaikkoja, joissa allekirjoituksia voidaan kerätä osallistujilta tai keskustella avoimesti muiden osallistujien kanssa.</p> <p>Esimerkiksi, aloite voi: kerätä allekirjoituksia kutsuakseen koolle tietyn joukon organisaation edustajia, panna aluilleen ryhmän tai käynnistää prosessin määrärahojen lisäämisestä alueelle tai organisaatiolle. Allekirjoitusten keräysprosessin aikana useammat ihmiset voivat antaa panoksensa aloitteen vaatimuksille ja viedä sitä eteenpäin organisaatiossa.</p>\n"
+          contextual: "<p><strong>Aloite</strong> on ehdotus, jota kuka tahansa voi itsenäisesti edistää ​​(muista kanavista tai osallistumistiloista riippumatta) kokoamalla (digitaaliset) tarvittavat allekirjoitukset organisaatiolle tietyn toimen toteuttamiseksi (asetuksen muuttaminen, hankkeen käynnistys, alueen tai kadun nimen muuttaminen, jne.).</p> <p>Aloitteen edistäjät voivat määritellä tavoitteet, kerätä tukijoukkoja, järjestää keskustelua, levittää aloitetta ja määritellä kohtaamispaikkoja, joissa allekirjoituksia voidaan kerätä osallistujilta tai keskustella avoimesti muiden osallistujien kanssa.</p> <p>Esimerkiksi, aloite voi: kerätä allekirjoituksia kutsuakseen koolle tietyn joukon organisaation edustajia, panna aluilleen ryhmän tai käynnistää prosessin määrärahojen lisäämisestä alueelle tai organisaatiolle. Allekirjoitusten keräysprosessin aikana useammat ihmiset voivat antaa panoksensa aloitteen vaatimuksille ja viedä sitä eteenpäin organisaatiossa.</p>\n"
+          page: "<p><strong>Aloite</strong> on ehdotus, jota kuka tahansa voi itsenäisesti edistää ​​(muista kanavista tai osallistumistiloista riippumatta) kokoamalla (digitaaliset) tarvittavat allekirjoitukset organisaatiolle tietyn toimen toteuttamiseksi (asetuksen muuttaminen, hankkeen käynnistys, alueen tai kadun nimen muuttaminen, jne.).</p> <p>Aloitteen edistäjät voivat määritellä tavoitteet, kerätä tukea, järjestää keskustelua, levittää aloitetta ja määritellä kohtaamispaikkoja, joissa allekirjoituksia voidaan kerätä osallistujilta tai keskustella avoimesti muiden osallistujien kanssa.</p> <p>Esimerkiksi, aloite voi: kerätä allekirjoituksia kutsuakseen koolle tietyn joukon organisaation edustajia, panna aluilleen ryhmän tai käynnistää prosessin määrärahojen lisäämisestä alueelle tai organisaatiolle. Allekirjoitusten keräysprosessin aikana useammat ihmiset voivat antaa panoksensa aloitteen vaatimuksille ja viedä sitä eteenpäin organisaatiossa.</p>\n"
           title: Mitkä ovat aloitteet?
     initiatives:
       actions:
@@ -181,8 +181,8 @@ fi:
             export_pdf_signatures: Vie allekirjoitukset PDF-asiakirjaan
             export_votes: Lataa allekirjoitukset
             reject: Torju aloite
-            send_to_technical_validation: Lähetä tekniseen validointiin
-            success: Aloite on lähetetty tekniseen validointiin
+            send_to_technical_validation: Lähetä tekniseen tarkastukseen
+            success: Aloite on lähetetty tekniseen tarkastukseen
             update: Päivitä
           form:
             title: Yleistä tietoa
@@ -200,7 +200,7 @@ fi:
             error: Tapahtui virhe
             success: Uusi teema aloitetyypille luotu
           destroy:
-            success: Teema poistettu onnistuneesti
+            success: Teeman poisto onnistui
           edit:
             back: Takaisin
             confirm_destroy: Oletko varma?
@@ -213,13 +213,13 @@ fi:
             title: Luo aloitetyypin teema
           update:
             error: Tapahtui virhe
-            success: Teemaa päivitetty onnistuneesti
+            success: Teeman päivitys onnistui
         initiatives_types:
           create:
             error: Tapahtui virhe
-            success: Uusi aloitetyyppi luotu onnistuneesti
+            success: Uuden aloitetyypin luonti onnistui
           destroy:
-            success: Aloitetyyppi poistettu onnistuneesti
+            success: Aloitetyypin poisto onnistui
           edit:
             confirm_destroy: Oletko varma?
             destroy: Poista
@@ -233,20 +233,20 @@ fi:
             title: Uusi aloitetyyppi
           update:
             error: Tapahtui virhe
-            success: Aloitetyyppiä päivitetty onnistuneesti
+            success: Aloitetyypin päivitys onnistui
       admin_log:
         initiative:
           publish: "%{user_name} julkaisi aloitteen %{resource_name}"
-          send_to_technical_validation: "%{user_name} lähetti aloitteen %{resource_name} tekniseen validointiin"
+          send_to_technical_validation: "%{user_name} lähetti aloitteen %{resource_name} tekniseen tarkastukseen"
           unpublish: "%{user_name} hylkäsi aloitteen %{resource_name}"
           update: "%{user_name} päivitti aloitetta %{resource_name}"
       admin_states:
-        accepted: Hyväksytty
+        accepted: Hyväksytyt
         created: Luotu
         discarded: Hylätty
         published: Julkaistu
         rejected: Torjuttu
-        validating: Teknisessä validoinnissa
+        validating: Teknisessä tarkastuksessa
       committee_requests:
         new:
           continue: Jatka
@@ -335,7 +335,7 @@ fi:
           invalid: Aloitteen allekirjoittamiseen annetut tiedot ovat virheelliset
           success_html: Onnittelut! Aloitteen <strong>%{title}</strong> allekirjoitus onnistui
         personal_data:
-          invalid: Henkilötiedot eivät täsmää varmennusta varten annettujen tietojen kanssa.
+          invalid: Henkilötiedot eivät täsmää vahvistusta varten annettujen tietojen kanssa.
         sms_code:
           invalid: Vahvistuskoodi ei vastaa meidän koodiamme. Tarkista uudestaan lähettämämme tekstiviesti.
         sms_phone:
@@ -467,7 +467,7 @@ fi:
         fill_personal_data: Täydennä tietosi
         finish: Viimeistele
         finished: Allekirjoitus luotu aloitteelle
-        see_steps: katso vaiheet
+        see_steps: näytä vaiheet
         select_identity: Valitse identiteetti
         sms_code: Tekstiviestikoodin vahvistaminen
         sms_phone_number: Matkapuhelimen numero
