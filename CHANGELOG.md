@@ -7,6 +7,7 @@
 **Changed**:
 
 **Fixed**:
+### Changed
 
 - **decidim-meetings**: Fix InvitePresenter when invitation does not exist anymore. [\#6469](https://github.com/decidim/decidim/pull/6469)
 - **decidim-conferences**, **decidim-core**: Backport "Sanitize inputs in conferences" to 0.22 [\6567](https://github.com/decidim/decidim/pull/6567)
