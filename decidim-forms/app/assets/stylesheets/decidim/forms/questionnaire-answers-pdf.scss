@@ -96,10 +96,11 @@ $padding: 25px;
       padding: 25px;
 
       .response{
-        ol,
-        ul,
-        dl{
-          color: red;
+        dt{
+          font-weight: bold;
+        }
+        dd, dt{
+          margin: $small-padding 0;
         }
       }
 
