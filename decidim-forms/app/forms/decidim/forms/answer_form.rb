@@ -8,6 +8,7 @@ module Decidim
 
       attribute :question_id, String
       attribute :body, String
+      attribute :display_conditions_fulfilled, Boolean
       attribute :choices, Array[AnswerChoiceForm]
       attribute :matrix_choices, Array[AnswerChoiceForm]
 
@@ -49,23 +50,14 @@ module Decidim
         choices.select(&:body)
       end
 
-      def display_conditions_fulfilled?
-        question.display_conditions.all? do |condition|
-          answer = question.questionnaire.answers.find_by(question: condition.condition_question)
-          condition.fulfilled?(answer)
-        end
-      end
-
-      delegate :separator?, to: :question
-
       private
 
       def mandatory_body?
-        question.mandatory_body? if display_conditions_fulfilled?
+        question.mandatory_body? if display_conditions_fulfilled
       end
 
       def mandatory_choices?
-        question.mandatory_choices? if display_conditions_fulfilled?
+        question.mandatory_choices? if display_conditions_fulfilled
       end
 
       def grouped_choices
