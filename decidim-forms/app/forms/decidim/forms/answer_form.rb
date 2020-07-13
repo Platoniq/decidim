@@ -56,6 +56,8 @@ module Decidim
         end
       end
 
+      delegate :separator?, to: :question
+
       private
 
       def mandatory_body?
