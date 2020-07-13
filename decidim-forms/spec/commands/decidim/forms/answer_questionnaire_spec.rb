@@ -27,6 +27,8 @@ module Decidim
       let(:question_1) { create(:questionnaire_question, questionnaire: questionnaire) }
       let(:question_2) { create(:questionnaire_question, questionnaire: questionnaire) }
       let(:question_3) { create(:questionnaire_question, questionnaire: questionnaire) }
+      let(:display_condition) { create(:display_condition, question: question_3, condition_question: question_2, condition_type: :answered) }
+      let(:display_conditions_fulfilled) { true }
       let(:answer_options) { create_list(:answer_option, 5, question: question_2) }
       let(:answer_option_ids) { answer_options.pluck(:id).map(&:to_s) }
       let(:matrix_rows) { create_list(:question_matrix_row, 3, question: question_2) }
@@ -51,7 +53,8 @@ module Decidim
                 { "answer_option_id" => answer_option_ids[3], "body" => "Third", "position" => 0 },
                 { "answer_option_id" => answer_option_ids[4], "body" => "answer", "position" => 1 }
               ],
-              "question_id" => question_3.id
+              "question_id" => question_3.id,
+              "display_conditions_fulfilled" => display_conditions_fulfilled
             }
           ],
           "tos_agreement" => "1"
@@ -89,11 +92,26 @@ module Decidim
           expect { command.call }.to broadcast(:ok)
         end
 
-        it "creates a questionnaire answer for each question answered" do
-          expect do
-            command.call
-          end.to change(Answer, :count).by(3)
-          expect(Answer.all.map(&:questionnaire)).to eq([questionnaire, questionnaire, questionnaire])
+        context "when display conditions are fulfilled" do
+          let(:display_conditions_fulfilled) { true }
+
+          it "creates a questionnaire answer for each question answered" do
+            expect do
+              command.call
+            end.to change(Answer, :count).by(3)
+            expect(Answer.all.map(&:questionnaire)).to eq([questionnaire, questionnaire, questionnaire])
+          end
+        end
+
+        context "when display conditions are not fulfilled" do
+          let(:display_conditions_fulfilled) { false }
+
+          it "does not create a questionnaire answer for questions with unfulfilled display conditions" do
+            expect do
+              command.call
+            end.to change(Answer, :count).by(2)
+            expect(Answer.all.map(&:questionnaire)).to eq([questionnaire, questionnaire])
+          end
         end
 
         it "creates answers with the correct information" do

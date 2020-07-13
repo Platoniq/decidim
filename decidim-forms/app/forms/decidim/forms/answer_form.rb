@@ -8,7 +8,7 @@ module Decidim
 
       attribute :question_id, String
       attribute :body, String
-      attribute :display_conditions_fulfilled, Boolean
+      attribute :display_conditions_fulfilled, Boolean, default: true
       attribute :choices, Array[AnswerChoiceForm]
       attribute :matrix_choices, Array[AnswerChoiceForm]
 
@@ -19,7 +19,7 @@ module Decidim
       validate :all_choices, if: -> { question.question_type == "sorting" }
       validate :min_choices, if: -> { question.matrix? && question.mandatory? }
 
-      delegate :mandatory_body?, :mandatory_choices?, :matrix?, to: :question
+      delegate :mandatory_body?, :mandatory_choices?, :matrix?, :separator?, to: :question
 
       attr_writer :question
 
