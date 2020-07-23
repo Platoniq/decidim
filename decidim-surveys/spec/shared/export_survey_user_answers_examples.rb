@@ -21,7 +21,7 @@ shared_examples "export survey user answers" do
 
     expect(last_email.subject).to include("survey_user_answers", "csv")
     expect(last_email.attachments.length).to be_positive
-    expect(last_email.attachments.first.filename).to match(/^survey_user_answers.*\.zip$/)
+    expect(last_email.attachments.first.filename).to match(/^survey_user_answers.*\.csv$/)
   end
 
   it "exports a JSON" do
@@ -36,7 +36,22 @@ shared_examples "export survey user answers" do
 
     expect(last_email.subject).to include("survey_user_answers", "json")
     expect(last_email.attachments.length).to be_positive
-    expect(last_email.attachments.first.filename).to match(/^survey_user_answers.*\.zip$/)
+    expect(last_email.attachments.first.filename).to match(/^survey_user_answers.*\.json$/)
+  end
+  
+  it "exports an Excel" do
+    visit_component_admin
+
+    find(".exports.dropdown").click
+    perform_enqueued_jobs { click_link "Excel" }
+
+    within ".callout.success" do
+      expect(page).to have_content("in progress")
+    end
+
+    expect(last_email.subject).to include("survey_user_answers", "xls")
+    expect(last_email.attachments.length).to be_positive
+    expect(last_email.attachments.first.filename).to match(/^survey_user_answers.*\.xls$/)
   end
 
   it "exports a PDF" do
@@ -51,6 +66,6 @@ shared_examples "export survey user answers" do
 
     expect(last_email.subject).to include("survey_user_answers", "pdf")
     expect(last_email.attachments.length).to be_positive
-    expect(last_email.attachments.first.filename).to match(/^survey_user_answers.*\.zip$/)
+    expect(last_email.attachments.first.filename).to match(/^survey_user_answers.*\.pdf$/)
   end
 end

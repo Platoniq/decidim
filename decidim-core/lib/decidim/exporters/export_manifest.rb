@@ -91,6 +91,18 @@ module Decidim
         @formats ||= formats || DEFAULT_FORMATS
       end
 
+      DEFAULT_OPTIONS = { zip: true }.freeze
+
+      # Public: Defines options for the export.
+      #
+      # options - The hash containing the options.
+      #
+      # Returns the stored options if previously stored, or
+      # the default empty hash.
+      def options(options = DEFAULT_OPTIONS)
+        @options ||= options
+      end
+
       private
 
       # Private: Loads the given exporters when formats argument is provided.
