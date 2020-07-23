@@ -33,6 +33,7 @@ pt:
         extra_fields_legal_information: Informações legais sobre a coleta de dados pessoais
         minimum_committee_members: Mínimo dos membros do comitê
         online_signature_enabled: Assinatura on-line ativada
+        promoting_committee_enabled: Permitir comité de promoção
         title: Título
         undo_online_signatures_enabled: Permitir que os usuários desfizessem suas assinaturas on-line
         validate_sms_code_on_votes: Adicionar etapa de validação do código SMS ao processo de assinatura
@@ -61,6 +62,8 @@ pt:
       actions:
         new_initiative_type: Novo tipo de iniciativa
       filters:
+        search_placeholder:
+          title_or_description_cont: Pesquisar %{collection} por título ou descrição.
         state_eq:
           label: Estado
           values:
@@ -351,9 +354,9 @@ pt:
         filters:
           any: Qualquer
           author: Autor
-          closed: Fechadas
+          closed: Terminadas
           myself: Minhas iniciativas
-          open: Aberto
+          open: Abertas
           search: Pesquisa
           state: Estado
           type: Tipo
@@ -419,8 +422,8 @@ pt:
         promotal_committee_help: Lembre-se de que você deve convidar pelo menos %{member_count} pessoas para o comitê de promotores. Encaminhe o seguinte link para convidar pessoas para o comitê de promotores
         status_change_body_for: 'A iniciativa %{title} mudou seu estado para: %{state}'
         status_change_for: A iniciativa %{title} mudou seu estado
-        technical_validation_body_for: A iniciativa %{title} solicitou sua validação técnica.
-        technical_validation_for: A iniciativa %{title} solicitou sua validação técnica.
+        technical_validation_body_for: A iniciativa %{title} solicitou a sua validação técnica.
+        technical_validation_for: A iniciativa %{title} solicitou a sua validação técnica.
       last_activity:
         new_initiative: Nova iniciativa
       pages:
