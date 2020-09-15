@@ -6,7 +6,9 @@ module Decidim
   module Forms
     describe AnswerForm do
       subject do
-        described_class.from_model(answer)
+        form = described_class.from_model(answer)
+        form.display_conditions_fulfilled = display_conditions_fulfilled
+        form
       end
 
       let(:mandatory) { false }
@@ -16,6 +18,8 @@ module Decidim
       let!(:questionable) { create(:dummy_resource) }
       let!(:questionnaire) { create(:questionnaire, questionnaire_for: questionable) }
       let!(:user) { create(:user, organization: questionable.organization) }
+
+      let(:display_conditions_fulfilled) { true }
 
       let!(:question) do
         create(
@@ -71,13 +75,14 @@ module Decidim
             subject.body = nil
           end
 
-          it "is valid if display_conditions are not fulfilled" do
-            expect(subject).to be_valid
+          context "if display_conditions are not fulfilled" do
+            let(:display_conditions_fulfilled) { false }
+            it { is_expected.to be_valid }
           end
-
-          it "is not valid if display_conditions are fulfilled" do
-            create(:answer, question: condition_question, questionnaire: questionnaire, body: "The answer")
-            expect(subject).not_to be_valid
+          
+          context "if display_conditions are fulfilled" do
+            let(:display_conditions_fulfilled) { true }
+            it { is_expected.not_to be_valid }
           end
         end
       end
