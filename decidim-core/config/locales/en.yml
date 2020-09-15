@@ -617,7 +617,8 @@ en:
         click_button: 'Click the next button to download your data. <br/> You will have the file available until %{date}. <br/> You will need <a href=''https://www.7-zip.org/''>7-Zip</a> to open it. Password: %{password}'
         download: Download
       export:
-        ready: Please find attached a zipped version of your export.
+        ready_zipped: Please find attached a zipped version of your export.
+        ready: Please find your export attached.
       subject: Your export "%{name}" is ready
     filters:
       linked_classes:

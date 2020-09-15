@@ -22,8 +22,10 @@ module Decidim
 
       if options[:zip]
         attachments["#{filename_without_extension}.zip"] = FileZipper.new(filename, export_data.read).zip
+        @zipped = true
       else
         attachments[filename] = export_data.read
+        @zipped = false
       end
 
       with_user(user) do
