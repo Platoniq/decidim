@@ -10,7 +10,7 @@ module Decidim
     let!(:user) { create(:user, organization: questionnaire.questionnaire_for.organization) }
     let!(:questions) { 3.downto(1).map { |n| create :questionnaire_question, questionnaire: questionnaire, position: n } }
     let!(:answers) do
-      questions.map { |question| create :answer, user: user, questionnaire: questionnaire, question: question }.sort_by { |a| a.question.position }
+      questions.reject { |q| q.question_type == Forms::Question::SEPARATOR_TYPE }.map { |question| create :answer, user: user, questionnaire: questionnaire, question: question }.sort_by { |a| a.question.position }
     end
     let!(:answer) { subject.answers.first.answer }
     let!(:participant) { answers.first }
@@ -58,9 +58,34 @@ module Decidim
       end
     end
 
-    describe "commpletion" do
-      it "returns the participant's completion percentage" do
-        expect(subject.completion).to eq(100)
+    describe "completion" do
+      context "when all questions are answered" do
+        it "returns the participant's completion percentage" do
+          expect(subject.completion).to eq(100)
+        end
+      end
+      
+      context "when not all questions are answered" do
+        let!(:answers) { questions.first(2).map { |question| create :answer, user: user, questionnaire: questionnaire, question: question }.sort_by { |a| a.question.position }}
+
+        it "returns the participant's completion percentage" do
+          expect(subject.completion).to eq(2.0 / 3 * 100)
+        end
+      end
+      
+      context "when there are separator type questions" do
+        let!(:questions) do
+          [
+            create(:questionnaire_question, questionnaire: questionnaire, position: 1),
+            create(:questionnaire_question, questionnaire: questionnaire, position: 2),
+            create(:questionnaire_question, questionnaire: questionnaire, position: 3, question_type: Forms::Question::SEPARATOR_TYPE),
+            create(:questionnaire_question, questionnaire: questionnaire, position: 4)
+          ]
+        end
+
+        it "ignores separator questions in count" do
+          expect(subject.completion).to eq(100)
+        end
       end
     end
   end
