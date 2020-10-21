@@ -907,7 +907,7 @@ nl:
           send: Verzenden
           title: Een gesprek beginnen
         update:
-          error: Bericht niet verzonden. Probeer het later nogmaals
+          error: Bericht niet verzonden. Probeer het later opnieuw
     metrics:
       download:
         csv: Gegevens downloaden (csv)

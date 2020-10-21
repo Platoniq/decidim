@@ -907,7 +907,7 @@ es-MX:
           send: Enviar
           title: Iniciar una conversación
         update:
-          error: Mensaje no enviado. Inténtalo más tarde
+          error: Mensaje no enviado. Inténtalo de nuevo más tarde
     metrics:
       download:
         csv: Descargar datos (csv)

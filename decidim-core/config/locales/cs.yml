@@ -929,7 +929,7 @@ cs:
           send: Poslat
           title: Spusťte konverzaci
         update:
-          error: Zpráva nebyla odeslána. Zkuste to později znovu
+          error: Zpráva nebyla odeslána. Zkuste to později
     metrics:
       download:
         csv: Stáhnout data (csv)
