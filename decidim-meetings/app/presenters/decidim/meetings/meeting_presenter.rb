@@ -48,6 +48,14 @@ module Decidim
         end
       end
 
+      def registration_terms(all_locales: false)
+        return unless meeting
+
+        handle_locales(meeting.registration_terms, all_locales) do |content|
+          content
+        end
+      end
+
       # Next methods are used for present a Meeting As Proposal Author
       def name
         title
