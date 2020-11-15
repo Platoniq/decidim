@@ -42,14 +42,26 @@ edit_link(
       <%= link_to t(close_debate_action_text), Decidim::EngineRouter.admin_proxy(debate.component).edit_debate_debate_close_path(debate_id: debate.id, id: debate.id), class: "button hollow expanded button-sc button--icon follow-button" %>
     <% end %>
     <div class="card extra">
-      <div class="card__content">
+      <div class="card__content--multiple">
         <% if debate.start_time.present? && debate.end_time.present? %>
-          <div class="extra__date">
-            <%= l debate.start_time, format: "%d" %> <span class="extra__month"><%= l debate.start_time, format: "%B" %></span>
-          </div>
-          <div class="extra__time">
-            <%= l debate.start_time, format: "%H:%M" %> - <%= l debate.end_time, format: "%H:%M" %>
-          </div>
+	<div class="extra__date">
+	  <% if debate.start_time.strftime("%d") == debate.end_time.strftime("%d") && debate.start_time.strftime("%H") != debate.end_time.strftime("%H") %>
+	    <div>
+              <%= l debate.start_time, format: "%d" %> <span class="extra__month"> <%= l debate.start_time, format: "%B" %></span>
+	      <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %> - <%= l debate.end_time, format: "%H:%M" %></span></div>
+	    </div>
+          <% else %>
+	    <div> 
+	      <%= l debate.start_time, format: "%d" %> <span class="extra__month"> <%= l debate.start_time, format: "%B" %></span>
+	      <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %></span></div>
+	      <%= icon "arrow-thin-right" %>
+	    </div>
+	    <div>
+              <%= l debate.end_time, format: "%d" %> <span class="extra__month"> <%= l debate.end_time, format: "%B" %></span>
+              <div class="extra__time text-small"> <%= l debate.end_time, format: "%H:%M" %></span></div>
+	    </div>
+          <% end %>
+	</div>
         <% end %>
 
         <% if endorsements_enabled? && allowed_to?(:endorse, :debate, debate: debate) %>
