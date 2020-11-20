@@ -52,10 +52,10 @@ edit_link(
               <%= l debate.start_time, format: "%d" %> <span class="extra__month"><%= l debate.start_time, format: "%B" %></span>
               <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %> a <%= l debate.end_time, format: "%H:%M" %></div>
               </br>
-    </div>
+          </div>
             <% elsif debate.start_time.strftime("%d") != debate.end_time.strftime("%d") && debate.start_time.strftime("%H") != debate.end_time.strftime("%H")%>
               <%= l debate.start_time, format: "%d" %> <span class="extra__month"><%= l debate.start_time, format: "%B" %></span>
-              <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %></span></div> 
+              <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %></span></div>
               <%= icon "arrow-thin-right"%>
           </div>  
           
@@ -90,14 +90,12 @@ edit_link(
             <% end %>
           </span>
         </div>
-
         <div class="definition-data__item definition-data__item--double">
           <span class="definition-data__title">
             <%= t ".participants_count" %>
           </span>
           <span class="definition-data__number"><%= debate_presenter.participants_count %></span>
         </div>
-
         <div class="definition-data__item definition-data__item--double">
           <span class="definition-data__title">
             <%= t ".groups_count" %>
@@ -120,11 +118,9 @@ edit_link(
       <% end %>
 
       <%= render_debate_description(debate) %>
-
       <% if debate.closed? %>
         <%= cell("decidim/announcement", { announcement: { title: t(".debate_conclusions_are", date: l(debate.closed_at, format: :decidim_short)), body: simple_format(translated_attribute(debate.conclusions)) }, callout_class: "success" }) %>
       <% end %>
-
       <% if translated_attribute(debate.instructions).present? %>
         <div class="callout secondary">
           <%= decidim_sanitize(simple_format(translated_attribute(debate.instructions), {}, sanitize: false)) %>
