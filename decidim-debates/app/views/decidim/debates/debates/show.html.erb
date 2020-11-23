@@ -58,7 +58,6 @@ edit_link(
               <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %></span></div>
               <%= icon "arrow-thin-right"%>
           </div>  
-          
             <div class="extra__date">
                 <%= l debate.end_time, format: "%d" %> <span class="extra__month"> <%= l debate.end_time, format: "%B" %></span>
                 <div class="extra__time text-small"> <%= l debate.end_time, format: "%H:%M" %></span></div>
@@ -75,7 +74,6 @@ edit_link(
         <%= follow_button_for(debate) %>
       </div>
     </div>
-    
     <div class="card extra">
       <div class="definition-data">
         <div class="definition-data__item definition-data__item">
@@ -116,7 +114,6 @@ edit_link(
           <%= t(".debate_closed") %>
         </span>
       <% end %>
-
       <%= render_debate_description(debate) %>
       <% if debate.closed? %>
         <%= cell("decidim/announcement", { announcement: { title: t(".debate_conclusions_are", date: l(debate.closed_at, format: :decidim_short)), body: simple_format(translated_attribute(debate.conclusions)) }, callout_class: "success" }) %>
@@ -136,7 +133,6 @@ edit_link(
           <li><%= link_to translated_attribute(debate.category.name), debates_path(filter: { category_id: debate.category.id }) %></li>
         </ul>
       <% end %>
-
       <%= cell "decidim/endorsers_list", debate %>
     </div>
   </div>
