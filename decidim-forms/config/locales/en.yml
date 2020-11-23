@@ -48,6 +48,7 @@ en:
             export_response:
               title: survey_user_answers_%{token}
             index:
+              footer: Made with Decidim
               title: "%{total} total responses"
             show:
               title: 'Answer #%{number}'

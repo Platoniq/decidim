@@ -170,11 +170,14 @@
 
     onFulfilled(id, fulfilled) {
       this.conditions[id].fulfilled = fulfilled;
+      const $fulfilled = this.wrapperField.find("input[name$=\\[display_conditions_fulfilled\\]]");
 
       if (this.mustShow()) {
+        $fulfilled.val("true");
         this.showQuestion();
       }
       else {
+        $fulfilled.val("false");
         this.hideQuestion();
       }
     }

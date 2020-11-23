@@ -41,18 +41,20 @@ module Decidim
         end
 
         def completion
+          questions_count = questionnaire.questions.where.not(question_type: Question::SEPARATOR_TYPE).count
+
           with_body = sibilings.where("decidim_forms_questions.question_type in (?)", %w(short_answer long_answer))
                                .where.not(body: "").count
           with_choices = sibilings.where.not("decidim_forms_questions.question_type in (?)", %w(short_answer long_answer))
                                   .where("decidim_forms_answers.id IN (SELECT decidim_answer_id FROM decidim_forms_answer_choices)").count
 
-          (with_body + with_choices).to_f / questionnaire.questions.count * 100
+          (with_body + with_choices).to_f / questions_count * 100
         end
 
         private
 
         def sibilings
-          Answer.where(session_token: participant.session_token).joins(:question).order("decidim_forms_questions.position ASC")
+          Answer.where(questionnaire: questionnaire, session_token: participant.session_token).joins(:question).order("decidim_forms_questions.position ASC")
         end
       end
     end
