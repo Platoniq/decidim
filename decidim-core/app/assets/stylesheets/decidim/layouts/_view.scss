@@ -12,6 +12,11 @@
   }
 }
 
+.icon-arrow-thin-right {
+  color: grey;
+  height: 30px;
+}
+
 .view-side{
   @include breakpoint(medium only){
     width: 50%;
