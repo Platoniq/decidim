@@ -44,24 +44,24 @@ edit_link(
     <div class="card extra">
       <div class="card__content--multiple">
         <% if debate.start_time.present? && debate.end_time.present? %>
-	<div class="extra__date">
-	  <% if debate.start_time.strftime("%d") == debate.end_time.strftime("%d") && debate.start_time.strftime("%H") != debate.end_time.strftime("%H") %>
-	    <div>
+  <div class="extra__date">
+    <% if debate.start_time.strftime("%d") == debate.end_time.strftime("%d") %>
+      <div>
               <%= l debate.start_time, format: "%d" %> <span class="extra__month"> <%= l debate.start_time, format: "%B" %></span>
-	      <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %> - <%= l debate.end_time, format: "%H:%M" %></span></div>
-	    </div>
+        <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %> - <%= l debate.end_time, format: "%H:%M" %></span></div>
+      </div>
           <% else %>
-	    <div> 
-	      <%= l debate.start_time, format: "%d" %> <span class="extra__month"> <%= l debate.start_time, format: "%B" %></span>
-	      <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %></span></div>
-	      <%= icon "arrow-thin-right" %>
-	    </div>
-	    <div>
+      <div>
+        <%= l debate.start_time, format: "%d" %> <span class="extra__month"> <%= l debate.start_time, format: "%B" %></span>
+        <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %></span></div>
+      </div>
+      <div class="text-muted"><%= icon "arrow-thin-right" %></div>
+      <div>
               <%= l debate.end_time, format: "%d" %> <span class="extra__month"> <%= l debate.end_time, format: "%B" %></span>
               <div class="extra__time text-small"> <%= l debate.end_time, format: "%H:%M" %></span></div>
-	    </div>
+      </div>
           <% end %>
-	</div>
+  </div>
         <% end %>
 
         <% if endorsements_enabled? && allowed_to?(:endorse, :debate, debate: debate) %>
