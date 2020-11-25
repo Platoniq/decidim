@@ -18,6 +18,7 @@ interface CommentsProps extends GetCommentsQuery {
   loading?: boolean;
   orderBy: string;
   singleCommentId?: string;
+  authorizationLink?: string;
   reorderComments: (orderBy: string) => void;
 }
 
@@ -125,7 +126,7 @@ export class Comments extends React.Component<CommentsProps> {
   private _renderBlockedCommentsWarning() {
     const { commentable: { acceptsNewComments, userAllowedToComment } } = this.props;
 
-    if (!acceptsNewComments && !userAllowedToComment) {
+    if (!acceptsNewComments && userAllowedToComment !== 1) {
       return (
         <div className="callout warning">
           <p>{I18n.t("components.comments.blocked_comments_warning")}</p>
@@ -143,15 +144,25 @@ export class Comments extends React.Component<CommentsProps> {
    * @returns {Void|DOMElement} - A warning message or nothing.
    */
   private _renderBlockedCommentsForUserWarning() {
-    const { commentable: { acceptsNewComments, userAllowedToComment } } = this.props;
+    const { authorizationLink, commentable } = this.props;
+    const { acceptsNewComments, userAllowedToComment } = commentable;
+    const link = { __html: authorizationLink ? authorizationLink : I18n.t("components.comments.blocked_comments_for_unauthorized_user_warning") }
 
     if (acceptsNewComments) {
-      if (!userAllowedToComment) {
-        return (
-          <div className="callout warning">
-            <p>{I18n.t("components.comments.blocked_comments_for_user_warning")}</p>
-          </div>
-        );
+      if (userAllowedToComment !== 1) {
+        if (userAllowedToComment === -1) {
+          return (
+            <div className="callout warning">
+              <div dangerouslySetInnerHTML={ link } />
+            </div>
+          );
+        } else {
+          return (
+            <div className="callout warning">
+              <p>{I18n.t("components.comments.blocked_comments_for_user_warning")}</p>
+            </div>
+          );
+        }
       }
     }
 
@@ -192,7 +203,7 @@ export class Comments extends React.Component<CommentsProps> {
       return null;
     }
 
-    if (acceptsNewComments && userAllowedToComment) {
+    if (acceptsNewComments && userAllowedToComment === 1) {
       return (
         <AddCommentForm
           session={session}
@@ -244,6 +255,7 @@ const CommentsWithData: any = graphql<GetCommentsQuery, CommentsProps>(commentsQ
 export interface CommentsApplicationProps extends GetCommentsQueryVariables {
   singleCommentId: string;
   locale: string;
+  authorizationLink: string;
 }
 
 /**
@@ -251,13 +263,14 @@ export interface CommentsApplicationProps extends GetCommentsQueryVariables {
  * connect it with Apollo client and store.
  * @returns {ReactComponent} - A component wrapped within an Application component
  */
-const CommentsApplication: React.SFC<CommentsApplicationProps> = ({ locale, commentableId, commentableType, singleCommentId }) => (
+const CommentsApplication: React.SFC<CommentsApplicationProps> = ({ locale, commentableId, commentableType, singleCommentId, authorizationLink }) => (
   <Application locale={locale}>
     <CommentsWithData
       commentableId={commentableId}
       commentableType={commentableType}
       orderBy="older"
       singleCommentId={singleCommentId}
+      authorizationLink={authorizationLink}
     />
   </Application>
 );

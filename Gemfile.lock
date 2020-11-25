@@ -161,6 +161,8 @@ PATH
       decidim-proposals (= 0.22.0)
     decidim-forms (0.22.0)
       decidim-core (= 0.22.0)
+      wicked_pdf (~> 1.4)
+      wkhtmltopdf-binary (~> 0.12)
     decidim-generators (0.22.0)
       decidim-core (= 0.22.0)
     decidim-initiatives (0.22.0)

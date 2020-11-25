@@ -26,7 +26,7 @@ interface AddCommentFormProps {
   submitButtonClassName?: string;
   autoFocus?: boolean;
   arguable?: boolean;
-  userAllowedToComment?: boolean;
+  userAllowedToComment?: number;
   addComment?: (data: { body: string, alignment: number, userGroupId?: string }) => void;
   onCommentAdded?: () => void;
   orderBy: string;
@@ -391,7 +391,7 @@ const AddCommentFormWithMutation = graphql<addCommentMutation, AddCommentFormPro
                 comments: [],
                 hasComments: false,
                 acceptsNewComments: false,
-                userAllowedToComment: false,
+                userAllowedToComment: 0,
                 upVotes: 0,
                 upVoted: false,
                 downVotes: 0,
@@ -404,12 +404,13 @@ const AddCommentFormWithMutation = graphql<addCommentMutation, AddCommentFormPro
             const variables = {
               commentableId: ownProps.rootCommentable.id,
               commentableType: ownProps.rootCommentable.type,
-              orderBy: ownProps.orderBy
+              orderBy: ownProps.orderBy,
+              singleCommentId: null
             };
             const prev = store.readQuery<GetCommentsQuery>({
               query: getCommentsQuery,
               variables
-             });
+            });
             const { id, type } = ownProps.commentable;
             const newComment = data.commentable && data.commentable.addComment;
             let comments = [];

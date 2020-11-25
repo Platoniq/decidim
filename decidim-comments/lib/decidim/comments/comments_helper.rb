@@ -25,10 +25,12 @@ module Decidim
 
         commentable_type = resource.commentable_type
         commentable_id = resource.id.to_s
+        commentable_path = action_authorized_link_to(:comment, t("decidim.components.comments.blocked_comments_for_unauthorized_user_warning"), resource_locator(resource).path, resource: resource)
         node_id = "comments-for-#{commentable_type.demodulize}-#{commentable_id}"
         react_comments_component(node_id, commentableType: commentable_type,
                                           commentableId: commentable_id,
-                                          locale: I18n.locale)
+                                          locale: I18n.locale,
+                                          authorizationLink: commentable_path)
       end
 
       # Private: Render Comments component using inline javascript
@@ -44,7 +46,8 @@ module Decidim
               {
                 commentableType: "#{props[:commentableType]}",
                 commentableId: "#{props[:commentableId]}",
-                locale: "#{props[:locale]}"
+                locale: "#{props[:locale]}",
+                authorizationLink: "#{j props[:authorizationLink]}"
               }
             );
           })

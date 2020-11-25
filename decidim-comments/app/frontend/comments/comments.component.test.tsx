@@ -33,7 +33,7 @@ describe("<Comments />", () => {
         },
         commentable: {
           acceptsNewComments: true,
-          userAllowedToComment: true,
+          userAllowedToComment: 1,
           commentsHaveAlignment: true,
           commentsHaveVotes: true,
           totalCommentsCount: 15,
@@ -103,7 +103,7 @@ describe("<Comments />", () => {
   describe("when the commentable cannot accept new comments", () => {
     beforeEach(() => {
       commentable.acceptsNewComments = false;
-      commentable.userAllowedToComment = false;
+      commentable.userAllowedToComment = 0;
     });
 
     it("doesn't render an AddCommentForm component", () => {
@@ -119,7 +119,7 @@ describe("<Comments />", () => {
 
   describe("when the commentable can accept new comments but user is not allowed to comment", () => {
     beforeEach(() => {
-      commentable.userAllowedToComment = false;
+      commentable.userAllowedToComment = 0;
     });
 
     it("doesn't render an AddCommentForm component", () => {
