@@ -18,6 +18,7 @@ module Decidim
         resolve lambda { |obj, args, ctx|
           params = { "comment" => { "body" => args[:body], "alignment" => args[:alignment], "user_group_id" => args[:userGroupId], "commentable" => obj } }
           form = Decidim::Comments::CommentForm.from_params(params).with_context(current_organization: ctx[:current_organization])
+          raise GraphQL::ExecutionError, "not allowed" unless form.commentable.user_allowed_to_comment?(ctx[:current_user])
           Decidim::Comments::CreateComment.call(form, ctx[:current_user]) do
             on(:ok) do |comment|
               return comment
