@@ -147,7 +147,6 @@ export class Comments extends React.Component<CommentsProps> {
     const { authorizationLink, commentable } = this.props;
     const { acceptsNewComments, userAllowedToComment } = commentable;
     const link = { __html: authorizationLink ? authorizationLink : I18n.t("components.comments.blocked_comments_for_unauthorized_user_warning") }
-    console.log("props",this.props, authorizationLink, acceptsNewComments );
 
     if (acceptsNewComments) {
       if (userAllowedToComment !== 1) {
