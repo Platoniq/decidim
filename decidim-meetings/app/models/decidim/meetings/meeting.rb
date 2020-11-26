@@ -45,7 +45,6 @@ module Decidim
         or private_meeting = ? or (private_meeting = ? and transparent = ?)", true, user, false, true, true).distinct
       }
 
-
       scope :visible, -> { where("decidim_meetings_meetings.private_meeting != ? OR decidim_meetings_meetings.transparent = ?", true, true) }
 
       searchable_fields({
