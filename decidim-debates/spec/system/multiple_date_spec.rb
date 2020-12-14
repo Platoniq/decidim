@@ -6,6 +6,8 @@ describe "show multiple dates", type: :system do
     include_context "with a component"
     let(:manifest_name) { "debates" }
 
+    let!(:debate) { create(:debate, component: component) }
+
     before do
       visit_component
       click_link debate.title[I18n.locale.to_s], class: ".card__content--multiple"
