@@ -24,8 +24,6 @@ describe "show multiple dates", type: :system do
         within ".card__content--multiple" do
           expect(page).to have_content(debate.end_time.strftime("%d"))
           expect(page).to have_content(debate.end_time.strftime("%H:%M"))
-        end
       end
     end
-  end
 end
