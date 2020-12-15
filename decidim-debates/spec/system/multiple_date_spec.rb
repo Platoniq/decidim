@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# frozen_string_literal_true
-
 require "spec_helper"
 
 describe "show multiple dates", type: :system do
@@ -15,15 +13,15 @@ describe "show multiple dates", type: :system do
     click_link debate.title[I18n.locale.to_s], class: "card__content--multiple"
   end
 
-  context "show date" do
-    it "shows the date" do
+  context "when shows the debate component" do
+    it "shows the start date" do
       within ".card__content--multiple" do
         expect(page).to have_content(debate.start_time.strftime("%d"))
         expect(page).to have_content(debate.start_time.strftime("%H:%M"))
       end
     end
 
-    it "shows the extra date" do
+    it "shows the end date" do
       within ".card__content--multiple" do
         expect(page).to have_content(debate.end_time.strftime("%d"))
         expect(page).to have_content(debate.end_time.strftime("%H:%M"))
