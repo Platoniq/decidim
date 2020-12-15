@@ -124,6 +124,10 @@ module Decidim
         filter_origin_params
       end
 
+      def default_filter_type_params
+        %w(all) + Decidim::Meetings::Meeting::TYPE_OF_MEETING
+      end
+
       def default_search_params
         {
           scope: Meeting.visible_meeting_for(current_user)

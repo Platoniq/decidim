@@ -181,6 +181,52 @@ describe "User creates meeting", type: :system do
             expect(page).to have_content("Authorization required")
           end
         end
+
+        it "lets the user choose the registrations type" do
+          visit_component
+
+          click_link "New meeting"
+
+          within ".new_meeting" do
+            select "Registration disabled", from: :meeting_registration_type
+            expect(page).to have_no_field("Registration URL")
+            expect(page).to have_no_field("Available slots")
+            expect(page).to have_no_field("Registration terms")
+
+            select "On a different platform", from: :meeting_registration_type
+            expect(page).to have_field("Registration URL")
+            expect(page).to have_no_field("Available slots")
+            expect(page).to have_no_field("Registration terms")
+
+            select "On this platform", from: :meeting_registration_type
+            expect(page).to have_field("Available slots")
+            expect(page).to have_no_field("Registration URL")
+            expect(page).to have_field("Registration terms")
+          end
+        end
+
+        it "lets the user choose the meeting type" do
+          visit_component
+
+          click_link "New meeting"
+
+          within ".new_meeting" do
+            select "In person", from: :meeting_type_of_meeting
+            expect(page).to have_field("Address")
+            expect(page).to have_field(:meeting_location)
+            expect(page).to have_no_field("Online meeting URL")
+
+            select "Online", from: :meeting_type_of_meeting
+            expect(page).to have_no_field("Address")
+            expect(page).to have_no_field(:meeting_location)
+            expect(page).to have_field("Online meeting URL")
+
+            select "Both", from: :meeting_type_of_meeting
+            expect(page).to have_field("Address")
+            expect(page).to have_field(:meeting_location)
+            expect(page).to have_field("Online meeting URL")
+          end
+        end
       end
 
       context "when creation is not enabled" do

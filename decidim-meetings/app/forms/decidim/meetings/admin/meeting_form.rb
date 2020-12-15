@@ -60,6 +60,7 @@ module Decidim
 
           self.title = presenter.title(all_locales: title.is_a?(Hash))
           self.description = presenter.description(all_locales: description.is_a?(Hash))
+          self.type_of_meeting = model.type_of_meeting
         end
 
         def services_to_persist
@@ -100,8 +101,54 @@ module Decidim
           geocoding_enabled? && address.present?
         end
 
+        def needs_address?
+          in_person_meeting? || hybrid_meeting?
+        end
+
         def geocoded?
           latitude.present? && longitude.present?
+        end
+
+        def online_meeting?
+          type_of_meeting == "online"
+        end
+
+        def in_person_meeting?
+          type_of_meeting == "in_person"
+        end
+
+        def hybrid_meeting?
+          type_of_meeting == "hybrid"
+        end
+
+        def clean_type_of_meeting
+          type_of_meeting.presence
+        end
+
+        def type_of_meeting_select
+          Decidim::Meetings::Meeting::TYPE_OF_MEETING.map do |type|
+            [
+              I18n.t("type_of_meeting.#{type}", scope: "decidim.meetings"),
+              type
+            ]
+          end
+        end
+
+        def on_this_platform?
+          registration_type == "on_this_platform"
+        end
+
+        def on_different_platform?
+          registration_type == "on_different_platform"
+        end
+
+        def registration_type_select
+          Decidim::Meetings::Meeting::REGISTRATION_TYPE.map do |type|
+            [
+              I18n.t("registration_type.#{type}", scope: "decidim.meetings"),
+              type
+            ]
+          end
         end
       end
     end
