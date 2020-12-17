@@ -1089,6 +1089,12 @@ a .card__title{
   }
 }
 
+.icon-arrow-thin-right {
+  color: grey;
+  height: 30px;
+  margin-top: 0.70rem;
+}
+
 // card row
 .card__row{
   @include flex;

@@ -62,6 +62,11 @@ module Decidim
           ]
         )
       end
+
+      # If the start and end date are the same
+      def same_date?
+        debate.start_time.strftime("%d") == debate.end_time.strftime("%d")
+      end
     end
   end
 end
