@@ -9,6 +9,11 @@ describe "show multiple dates", versioning: true, type: :system do
   let!(:start_time) { Time.current - 1.hour }
   let(:end_time) { Time.current }
 
+  before do
+    visit_component
+    click_link debate.title[I18n.locale.to_s], class: "card__link"
+  end
+  
   context "when start date and end date are different" do
     let(:start_time) { Time.current - 1.day }
 
@@ -65,7 +70,7 @@ describe "show multiple dates", versioning: true, type: :system do
 
   context "when there is no end date" do
     it "show only start date" do
-      within ".card_content" do
+      within ".extra__date" do
         expect(page).not_to have_content(debate.end_time.strftime("%d"))
         expect(page).to have_content(debate.start_time.strftime("%H:%M"))
       end

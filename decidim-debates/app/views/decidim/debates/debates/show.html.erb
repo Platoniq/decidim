@@ -42,7 +42,7 @@ edit_link(
       <%= link_to t(close_debate_action_text), Decidim::EngineRouter.admin_proxy(debate.component).edit_debate_debate_close_path(debate_id: debate.id, id: debate.id), class: "button hollow expanded button-sc button--icon follow-button" %>
     <% end %>
 
-    <div class="card-extra">
+    <div class="card extra">
       <div class="card-content">
         <% if debate.start_time.present? && debate.end_time.present? %>
       <div class="extra__date">
