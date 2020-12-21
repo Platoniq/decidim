@@ -264,5 +264,73 @@ module Decidim::Meetings
         end
       end
     end
+      context "when past meeting" do
+        let(:meeting) { build :meeting, :past }
+
+        it "returns true" do
+          expect(subject.past?).to be true
+        end
+      end
+
+      context "when future meeting" do
+        it "returns false" do
+          expect(subject.past?).to be false
+        end
+      end
+    end
+
+    describe "#has_contributions?" do
+      context "when the meeting has contributions" do
+        let(:meeting) { build :meeting, contributions_count: 10 }
+
+        it "returns true" do
+          expect(subject.has_contributions?).to be true
+        end
+      end
+
+      context "when the meeting does not have contributions" do
+        let(:meeting) { build :meeting }
+
+        it "returns false" do
+          expect(subject.has_contributions?).to be false
+        end
+      end
+    end
+
+    describe "#has_attendees?" do
+      context "when the meeting has attendees" do
+        let(:meeting) { build :meeting, attendees_count: 10 }
+
+        it "returns true" do
+          expect(subject.has_attendees?).to be true
+        end
+      end
+
+      context "when the meeting does not have attendees" do
+        let(:meeting) { build :meeting }
+
+        it "returns false" do
+          expect(subject.has_attendees?).to be false
+        end
+      end
+    end
+
+    describe "#embedded?" do
+      context "when embedded_videoconference attribute is true" do
+        let(:meeting) { build :meeting, embedded_videoconference: true }
+
+        it "returns true" do
+          expect(subject.embedded?).to be true
+        end
+      end
+
+      context "when embedded_videoconference attribute is false" do
+        let(:meeting) { build :meeting, embedded_videoconference: false }
+
+        it "returns false" do
+          expect(subject.embedded?).to be false
+        end
+      end
+    end
   end
 end

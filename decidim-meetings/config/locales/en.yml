@@ -161,6 +161,7 @@ en:
         agenda: Agenda
         attachment_collections: Folders
         attachments: Attachments
+        attendance: Attendance
         close: Close
         confirm_destroy: Are you sure you want to delete this meeting?
         destroy: Delete
@@ -256,6 +257,10 @@ en:
             update: Update
           form:
             address_help: 'Address: used by Geocoder to find the location'
+            available_slots_help: Leave it to 0 if you have unlimited slots available
+            disclaimer: 'Disclaimer: By using an external registration system, you''re aware that the organizers of %{organization} are not responsible for the data provided by the users to the external service.'
+            embedded_videoconference: Embed videoconference
+            embedded_videoconference_help: 'Embed videoconference: A videoconference room will be generated and inserted into the meeting public page.'
             location_help: 'Location: message directed to the users implying the spot to meet at'
             location_hints_help: 'Location hints: additional info. Example: the floor of the building if it is an in-person meeting, or the meeting password if it is an online meeting with restricted access.'
             online_meeting_url_help: 'Link: allow participants to connect directly to your meeting'
@@ -315,6 +320,9 @@ en:
           validate_registration_code:
             invalid: This registration code is invalid.
             success: Registration code successfully validated.
+        videoconference_attendance_logs:
+          index:
+            title: Attendance logs
       admin_log:
         invite:
           create: "%{user_name} invited %{attendee_name} to join %{resource_name} meeting on the %{space_name} space"
@@ -363,6 +371,13 @@ en:
             subject: Your meeting's registration has been confirmed
       meeting:
         not_allowed: You are not allowed to view this meeting
+      meeting_closes:
+        edit:
+          back: Back
+          close: Close meeting
+          title: Close meeting
+      meeting_url:
+        embedded: Embedded videoconference
       meetings:
         count:
           meetings_count:
@@ -421,6 +436,8 @@ en:
           back: Back
           create: Create
           title: Create Your Meeting
+        online_meeting_link:
+          embedded_videoconference: A videoconference room will be displayed in this page when the meeting starts.
         registration_confirm:
           cancel: Cancel
           confirm: Confirm
@@ -467,6 +484,16 @@ en:
             official_meeting: Official meeting
             start_time: Start date
             title: Title
+        videoconference_attendance_log:
+          fields:
+            created_at: Time
+            event: Event
+            events:
+              join: Join
+              leave: Leave
+            user_email: Email
+            user_id: User ID
+            user_name: Name
       read_more: "(read more)"
       registration_mailer:
         confirmation:
@@ -492,6 +519,16 @@ en:
         transparent: Transparent
       versions:
         back_to_resource: Go back to meeting
+      videoconference:
+        closed: The videoconference has ended.
+        explanation: When you click on the button below, you will be asked for microphone and/or camera permissions, and you will join the videoconference. By doing so, you give permission to %{organization} to log your attendance to this videoconference.
+        join: Join videoconference
+        title: Videoconference
+        unavailable: The videoconference for this meeting is not available at the current time.
+      videoconference_attendance_logs:
+        create:
+          error: Attendance could not be logged
+          success: Attendance logged
     metrics:
       meetings:
         description: Number of meetings created

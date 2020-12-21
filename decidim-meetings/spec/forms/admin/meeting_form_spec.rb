@@ -48,6 +48,7 @@ module Decidim::Meetings
     let(:category) { create :category, participatory_space: participatory_process }
     let(:category_id) { category.id }
     let(:private_meeting) { false }
+    let(:embedded_videoconference) { false }
     let(:transparent) { true }
     let(:type_of_meeting) { "in_person" }
     let(:online_meeting_url) { "http://decidim.org" }
@@ -67,7 +68,8 @@ module Decidim::Meetings
         transparent: transparent,
         services: services_attributes,
         type_of_meeting: type_of_meeting,
-        online_meeting_url: online_meeting_url
+        online_meeting_url: online_meeting_url,
+        embedded_videoconference: embedded_videoconference
       }
     end
 
@@ -187,7 +189,17 @@ module Decidim::Meetings
       let(:type_of_meeting) { "online" }
       let(:online_meeting_url) { nil }
 
-      it { is_expected.not_to be_valid }
+      context "when it is an embedded videoconference" do
+        let(:embedded_videoconference) { true }
+
+        it { is_expected.to be_valid }
+      end
+
+      context "when it is not an embedded videoconference" do
+        let(:embedded_videoconference) { false }
+
+        it { is_expected.not_to be_valid }
+      end
     end
 
     describe "when type of meeting is missing" do

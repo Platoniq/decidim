@@ -37,6 +37,10 @@
     }
   };
 
+  const toggleEmbeddedVideoconference = (controlField, toggledField) => {
+    toggledField.toggle(controlField.value);
+  }
+
   createDynamicFields({
     placeholderId: "meeting-service-id",
     wrapperSelector: wrapperSelector,
@@ -124,5 +128,13 @@
 
     toggleDependsOnSelect($meetingTypeOfMeeting, $meetingOnlineFields, "online");
     toggleDependsOnSelect($meetingTypeOfMeeting, $meetingInPersonFields, "in_person");
+
+    const $embeddedVideoconferenceField = $("#embedded_videoconference input");
+    const $onlineMeetingUrlField = $("#online_meeting_url");
+    $embeddedVideoconferenceField.on("change", () => {
+      toggleEmbeddedVideoconference($embeddedVideoconferenceField, $onlineMeetingUrlField);
+    });
+
+    toggleEmbeddedVideoconference($embeddedVideoconferenceField, $onlineMeetingUrlField);
   }
 })(window);

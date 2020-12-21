@@ -240,6 +240,30 @@ module Decidim
         type_of_meeting == "online"
       end
 
+      def embedded?
+        embedded_videoconference
+      end
+
+      def registration_disabled?
+        registration_type == "registration_disabled"
+      end
+
+      def on_this_platform?
+        registration_type == "on_this_platform"
+      end
+
+      def on_different_platform?
+        registration_type == "on_different_platform"
+      end
+
+      def has_contributions?
+        !!contributions_count && contributions_count.positive?
+      end
+
+      def has_attendees?
+        !!attendees_count && attendees_count.positive?
+      end
+
       private
 
       def can_participate_in_meeting?(user)
