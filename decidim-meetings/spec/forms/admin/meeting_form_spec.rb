@@ -48,6 +48,7 @@ module Decidim::Meetings
     let(:category) { create :category, participatory_space: participatory_process }
     let(:category_id) { category.id }
     let(:private_meeting) { false }
+    let(:embedded_videoconference) { false }
     let(:transparent) { true }
     let(:attributes) do
       {
@@ -63,7 +64,13 @@ module Decidim::Meetings
         end_time: end_time,
         private_meeting: private_meeting,
         transparent: transparent,
-        services: services_attributes
+        services: services_attributes,
+        registration_type: registration_type,
+        available_slots: available_slots,
+        registration_url: registration_url,
+        type_of_meeting: type_of_meeting,
+        online_meeting_url: online_meeting_url,
+        embedded_videoconference: embedded_videoconference
       }
     end
 
@@ -176,6 +183,49 @@ module Decidim::Meetings
       subject { form.number_of_services }
 
       it { is_expected.to eq(services.size) }
+    end
+
+    describe "when online meeting link is missing and type of meeting is online" do
+      let(:type_of_meeting) { "online" }
+      let(:online_meeting_url) { nil }
+
+      context "when it is an embedded videoconference" do
+        let(:embedded_videoconference) { true }
+
+        it { is_expected.to be_valid }
+      end
+
+      context "when it is not an embedded videoconference" do
+        let(:embedded_videoconference) { false }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    describe "when type of meeting is missing" do
+      let(:type_of_meeting) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when registration type of meeting is missing" do
+      let(:registration_type) { nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when registration type is on this platform and available slots are missing" do
+      let(:available_slots) { nil }
+      let(:registration_type) { "on_this_platform" }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    describe "when registration url is missing and registration type of meeting is on different platform" do
+      let(:registration_type) { "on_different_platform" }
+      let(:registration_url) { nil }
+
+      it { is_expected.not_to be_valid }
     end
   end
 end

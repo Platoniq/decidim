@@ -17,6 +17,12 @@ module Decidim
         attribute :decidim_category_id, Integer
         attribute :private_meeting, Boolean
         attribute :transparent, Boolean
+        attribute :embedded_videoconference, Boolean
+        attribute :online_meeting_url, String
+        attribute :type_of_meeting, String
+        attribute :registration_type, String
+        attribute :registration_url, String
+        attribute :available_slots, Integer, default: 0
 
         translatable_attribute :title, String
         translatable_attribute :description, String
@@ -25,10 +31,15 @@ module Decidim
 
         validates :title, translatable_presence: true
         validates :description, translatable_presence: true
-        validates :location, translatable_presence: true
+        validates :registration_type, presence: true
+        validates :available_slots, numericality: { greater_than_or_equal_to: 0 }, presence: true, if: ->(form) { form.on_this_platform? }
+        validates :registration_url, presence: true, url: true, if: ->(form) { form.on_different_platform? }
+        validates :type_of_meeting, presence: true
+        validates :location, translatable_presence: true, if: ->(form) { form.in_person_meeting? || form.hybrid_meeting? }
 
-        validates :address, presence: true
-        validates :address, geocoding: true, if: ->(form) { form.has_address? && !form.geocoded? }
+        validates :address, presence: true, if: ->(form) { form.needs_address? }
+        validates :address, geocoding: true, if: ->(form) { form.has_address? && !form.geocoded? && form.needs_address? }
+        validates :online_meeting_url, presence: true, url: true, if: ->(form) { (form.online_meeting? || form.hybrid_meeting?) && !form.embedded_videoconference }
         validates :start_time, presence: true, date: { before: :end_time }
         validates :end_time, presence: true, date: { after: :start_time }
 
