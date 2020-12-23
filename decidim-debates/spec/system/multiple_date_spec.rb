@@ -16,21 +16,23 @@ describe "show multiple dates", versioning: true, type: :system do
 
   context "when start and end on different day" do
     let(:start_time) { Time.current - 1.day }
-      it "shows two days" do
-        within ".extra__date" do
-          expect(page).to have_content(debate.start_time.strftime("%d"))
-          expect(page).to have_content(debate.start_time.strftime("%H:%M"))
-          expect(page).to have_content(debate.end_time.strftime("%d"))
-          expect(page).to have_content(debate.end_time.strftime("%H:%M"))
-        end
-      end
-  
-      it "shows two dates" do
-        within ".extra__date" do
-          expect(debate.start_time.strftime("%d%m")).not_to eq(debate.end_time.strftime("%d%m"))
-        end
+
+    it "shows two days" do
+      within ".extra__date" do
+        expect(page).to have_content(debate.start_time.strftime("%d"))
+        expect(page).to have_content(debate.start_time.strftime("%H:%M"))
+        expect(page).to have_content(debate.end_time.strftime("%d"))
+        expect(page).to have_content(debate.end_time.strftime("%H:%M"))
       end
     end
+
+    it "shows two dates" do
+      within ".extra__date" do
+        expect(debate.start_time.strftime("%d%m")).not_to eq(debate.end_time.strftime("%d%m"))
+      end
+    end
+  end
+
   context "when start and end date are the same" do
     it "comprove the hours" do
       within ".extra__date" do
@@ -47,8 +49,9 @@ describe "show multiple dates", versioning: true, type: :system do
       end
     end
   end
+
   context "when start and end on same day but different month" do
-  let(:start_time) { Time.current - 1.month }
+    let(:start_time) { Time.current - 1.month }
 
     it "shows two days" do
       within ".extra__date" do
