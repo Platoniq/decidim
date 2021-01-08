@@ -39,7 +39,7 @@ module Decidim
                    locale: I18n.locale,
                    toggleTranslations: machine_translations_toggled?,
                    commentsMaxLength: comments_max_length(resource),
-                   authorizationLink: commentable_path)
+                   authorizationLink: commentable_path
         )
       end
 
