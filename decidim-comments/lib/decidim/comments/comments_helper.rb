@@ -25,13 +25,15 @@ module Decidim
 
         commentable_type = resource.commentable_type
         commentable_id = resource.id.to_s
+        commentable_path = action_authorized_link_to(:comment, t("decidim.components.comments.blocked_comments_for_unauthorized_user_warning"), resource_locator(resource).path, resource: resource)
         node_id = "comments-for-#{commentable_type.demodulize}-#{commentable_id}"
         react_comments_component(
           node_id, commentableType: commentable_type,
                    commentableId: commentable_id,
                    locale: I18n.locale,
                    toggleTranslations: machine_translations_toggled?,
-                   commentsMaxLength: comments_max_length(resource)
+                   commentsMaxLength: comments_max_length(resource),
+                   authorizationLink: commentable_path)
         )
       end
 
@@ -50,7 +52,8 @@ module Decidim
                 commentableId: "#{props[:commentableId]}",
                 locale: "#{props[:locale]}",
                 toggleTranslations: #{props[:toggleTranslations]},
-                commentsMaxLength: "#{props[:commentsMaxLength]}"
+                commentsMaxLength: "#{props[:commentsMaxLength]}",
+                authorizationLink: "#{j props[:authorizationLink]}"
               }
             );
           })
