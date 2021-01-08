@@ -163,14 +163,14 @@ export class Comments extends React.Component<CommentsProps> {
   private _renderBlockedCommentsForUserWarning() {
     const { authorizationLink, commentable } = this.props;
     const { acceptsNewComments, userAllowedToComment } = commentable;
-    const link = { __html: authorizationLink ? authorizationLink : I18n.t("components.comments.blocked_comments_for_unauthorized_user_warning") }
+    const link = { __html: authorizationLink ? authorizationLink : I18n.t("components.comments.blocked_comments_for_unauthorized_user_warning") };
 
     if (acceptsNewComments) {
       if (userAllowedToComment !== 1) {
         if (userAllowedToComment === -1) {
           return (
             <div className="callout warning">
-              <div dangerouslySetInnerHTML={ link } />
+              <div dangerouslySetInnerHTML={link} />
             </div>
           );
         } else {
