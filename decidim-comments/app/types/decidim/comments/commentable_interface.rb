@@ -54,8 +54,10 @@ module Decidim
       field :userAllowedToComment, !types.Int, "Check if the current user can comment. 0: not allowed due private space, -1: not allowed due permissions, 1: allowed" do
         resolve lambda { |obj, _args, ctx|
           return 0 unless obj.commentable?
+
           permission = obj.user_allowed_to_comment?(ctx[:current_user])
           return 0 if permission.nil?
+
           permission ? 1 : -1
         }
       end
