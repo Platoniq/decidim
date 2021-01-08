@@ -25,7 +25,13 @@ module Decidim
 
         commentable_type = resource.commentable_type
         commentable_id = resource.id.to_s
-        commentable_path = action_authorized_link_to(:comment, t("decidim.components.comments.blocked_comments_for_unauthorized_user_warning"), resource_locator(resource).path, resource: resource)
+        commentable_path = resource_locator(resource).path
+        # actions are linked to objects belonging to a component
+        # In consultations, a question belong to a participatory_space but it has comments
+        # To apply :comment permission, the modal authorizer should be refactored to allow participatory spaces-level comments
+        if resource.respond_to?(:component)
+          commentable_path = action_authorized_link_to(:comment, t("decidim.components.comments.blocked_comments_for_unauthorized_user_warning"), commentable_path, resource: resource)
+        end
         node_id = "comments-for-#{commentable_type.demodulize}-#{commentable_id}"
         react_comments_component(
           node_id, commentableType: commentable_type,
