@@ -36,7 +36,7 @@ describe "show multiple dates", versioning: true, type: :system do
   context "when start and end date are the same" do
     it "comprove the hours" do
       within ".extra__date" do
-        expect(debate.start_time.strftime("%H")).to be <debate.end_time.strftime("%H")
+        expect(debate.start_time.strftime("%H")).to be < debate.end_time.strftime("%H")
         expect(debate.start_time.strftime("%m%Y")).to eq(debate.end_time.strftime("%m%Y"))
       end
     end
