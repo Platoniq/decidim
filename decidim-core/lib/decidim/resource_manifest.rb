@@ -33,7 +33,7 @@ module Decidim
     # Some resources may depent on a parent (ie: projects in budgets)
     # If this is avalialbe it can be userd by the resource locator to treat
     # it as a polymorphic resource and find the proper route
-    attribute :parent_resource, Symbol
+    attribute :parent_resource, String, default: ""
 
     # The template to use to render the collection of the resource.
     attribute :template, String
