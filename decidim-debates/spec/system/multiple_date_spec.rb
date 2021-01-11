@@ -14,7 +14,7 @@ describe "show multiple dates", versioning: true, type: :system do
     click_link debate.title[I18n.locale.to_s], class: "card__link"
   end
 
-  context "when start and end on different day" do
+  context "when debate start and end on different day" do
     let(:start_time) { Time.current - 1.day }
 
     it "shows two days" do
@@ -26,7 +26,7 @@ describe "show multiple dates", versioning: true, type: :system do
       end
     end
 
-    it "shows two dates" do
+    it "check that the two days are different" do
       within ".extra__date" do
         expect(debate.start_time.strftime("%d%m")).not_to eq(debate.end_time.strftime("%d%m"))
       end
@@ -36,7 +36,7 @@ describe "show multiple dates", versioning: true, type: :system do
   context "when start and end date are the same" do
     it "comprove the hours" do
       within ".extra__date" do
-        expect(debate.start_time.strftime("%H")).to be < debate.end_time.strftime("%H")
+        expect(debate.start_time.strftime("%H")).to be <debate.end_time.strftime("%H")
         expect(debate.start_time.strftime("%m%Y")).to eq(debate.end_time.strftime("%m%Y"))
       end
     end
