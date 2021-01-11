@@ -25,7 +25,9 @@ module Decidim
 
         commentable_type = resource.commentable_type
         commentable_id = resource.id.to_s
-        commentable_path = resource_locator(resource).path
+        # some resource have parents (ie projects in budgets)
+        parent = resource.try(resource.resource_manifest.parent_resource)
+        commentable_path = resource_locator(parent.present? ? [parent, resource] : resource).path
         # actions are linked to objects belonging to a component
         # In consultations, a question belong to a participatory_space but it has comments
         # To apply :comment permission, the modal authorizer should be refactored to allow participatory spaces-level comments
