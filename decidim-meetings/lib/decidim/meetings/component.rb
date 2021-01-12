@@ -151,7 +151,6 @@ Decidim.register_component(:meetings) do |component|
           )
         end
 
-        )
         Decidim::Forms::Questionnaire.create!(
           title: Decidim::Faker::Localized.paragraph,
           description: Decidim::Faker::Localized.wrapped("<p>", "</p>") do
@@ -190,7 +189,6 @@ Decidim.register_component(:meetings) do |component|
           name: Decidim::Faker::Localized.word,
           description: Decidim::Faker::Localized.sentence(word_count: 5),
           collection_for: meeting
->>>>>>> 2dda95183... Feature/15596 embed jitsi meeting (#65)
         )
 
         Decidim::Attachment.create!(
