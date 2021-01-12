@@ -132,6 +132,10 @@ edit_link(
         <%= render partial: "decidim/shared/static_map", locals: { icon_name: "meetings", geolocalizable: meeting } %>
       <% end %>
 
+      <% if meeting.embedded? %>
+        <%= cell "decidim/meetings/videoconference", meeting %>
+      <% end %>
+
       <%= render partial: "decidim/shared/tags", locals: { resource: meeting, tags_class_extra: "tags--meeting" } %>
     </div>
 
