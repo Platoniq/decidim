@@ -24,7 +24,7 @@ module Decidim::Meetings
     let(:registration_type) { "on_this_platform" }
     let(:registrations_enabled) { true }
     let(:available_slots) { 0 }
-    let(:registration_terms) { Faker::Lorem.sentence(word_count: 3) }
+    let(:registration_terms) { Faker::Lorem.sentence(3) }
     let(:form) do
       double(
         invalid?: invalid,
