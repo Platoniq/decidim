@@ -43,18 +43,31 @@ edit_link(
     <% elsif admin_allowed_to?(:close, :debate, debate: debate) %>
       <%= link_to t(close_debate_action_text), Decidim::EngineRouter.admin_proxy(debate.component).edit_debate_debate_close_path(debate_id: debate.id, id: debate.id), class: "button hollow expanded button-sc button--icon follow-button" %>
     <% end %>
-    <div class="card extra">
-      <div class="card__content">
-        <% if debate.start_time.present? && debate.end_time.present? %>
-          <div class="extra__date">
-            <%= l debate.start_time, format: "%d" %> <span class="extra__month"><%= l debate.start_time, format: "%B" %></span>
-          </div>
-          <div class="extra__time">
-            <%= l debate.start_time, format: "%H:%M" %> - <%= l debate.end_time, format: "%H:%M" %>
-          </div>
-        <% end %>
 
-        <% if endorsements_enabled? && allowed_to?(:endorse, :debate, debate: debate) %>
+    <div class="card extra">
+      <div class="card-content">
+        <% if debate.start_time.present? && debate.end_time.present? %>
+      <div class="extra__date">
+        <% if same_date? %>
+            <div>
+              <%= l debate.start_time, format: "%d" %> <span class="extra__month"> <%= l debate.start_time, format: "%B" %></span>
+              <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %> - <%= l debate.end_time, format: "%H:%M" %></span></div>
+            </div>
+                <% else %>
+            <div>
+              <%= l debate.start_time, format: "%d" %> <span class="extra__month"> <%= l debate.start_time, format: "%B" %></span>
+              <div class="extra__time text-small"> <%= l debate.start_time, format: "%H:%M" %></span></div>
+            </div>
+            <%= icon "arrow-thin-right", class: "icon-arrow-thin-right" %>
+            <div>
+              <%= l debate.end_time, format: "%d" %> <span class="extra__month"> <%= l debate.end_time, format: "%B" %></span>
+              <div class="extra__time text-small"> <%= l debate.end_time, format: "%H:%M" %></span></div>
+            </div>
+                <% end %>
+        </div>
+          <% end %>
+
+          <% if endorsements_enabled? && allowed_to?(:endorse, :debate, debate: debate) %>
           <div class="row collapse buttons__row">
             <div class="column small-12 collapse">
               <%= endorsement_buttons_cell(debate) %>
@@ -64,6 +77,7 @@ edit_link(
         <%= follow_button_for(debate) %>
       </div>
     </div>
+
     <div class="card extra">
       <div class="definition-data">
         <div class="definition-data__item definition-data__item">
@@ -78,14 +92,12 @@ edit_link(
             <% end %>
           </span>
         </div>
-
         <div class="definition-data__item definition-data__item--double">
           <span class="definition-data__title">
             <%= t ".participants_count" %>
           </span>
           <span class="definition-data__number"><%= debate_presenter.participants_count %></span>
         </div>
-
         <div class="definition-data__item definition-data__item--double">
           <span class="definition-data__title">
             <%= t ".groups_count" %>
@@ -108,11 +120,9 @@ edit_link(
       <% end %>
 
       <%= render_debate_description(debate) %>
-
       <% if debate.closed? %>
         <%= cell("decidim/announcement", { announcement: { title: t(".debate_conclusions_are", date: l(debate.closed_at, format: :decidim_short)), body: simple_format(translated_attribute(debate.conclusions)) }, callout_class: "success" }) %>
       <% end %>
-
       <% if translated_attribute(debate.instructions).present? %>
         <div class="callout secondary">
           <%= decidim_sanitize(simple_format(translated_attribute(debate.instructions), {}, sanitize: false)) %>
@@ -123,6 +133,7 @@ edit_link(
           <%= decidim_sanitize(simple_format(translated_attribute(debate.information_updates), {}, sanitize: false)) %>
         </div>
       <% end %>
+
       <% if debate.category %>
         <ul class="tags tags--debate">
           <li><%= link_to translated_attribute(debate.category.name), debates_path(filter: { category_id: debate.category.id }) %></li>
