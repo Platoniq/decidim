@@ -40,7 +40,6 @@ module Decidim
         private
 
         def pretty_attachment(attachment)
-          # rubocop:disable Style/StringConcatenation
           # Interpolating strings that are `html_safe` is problematic with Rails.
           content_tag :li do
             link_to(translated_attribute(attachment.title), attachment.url) +
