@@ -48,7 +48,6 @@ module Decidim
                 "#{attachment.file_type} #{number_to_human_size(attachment.file_size)}"
               end
           end
-          # rubocop:enable Style/StringConcatenation
         end
 
         def choice(choice_body)
