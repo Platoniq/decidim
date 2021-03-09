@@ -64,7 +64,7 @@ module Decidim::Meetings
         end_time: end_time,
         private_meeting: private_meeting,
         transparent: transparent,
-        services: services_attributes
+        services: services_attributes,
         main_image: main_image
       }
     end
