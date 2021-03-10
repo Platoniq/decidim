@@ -30,7 +30,7 @@ module Decidim
       private
 
       def resource_image_path
-        model.main_image.url
+        model.photo&.url
       end
 
       def has_image?
