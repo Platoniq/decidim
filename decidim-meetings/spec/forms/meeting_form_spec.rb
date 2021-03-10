@@ -33,7 +33,6 @@ module Decidim::Meetings
     let(:category_id) { category.id }
     let(:private_meeting) { false }
     let(:transparent) { true }
-    let(:main_image) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
     let(:attributes) do
       {
         decidim_scope_id: scope_id,
@@ -47,8 +46,7 @@ module Decidim::Meetings
         start_time: start_time,
         end_time: end_time,
         private_meeting: private_meeting,
-        transparent: transparent,
-        main_image: main_image
+        transparent: transparent
       }
     end
 
