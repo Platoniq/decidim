@@ -24,7 +24,6 @@ module Decidim::Meetings
     let(:user) { create :user, :admin, organization: organization }
     let(:private_meeting) { false }
     let(:transparent) { true }
-    let(:main_image) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
     let(:form) do
       double(
         invalid?: invalid,
@@ -43,8 +42,7 @@ module Decidim::Meetings
         transparent: transparent,
         services_to_persist: services_to_persist,
         current_user: user,
-        current_organization: organization,
-        main_image: main_image
+        current_organization: organization
       )
     end
 
@@ -91,12 +89,6 @@ module Decidim::Meetings
         end
       end
 
-      it "sets the main_image" do
-        previous_image = meeting.main_image
-        subject.call
-        expect(meeting.main_image).not_to eq previous_image
-      end
-
       it "traces the action", versioning: true do
         expect(Decidim.traceability)
           .to receive(:update!)
@@ -132,8 +124,7 @@ module Decidim::Meetings
             transparent: transparent,
             services_to_persist: services_to_persist,
             current_user: user,
-            current_organization: organization,
-            main_image: main_image
+            current_organization: organization
           )
         end
 

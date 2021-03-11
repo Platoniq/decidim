@@ -6,7 +6,6 @@ module Decidim
       # This class holds a Form to create/update translatable meetings from Decidim's admin panel.
       class MeetingForm < Decidim::Form
         include TranslatableAttributes
-        include Decidim::HasUploadValidations
 
         attribute :address, String
         attribute :latitude, Float
@@ -18,9 +17,6 @@ module Decidim
         attribute :decidim_category_id, Integer
         attribute :private_meeting, Boolean
         attribute :transparent, Boolean
-
-        attribute :main_image
-        attribute :remove_main_image
 
         translatable_attribute :title, String
         translatable_attribute :description, String
@@ -40,8 +36,6 @@ module Decidim
         validates :category, presence: true, if: ->(form) { form.decidim_category_id.present? }
         validates :scope, presence: true, if: ->(form) { form.decidim_scope_id.present? }
         validates :decidim_scope_id, scope_belongs_to_component: true, if: ->(form) { form.decidim_scope_id.present? }
-
-        validates :main_image, passthru: { to: Decidim::Meetings::Meeting }
 
         delegate :categories, to: :current_component
 
