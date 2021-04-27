@@ -15,8 +15,8 @@ cs:
         end_date: Datum ukončení
         hashtag: Hashtag
         hero_image: Domácí obrázek
-        local_area: Oblast organizace
-        meta_scope: Rozsah metadat
+        local_area: Oblast působnosti organizace
+        meta_scope: Metadata Oblasti působnosti
         participatory_process_group_id: Skupina procesů
         participatory_scope: Co se rozhodlo
         participatory_structure: Jak se to rozhoduje
@@ -30,7 +30,7 @@ cs:
         show_metrics: Zobrazit metriku
         show_statistics: Zobrazit statistiky
         slug: URL slug
-        start_date: Počáteční datum
+        start_date: Datum zahájení
         subtitle: Podtitul
         target: Kdo se účastní
         title: Titul
@@ -45,7 +45,7 @@ cs:
         description: Popis
         end_date: Datum ukončení
         short_description: Stručný popis
-        start_date: Počáteční datum
+        start_date: Datum zahájení
         title: Titul
       participatory_process_user_role:
         email: E-mailem
@@ -128,7 +128,7 @@ cs:
         participatory_process_step:
           fields:
             end_date: Datum ukončení
-            start_date: Počáteční datum
+            start_date: Datum zahájení
             title: Titul
           name: Participační krok procesu
         participatory_process_user_role:
@@ -400,8 +400,8 @@ cs:
             no_active_nor_upcoming_callout: Neexistují žádné aktivní ani nadcházející procesy. Zde je seznam minulých.
           names:
             active: Aktivní
-            all: Všechno
-            past: Minulost
+            all: Vše
+            past: Minulé
             upcoming: Nadcházející
           see: Vidět
         index:
@@ -411,13 +411,13 @@ cs:
         dates: Data
         developer_group: Skupina promotérů
         end_date: Datum ukončení
-        local_area: Oblast organizace
+        local_area: Oblast působnosti organizace
         participatory_scope: Co se rozhodlo
         participatory_structure: Jak se to rozhoduje
         private_space: Jedná se o soukromý proces
         related_processes: Související procesy
         scope: Rozsah
-        start_date: Počáteční datum
+        start_date: Datum zahájení
         target: Kdo se účastní
         unspecified: Nespecifikováno
       statistics:

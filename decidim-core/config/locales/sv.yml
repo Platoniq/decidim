@@ -65,6 +65,7 @@ sv:
     errors:
       general: Fel vid bearbetning av bild
       image_too_big: Bilden är för stor
+      not_inside_organization: Den här filen är inte bifogad till någon organisation
   date:
     formats:
       decidim_short: "%d/%m/%Y"
@@ -353,6 +354,8 @@ sv:
             dummy_global_translatable_text: Översättningsbar exempeltext
             enable_pads_creation: Aktivera skapande av memo
             resources_permissions_enabled: Resursbehörigheter på
+            scope_id: Omfång
+            scopes_enabled: Omfång aktiverade
           step:
             amendment_creation_enabled: Tillåt att skapa ändringsförslag
             amendment_promotion_enabled: Tillåt att annonsera ändringsförslag
@@ -438,6 +441,7 @@ sv:
           buttons:
             check: Kontrollera och fortsätt
             close_modal: Stäng modal
+            uncheck: Behåll avmarkeringen
           notice: |-
             <p>Hej, är du säker på att du inte vill få nyhetsbrevet?<br>
             Överväg gärna en gång till att markera kryssrutan för nyhetsbrev nedan.<br>
@@ -886,6 +890,9 @@ sv:
           show: Visa konversation med %{sender}
         create:
           error: Konversationen har inte startat. Försök igen senare
+        error_modal:
+          close: Stäng fönster
+          ok: OK
         index:
           ago: sedan
           close: Stäng modal
@@ -1052,6 +1059,7 @@ sv:
           error: Det uppstod ett problem med att godkänna villkoren.
           success: Tack! Du har godkänt användarvillkoren.
         form:
+          agreement: Jag godkänner villkoren
           legend: Godkänn användarvillkoren
         refuse:
           modal_body: Om du vägrar kan du inte använda plattformen, men du kan <a href="%{data_portability_path}">hämta dina data</a> eller <a href="%{delete_path}">radera ditt konto</a>.
@@ -1158,6 +1166,10 @@ sv:
           one: "%{count} resultat"
           other: "%{count} resultat"
         view_all: Visa alla (%{count})
+    security:
+      selfxss_warning:
+        description: Denna webbläsarfunktion är avsedd för utvecklare och du bör inte klistra in något här om du ombads att göra det. Klistra in innehåll i detta fönster kan påverka din integritet och ge hackare tillgång till ditt konto.
+        title: OBS!
     shared:
       confirm_modal:
         cancel: Avbryt
@@ -1524,6 +1536,7 @@ sv:
         see_more: Visa mer
   locale:
     name: Svenska
+    name_with_error: Svenska (fel!)
   password_validator:
     domain_included_in_password: är för likt detta domännamn
     email_included_in_password: är för likt din e-post

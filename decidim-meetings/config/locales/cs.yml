@@ -202,7 +202,7 @@ cs:
             add_agenda_item: Přidat položku agendy
             agenda_items: Položky agendy
             end_date: Datum ukončení
-            start_date: Počáteční datum
+            start_date: Datum zahájení
           new:
             create: Vytvořit
             title: Nová agenda
@@ -231,7 +231,7 @@ cs:
           index:
             filter:
               accepted: Přijato
-              all: Všechno
+              all: Vše
               rejected: Odmítnuto
               sent: Odeslaná
             filter_by: Filtrovat podle
@@ -351,10 +351,10 @@ cs:
       directory:
         meetings:
           index:
-            all: Všechno
+            all: Vše
             date: Datum
             meetings: Setkání
-            past: Minulost
+            past: Minulé
             search: Vyhledávání
             space_type: Účastní prostor
             upcoming: Nadcházející
@@ -445,7 +445,7 @@ cs:
             few: "%{count} zbývajících bloků"
             many: "%{count} zbývajících bloků"
             other: "%{count} zbývajících bloků"
-          view: Zobrazení
+          view: Zobrazit
         update:
           invalid: Při aktualizaci schůzky došlo k chybě.
           success: Úspěšně jste aktualizovali schůzku.
@@ -468,7 +468,7 @@ cs:
             end_time: Datum ukončení
             map: Mapa
             official_meeting: Oficiální schůzka
-            start_time: Počáteční datum
+            start_time: Datum zahájení
             title: Titul
       read_more: "(Přečtěte si více)"
       registration_mailer:

@@ -14,7 +14,7 @@ ca:
       question:
         description: Descripció
         max_selections: Número màxim d'opcions
-        min_selections: Cap de les anteriors
+        min_selections: Cap de les opcions anteriors
         title: Títol
     errors:
       models:
@@ -67,10 +67,10 @@ ca:
             invalid: Hi ha hagut un problema en crear aquesta resposta
             success: Resposta creada amb èxit
           destroy:
-            invalid: Hi ha hagut un problema en eliminar aquesta resposta
+            invalid: Hi ha hagut un problema en esborrar aquesta resposta
             success: Resposta eliminada amb èxit
           edit:
-            title: Editar les respostes
+            title: Editar resposta
             update: Actualitzar resposta
           index:
             invalid_max_selections: Calen %{missing_answers} respostes més per a arribar al màxim de seleccions
@@ -80,11 +80,11 @@ ca:
             title: Nova resposta
           update:
             invalid: Hi ha hagut un problema en actualitzar aquesta resposta
-            success: Resposta actualitzada amb èxit
+            success: Resposta actualitzada correctament
         elections:
           create:
             invalid: S'ha produït un error en crear aquesta votació
-            success: S'ha creat la votació correctament
+            success: La votació s'ha creat correctament
           destroy:
             invalid: S'ha produït un error en eliminar aquesta votació
             success: S'ha eliminat la votació correctament
@@ -103,7 +103,7 @@ ca:
             success: La votació s'ha despublicat correctament.
           update:
             invalid: S'ha produït un error en actualitzar aquesta votació
-            success: S'ha actualitzat la votació correctament
+            success: La votació s'ha actualitzat correctament
         models:
           answer:
             name: Resposta
