@@ -13,6 +13,7 @@ module Decidim
 
       routes do
         resources :debates do
+          post :archive, on: :member
           resources :debate_closes, only: [:edit, :update]
         end
         root to: "debates#index"
@@ -20,6 +21,10 @@ module Decidim
 
       def load_seed
         nil
+      end
+
+      initializer "decidim_debates.admin_assets" do |app|
+        app.config.assets.precompile += %w(admin/decidim_debates_manifest.js)
       end
     end
   end
