@@ -274,7 +274,7 @@ fi-pl:
       dummy_authorization_workflow:
         name: Dummy-varmennuksen työnkulku
       errors:
-        duplicate_authorization: Käyttäjätili on jo varmennettu samoilla tiedoilla.
+        duplicate_authorization: Toinen käyttäjätili on jo vahvistettu samoilla tiedoilla.
       expired_at: Umpeutuu %{timestamp}
       expires_at: Umpeutuu %{timestamp}
       foo_authorization:
