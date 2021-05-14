@@ -257,6 +257,29 @@ describe "Meeting registrations", type: :system do
         expect(page).to have_content(registration.code)
       end
 
+      it "shows the confirmation modal when leaving the meeting" do
+        visit_meeting
+
+        click_button "Cancel your registration"
+
+        within ".confirm-modal-content" do
+          expect(page).to have_content("Are you sure you want to cancel your registration for this meeting?")
+        end
+      end
+
+      it "they can leave the meeting" do
+        visit_meeting
+
+        accept_confirm { click_button "Cancel your registration" }
+
+        within_flash_messages do
+          expect(page).to have_content("successfully")
+        end
+
+        expect(page).to have_css(".button", text: "JOIN MEETING")
+        expect(page).to have_text("20 slots remaining")
+      end
+
       context "when showing the registration code validation state" do
         it "shows validation pending if not validated" do
           visit_meeting
