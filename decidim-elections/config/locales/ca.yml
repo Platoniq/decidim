@@ -82,7 +82,7 @@ ca:
             president: Presidència
             unassigned: Sense assignar
         search_placeholder:
-          name_or_email_or_nickname_or_presided_station_title_or_managed_station_title_cont: Cerca a %{collection} per nom/adreça electrònica/àlies o punt de votació.
+          name_or_email_or_nickname_or_presided_station_title_or_managed_station_title_cont: Cerca a %{collection} per nom, correu electrònic o àlies, o bé per punt de votació.
           ? title_or_address_or_manager_name_or_manager_email_or_manager_nickname_or_president_name_or_president_email_or_president_nickname_cont
           : Cercar %{collection} per títol, adreça o nom del gestor/email/àlies.
     components:
@@ -98,7 +98,7 @@ ca:
     elections:
       actions:
         confirm_destroy: N'estàs segura?
-        destroy: Eliminar
+        destroy: Destruir
         edit: Editar
         feedback: Retorn de la votant
         import: Importar propostes com a respostes
@@ -122,7 +122,7 @@ ca:
             title: Editar resposta
             update: Actualitzar resposta
           index:
-            invalid_max_selections: Calen %{missing_answers} respostes més per a arribar al màxim de seleccions
+            invalid_max_selections: Cal %{missing_answers} respostes més per a arribar al màxim de seleccions
             title: Respostes
           new:
             create: Crear resposta
@@ -130,21 +130,21 @@ ca:
           select:
             disable: Deseleccionar resposta
             enable: Marcar resposta com seleccionada
-            invalid: S'ha produït un error en seleccionar aquesta resposta
+            invalid: S'ha produït un error en seleccionar la resposta
             success: Resposta seleccionada correctament
           unselect:
-            invalid: Hi ha hagut un problema en deseleccionar aquesta resposta
+            invalid: Hi ha hagut un problema en deseleccionar la resposta
             success: Resposta deseleccionada correctament
           update:
-            invalid: Hi ha hagut un problema en actualitzar aquesta resposta
+            invalid: Hi ha hagut un problema en actualitzar la resposta
             success: Resposta actualitzada correctament
         elections:
           create:
-            invalid: S'ha produït un error en crear aquesta votació
-            success: La votació s'ha creat correctament
+            invalid: S'ha produït un error en crear l'elecció
+            success: L'elecció s'ha creat correctament
           destroy:
-            invalid: S'ha produït un error en eliminar aquesta votació
-            success: S'ha eliminat la votació correctament
+            invalid: S'ha produït un error en eliminar l'elecció
+            success: S'ha eliminat l'elecció correctament
           edit:
             title: Editar la votació
             update: Actualitzar la votació

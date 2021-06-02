@@ -8,7 +8,7 @@ pl:
       close_meeting:
         attendees_count: Liczba osób biorących udział
         attending_organizations: Lista organizacji biorących udział
-        closing_report: Zgłoś
+        closing_report: Raport z zamknięcia
         contributions_count: Liczba wsparć
         proposal_ids: Propozycje stworzone na spotkaniu
       meeting:
@@ -95,8 +95,8 @@ pl:
             comments_max_length: Maksymalna długość komentarzy (Pozostaw 0 dla wartości domyślnej)
             creation_enabled_for_participants: Uczestnicy mogą tworzyć spotkania
             default_registration_terms: Domyślne warunki rejestracji
-            enable_pads_creation: Włącz tworzenie klocków
-            registration_code_enabled: Włączono formularz rejestracyjny
+            enable_pads_creation: Włącz tworzenie padów
+            registration_code_enabled: Włączono kod rejestracyjny
             resources_permissions_enabled: Uprawnienia działań można ustawić dla każdego spotkania
             scope_id: Zakres
             scopes_enabled: Zakresy włączone
@@ -231,7 +231,7 @@ pl:
             attendee_type: Typ uczestnika
             existing_user: Istniejący użytkownik
             invite: Zaproś
-            invite_explanation: Użytkownik zostanie zaproszony do udziału w spotkaniu spotkaniu i do organizacji.
+            invite_explanation: Użytkownik zostanie zaproszony do udziału w spotkaniu i do organizacji.
             non_user: Nieistniejący użytkownik
             select_user: Wybierz użytkownika
           index:
@@ -242,7 +242,7 @@ pl:
               sent: Wysłane
             filter_by: Filtruj według
             invite_attendee: Zaproś uczestnika
-            invites: Zaprasza
+            invites: Zaproszeni
             registrations_disabled: Nie możesz zaprosić uczestnika, ponieważ rejestracje są wyłączone.
             search: Szukaj
         meeting_closes:
@@ -272,7 +272,7 @@ pl:
             available_slots_help: Pozostaw 0, jeśli masz dostęp do nieograniczonej liczby miejsc
             disclaimer: 'Uwaga: Korzystając z zewnętrznego systemu uwierzytelniania, jesteś świadomy, że organizatorzy %{organization} nie są odpowiedzialni za dane dostarczone przez użytkowników usługi zewnętrznej.'
             location_help: 'Lokalizacja: informacja dla użytkowników dotycząca miejsca spotkania'
-            location_hints_help: 'Wskazówki dotyczące lokalizacji: dodatkowe informacje. Przykład: piętro budynku, jeśli jest to spotkanie fizyczne, lub hasło do spotkania, jeśli odbywa się ono online i ma ograniczony dostępem.'
+            location_hints_help: 'Wskazówki dotyczące lokalizacji: dodatkowe informacje. Przykład: piętro budynku, jeśli jest to spotkanie fizyczne, lub hasło do spotkania, jeśli odbywa się ono online i ma ograniczony dostęp.'
             online_meeting_url_help: 'Link: zezwól uczestnikom na bezpośredni dostęp do Twojego spotkania'
             registration_url_help: 'Link: zezwól użytkownikom na korzystanie z usługi zewnętrznej, której używasz do rejestracji'
             select_a_meeting_type: Wybierz typ spotkania
@@ -438,7 +438,7 @@ pl:
           create_as: Utwórz spotkanie jako
           disclaimer: 'Uwaga: Korzystając z zewnętrznego systemu uwierzytelniania, jesteś świadomy, że organizatorzy %{organization} nie są odpowiedzialni za dane dostarczone przez użytkowników usługi zewnętrznej.'
           location_help: 'Lokalizacja: informacja dla użytkowników dotycząca miejsca spotkania'
-          location_hints_help: 'Wskazówki dotyczące lokalizacji: dodatkowe informacje. Przykład: piętro budynku, jeśli jest to spotkanie fizyczne, lub hasło do spotkania, jeśli odbywa się ono online i ma ograniczony dostępem.'
+          location_hints_help: 'Wskazówki dotyczące lokalizacji: dodatkowe informacje. Przykład: piętro budynku, jeśli jest to spotkanie fizyczne, lub hasło do spotkania, jeśli odbywa się ono online i ma ograniczony dostęp.'
           online_meeting_url_help: 'Link: zezwól uczestnikom na bezpośredni dostęp do Twojego spotkania'
           registration_url_help: 'Link: zezwól uczestnikom na korzystanie z usługi zewnętrznej, której używasz do rejestracji'
           select_a_category: Wybierz kategorię
@@ -490,7 +490,7 @@ pl:
         invite:
           fields:
             email: E-mail
-            name: Nazwa
+            name: Imię
             sent_at: Wysłano
             status: Status
           status:

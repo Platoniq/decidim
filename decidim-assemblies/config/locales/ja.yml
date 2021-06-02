@@ -52,6 +52,7 @@ ja:
         target: 参加者
         title: タイトル
         twitter: Twitter
+        weight: 重みづけ
         youtube: YouTube
       assembly_member:
         birthday: 誕生日
@@ -246,6 +247,7 @@ ja:
         update: "%{user_name} が参加スペース設定を更新しました"
       assembly_type:
         create: "%{user_name} が %{resource_name} 参加スペース種別を作成しました"
+        delete: "%{user_name} が %{resource_name} アセンブリ種別を削除しました"
         publish: "%{user_name} が %{resource_name} 参加スペース種別を公開しました"
         unpublish: "%{user_name} が %{resource_name} 参加スペース種別を非公開にしました"
         update: "%{user_name} が %{resource_name} 参加スペース種別を更新しました"
@@ -382,11 +384,15 @@ ja:
         comments_count: コメント
         debates_count: ディベート
         endorsements_count: 支持
+        followers_count: フォロワー
+        headline: 統計情報
         meetings_count: ミーティング
+        no_stats: 統計情報はまだありません。
         orders_count: サポート
         pages_count: ページ
         participants_count: 参加者
         posts_count: 投稿
+        processes_count: プロセス
         projects_count: プロジェクト
         proposals_count: 提案
         results_count: 結果
@@ -440,6 +446,8 @@ ja:
       home:
         hero:
           participate_title: プラットフォームの参加型プロセスに参加する
+        sub_hero:
+          register_title: サインアップしてアカウントを作成
     participatory_processes:
       pages:
         home:
