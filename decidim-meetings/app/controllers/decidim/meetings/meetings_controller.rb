@@ -92,7 +92,7 @@ module Decidim
       end
 
       def meetings
-        @meetings ||= paginate(search.results.not_hidden)
+        @meetings ||= paginate(search.results.order(start_time: :desc))
       end
 
       def registration

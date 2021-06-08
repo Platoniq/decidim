@@ -187,6 +187,27 @@ describe "Meeting registrations", type: :system do
             expect(page).to have_text("19 slots remaining")
             expect(page).to have_text("Stop following")
           end
+
+          it "they can join the meeting if they are already following it" do
+            create(:follow, followable: meeting, user: user)
+
+            visit_meeting
+
+            within ".card.extra" do
+              click_button "Join meeting"
+            end
+
+            within "#meeting-registration-confirm-#{meeting.id}" do
+              expect(page).to have_content "A legal text"
+              page.find(".button.expanded").click
+            end
+
+            expect(page).to have_content("successfully")
+
+            expect(page).to have_css(".button", text: "GOING")
+            expect(page).to have_text("19 slots remaining")
+            expect(page).to have_text("Stop following")
+          end
         end
 
         context "and they ARE part of a verified user group" do
@@ -223,6 +244,12 @@ describe "Meeting registrations", type: :system do
 
       it_behaves_like "has questionnaire"
 
+      context "when the user is following the meeting" do
+        let!(:follow) { create(:follow, followable: meeting, user: user) }
+
+        it_behaves_like "has questionnaire"
+      end
+
       context "when the registration form has no questions" do
         before do
           questionnaire.questions.last.delete
@@ -255,6 +282,29 @@ describe "Meeting registrations", type: :system do
 
         expect(page).to have_css(".registration_code")
         expect(page).to have_content(registration.code)
+      end
+
+      it "shows the confirmation modal when leaving the meeting" do
+        visit_meeting
+
+        click_button "Cancel your registration"
+
+        within ".confirm-modal-content" do
+          expect(page).to have_content("Are you sure you want to cancel your registration for this meeting?")
+        end
+      end
+
+      it "they can leave the meeting" do
+        visit_meeting
+
+        accept_confirm { click_button "Cancel your registration" }
+
+        within_flash_messages do
+          expect(page).to have_content("successfully")
+        end
+
+        expect(page).to have_css(".button", text: "JOIN MEETING")
+        expect(page).to have_text("20 slots remaining")
       end
 
       context "when showing the registration code validation state" do

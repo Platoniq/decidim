@@ -13,6 +13,16 @@ shared_examples "manage meetings" do
     stub_geocoding(address, [latitude, longitude])
   end
 
+  describe "listing meetings" do
+    it "lists the meetings by start date" do
+      old_meeting = create :meeting, scope: scope, services: [], component: current_component, start_time: 2.years.ago
+      visit current_path
+
+      expect(page).to have_selector("tbody tr:first-child", text: Decidim::Meetings::MeetingPresenter.new(meeting).title)
+      expect(page).to have_selector("tbody tr:last-child", text: Decidim::Meetings::MeetingPresenter.new(old_meeting).title)
+    end
+  end
+
   describe "admin form" do
     before { click_on "New meeting" }
 
