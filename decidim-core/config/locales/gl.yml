@@ -209,6 +209,8 @@ gl:
         name: Autorización de exemplo
       dummy_authorization_workflow:
         name: Fluxo de traballo de autorización dummy
+      errors:
+        duplicate_authorization: Un usuario xa está autorizado cos mesmos datos.
       expired_at: Caducou en %{timestamp}
       expires_at: Caduca no %{timestamp}
       foo_authorization:
@@ -1162,6 +1164,10 @@ gl:
       too_much_caps: está a usar letras maiúsculas (máis do 25% do texto)
       too_short: é demasiado curto (menos de 15 caracteres)
   forms:
+    length_validator:
+      minimum:
+        one: mínimo %{count} carácter
+        other: mínimo %{count} caracteres
     required: Requerido
   invisible_captcha:
     sentence_for_humans: Se es humano, ignore este campo
