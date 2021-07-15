@@ -30,6 +30,7 @@ describe "Edit proposals", type: :system do
       click_link "Edit proposal"
 
       expect(page).to have_content "EDIT PROPOSAL"
+      expect(page).not_to have_content("You can move the point on the map.")
 
       within "form.edit_proposal" do
         fill_in :proposal_title, with: new_title
@@ -90,8 +91,10 @@ describe "Edit proposals", type: :system do
         expect(page).to have_field("Title", with: translated(proposal.title))
         expect(page).to have_field("Body", with: translated(proposal.body))
         expect(page).to have_field("Address", with: proposal.address)
+        expect(page).to have_css("[data-decidim-map]")
 
         fill_in_geocoding :proposal_address, with: new_address
+        expect(page).to have_content("You can move the point on the map.")
 
         click_button "Send"
         expect(page).to have_content(new_address)
@@ -173,6 +176,24 @@ describe "Edit proposals", type: :system do
 
         expect(page).to have_selector("input[value='A title with a #hashtag']")
         expect(page).to have_content("ỲÓÜ WÄNTt TÙ ÚPDÀTÉ À PRÖPÔSÁL")
+      end
+    end
+
+    context "when rich text editor is enabled on the frontend" do
+      before do
+        organization.update(rich_text_editor_in_public_views: true)
+        body = proposal.body
+        body["en"] = 'Hello <a href="http://www.linux.org" target="_blank">external link</a> World'
+        proposal.update!(body: body)
+      end
+
+      it "doesnt change the href" do
+        visit_component
+
+        click_link proposal_title
+        click_link "Edit proposal"
+
+        expect(page).to have_link("external link", href: "http://www.linux.org")
       end
     end
   end

@@ -259,6 +259,8 @@ en:
         download: Download file
       documents:
         related_documents: Related documents
+      geocoding:
+        geocoded_address: Address
       photos:
         related_photos: Related images
     author:
@@ -319,6 +321,8 @@ en:
           authorize: Authorize with "%{authorization}"
           explanation: In order to perform this action, you need to be authorized with "%{authorization}".
           title: Authorization required
+        ok:
+          title: You've been authorized while in this page. Please, reload the page to perform your action
         pending:
           explanation: In order to perform this action, you need to be authorized with "%{authorization}", but your authorization is still in progress
           resume: Check your "%{authorization}" authorization progress
@@ -859,6 +863,15 @@ en:
       index:
         last_activity: Last activity
         resource_type: Type
+    links:
+      invalid_url: Invalid URL
+      warning:
+        body_1: You are about to visit an external link and we would like you to be cautious regarding the content on the external site.
+        body_2: Please check the link you are about to visit and make sure you recognize it as a safe site before proceeding.
+        cancel: Cancel
+        close_modal: Close modal
+        proceed: Proceed
+        title: Open external link
     log:
       base_presenter:
         create: "%{user_name} created %{resource_name}"
@@ -1260,6 +1273,8 @@ en:
         filters:
           areas: Areas
           select_an_area: Select an area
+      public_participation:
+        public_participation: Show my attendance publicly
       reference:
         reference: 'Reference: %{reference}'
       represent_user_group:

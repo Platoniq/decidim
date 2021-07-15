@@ -10,7 +10,9 @@
 // This is necessary for testing purposes
 const $ = window.$;
 
-import { createCharacterCounter } from "../../../../../../decidim-core/app/packs/src/decidim/input_character_counter"
+import { createCharacterCounter } from "src/decidim/input_character_counter"
+import ExternalLink from "src/decidim/external_link"
+import updateExternalDomainLinks from "src/decidim/external_domain_warning"
 
 export default class CommentsComponent {
   constructor($element, config) {
@@ -58,6 +60,7 @@ export default class CommentsComponent {
       $(".add-comment textarea", this.$element).off("input.decidim-comments");
       $(".order-by__dropdown .is-submenu-item a", this.$element).off("click.decidim-comments");
       $(".add-comment form", this.$element).off("submit.decidim-comments");
+      $(".add-comment textarea", this.$element).each((_i, el) => el.removeEventListener("emoji.added", this._onTextInput));
     }
   }
 
@@ -125,6 +128,11 @@ export default class CommentsComponent {
         $submit.attr("disabled", "disabled");
         this._stopPolling();
       });
+
+      if ($text.length && $text.get(0) !== null) {
+        // Attach event to the DOM node, instead of the jQuery object
+        $text.get(0).addEventListener("emoji.added", this._onTextInput);
+      }
     });
 
     this._pollComments();
@@ -150,6 +158,11 @@ export default class CommentsComponent {
     $container.foundation();
     this._initializeComments($container);
     createCharacterCounter($(".add-comment textarea", $container));
+    $container.find('a[target="_blank"]').each((_i, elem) => {
+      const $link = $(elem);
+      $link.data("external-link", new ExternalLink($link));
+    });
+    updateExternalDomainLinks($container)
   }
 
   /**

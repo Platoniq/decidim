@@ -1,6 +1,6 @@
 import * as L from "leaflet";
-import MapController from "../controller"
-import "../../vendor/leaflet-tilelayer-here"
+import MapController from "src/decidim/map/controller"
+import "src/decidim/vendor/leaflet-tilelayer-here"
 
 export default class MapDragMarkerController extends MapController {
   start() {
@@ -12,6 +12,10 @@ export default class MapDragMarkerController extends MapController {
   }
 
   addMarker(markerData) {
+    if (markerData.latitude === null || markerData.longitude === null) {
+      return;
+    }
+
     const coordinates = {
       lat: markerData.latitude,
       lng: markerData.longitude

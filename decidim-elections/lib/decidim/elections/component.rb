@@ -5,7 +5,7 @@ require "decidim/components/namer"
 Decidim.register_component(:elections) do |component|
   component.engine = Decidim::Elections::Engine
   component.admin_engine = Decidim::Elections::AdminEngine
-  component.icon = "decidim/elections/icon.svg"
+  component.icon = "media/images/decidim_elections.svg"
   component.stylesheet = "decidim/elections/elections"
   component.permissions_class_name = "Decidim::Elections::Permissions"
   component.query_type = "Decidim::Elections::ElectionsType"
@@ -295,6 +295,27 @@ Decidim.register_component(:elections) do |component|
         visibility: "all"
       )
 
+      bb_closure = Decidim::Elections::BulletinBoardClosure.create!(
+        election: election_with_results
+      )
+
+      valid_ballots = Faker::Number.number(digits: 3)
+      Decidim::Elections::Result.create!(
+        value: valid_ballots,
+        closurable: bb_closure,
+        question: nil,
+        answer: nil,
+        result_type: :valid_ballots
+      )
+
+      Decidim::Elections::Result.create!(
+        value: valid_ballots,
+        closurable: bb_closure,
+        question: nil,
+        answer: nil,
+        result_type: :total_ballots
+      )
+
       rand(1...4).times do
         result_question = Decidim.traceability.create!(
           Decidim::Elections::Question,
@@ -313,6 +334,7 @@ Decidim.register_component(:elections) do |component|
           visibility: "all"
         )
 
+        question_pending = valid_ballots
         rand(2...5).times do
           answer = Decidim.traceability.create!(
             Decidim::Elections::Answer,
@@ -336,9 +358,24 @@ Decidim.register_component(:elections) do |component|
             file: File.new(File.join(__dir__, "seeds", "city.jpeg")) # Keep after attached_to
           )
 
+          answer_value = Faker::Number.between(from: 0, to: question_pending)
           Decidim::Elections::Result.create!(
-            votes_count: Faker::Number.number(digits: 3),
-            answer: answer
+            value: answer_value,
+            closurable: bb_closure,
+            question: result_question,
+            answer: answer,
+            result_type: :valid_answers
+          )
+          question_pending -= answer_value
+        end
+
+        if result_question.nota_option? && result_question.max_selections == 1
+          Decidim::Elections::Result.create!(
+            value: question_pending,
+            closurable: bb_closure,
+            question: result_question,
+            answer: nil,
+            result_type: :blank_answers
           )
         end
 

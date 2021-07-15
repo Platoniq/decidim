@@ -13,6 +13,8 @@ module Decidim
     include Decidim::UserReportable
     include Decidim::Traceable
 
+    REGEXP_NICKNAME = /\A[\w\-]+\z/.freeze
+
     class Roles
       def self.all
         Decidim.config.user_roles
@@ -20,11 +22,12 @@ module Decidim
     end
 
     devise :invitable, :database_authenticatable, :registerable, :confirmable, :timeoutable,
-           :recoverable, :rememberable, :trackable, :lockable,
+           :recoverable, :trackable, :lockable,
            :decidim_validatable, :decidim_newsletterable,
            :omniauthable, omniauth_providers: Decidim::OmniauthProvider.available.keys,
                           request_keys: [:env], reset_password_keys: [:decidim_organization_id, :email],
                           confirmation_keys: [:decidim_organization_id, :email]
+    devise :rememberable if Decidim.enable_remember_me
 
     has_many :identities, foreign_key: "decidim_user_id", class_name: "Decidim::Identity", dependent: :destroy
     has_many :memberships, class_name: "Decidim::UserGroupMembership", foreign_key: :decidim_user_id, dependent: :destroy
@@ -35,7 +38,11 @@ module Decidim
     has_one :blocking, class_name: "Decidim::UserBlock", foreign_key: :id, primary_key: :block_id, dependent: :destroy
 
     validates :name, presence: true, unless: -> { deleted? }
-    validates :nickname, presence: true, unless: -> { deleted? || managed? }, length: { maximum: Decidim::User.nickname_max_length }
+    validates :nickname,
+              presence: true,
+              format: { with: REGEXP_NICKNAME },
+              length: { maximum: Decidim::User.nickname_max_length },
+              unless: -> { deleted? || managed? }
     validates :locale, inclusion: { in: :available_locales }, allow_blank: true
     validates :tos_agreement, acceptance: true, allow_nil: false, on: :create
     validates :tos_agreement, acceptance: true, if: :user_invited?
@@ -248,6 +255,14 @@ module Decidim
     def invalidate_all_sessions!
       self.session_token = SecureRandom.hex
       save!
+    end
+
+    ransacker :invitation_accepted_at do
+      Arel.sql(%{("decidim_users"."invitation_accepted_at")::text})
+    end
+
+    ransacker :last_sign_in_at do
+      Arel.sql(%{("decidim_users"."last_sign_in_at")::text})
     end
 
     protected

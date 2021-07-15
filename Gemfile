@@ -14,12 +14,9 @@ gem "decidim-templates", path: "."
 gem "bootsnap", "~> 1.4"
 
 gem "foundation_rails_helper", git: "https://github.com/sgruhier/foundation_rails_helper.git"
-gem "puma", ">= 5.0.0"
-gem "uglifier", "~> 4.1"
+gem "puma", ">= 5.3.1"
 
 gem "faker", "~> 2.14"
-
-gem "webpacker", git: "https://github.com/rails/webpacker.git"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri

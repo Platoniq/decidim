@@ -1,12 +1,13 @@
 <%
 js_configs = {
-  icons_path: image_path("decidim/icons.svg"),
+  icons_path: asset_pack_path("media/images/icons.svg"),
   messages: {
     "selfxssWarning": {
       title: t("decidim.security.selfxss_warning.title"),
       description: t("decidim.security.selfxss_warning.description")
     }
-  }
+  },
+  external_domain_whitelist: [current_organization.host] + current_organization.external_domain_whitelist
 }
 character_messages = {
   "charactersAtLeast": {
@@ -33,10 +34,10 @@ validator_messages = {
   Decidim.FormValidator.configureMessages(<%== validator_messages.to_json %>);
   DecidimComments = {
     assets: {
-      'icons.svg': "<%= asset_path "decidim/icons.svg" %>"
+      'icons.svg': "<%= asset_pack_path "media/images/icons.svg" %>"
     }
   }
   Decidim.assets = {
-    'icons.svg': "<%= asset_path "decidim/icons.svg" %>"
+    'icons.svg': "<%= asset_pack_path "media/images/icons.svg" %>"
   }
 </script>

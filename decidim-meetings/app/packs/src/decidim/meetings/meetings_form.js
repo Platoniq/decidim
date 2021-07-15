@@ -1,8 +1,11 @@
-import attachGeocoding from "../../../../../../decidim-core/app/packs/src/decidim/geocoding/attach_input"
+import attachGeocoding from "src/decidim/geocoding/attach_input"
 
 $(() => {
   // Adds the latitude/longitude inputs after the geocoding is done
-  attachGeocoding($("#meeting_address"));
+  const $meetingAddress = $("#meeting_address");
+  if ($meetingAddress.length > 0) {
+    attachGeocoding($meetingAddress);
+  }
 
   const $form = $(".meetings_form");
   if ($form.length > 0) {

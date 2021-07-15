@@ -5,7 +5,7 @@ require "decidim/proposals/test/capybara_proposals_picker"
 
 describe "Admin manages meetings", type: :system, serves_map: true, serves_geocoding_autocomplete: true do
   let(:manifest_name) { "meetings" }
-  let!(:meeting) { create :meeting, scope: scope, services: [], component: current_component }
+  let!(:meeting) { create :meeting, :published, scope: scope, services: [], component: current_component }
   let(:address) { "Some address" }
   let(:latitude) { 40.1234 }
   let(:longitude) { 2.1234 }
@@ -26,6 +26,30 @@ describe "Admin manages meetings", type: :system, serves_map: true, serves_geoco
 
       expect(page).to have_selector("tbody tr:first-child", text: Decidim::Meetings::MeetingPresenter.new(meeting).title)
       expect(page).to have_selector("tbody tr:last-child", text: Decidim::Meetings::MeetingPresenter.new(old_meeting).title)
+    end
+
+    it "allows to publish/unpublish meetings" do
+      visit current_path
+
+      within find("tr", text: Decidim::Meetings::MeetingPresenter.new(meeting).title) do
+        accept_confirm { click_link "Unpublish" }
+      end
+
+      expect(page).to have_admin_callout("successfully")
+
+      within find("tr", text: Decidim::Meetings::MeetingPresenter.new(meeting).title) do
+        expect(page).to have_css(".action-icon--publish")
+      end
+
+      within find("tr", text: Decidim::Meetings::MeetingPresenter.new(meeting).title) do
+        click_link "Publish"
+      end
+
+      expect(page).to have_admin_callout("successfully")
+
+      within find("tr", text: Decidim::Meetings::MeetingPresenter.new(meeting).title) do
+        expect(page).to have_css(".action-icon--unpublish")
+      end
     end
   end
 
@@ -222,7 +246,11 @@ describe "Admin manages meetings", type: :system, serves_map: true, serves_geoco
     # make the field visible
     find("#meeting_customize_registration_email").click
     expect(help_text_for("div[data-tabs-content*='meeting-registration_email_custom_content-tab']")).to be_present
-    fill_in_i18n(:meeting_registration_email_custom_content, "#meeting-registration_email_custom_content-tabs", { "en" => "We're very happy you registered for this event!" })
+    fill_in_i18n_editor(
+      :meeting_registration_email_custom_content,
+      "#meeting-registration_email_custom_content-tabs",
+      en: "We're very happy you registered for this event!"
+    )
 
     within ".new_meeting" do
       find("*[type=submit]").click

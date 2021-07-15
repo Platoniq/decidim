@@ -23,6 +23,7 @@ module Decidim
       include Decidim::Reportable
       include Decidim::Authorable
       include Decidim::TranslatableResource
+      include Decidim::Publicable
 
       TYPE_OF_MEETING = %w(in_person online hybrid).freeze
       REGISTRATION_TYPE = %w(registration_disabled on_this_platform on_different_platform).freeze
@@ -32,8 +33,16 @@ module Decidim
       has_many :registrations, class_name: "Decidim::Meetings::Registration", foreign_key: "decidim_meeting_id", dependent: :destroy
       has_many :invites, class_name: "Decidim::Meetings::Invite", foreign_key: "decidim_meeting_id", dependent: :destroy
       has_many :services, class_name: "Decidim::Meetings::Service", foreign_key: "decidim_meeting_id", dependent: :destroy
-      has_one :minutes, class_name: "Decidim::Meetings::Minutes", foreign_key: "decidim_meeting_id", dependent: :destroy
       has_one :agenda, class_name: "Decidim::Meetings::Agenda", foreign_key: "decidim_meeting_id", dependent: :destroy
+      has_one :poll, class_name: "Decidim::Meetings::Poll", foreign_key: "decidim_meeting_id", dependent: :destroy
+      has_many(
+        :public_participants,
+        -> { merge(Registration.public_participant) },
+        through: :registrations,
+        class_name: "Decidim::User",
+        foreign_key: :decidim_user_id,
+        source: :user
+      )
 
       component_manifest_name "meetings"
 
@@ -41,11 +50,12 @@ module Decidim
 
       geocoded_by :address
 
+      scope :published, -> { where.not(published_at: nil) }
       scope :past, -> { where(arel_table[:end_time].lteq(Time.current)) }
       scope :upcoming, -> { where(arel_table[:end_time].gteq(Time.current)) }
 
       scope :visible_meeting_for, lambda { |user|
-        (all.distinct if user&.admin?) ||
+        (all.published.distinct if user&.admin?) ||
           if user.present?
             spaces = Decidim.participatory_space_registry.manifests.map do |manifest|
               {
@@ -85,9 +95,9 @@ module Decidim
               "
             end
 
-            where(query, false, true, user.id, user.id, *user_role_queries.compact.map { user.id }).distinct
+            where(query, false, true, user.id, user.id, *user_role_queries.compact.map { user.id }).published.distinct
           else
-            visible
+            published.visible
           end
       }
 
@@ -95,6 +105,7 @@ module Decidim
 
       TYPE_OF_MEETING.each do |type|
         scope type.to_sym, -> { where(type_of_meeting: type.to_sym) }
+        scope "not_#{type}".to_sym, -> { where.not(type_of_meeting: type.to_sym) }
       end
 
       searchable_fields({
@@ -104,8 +115,8 @@ module Decidim
                           D: [:description, :address],
                           datetime: :start_time
                         },
-                        index_on_create: ->(meeting) { meeting.visible? },
-                        index_on_update: ->(meeting) { meeting.visible? })
+                        index_on_create: ->(meeting) { meeting.visible? && meeting.published? },
+                        index_on_update: ->(meeting) { meeting.visible? && meeting.published? })
 
       # we create a salt for the meeting only on new meetings to prevent changing old IDs for existing (Ether)PADs
       before_create :set_default_salt
@@ -154,6 +165,10 @@ module Decidim
 
       def has_registration_for?(user)
         registrations.where(user: user).any?
+      end
+
+      def maps_enabled?
+        component.settings.maps_enabled?
       end
 
       # Public: Overrides the `commentable?` Commentable concern method.
@@ -254,12 +269,10 @@ module Decidim
         [normalized_author.name]
       end
 
-      def hybrid_meeting?
-        type_of_meeting == "hybrid"
-      end
-
-      def online_meeting?
-        type_of_meeting == "online"
+      TYPE_OF_MEETING.each do |type|
+        define_method("#{type}_meeting?") do
+          type_of_meeting == type
+        end
       end
 
       def registration_disabled?
@@ -280,6 +293,10 @@ module Decidim
 
       def has_attendees?
         !!attendees_count && attendees_count.positive?
+      end
+
+      def live?
+        start_time && end_time && Time.current >= start_time && Time.current <= end_time
       end
 
       private

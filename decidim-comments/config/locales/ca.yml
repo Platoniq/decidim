@@ -68,7 +68,6 @@ ca:
             spam: Conté "clickbait", publicitat o estafes.
           title: Notificar contingut inapropiat
         show_replies: Mostra %{replies_count} respostes
-        single_comment_link_title: Aconsegueix l'enllaç al comentari
       comment_order_selector:
         order:
           best_rated: Més ben valorats
@@ -79,6 +78,7 @@ ca:
       comment_thread:
         title: Conversa amb %{authorName}
       comments:
+        blocked_comments_for_unauthorized_user_warning: Has d'estar verificat abans de poder fer comentaris, però pots llegir els comentaris anteriors.
         blocked_comments_for_user_warning: No pots fer comentaris en aquest moment, però pots llegir els anteriors.
         blocked_comments_warning: Els comentaris estan desactivats en aquest moment, però pots llegir els anteriors.
         comment_details_title: Detalls del comentari

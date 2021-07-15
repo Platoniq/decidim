@@ -32,6 +32,7 @@ ro:
         body: Corp
         subject: Subiect
       organization:
+        admin_terms_of_use_body: Text pentru termenii de utilizare ai administratorului
         alert_color: Alertă
         available_authorizations: Autorizații disponibile
         badges_enabled: Activează insigne
@@ -42,6 +43,7 @@ ro:
         default_locale: Localizare implicită
         description: Descriere
         enable_omnipresent_banner: Show omnipresent banner
+        enable_participatory_space_filters: Activează filtrele pentru spațiale participative
         facebook_handler: Manipulator Facebook
         favicon: Iconiță
         force_authentication: Forțează autentificarea
@@ -156,7 +158,8 @@ ro:
         browse: Caută
         category:
           new: Categorie nouă
-        export: Exportă
+        export: Exportaţi tot
+        export-selection: Exportă selecția
         import: Importă
         manage: Gestionează
         new: '%{name} nou'
@@ -335,6 +338,11 @@ ro:
         show:
           view_more_logs: Afișați mai multe jurnale
           welcome: Bine ați venit în Panoul de administrare Decidem.
+      domain_whitelist:
+        form:
+          domain_too_short: Domeniu prea scurt
+        update:
+          error: Actualizarea whitelist-ului domeniului a eșuat
       exports:
         export_as: "%{name} ca %{export_format}"
         formats:
@@ -347,6 +355,15 @@ ro:
         category_id_eq:
           label: Categorie
         filter_label: Filtrare
+        invitation_accepted_at_present:
+          label: Invitaţie acceptată
+          values:
+            'false': 'Nu'
+            'true': 'Da'
+        last_sign_in_at_present:
+          values:
+            'false': 'Nu'
+            'true': 'Da'
         moderations:
           reportable_type_string_eq:
             label: Tip
@@ -355,6 +372,17 @@ ro:
           values:
             'false': Oficializat
             'true': Nu este oficializat
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Invitație acceptată
+            values:
+              'false': Nu este acceptat
+              'true': Acceptat
+          user_invitation_sent_at_not_null:
+            label: Invitaţia a fost trimisă
+            values:
+              'false': Nu a fost trimis
+              'true': Trimis
         private_space_eq:
           label: Privat
           values:
@@ -372,6 +400,7 @@ ro:
           name_or_nickname_or_email_cont: Căutare %{collection} după e-mail, nume sau poreclă.
           reported_id_string_or_reported_content_cont: Căutare %{collection} după id sau conținut raportabil.
           title_cont: Căutați %{collection} după titlu.
+          user_name_or_user_email_cont: Caută %{collection} după nume sau e-mail.
         state_eq:
           label: Stare
       forms:
@@ -518,6 +547,14 @@ ro:
           fields:
             name: Nume
             plural: Plural
+        share_token:
+          fields:
+            created_at: Creată la
+            expires_at: Expiră la
+            last_used_at: Ultima utilizare
+            times_used: Număr utilizări
+            token: Token
+            user: Creat de
         static_page:
           fields:
             created_at: Creat la
@@ -542,6 +579,26 @@ ro:
             phone: Telefon
             state: Județ
             users_count: Numărul de participanți
+      moderated_users:
+        index:
+          actions:
+            block: Blochează utilizator
+            title: Acţiuni
+            unblock: Deblocare utilizator
+            unreport: Anulează raportarea
+          name: Nume
+          nickname: Poreclă
+          reason: Motiv
+          reports: Număr rapoarte
+          title: Listare utilizatori raportați
+        report:
+          reasons:
+            does_not_belong: Nu aparține
+            offensive: Ofensator
+            spam: Spam
+        tabs:
+          blocked: Blocat
+          unblocked: Nu este blocat
       moderations:
         index:
           title: Moderări
@@ -550,6 +607,20 @@ ro:
             does_not_belong: Nu aparține
             offensive: Ofensiv
             spam: Spam
+        reports:
+          index:
+            author: Autor(i)
+            callout_html: Un conținut apare în panoul de moderare atunci când a fost semnalat de un utilizator (poate fi oricine cu un cont înregistrat) făcând clic pe steagul %{icon} de lângă element.
+            content_original_language: Limba originală a conținutului
+            participatory_space: Spațiu participativ
+            reported_content: Conținutul raportat
+            see_current: Vezi curent
+            see_original: Vezi originalul
+            title: Rapoarte de moderare
+          show:
+            report_details: Detalii motiv
+            report_reason: Motiv
+            title: Detalii raportare
       newsletter_templates:
         index:
           preview_template: Previzualizare
@@ -615,6 +686,9 @@ ro:
           error: A apărut o eroare la actualizarea acestui buletin informativ.
           success: Buletin informativ actualizat cu succes. Vă rugăm să îl revizuiți înainte de a trimite.
       officializations:
+        block:
+          error: A intervenit o eroare în încărcarea istoricului activității
+          success: Participantul a fost blocat
         create:
           success: Participantul a fost verificat cu succes
         destroy:
@@ -622,6 +696,7 @@ ro:
         index:
           actions: Acțiuni
           badge: Insignă
+          block: Blochează utilizator
           created_at: Creat la
           name: Nume
           nickname: Porecla
@@ -629,8 +704,10 @@ ro:
           officialize: Verificare
           officialized: Verificat
           reofficialize: Reverificare
+          reports: Rapoarte
           show_email: Arată adresa de e-mail
           status: Stare
+          unblock: Deblocare utilizator
           unofficialize: Retrageți verificarea
         new:
           badge: Ecuson de verificare
@@ -644,6 +721,9 @@ ro:
           hidden: ascuns
           show: Arată
           title: Arată adresa de e-mail a participantului
+        unblock:
+          error: A intervenit o eroare în încărcarea istoricului activității
+          success: Participantul a fost deblocat
       organization:
         edit:
           title: Editează organizația
@@ -655,6 +735,7 @@ ro:
           rich_text_editor_in_public_views_help: În unele zone de text, participanţii vor putea insera unele tag-uri HTML folosind bogatul editor de text.
           social_handlers: Social
           twitter: Twitter
+          url: Adresă
           youtube: YouTube
         update:
           error: A apărut o eroare la actualizarea acestei organizații.
@@ -663,13 +744,27 @@ ro:
         edit:
           update: Actualizare
         form:
+          colors:
+            colors_title: Culori pentru organizații
+            header_snippets_help: 'Utilizați acest câmp pentru a adăuga element în antetul HTML. Cea mai frecventă utilizare este integrarea de servicii terțe care necesită JavaScript sau CSS suplimentare. De asemenea, puteți adăuga metataguri suplimentare la HTML. Notă: acest lucru va avea efect doar în paginile publice, nu în secțiunea administrativă.'
           cta_button_path_help: 'Puteţi suprascrie unde butonul Apel la Acţiune din pagina de pornire. Utilizaţi căi parţiale, nu adrese URL complete aici. Acceptă litere, numere, cratime și tăieturi, și trebuie să înceapă cu o literă. Butonul Apel la Acțiune este afișat în pagina de start dintre textul de bun venit și descriere. Exemplu: %{url}'
           cta_button_text_help: Puteţi suprascrie textul butonului Apel la Acţiune din pagina de start pentru fiecare limbă disponibilă din organizaţie. Dacă nu este setată, va fi folosită valoarea implicită. Butonul Apel la Acțiune este afișat în pagina de start dintre textul de bun venit și descriere.
           homepage_appearance_title: Editează aspectul paginii de start
           homepage_highlighted_content_banner_title: Banner pentru conținut evidențiat
           images:
+            layout_appearance_title: Editarea aspectului formatului
             preview: Previzualizare
           omnipresent_banner_appearance_title: Editare banner omniprezent
+      organization_external_domain_whitelist:
+        edit:
+          update: Actualizare
+        external_domain:
+          down: Jos
+          external_domain: Domeniu extern
+          remove: Elimină
+          up: Sus
+        form:
+          add: Adaugă la lista albă
       organization_homepage:
         edit:
           active_content_blocks: Blocuri de conținut active
@@ -685,6 +780,7 @@ ro:
           error: A apărut o eroare la ștergerea unui participant privat pentru acest spațiu participativ.
           success: Accesul participanților privați la spațiul participativ a fost eliminat cu succes.
         index:
+          import_via_csv: Import din fișier CSV
           title: Participant privat la spațiu
         new:
           create: Crează
@@ -694,6 +790,7 @@ ro:
           invalid: A apărut o problemă la citirea fișierului CSV.
           success: Fișier CSV încărcat cu succes, trimitem un e-mail de invitație participanților. Acest lucru ar putea dura un timp.
         new:
+          explanation: 'Încărcaţi fişierul CSV. Trebuie să aibă două coloane cu e-mail în prima coloană a fișierului și numele în ultima coloană a fișierului (email, numele utilizatorilor pe care doriţi să îi adăugaţi în spaţiul participativ, fără antete. Evită folosirea caracterelor invalide, cum ar fi `<>?%&^*#@()[]=+:;"{}\<unk> ` în numele utilizatorului.'
           title: Încarcă fișierul tău CSV
           upload: Incarca
       resource_permissions:
@@ -702,6 +799,10 @@ ro:
           title: Editare permisiuni
         update:
           success: Permisiuni actualizate cu succes.
+      resources:
+        index:
+          headers:
+            scope: Domeniu
       scope_types:
         create:
           error: A apărut o problemă la crearea unui nou tip de domeniu de aplicare.
@@ -734,7 +835,12 @@ ro:
           error: A apărut o eroare la actualizarea acestui domeniu de aplicare.
           success: Domeniu de aplicare actualizat cu succes
       share_tokens:
+        actions:
+          confirm_destroy: Sigur doriți să ștergeți acest token?
+          destroy: Șterge
+          share: Distribuie
         destroy:
+          error: A apărut o problemă la distrugerea tokenului.
           success: Jetonul a fost eliminat.
         share_tokens:
           empty: Nu există jetoane active
