@@ -10,6 +10,9 @@
 # rspec failure tracking
 .rspec-failures
 
+# Node modules
+node_modules/
+
 # default test application
 spec/decidim_dummy_app
 

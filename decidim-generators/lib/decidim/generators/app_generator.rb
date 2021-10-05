@@ -146,6 +146,10 @@ module Decidim
         append_file ".gitignore", "\n# Ignore public uploads\npublic/uploads" unless options["skip_git"]
       end
 
+      def add_ignore_node_modules
+        append_file ".gitignore", "\n# Ignore local npm packages\nnode_modules" unless options["skip_git"]
+      end
+
       def remove_default_error_pages
         remove_file "public/404.html"
         remove_file "public/500.html"
