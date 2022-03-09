@@ -6,7 +6,7 @@ module Decidim
   module Proposals
     # This cell renders a proposals picker.
     class ProposalsPickerCell < Decidim::ViewModel
-      MAX_PROPOSALS = 10000
+      MAX_PROPOSALS = 2000
 
       def show
         if filtered?
