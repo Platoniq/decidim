@@ -72,7 +72,6 @@ Gem::Specification.new do |s|
   s.add_dependency "spreadsheet", "~> 1.2"
   s.add_dependency "sprockets", "~> 3.7", "< 4"
   s.add_dependency "sprockets-es6", "~> 0.9.2"
-  s.add_dependency "truncato", "~> 0.7"
   s.add_dependency "uglifier", "~> 4.1"
   s.add_dependency "valid_email2", "~> 2.1"
   s.add_dependency "wisper", "~> 2.0"
