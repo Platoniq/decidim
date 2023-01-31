@@ -18,14 +18,30 @@ module Decidim::Meetings
       let(:subject) { "La teva inscripció a la trobada ha estat confirmada" }
       let(:default_subject) { "Your meeting's registration has been confirmed" }
 
-      let(:body) { "detalls de la" }
-      let(:default_body) { "details in the attachment" }
+      let(:body) { "arxiu adjunt" }
+      let(:default_body) { "You will find the meeting" }
 
       include_examples "user localised email"
     end
 
-    it "includes the registration code" do
-      expect(email_body(mail)).to match("Your registration code is #{registration.code}")
+    context "when registration code is enabled" do
+      before do
+        component.update!(settings: { registration_code_enabled: true })
+      end
+
+      it "includes the registration code" do
+        expect(email_body(mail)).to match("Your registration code is #{registration.code}")
+      end
+    end
+
+    context "when registration code is disabled" do
+      before do
+        component.update!(settings: { registration_code_enabled: false })
+      end
+
+      it "includes the registration code" do
+        expect(email_body(mail)).not_to match("Your registration code is #{registration.code}")
+      end
     end
 
     it "includes the meeting's details in a ics file" do
