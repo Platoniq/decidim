@@ -6,7 +6,7 @@ module Decidim
   module Proposals
     # This cell renders a proposals picker.
     class ProposalsPickerCell < Decidim::ViewModel
-      MAX_PROPOSALS = 1000
+      MAX_PROPOSALS = 2000
 
       def show
         if filtered?
@@ -50,9 +50,10 @@ module Decidim
 
       def filtered_proposals
         @filtered_proposals ||= if filtered?
-                                  proposals.where("title::text ILIKE ?", "%#{search_text}%")
-                                           .or(proposals.where("reference ILIKE ?", "%#{search_text}%"))
-                                           .or(proposals.where("id::text ILIKE ?", "%#{search_text}%"))
+                                  table_name = Decidim::Proposals::Proposal.table_name
+                                  proposals.where(%("#{table_name}"."title"::text ILIKE ?), "%#{search_text}%")
+                                           .or(proposals.where(%("#{table_name}"."reference" ILIKE ?), "%#{search_text}%"))
+                                           .or(proposals.where(%("#{table_name}"."id"::text ILIKE ?), "%#{search_text}%"))
                                 else
                                   proposals
                                 end
@@ -60,8 +61,9 @@ module Decidim
 
       def proposals
         @proposals ||= Decidim.find_resource_manifest(:proposals).try(:resource_scope, component)
-                       &.published
-                       &.order(id: :asc)
+                         &.includes(:component)
+                         &.published
+                         &.order(id: :asc)
       end
 
       def proposals_collection_name

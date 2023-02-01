@@ -80,7 +80,7 @@ module Decidim
       end
 
       def participatory_space
-        return root_commentable if root_commentable.is_a?(Decidim::Participable)
+        return root_commentable unless root_commentable.respond_to?(:participatory_space)
 
         root_commentable.participatory_space
       end
