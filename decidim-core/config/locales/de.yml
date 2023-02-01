@@ -5,6 +5,8 @@ de:
         delete_reason: Grund, Ihr Konto zu löschen
       common:
         created_at: Erstellt am
+      conversation:
+        body: Haupttext
       group:
         about: Über
         avatar: Profilbild
@@ -13,6 +15,8 @@ de:
         name: Name
         nickname: Spitzname
         phone: Telefonnummer
+      message:
+        body: Haupttext
       report:
         details: Zusätzliche Kommentare
       user:
@@ -63,7 +67,6 @@ de:
     'true': 'Ja'
   carrierwave:
     errors:
-      general: Fehler bei der Bildverarbeitung
       image_too_big: Das Bild ist zu groß
       not_inside_organization: Die Datei ist keiner Organisation hinzugefügt
   date:
@@ -95,6 +98,7 @@ de:
         error: Beim Löschen Ihres Kontos ist ein Fehler aufgetreten.
         success: Ihr Konto wurde erfolgreich gelöscht.
       show:
+        available_locales_helper: Wählen Sie die Sprache aus, die Sie verwenden möchten, um in Decidim zu surfen und Benachrichtigungen zu erhalten
         change_password: Passwort ändern
         update_account: Konto aktualisieren
       update:
@@ -254,10 +258,13 @@ de:
         download: Datei herunterladen
       documents:
         related_documents: Zugehörige Dokumente
+      geocoding:
+        geocoded_address: Adresse
       photos:
         related_photos: Zugehörige Bilder
     author:
-      avatar: Profilbild
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar für mehrere Benutzer
       comments:
         one: Kommentar
         other: Kommentare
@@ -449,7 +456,7 @@ de:
           newsletter: Gelegentlich einen Newsletter mit relevanten Informationen erhalten
           newsletter_title: Kontakterlaubnis
           nickname_help: Ihr Pseudonym in %{organization}. Kann nur Buchstaben, Zahlen, '-' und '_' enthalten.
-          password_help: "Mindestens %{minimun_characters} Zeichen, nicht zu gewöhnlich (z.B. 123456) und darf nicht Ihr Benutzername oder Ihre E-Mail-Adresse sein."
+          password_help: "Mindestens %{minimun_characters} Zeichen, nicht zu gewöhnlich (z. B. 123456) und darf nicht Ihr Benutzername oder Ihre E-Mail-Adresse sein."
           sign_in: Anmelden
           sign_up: Registrieren
           sign_up_as:
@@ -470,7 +477,7 @@ de:
       shared:
         newsletter_modal:
           buttons:
-            check: Überprüfen und fortfahren
+            check: Kontakterlaubnis erteilen und fortfahren
             close_modal: Modal schließen
             uncheck: Ohne Kontakterlaubnis fortfahren
           notice: |-
@@ -688,6 +695,7 @@ de:
       no_followers: Noch keine Follower.
     following:
       no_followings: Folgt noch niemandem oder irgendetwas.
+      non_public_followings: Einige der gefolgten Ressourcen sind nicht öffentlich.
     follows:
       create:
         button: Folgen
@@ -849,6 +857,15 @@ de:
       index:
         last_activity: Letzte Aktivität
         resource_type: Art
+    links:
+      invalid_url: Ungültige URL
+      warning:
+        body_1: Sie sind dabei einen externen Link zu besuchen und wir möchten, dass Sie hinsichtlich der Inhalte auf der externen Seite vorsichtig sind.
+        body_2: Bitte überprüfen Sie den Link und stellen Sie sicher, dass es sich um eine vertrauenswürdige Seite handelt, bevor Sie fortfahren.
+        cancel: Abbrechen
+        close_modal: Dialog schließen
+        proceed: Fortfahren
+        title: Externen Link öffnen
     log:
       base_presenter:
         create: "%{user_name} hat %{resource_name} erstellt"
@@ -943,7 +960,7 @@ de:
           new_conversation: Neue Unterhaltung
           next: Weiter
           no_conversations: Du hast noch keine Unterhaltungen
-          title: Gespräche
+          title: Nachrichten
         reply:
           placeholder: Ihre Antwort...
           send: Senden
@@ -951,6 +968,7 @@ de:
         show:
           back: Zurück zu allen Unterhaltungen
           chat_with: Unterhaltung mit
+          deleted_accounts: Sie können keine Unterhaltung mit gelöschten Konten führen.
           not_allowed: Dieser Teilnehmer akzeptiert keine direkten Nachrichten.
           title: Gespräch mit %{usernames}
         start:
@@ -1069,24 +1087,7 @@ de:
         metrics:
           headline: Teilnahme an Zahlen
         statistics:
-          answers_count: Abgeschlossene Umfragen
-          assemblies_count: Versammlungen
-          comments_count: Kommentare
-          conferences_count: Konferenzen
-          debates_count: Diskussionen
-          endorsements_count: Empfehlungen
           headline: Aktueller Zustand von %{organization}
-          meetings_count: Meetings
-          orders_count: Stimmen
-          pages_count: Seiten
-          processes_count: Beteiligungsprozesse
-          projects_count: Projekte
-          proposals_accepted: Akzeptierte Vorschläge
-          proposals_count: Vorschläge
-          results_count: Ergebnisse
-          surveys_count: Umfragen
-          users_count: Teilnehmer
-          votes_count: Stimmen
         sub_hero:
           register: Registrieren
       index:
@@ -1110,7 +1111,7 @@ de:
           modal_body: Wenn Sie sich weigern, werden Sie nicht in der Lage sein , die Plattform zu nutzen, können Sie <a href="%{data_portability_path}">laden Sie Ihre Daten</a> und / oder <a href="%{delete_path}">Ihr Konto löschen</a>.
           modal_btn_continue: Bedingungen akzeptieren und fortfahren
           modal_btn_exit: Ich werde es später überprüfen
-          modal_button: Verweiße die Bedingungen
+          modal_button: Bedingungen ablehnen
           modal_close: Modal schließen
           modal_title: Lehnen Sie die aktualisierten Geschäftsbedingungen wirklich ab?
         required_review:
@@ -1241,6 +1242,7 @@ de:
         description: Ist dieser Inhalt unangemessen?
         does_not_belong: Enthält illegale Aktivitäten, Selbstmorddrohungen, persönliche Informationen oder etwas anderes, von dem Sie denken, dass es nicht auf %{organization_name}.
         offensive: Enthält Rassismus, Sexismus, Verunglimpfungen, persönliche Angriffe, Morddrohungen, Selbstmordanträge oder jede Form von Hassreden.
+        reason: Begründung
         report: Bericht
         spam: Enthält Clickbait, Werbung, Scams oder Script Bots.
         title: Ein Problem melden
@@ -1266,6 +1268,8 @@ de:
         filters:
           areas: Bereiche
           select_an_area: Wählen Sie einen Bereich aus
+      public_participation:
+        public_participation: Meine Teilnahme öffentlich anzeigen
       reference:
         reference: 'Referenz: %{reference}'
       represent_user_group:
@@ -1276,8 +1280,21 @@ de:
         title: Anzahl der Ergebnisse pro Seite auswählen
       share_modal:
         close_window: Fenster schließen
+        copy_share_link: Kopieren
+        copy_share_link_clarification: Öffentlichen Link in die Zwischenablage kopieren
+        copy_share_link_copied: Kopiert!
+        copy_share_link_message: Der Link wurde erfolgreich in die Zwischenablage kopiert.
         share: Teilen
         share_link: Link teilen
+    statistics:
+      comments_count: Kommentare
+      endorsements_count: Befürworungen
+      followers_count: Follower
+      headline: Statistik
+      no_stats: Es gibt noch keine Statistiken.
+      pages_count: Seiten
+      participants_count: Teilnehmer
+      users_count: Benutzer
     tags:
       filter_results_for_category: 'Ergebnisse nach Kategorie filtern: %{resource}'
       filter_results_for_scope: 'Ergebnisse nach Anwendungsbereich filtern: %{resource}'
@@ -1315,6 +1332,8 @@ de:
         send: Senden
         title_reply: Antworten
       show:
+        back: Alle Unterhaltungen anzeigen
+        deleted_accounts: Sie können keine Unterhaltung mit gelöschten Konten führen.
         not_allowed: Dieser Benutzer akzeptiert keine Direktnachrichten mehr.
         title: Unterhaltung mit %{usernames}
       update:
@@ -1360,6 +1379,7 @@ de:
         number_of_versions: Versionen
         title: Versionen
     versions_list_item:
+      back: Alle Versionen anzeigen
       show:
         version_index: Version %{index}
     welcome_notification:
@@ -1538,6 +1558,10 @@ de:
       too_short: ist zu kurz (unter 15 Zeichen)
   forms:
     correct_errors: Es gibt Fehler auf dem Formular, bitte korrigieren Sie sie, um fortzufahren.
+    length_validator:
+      minimum:
+        one: Mindestens %{count} Zeichen
+        other: Mindestens %{count} Zeichen
     required: Erforderlich
     required_explanation: "* Pflichtfelder sind mit einem Stern gekennzeichnet"
   invisible_captcha:
@@ -1558,9 +1582,11 @@ de:
         made_with_open_source: Website mit <a target="_blank" href="https://github.com/decidim/decidim">freier Software erstellt</a>.
       header:
         close_menu: Menü schließen
+        main_menu: Hauptmenü
         navigation: Navigation
         sign_in: Anmelden
         sign_up: Registrieren
+        user_menu: Benutzer-Menü
       impersonation_warning:
         close_session: Sitzung schließen
         description_html: Sie geben sich als Benutzer <b>%{user_name}</b>.
@@ -1589,6 +1615,7 @@ de:
         profile: Mein Konto
         public_profile: Mein öffentliches Profil
         sign_out: Ausloggen
+        title: Profil-Links
       user_profile:
         account: Konto
         authorizations: Berechtigungen
@@ -1602,7 +1629,7 @@ de:
         see_more: Mehr sehen
   locale:
     name: Deutsch
-    name_with_error: Englisch (Fehler!)
+    name_with_error: Deutsch (Fehler!)
   password_validator:
     domain_included_in_password: ist diesem Domainnamen zu ähnlich
     email_included_in_password: ist Ihrer E-Mail zu ähnlich

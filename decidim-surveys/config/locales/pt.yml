@@ -49,6 +49,8 @@ pt:
         description: Número de inquéritos respondidos por participantes
         object: respostas aos questionários
         title: Respostas aos questionários
+    statistics:
+      answers_count: Respostas
     surveys:
       admin:
         exports:

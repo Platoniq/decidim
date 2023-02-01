@@ -88,8 +88,13 @@ ro:
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Caută %{collection} după titlu, descriere, ID sau numele autorului.
       menu:
+        attachments: Atașamente
+        committee_members: Membrii comitetului
+        components: Componente
+        information: Informații
         initiatives: Inițiative
         initiatives_types: Tipuri de inițiative
+        moderations: Moderări
       models:
         initiatives:
           fields:
@@ -582,18 +587,15 @@ ro:
     menu:
       initiatives: Inițiative
     resources:
+      initiative:
+        actions:
+          comment: Comentează
       initiatives_type:
         actions:
           title: Acțiuni
           vote: Semnare
   layouts:
     decidim:
-      admin:
-        initiative:
-          attachments: Atașamente
-          committee_members: Membrii comitetului
-          components: Componente
-          information: Informații
       initiative_creation_header:
         back: Înapoi
         fill_data: Creează

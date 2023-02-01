@@ -5,6 +5,8 @@ es:
         delete_reason: Motivo de eliminar tu cuenta
       common:
         created_at: Creado el
+      conversation:
+        body: Cuerpo
       group:
         about: Acerca de
         avatar: Avatar
@@ -13,6 +15,8 @@ es:
         name: Nombre
         nickname: Alias
         phone: Teléfono
+      message:
+        body: Cuerpo
       report:
         details: Comentarios adicionales
       user:
@@ -63,7 +67,6 @@ es:
     'true': 'Sí'
   carrierwave:
     errors:
-      general: Error procesando imagen
       image_too_big: La imagen es demasiado grande
       not_inside_organization: El archivo no está relacionado con ninguna organización
   date:
@@ -95,6 +98,7 @@ es:
         error: Se ha producido un error al eliminar tu cuenta.
         success: Tu cuenta se ha eliminado correctamente.
       show:
+        available_locales_helper: Elige el idioma que quieres utilizar para navegar y recibir notificaciones en Decidim
         change_password: Cambia la contraseña
         update_account: Actualizar cuenta
       update:
@@ -251,10 +255,13 @@ es:
         download: Descargar archivo
       documents:
         related_documents: Documentos relacionados
+      geocoding:
+        geocoded_address: Dirección
       photos:
         related_photos: Imágenes relacionadas
     author:
-      avatar: Avatar
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar para varias usuarias
       comments:
         one: comentario
         other: comentarios
@@ -687,6 +694,7 @@ es:
       no_followers: Aún no hay seguidores.
     following:
       no_followings: No sigue a nadie ni a ninguna actividad.
+      non_public_followings: Algunos de los recursos seguidos no son públicos.
     follows:
       create:
         button: Seguir
@@ -848,6 +856,15 @@ es:
       index:
         last_activity: Última actividad
         resource_type: Tipo
+    links:
+      invalid_url: Dirección URL no válida
+      warning:
+        body_1: Estás a punto de visitar un enlace externo y te recomendamos que seas prudente respecto al contenido de páginas externas.
+        body_2: Por favor, antes de seguir, comprueba que el enlace que estás a punto de visitar pertenece a un sitio seguro.
+        cancel: Cancelar
+        close_modal: Cerrar ventana
+        proceed: Continuar
+        title: Abrir enlace externo
     log:
       base_presenter:
         create: "%{user_name} creó %{resource_name}"
@@ -950,6 +967,7 @@ es:
         show:
           back: Volver a todas las conversaciones
           chat_with: Conversación con
+          deleted_accounts: No puedes tener una conversación con cuentas borradas.
           not_allowed: Esta participante no acepta mensajes directos.
           title: Conversación con %{usernames}
         start:
@@ -1068,24 +1086,7 @@ es:
         metrics:
           headline: Métricas
         statistics:
-          answers_count: Encuestas realizadas
-          assemblies_count: Asambleas
-          comments_count: Comentarios
-          conferences_count: Conferencias
-          debates_count: Debates
-          endorsements_count: Adhesiones
           headline: Estado actual de %{organization}
-          meetings_count: Encuentros
-          orders_count: Apoyos
-          pages_count: Páginas
-          processes_count: Procesos
-          projects_count: Proyectos
-          proposals_accepted: Propuestas aceptadas
-          proposals_count: Propuestas
-          results_count: Resultados
-          surveys_count: Encuestas
-          users_count: Participantes
-          votes_count: Apoyos
         sub_hero:
           register: Regístrate
       index:
@@ -1240,6 +1241,7 @@ es:
         description: Este contenido no es apropiado?
         does_not_belong: Contiene actividad ilegal, amenazas de suicidio, información personal o cualquier otra cosa pienses que no pertenece en %{organization_name}.
         offensive: Contiene racismo, sexismo, insultos, ataques personales, amenazas de muerte o de suicidio o cualquier forma de discurso de odio.
+        reason: Motivo
         report: Denunciar
         spam: Contiene clickbait, publicidad o estafas.
         title: Reportar contenido inapropiado
@@ -1265,6 +1267,8 @@ es:
         filters:
           areas: Áreas
           select_an_area: Selecciona una area
+      public_participation:
+        public_participation: Mostrar mi asistencia públicamente
       reference:
         reference: 'Referencia: %{reference}'
       represent_user_group:
@@ -1275,8 +1279,21 @@ es:
         title: Seleccionar el número de resultados por página
       share_modal:
         close_window: Cierra la ventana
+        copy_share_link: Copia
+        copy_share_link_clarification: Copiar al portapapeles el enlace para compartir
+        copy_share_link_copied: '¡Copiado!'
+        copy_share_link_message: Se ha copiado el enlace al portapapeles correctamente.
         share: Compartir
         share_link: Compartir enlace
+    statistics:
+      comments_count: Comentarios
+      endorsements_count: Adhesiones
+      followers_count: Seguidoras
+      headline: Estadísticas
+      no_stats: No hay estadísticas aún.
+      pages_count: Páginas
+      participants_count: Participantes
+      users_count: Participantes
     tags:
       filter_results_for_category: 'Resultados al filtrar por la categoría: %{resource}'
       filter_results_for_scope: 'Resultados al filtrar por el ámbito: %{resource}'
@@ -1314,6 +1331,8 @@ es:
         send: Enviar
         title_reply: Responder
       show:
+        back: Ver todas las conversaciones
+        deleted_accounts: No puedes tener una conversación con cuentas borradas.
         not_allowed: Esta participante no acepta mensajes directos.
         title: Conversación con %{usernames}
       update:
@@ -1359,6 +1378,7 @@ es:
         number_of_versions: Versiones
         title: Versiones
     versions_list_item:
+      back: Mostrar todas las versiones
       show:
         version_index: Versión %{index}
     welcome_notification:
@@ -1471,7 +1491,7 @@ es:
     registrations:
       destroyed: Tu cuenta se ha cancelado correctamente. Esperamos volver a verte pronto.
       edit:
-        are_you_sure: '¿Estás segura?'
+        are_you_sure: '¿Estás seguro?'
         cancel_my_account: Cancelar mi cuenta
         currently_waiting_confirmation_for_email: 'Estamos esperando la confirmación para: %{email}'
         leave_blank_if_you_don_t_want_to_change_it: Déjalo en blanco si no quieres cambiarlo
@@ -1560,9 +1580,11 @@ es:
         made_with_open_source: Web creada con <a target="_blank" href="https://github.com/decidim/decidim">software libre</a>.
       header:
         close_menu: Cerrar menú
+        main_menu: Menú principal
         navigation: Navegación
         sign_in: Entra
         sign_up: Regístrate
+        user_menu: Menú de usuario
       impersonation_warning:
         close_session: Cerrar sesión
         description_html: Estás gestionando la participante <b>%{user_name}</b>.
@@ -1591,6 +1613,7 @@ es:
         profile: Mi cuenta
         public_profile: Mi perfil público
         sign_out: Cerrar sesión
+        title: Enlaces de perfil
       user_profile:
         account: Cuenta
         authorizations: Autorizaciones
@@ -1604,7 +1627,7 @@ es:
         see_more: Ver más
   locale:
     name: Castellano
-    name_with_error: Inglés (¡error!)
+    name_with_error: Castellano (¡error!)
   password_validator:
     domain_included_in_password: es demasiado similar a este nombre de dominio
     email_included_in_password: es demasiado similar a tu correo electrónico

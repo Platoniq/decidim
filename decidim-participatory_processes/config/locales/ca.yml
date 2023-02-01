@@ -34,7 +34,7 @@ ca:
         subtitle: Subtítol
         target: Qui hi participa
         title: Títol
-        weight: Pes
+        weight: Ordre de posició
       participatory_process_group:
         description: Descripció
         developer_group: Grup promotor
@@ -403,6 +403,7 @@ ca:
             more_information: Més informació
             participate: Participa
             participate_in: Participa al procés %{resource_name}
+            processes_button_title: Enllaç a la pàgina de Processos mostrant tots els processos
             see_all_processes: Veure tots els processos
       participatory_process_steps:
         index:
@@ -449,25 +450,8 @@ ca:
         start_date: Data d'inici
         target: Qui participa
         unspecified: Sense especificar
-      statistics:
-        answers_count: Respostes
-        comments_count: Comentaris
-        debates_count: Debats
-        endorsements_count: Adhesions
-        followers_count: Seguidores
-        headline: Estadístiques
-        meetings_count: Trobades presencials
-        no_stats: Encara no hi ha estadístiques.
-        orders_count: Suports
-        pages_count: Pàgines
-        participants_count: Participants
-        processes_count: Processos
-        projects_count: Projectes
-        proposals_count: Propostes
-        results_count: Resultats
-        supports_count: Suports
-        surveys_count: Enquestes
-        users_count: Participants
+    statistics:
+      processes_count: Processos
   layouts:
     decidim:
       participatory_process_groups:

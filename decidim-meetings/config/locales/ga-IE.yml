@@ -5,28 +5,54 @@ ga:
         duration: Fad
         title: Teideal
       close_meeting:
-        closing_report: Tuairisc
+        audio_url: URL Fuaime
+        closing_report: Miontuairiscí
+        video_url: URL Físeáin
       meeting:
         address: Seoladh
         decidim_category_id: Catagóir
         decidim_scope_id: Scóip
         end_time: Am Críochnaithe
+        id: ID
         location: Suíomh
         title: Teideal
         type_of_meeting: Cineál
-      minutes:
-        audio_url: URL Fuaime
-        video_url: URL Físeáin
     models:
       decidim/meetings/create_meeting_event: Cruinniú
   decidim:
     admin:
+      filters:
+        meetings:
+          category_id_eq:
+            label: Catagóir
+          closed_at_present:
+            label: Staid
+            values:
+              'false': Oscail
+              'true': Dúnta
+          is_upcoming_true:
+            label: Dáta
+            values:
+              'false': Roimhe
+              'true': Le teacht
+          origin_eq:
+            label: Bunús
+            values:
+              citizen: Saoránach
+              official: Oifigiúil
+          scope_id_eq:
+            label: Scóip
+          type_eq:
+            values:
+              hybrid: Araon
+              online: Ar líne
       meeting_copies:
         new:
           copy: Cóipeáil
     components:
       meetings:
         actions:
+          comment: Tabhair Trácht
           join: Téigh leis
         name: Cruinnithe
         settings:
@@ -40,7 +66,6 @@ ga:
         close: Dún
         destroy: Scrios
         edit: Eagar
-        minutes: Miontuairiscí
         preview: Réamhamharc
         title: Gníomhartha
       admin:
@@ -60,6 +85,7 @@ ga:
           new:
             create: Cruthaigh
         exports:
+          answers: Freagraí
           meeting_comments: Tráchtanna
           meetings: Cruinnithe
         invites:
@@ -91,12 +117,6 @@ ga:
             up: Thuas
           services:
             services: Seirbhísí
-        minutes:
-          edit:
-            title: Cuir in eagar miontuairiscí
-            update: Nuashonraigh
-          new:
-            create: Cruthaigh
         models:
           meeting:
             name: Cruinniú
@@ -117,6 +137,10 @@ ga:
             past: Roimhe
             search: Cuardaigh
             upcoming: Le teacht
+      layouts:
+        live_event:
+          close: dún
+          questions: Ceisteanna
       meeting_closes:
         edit:
           back: Ar Ais
@@ -158,7 +182,6 @@ ga:
           confirm: Deimhnigh
         show:
           date: Dáta
-          going: Ag Dul
           view: Amharc
       models:
         invite:
@@ -173,8 +196,18 @@ ga:
           fields:
             closed: Dúnta
             end_time: Dáta deiridh
+            id: Id
             map: Léarscáil
             title: Teideal
+      polls:
+        questions:
+          index_admin:
+            question: Ceist
+            results: Torthaí
+            send: Seol
+            sent: Seolta
+          published_question:
+            question: Ceist
       type_of_meeting:
         hybrid: Araon
         online: Ar líne
@@ -182,3 +215,5 @@ ga:
       meetings:
         object: cruinnithe
         title: Cruinnithe
+    statistics:
+      meetings_count: Cruinnithe

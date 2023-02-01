@@ -158,7 +158,7 @@ eu:
             progress: Aurrerapena
         timeline_entry:
           fields:
-            description: Descripción
+            description: Deskribapena
             entry_date: Data
       result_m:
         executed: Burutua
@@ -204,6 +204,8 @@ eu:
             label: Egoera
     components:
       accountability:
+        actions:
+          comment: Iruzkina
         name: Jarraipena
         settings:
           global:
@@ -244,3 +246,5 @@ eu:
         result_project: Emaitza honetan sartutako proiektuak
       included_proposals:
         result_proposal: Emaitza honetan jasotako proposamenak
+    statistics:
+      results_count: Emaitzak

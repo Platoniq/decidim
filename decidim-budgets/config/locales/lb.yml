@@ -102,6 +102,9 @@ lb:
         close_modal: Dialog schließen
         continue: Weiter
         more_information: Mehr Informationen
+      budget_list_item:
+        voting_finished: Sie haben bei diesem Budget abgestimmt
+        voting_started: Sie haben damit begonnen, bei diesem Budget abzustimmen
       budgets_list:
         cancel_order:
           more_than_one: lösche deine Stimme am %{name} und beginne neu
@@ -223,6 +226,7 @@ lb:
     components:
       budgets:
         actions:
+          comment: Kommentar
           vote: Abstimmen
         name: Budgets
         settings:
@@ -281,5 +285,11 @@ lb:
       destroy:
         error: Bei der Absage der Abstimmung ist ein Fehler aufgetreten
         success: Ihre Abstimmung wurde erfolgreich abgebrochen
+    resource_links:
+      included_proposals:
+        project_proposal: Vorschläge in diesem Projekt
+    statistics:
+      orders_count: Projektauswahlen
+      projects_count: Projekte
   index:
     confirmed_orders_count: Stimmen zählen

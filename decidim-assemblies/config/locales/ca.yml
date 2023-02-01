@@ -52,7 +52,7 @@ ca:
         target: Qui participa
         title: Títol
         twitter: Twitter
-        weight: Pes
+        weight: Ordre de posició
         youtube: YouTube
       assembly_member:
         birthday: Aniversari
@@ -63,7 +63,7 @@ ca:
         full_name: Nom complet
         gender: Gènere
         position: Posició
-        user_id: Usuària
+        user_id: Participant o grup
       assembly_user_role:
         email: Correu electrònic
         name: Nom
@@ -262,6 +262,7 @@ ca:
       admin:
         assemblies:
           form:
+            announcement_help: El text que introdueixis aquí es mostrarà a la participant just a sota de la informació de l'assemblea.
             duration: Durada
             duration_help: Si la durada d'aquesta assemblea és limitada, selecciona la data de finalització. En cas contrari, apareixerà com a indefinida.
             filters: Filtres
@@ -381,38 +382,11 @@ ca:
         social_networks: Xarxes socials
         social_networks_title: Compartir aquesta assemblea a
         target: Qui participa
-      statistics:
-        answers_count: Respostes
-        assemblies_count: Assemblees
-        comments_count: Comentaris
-        debates_count: Debats
-        endorsements_count: Adhesions
-        followers_count: Seguidors
-        headline: Estadístiques
-        meetings_count: Trobades
-        no_stats: Encara no hi ha estadístiques.
-        orders_count: Suports
-        pages_count: Pàgines
-        participants_count: Participants
-        posts_count: Publicacions
-        processes_count: Processos
-        projects_count: Projectes
-        proposals_count: Propostes
-        results_count: Resultats
-        supports_count: Suports
-        surveys_count: Enquestes
-        users_count: Participants
-        votes_count: Suports
     assembly_members:
       assembly_member:
         designated_on: Designat a
       index:
         title: Membres
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Enllaç a la pàgina de Jornades mostrant totes les jornades
     events:
       assemblies:
         create_assembly_member:
@@ -445,19 +419,11 @@ ca:
         description: Nombre d'assemblees creades
         object: assemblees
         title: Assemblees
-    pages:
-      home:
-        hero:
-          participate_title: Participa als processos de la plataforma
-        sub_hero:
-          register_title: Registra't
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Enllaç a la pàgina de Processos mostrant tots els processos
       show:
         related_assemblies: Assemblees relacionades
+    statistics:
+      assemblies_count: Assemblees
   errors:
     messages:
       cannot_be_blank: no es pot estar en blanc

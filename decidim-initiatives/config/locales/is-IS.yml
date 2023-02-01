@@ -20,6 +20,8 @@ is-IS:
   decidim:
     admin:
       menu:
+        components: Hluti
+        information: Upplýsingar
         initiatives: Frumkvæði
         initiatives_types: Frumgerð tegundir
       models:
@@ -206,6 +208,8 @@ is-IS:
           check_initiative_details: Þú getur séð frumkvæði upplýsingar
           here: hér
         more_information: Hér hefur þú meiri upplýsingar um frumkvöðlunarferlið.
+      last_activity:
+        new_initiative: Nýtt frumkvæði
       pages:
         home:
           highlighted_initiatives:
@@ -218,11 +222,6 @@ is-IS:
       initiatives: Frumkvæði
   layouts:
     decidim:
-      admin:
-        initiative:
-          committee_members: Nefndarmenn
-          components: Hluti
-          information: Upplýsingar
       initiative_creation_header:
         fill_data: Búa til
         finish: Klára

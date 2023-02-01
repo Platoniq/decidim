@@ -46,10 +46,6 @@ module Decidim
         end
       end
 
-      initializer "decidim_participatory_processes.assets" do |app|
-        app.config.assets.precompile += %w(decidim_participatory_processes_manifest.js)
-      end
-
       initializer "decidim_participatory_processes.query_extensions" do
         Decidim::Api::QueryType.include Decidim::ParticipatoryProcesses::QueryExtensions
       end
@@ -61,11 +57,12 @@ module Decidim
 
       initializer "decidim_participatory_processes.menu" do
         Decidim.menu :menu do |menu|
-          menu.item I18n.t("menu.processes", scope: "decidim"),
-                    decidim_participatory_processes.participatory_processes_path,
-                    position: 2,
-                    if: Decidim::ParticipatoryProcess.where(organization: current_organization).published.any?,
-                    active: %r{^/process(es|_groups)}
+          menu.add_item :participatory_processes,
+                        I18n.t("menu.processes", scope: "decidim"),
+                        decidim_participatory_processes.participatory_processes_path,
+                        position: 2,
+                        if: Decidim::ParticipatoryProcess.where(organization: current_organization).published.any?,
+                        active: %r{^/process(es|_groups)}
         end
       end
 
@@ -153,7 +150,7 @@ module Decidim
         end
 
         Decidim.content_blocks.register(:participatory_process_group_homepage, :stats) do |content_block|
-          content_block.cell = "decidim/participatory_process_groups/content_blocks/stats"
+          content_block.cell = "decidim/participatory_process_groups/content_blocks/statistics"
           content_block.public_name_key = "decidim.participatory_process_groups.content_blocks.stats.name"
           content_block.default!
         end
@@ -189,6 +186,10 @@ module Decidim
         Decidim.metrics_operation.register(:followers, :participatory_process) do |metric_operation|
           metric_operation.manager_class = "Decidim::ParticipatoryProcesses::Metrics::ParticipatoryProcessFollowersMetricMeasure"
         end
+      end
+
+      initializer "decidim_participatory_processes.webpacker.assets_path" do
+        Decidim.register_assets_path File.expand_path("app/packs", root)
       end
     end
   end

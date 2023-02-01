@@ -34,7 +34,7 @@ es-MX:
         subtitle: Subtítulo
         target: Quién participa
         title: Título
-        weight: Peso
+        weight: Orden de posición
       participatory_process_group:
         description: Descripción
         developer_group: Grupo promotor
@@ -403,6 +403,7 @@ es-MX:
             more_information: Más información
             participate: Participar
             participate_in: Participa en el proceso %{resource_name}
+            processes_button_title: Enlace a la página de Procesos que muestra todos los procesos
             see_all_processes: Ver todos los procesos
       participatory_process_steps:
         index:
@@ -449,25 +450,8 @@ es-MX:
         start_date: Fecha de inicio
         target: Quién participa
         unspecified: No especificado
-      statistics:
-        answers_count: Respuestas
-        comments_count: Comentarios
-        debates_count: Debates
-        endorsements_count: Adhesiones
-        followers_count: Seguidoras
-        headline: Actividad
-        meetings_count: Encuentros
-        no_stats: No hay estadísticas aún.
-        orders_count: Votos
-        pages_count: Páginas
-        participants_count: Participantes
-        processes_count: Procesos
-        projects_count: Proyectos
-        proposals_count: Propuestas
-        results_count: Resultados
-        supports_count: Votos
-        surveys_count: Encuestas
-        users_count: Participantes
+    statistics:
+      processes_count: Procesos
   layouts:
     decidim:
       participatory_process_groups:

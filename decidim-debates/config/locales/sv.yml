@@ -27,6 +27,7 @@ sv:
     components:
       debates:
         actions:
+          comment: Kommentera
           create: Skapa
           endorse: Instäm
         name: Debatter
@@ -235,3 +236,5 @@ sv:
         description: Antal skapade debatter
         object: debatter
         title: Debatter
+    statistics:
+      debates_count: Debatter

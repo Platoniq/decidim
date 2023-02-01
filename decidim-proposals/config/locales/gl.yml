@@ -35,6 +35,7 @@ gl:
         origin_component_id: Componente para copiar as propostas de
       proposals_import:
         import_proposals: Propostas de importación
+        keep_answers: Manter o estado e as respostas
         keep_authors: Mantén os autores orixinais
       valuation_assignment:
         admin_log:
@@ -47,7 +48,9 @@ gl:
               invalid_document_type: 'Tipo de documento non válido. Os formatos aceptados son: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: É preciso anexar de novo o ficheiro
+            add_photos:
               needs_to_be_reattached: É preciso anexar de novo o ficheiro
             body:
               cant_be_equal_to_template: non pode ser igual ao modelo
@@ -107,9 +110,11 @@ gl:
     components:
       proposals:
         actions:
+          comment: Comentario
           create: Crear
           endorse: Endosar
           vote: Vota
+          vote_comment: Votar comentario
           withdraw: Retirar
         name: Propostas
         settings:
@@ -639,7 +644,7 @@ gl:
             one: "%{count} proposta"
             other: "%{count} propostas"
         dynamic_map_instructions:
-          instructions: <h3>Podes mover o punto no mapa. </h3><p>Non esquezas premer no botón "Actualizar posición" antes de publicar a túa proposta.</p>
+          instructions: Podes mover o punto no mapa.
         edit:
           add_documents: Documentos
           add_images: Ficheiro
@@ -711,7 +716,6 @@ gl:
             other: Poderás editar esta proposta durante o primeiro %{count} minutos despois da publicación da proposta. Unha vez que pase esta xanela de tempo, non poderás editar a proposta.
           publish: Publicar
           title: Publica a túa proposta
-          update_position: Actualizar posición
         proposal:
           creation_date: 'Creación: %{date}'
           view_proposal: Ver proposta
@@ -801,3 +805,7 @@ gl:
       included_proposals:
         proposal_project: 'Proposta que aparece nestes proxectos:'
         proposal_result: 'Proposta que aparece nestes resultados:'
+    statistics:
+      proposals_accepted: Propostas aceptadas
+      proposals_count: Propostas
+      supports_count: Apoios

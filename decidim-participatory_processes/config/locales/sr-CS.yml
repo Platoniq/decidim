@@ -31,7 +31,3 @@ sr:
         participatory_processes:
           form:
             scope_type_max_depth_help: Ograniči obim dubine filtera; Filter će pokazivati od opšteg ka odabranom tipu obima.
-      statistics:
-        followers_count: Pratioci
-        headline: Statistika
-        no_stats: Još nema statistike.

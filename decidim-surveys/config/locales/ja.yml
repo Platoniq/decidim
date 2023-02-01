@@ -47,6 +47,8 @@ ja:
         description: 回答したアンケート数
         object: アンケートに対する答えは
         title: アンケートへの回答
+    statistics:
+      answers_count: 回答
     surveys:
       admin:
         exports:

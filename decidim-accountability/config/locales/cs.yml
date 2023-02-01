@@ -208,6 +208,8 @@ cs:
             label: Stav
     components:
       accountability:
+        actions:
+          comment: Komentář
         name: Odpovědnost
         settings:
           global:
@@ -248,3 +250,5 @@ cs:
         result_project: Projekty zahrnuté v tomto výsledku
       included_proposals:
         result_proposal: Návrhy zahrnuté v tomto výsledku
+    statistics:
+      results_count: Výsledky

@@ -33,7 +33,7 @@ gl:
         subtitle: Subtítulo
         target: Quen participa
         title: Título
-        weight: Peso
+        weight: Orde de posición
       participatory_process_group:
         description: Descrición
         group_url: Sitio web
@@ -383,6 +383,7 @@ gl:
             more_information: Máis información
             participate: Participar
             participate_in: Participar no proceso %{resource_name}
+            processes_button_title: Ligazón á páxina de Procesos que amosa todas as procesos
             see_all_processes: Ver todos os procesos
       participatory_process_steps:
         index:
@@ -429,25 +430,8 @@ gl:
         start_date: Data de inicio
         target: Quen participa
         unspecified: Non especificado
-      statistics:
-        answers_count: Respostas
-        comments_count: Comentarios
-        debates_count: Debates
-        endorsements_count: Aprobacións
-        followers_count: Seguidores
-        headline: Actividade
-        meetings_count: Reunións
-        no_stats: Aínda non hai estatísticas.
-        orders_count: Votos
-        pages_count: Páxinas
-        participants_count: Participantes
-        processes_count: Procesos
-        projects_count: Proxectos
-        proposals_count: Propostas
-        results_count: Resultados
-        supports_count: Votos
-        surveys_count: Enquisas
-        users_count: Participantes
+    statistics:
+      processes_count: Procesos
   layouts:
     decidim:
       participatory_process_groups:

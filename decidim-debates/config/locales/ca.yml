@@ -27,6 +27,7 @@ ca:
     components:
       debates:
         actions:
+          comment: Comentar
           create: Crear
           endorse: Adherir-se
         name: Debats
@@ -235,3 +236,5 @@ ca:
         description: Nombre de debats creats
         object: debats
         title: Debats
+    statistics:
+      debates_count: Debats

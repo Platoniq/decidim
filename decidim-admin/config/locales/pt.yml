@@ -24,7 +24,7 @@ pt:
       component:
         name: Nome
         published_at: Publicado em
-        weight: Peso
+        weight: Posição do pedido
       id: ID
       import:
         user_group_id: Criar importações como
@@ -43,6 +43,7 @@ pt:
         default_locale: Idioma por defeito
         description: Descrição
         enable_omnipresent_banner: Mostrar faixa omnipresente
+        enable_participatory_space_filters: Activar filtros do espaço participativo
         facebook_handler: Manipulador do Facebook
         favicon: Ícone
         force_authentication: Forçar autenticação
@@ -112,12 +113,12 @@ pt:
         show_in_footer: Mostrar no rodapé
         slug: Texto curto de URL
         title: Título
-        weight: Peso
+        weight: Posição do pedido
       static_page_topic:
         description: Descrição
         show_in_footer: Mostrar no rodapé
         title: Título
-        weight: Peso
+        weight: Posição do pedido
       user_group_csv_verification:
         file: Ficheiro
     errors:
@@ -157,7 +158,8 @@ pt:
         browse: Explorar
         category:
           new: Nova categoria
-        export: Exportar
+        export: Exportar tudo
+        export-selection: Exportar selecção
         import: Importar
         manage: Gerir
         new: Novo %{name}
@@ -178,12 +180,12 @@ pt:
           success: Excelente! Aceitou os termos de utilização de administrador.
         actions:
           accept: Concordo com os seguintes termos
-          are_you_sure: Tem a certeza de que pretende recusar os termos de administrador?
+          are_you_sure: Tem a certeza que quer rejeitar os termos de utilização de administrador?
           refuse: Recusar os termos de administrador
           title: Concordar com os termos e condições de utilização
         required_review:
           alert: 'Necessário: Rever os nossos termos de utilização de administrador'
-          callout: Por favor, despenda algum tempo para rever os Termos de Utilização de Administrador. Caso contrário, não poderá administrar a plataforma.
+          callout: Por favor reserve um momento para rever os termos de utilização de administrador. Caso contrário não lhe será possível gerir a plataforma.
           cta: Reveja-os agora.
         title: Termos de Utilização de Administrador
       area_types:
@@ -206,7 +208,7 @@ pt:
           error: Ocorreu um problema ao criar uma nova área.
           success: Área criada corretamente.
         destroy:
-          has_spaces: A área possui espaços dependentes, não poderá ter dependências para poder ser eliminada.
+          has_spaces: Está area tem espaços dependentes. For favor certifique-se que nenhum Espaço Participativo faz referência a esta área antes de a apagar.
           success: Área destruída corretamente
         edit:
           title: Editar área
@@ -259,7 +261,7 @@ pt:
       block_user:
         new:
           action: Bloquear conta e enviar justificação
-          description: Bloquear um utilizador torna a sua conta inutilizada, pode fornecer na sua justificação e orientações na forma que pondera poder considerar para desbloquear o utilizador.
+          description: Bloquear um utilizador torna a sua conta inutilizável. Pode dar na sua justificação orientações sobre o que poderia levar a considerar desbloquear o utilizador.
           justification: Justificação
           title: Bloquear utilizador %{name}
       categories:
@@ -322,7 +324,7 @@ pt:
         'false': 'Não'
         managed_user_name: Utilizador gerido
         solved: Resolvido
-        title: Conflitos de verificações
+        title: Conflitos de verificação
         transfer:
           email: e-Mail
           error: Houve um problema ao transferir o utilizador actual para utilizador gerido.
@@ -336,6 +338,12 @@ pt:
         show:
           view_more_logs: Ver mais registos
           welcome: Bem-vindo ao Painel de Administração de Decidim.
+      domain_whitelist:
+        form:
+          domain_too_short: Domínio demasiado curto
+        update:
+          error: Falha ao carregar a lista branca de domínios
+          success: Lista branca de domínios carregada com êxito
       exports:
         export_as: "%{name} como %{export_format}"
         formats:
@@ -348,6 +356,16 @@ pt:
         category_id_eq:
           label: Categoria
         filter_label: Filtro
+        invitation_accepted_at_present:
+          label: Convite aceite
+          values:
+            'false': 'Não'
+            'true': 'Sim'
+        last_sign_in_at_present:
+          label: Já se ligou alguma vez?
+          values:
+            'false': 'Não'
+            'true': 'Sim'
         moderations:
           reportable_type_string_eq:
             label: Tipo
@@ -356,6 +374,17 @@ pt:
           values:
             'false': Oficializado
             'true': Não oficializado
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Convite aceite
+            values:
+              'false': Não aceite
+              'true': Aceite
+          user_invitation_sent_at_not_null:
+            label: Convite enviado
+            values:
+              'false': Não enviado
+              'true': Enviado
         private_space_eq:
           label: Privado
           values:
@@ -373,13 +402,14 @@ pt:
           name_or_nickname_or_email_cont: Pesquisar %{collection} por e-mail, nome ou alcunha.
           reported_id_string_or_reported_content_cont: Pesquisar %{coleção} por identificador de denúncia ou conteúdo.
           title_cont: Pesquisar %{collection} por título.
+          user_name_or_user_email_cont: Pesquisar %{coleção} por nome ou e-mail.
         state_eq:
           label: Estado
       forms:
         file_help:
           import:
             explanation: 'Orientação para ficheiro:'
-            message_1: São suportados os ficheiros CSV,JSON, e Excel (.xls)
+            message_1: Ficheiros CSV, JSON e Excel (.xlsx) não são suportados
             message_2: Para ficheiros CSV o separador entre coludas deve ser um ponto e vírgula (";")
       help_sections:
         error: Ocorreu um problema ao atualizar as secções de ajuda
@@ -431,7 +461,6 @@ pt:
           accepted_mime_types:
             csv: csv
             json: json
-            xls: xls
           actions:
             back: Voltar
           file_legend: Adicionar ficheiro para importar a analisar.
@@ -457,6 +486,7 @@ pt:
         areas: Áreas
         configuration: Configuração
         dashboard: Painel de controlo
+        external_domain_whitelist: Domínios externos autorizados
         help_sections: Secções de ajuda
         homepage: Página inicial
         impersonations: Personificações
@@ -605,7 +635,7 @@ pt:
       newsletters:
         create:
           error: Ocorreu um problema ao criar este boletim informativo.
-          success: Boletim Informativo criado corretamente. Por favor, reveja-o antes de enviar.
+          success: Boletim informativo criado com sucesso. Reveja antes de enviar.
         deliver:
           error: Ocorreu um problema na entrega deste boletim informativo.
           success: Boletim Informativo entregue corretamente.
@@ -688,12 +718,12 @@ pt:
           title: Oficializar participante "%{name}"
         show_email_modal:
           close_modal: Fechar modal
-          description: Caso necessite de contactar um participante diretamente, poderá clicar no botão Mostrar para ver o endereço de e-mail. Esta ação será registada.
+          description: Se precisar de contactar directamente um, pode clicar no botão Mostrar para ver seu endereço de e-mail.
           email_address: Endereço de e-mail
           full_name: Nome completo
           hidden: oculto
           show: Mostrar
-          title: Mostrar endereço de e-mail do participante
+          title: Mostrar o endereço de e-mail do participante
         unblock:
           error: Houve um erro ao desbloquear o participante
           success: Participante desbloqueado com sucesso
@@ -728,6 +758,17 @@ pt:
             layout_appearance_title: Editar aparência do layout
             preview: Pré-visualização
           omnipresent_banner_appearance_title: Editar faixa omnipresente
+      organization_external_domain_whitelist:
+        edit:
+          update: Actualização
+        external_domain:
+          down: Para baixo
+          external_domain: Domínio externo
+          remove: Remover
+          up: Para cima
+        form:
+          add: Adicionar à lista branca
+          title: Lista branca de domínio externo
       organization_homepage:
         edit:
           active_content_blocks: Blocos de conteúdo activos
@@ -929,7 +970,7 @@ pt:
     forms:
       errors:
         impersonate_user:
-          reason: Precisa de fornecer um motivo ao gerir um participante que não é gerido
+          reason: Precisa de fornecer um motivo para gerir um participante não gerido
     metrics:
       blocked_users:
         object: utilizadores bloqueados

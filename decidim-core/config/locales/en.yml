@@ -6,6 +6,8 @@ en:
         delete_reason: Reason to delete your account
       common:
         created_at: Created at
+      conversation:
+        body: Body
       group:
         about: About
         avatar: Avatar
@@ -14,6 +16,8 @@ en:
         name: Name
         nickname: Nickname
         phone: Phone
+      message:
+        body: Body
       report:
         details: Additional comments
       user:
@@ -64,7 +68,6 @@ en:
     'true': 'Yes'
   carrierwave:
     errors:
-      general: Error processing image
       image_too_big: The image is too big
       not_inside_organization: The file is not attached to any organization
   date:
@@ -96,6 +99,7 @@ en:
         error: There was a problem deleting your account.
         success: Your account was successfully deleted.
       show:
+        available_locales_helper: Choose the language you want to use to browse and receive notifications in Decidim
         change_password: Change password
         update_account: Update account
       update:
@@ -255,10 +259,13 @@ en:
         download: Download file
       documents:
         related_documents: Related documents
+      geocoding:
+        geocoded_address: Address
       photos:
         related_photos: Related images
     author:
-      avatar: Avatar
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar for multiple users
       comments:
         one: comment
         other: comments
@@ -695,6 +702,7 @@ en:
       no_followers: No followers yet.
     following:
       no_followings: Doesn't follow anyone or anything yet.
+      non_public_followings: Some of the resources followed are not public.
     follows:
       create:
         button: Follow
@@ -856,6 +864,15 @@ en:
       index:
         last_activity: Last activity
         resource_type: Type
+    links:
+      invalid_url: Invalid URL
+      warning:
+        body_1: You are about to visit an external link and we would like you to be cautious regarding the content on the external site.
+        body_2: Please check the link you are about to visit and make sure you recognize it as a safe site before proceeding.
+        cancel: Cancel
+        close_modal: Close modal
+        proceed: Proceed
+        title: Open external link
     log:
       base_presenter:
         create: "%{user_name} created %{resource_name}"
@@ -958,6 +975,7 @@ en:
         show:
           back: Back to all conversations
           chat_with: Conversation with
+          deleted_accounts: You can't have a conversation with deleted accounts.
           not_allowed: This participant does not accept direct messages.
           title: Conversation with %{usernames}
         start:
@@ -1076,24 +1094,7 @@ en:
         metrics:
           headline: Metrics
         statistics:
-          answers_count: Completed Surveys
-          assemblies_count: Assemblies
-          comments_count: Comments
-          conferences_count: Conferences
-          debates_count: Debates
-          endorsements_count: Endorsements
           headline: Current state of %{organization}
-          meetings_count: Meetings
-          orders_count: Votes
-          pages_count: Pages
-          processes_count: Processes
-          projects_count: Projects
-          proposals_accepted: Accepted Proposals
-          proposals_count: Proposals
-          results_count: Results
-          surveys_count: Surveys
-          users_count: Participants
-          votes_count: Votes
         sub_hero:
           register: Register
       index:
@@ -1248,6 +1249,7 @@ en:
         description: Is this content inappropriate?
         does_not_belong: Contains illegal activity, suicide threats, personal information, or something else you think doesn't belong on %{organization_name}.
         offensive: Contains racism, sexism, slurs, personal attacks, death threats, suicide requests or any form of hate speech.
+        reason: Reason
         report: Report
         spam: Contains clickbait, advertising, scams or script bots.
         title: Report inappropriate content
@@ -1273,6 +1275,8 @@ en:
         filters:
           areas: Areas
           select_an_area: Select an area
+      public_participation:
+        public_participation: Show my attendance publicly
       reference:
         reference: 'Reference: %{reference}'
       represent_user_group:
@@ -1283,8 +1287,21 @@ en:
         title: Select number of results per page
       share_modal:
         close_window: Close window
+        copy_share_link: Copy
+        copy_share_link_clarification: Copy share link to clipboard
+        copy_share_link_copied: Copied!
+        copy_share_link_message: The link was successfully copied to clipboard.
         share: Share
         share_link: Share link
+    statistics:
+      comments_count: Comments
+      endorsements_count: Endorsements
+      followers_count: Followers
+      headline: Statistics
+      no_stats: There are no statistics yet.
+      pages_count: Pages
+      participants_count: Participants
+      users_count: Participants
     tags:
       filter_results_for_category: 'Filter results for category: %{resource}'
       filter_results_for_scope: 'Filter results for scope: %{resource}'
@@ -1322,6 +1339,8 @@ en:
         send: Send
         title_reply: Reply
       show:
+        back: Show all conversations
+        deleted_accounts: You can't have a conversation with deleted accounts.
         not_allowed: This user does not accept any more direct messages.
         title: Conversation with %{usernames}
       update:
@@ -1367,6 +1386,7 @@ en:
         number_of_versions: Versions
         title: Versions
     versions_list_item:
+      back: Show all versions
       show:
         version_index: Version %{index}
     welcome_notification:
@@ -1569,9 +1589,11 @@ en:
         made_with_open_source: Website made with <a target="_blank" href="https://github.com/decidim/decidim">free software</a>.
       header:
         close_menu: Close menu
+        main_menu: Main menu
         navigation: Navigation
         sign_in: Sign In
         sign_up: Sign Up
+        user_menu: User menu
       impersonation_warning:
         close_session: Close session
         description_html: You are managing the participant <b>%{user_name}</b>.
@@ -1600,6 +1622,7 @@ en:
         profile: My account
         public_profile: My public profile
         sign_out: Sign out
+        title: Profile links
       user_profile:
         account: Account
         authorizations: Authorizations

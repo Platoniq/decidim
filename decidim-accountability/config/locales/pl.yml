@@ -208,6 +208,8 @@ pl:
             label: Status
     components:
       accountability:
+        actions:
+          comment: Skomentuj
         name: Rozliczenie
         settings:
           global:
@@ -248,3 +250,5 @@ pl:
         result_project: Projekty uwzględnione w tym wyniku
       included_proposals:
         result_proposal: Propozycje uwzględnione w tym wyniku
+    statistics:
+      results_count: Wyniki

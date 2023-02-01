@@ -121,6 +121,16 @@ shared_examples "manage impersonations examples" do
       check_impersonation_logs
     end
 
+    it "redirects normally when session expires while reload" do
+      expect(Decidim::Admin::ExpireImpersonationJob).to have_been_enqueued.with(impersonated_user, user)
+      travel Decidim::ImpersonationLog::SESSION_TIME_IN_MINUTES.minutes / 2
+      visit current_path
+      travel Decidim::ImpersonationLog::SESSION_TIME_IN_MINUTES.minutes / 2 + 1.second
+      visit current_path
+      expect(page).to have_content("expired")
+      expect(page).to have_link("Impersonate")
+    end
+
     it "can impersonate again after an impersonation session expiration" do
       simulate_session_expiration
 
@@ -195,7 +205,7 @@ shared_examples "manage impersonations examples" do
 
         context "and no reason is provided" do
           it "prevents submissions and shows an error" do
-            expect(page).to have_content("You need to provide a reason when managing a non managed participant")
+            expect(page).to have_content("You need to provide a reason when managing a non-managed participant")
           end
         end
 

@@ -52,7 +52,7 @@ gl:
         target: Quen participa
         title: Título
         twitter: Twitter
-        weight: Peso
+        weight: Orde de posición
         youtube: YouTube
       assembly_member:
         birthday: Aniversario
@@ -262,6 +262,7 @@ gl:
       admin:
         assemblies:
           form:
+            announcement_help: O texto que insires aquí amosarase ao participante xusto debaixo da información da xuntanza.
             duration: Duración
             duration_help: Se a duración deste conxunto é limitada, seleccione a data de finalización. Se non, aparecerá como indefinido.
             filters: Filtros
@@ -380,38 +381,11 @@ gl:
         social_networks: Redes Sociais
         social_networks_title: Compartir esta xuntanza en
         target: Quen participa
-      statistics:
-        answers_count: Respostas
-        assemblies_count: Asembleas
-        comments_count: Comentarios
-        debates_count: Debates
-        endorsements_count: Aprobacións
-        followers_count: Seguidores
-        headline: Estatísticas
-        meetings_count: Reunións
-        no_stats: Aínda non hai estatísticas.
-        orders_count: Votos
-        pages_count: Páxinas
-        participants_count: Participantes
-        posts_count: Publicacións
-        processes_count: Procesos
-        projects_count: Proxectos
-        proposals_count: Propostas
-        results_count: Resultados
-        supports_count: Votos
-        surveys_count: Enquisas
-        users_count: Participantes
-        votes_count: Votos
     assembly_members:
       assembly_member:
         designated_on: Designado en
       index:
         title: Membros
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Ligazón á páxina de Conferencias que amosa todas as conferencias
     events:
       assemblies:
         create_assembly_member:
@@ -434,19 +408,11 @@ gl:
         description: Número de xuntanzas creadas
         object: xuntanzas
         title: Xuntanzas
-    pages:
-      home:
-        hero:
-          participate_title: Participar nos procesos da plataforma
-        sub_hero:
-          register_title: Rexistrarse para crear unha conta
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Ligazón á páxina de Procesos que amosa todas as procesos
       show:
         related_assemblies: Xuntanzas relacionadas
+    statistics:
+      assemblies_count: Xuntanzas
   errors:
     messages:
       cannot_be_blank: non pode estar baleiro

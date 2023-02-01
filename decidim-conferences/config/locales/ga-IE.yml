@@ -105,7 +105,6 @@ ga:
           fields:
             price: Praghas
             title: Teideal
-            weight: Meáchan
       partners:
         edit:
           update: Nuashonraigh
@@ -195,20 +194,6 @@ ga:
         details: Sonraí
         introduction: Réamhrá
         related_participatory_processes: Próisis Rannpháirteacha Ceangailte
-      statistics:
-        answers_count: Freagraí
-        comments_count: Tráchtanna
-        debates_count: Díospóireachtaí
-        endorsements_count: Formhuinithe
-        meetings_count: Cruinnithe
-        orders_count: Tacaíochtaí
-        pages_count: Leathanaigh
-        posts_count: Postálacha
-        projects_count: Tionscadail
-        proposals_count: Moltaí
-        results_count: Torthaí
-        surveys_count: Suirbhéanna
-        votes_count: Tacaíochtaí
   layouts:
     decidim:
       conference_hero:

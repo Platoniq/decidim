@@ -27,6 +27,7 @@ eu:
     components:
       debates:
         actions:
+          comment: Iruzkina
           create: Sortu
           endorse: Atxiki
         name: eztabaidak
@@ -235,3 +236,5 @@ eu:
         description: Sortutako eztabaida kopurua
         object: eztabaidak
         title: eztabaidak
+    statistics:
+      debates_count: Eztabaidak

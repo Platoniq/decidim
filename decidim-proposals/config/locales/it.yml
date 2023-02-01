@@ -35,6 +35,7 @@ it:
         origin_component_id: Componente per copiare le proposte da
       proposals_import:
         import_proposals: Importa proposte
+        keep_answers: Mantieni stato e risposte
         keep_authors: Mantieni gli autori originali
       valuation_assignment:
         admin_log:
@@ -47,7 +48,9 @@ it:
               invalid_document_type: 'Tipo di documento non valido. I formati accettati sono: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Necessita di essere riallegato
+            add_photos:
               needs_to_be_reattached: Necessita di essere riallegato
             body:
               cant_be_equal_to_template: non può essere uguale al modello
@@ -113,9 +116,11 @@ it:
       proposals:
         actions:
           amend: Modificare
+          comment: Commento
           create: Crea
           endorse: Sostieni
           vote: Vota
+          vote_comment: Vota per il commento
           withdraw: Ritirare
         name: Proposte
         settings:
@@ -711,7 +716,8 @@ it:
             one: "%{count} proposta"
             other: "%{count} proposte"
         dynamic_map_instructions:
-          instructions: <h3>Puoi spostare il punto sulla mappa. </h3><p>Non dimenticare di cliccare sul pulsante "Aggiorna posizione" prima di pubblicare la tua proposta.</p>
+          description: Le coordinate verranno aggiornate quando si fa clic sul pulsante 'Anteprima'. Tuttavia, l'indirizzo non cambia.
+          instructions: Puoi spostare il punto sulla mappa.
         edit:
           add_documents: Documenti
           add_images: File
@@ -783,7 +789,6 @@ it:
             other: Potrai modificare questa proposta durante i primi %{count} minuti dopo la pubblicazione della proposta. Una volta passato questo periodo, non sarai più in grado di modificare la proposta.
           publish: Pubblica
           title: Pubblica la tua proposta
-          update_position: Aggiorna posizione
         proposal:
           creation_date: 'Creazione: %{date}'
           view_proposal: Visualizza la proposta
@@ -900,3 +905,7 @@ it:
       included_proposals:
         proposal_project: 'Le proposte compaiono nei seguenti progetti:'
         proposal_result: 'Le proposte compaiono nei seguenti risultati:'
+    statistics:
+      proposals_accepted: Proposte accettate
+      proposals_count: Proposte
+      supports_count: Sostegni

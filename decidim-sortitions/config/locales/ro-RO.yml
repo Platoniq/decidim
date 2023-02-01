@@ -20,6 +20,8 @@ ro:
   decidim:
     components:
       sortitions:
+        actions:
+          comment: Comentează
         name: Trageri la sorți
         settings:
           global:
@@ -32,13 +34,6 @@ ro:
           email_outro: Ai primit această notificare deoarece urmărești „%{participatory_space_title}”. Poți anula abonarea de la link-ul anterior.
           email_subject: O nouă tragere la sorți a fost adăugată la %{participatory_space_title}
           notification_title: Tragerea la sorți <a href="%{resource_path}">%{resource_title}</a> a fost adăugată la %{participatory_space_title}
-    pages:
-      home:
-        statistics:
-          sortitions_count: Trageri la sorți
-    participatory_processes:
-      statistics:
-        sortitions_count: Trageri la sorți
     sortitions:
       admin:
         actions:
@@ -157,3 +152,5 @@ ro:
             one: 1 tragere la sorți
             few: "%{count} trageri la sorți"
             other: "%{count} trageri la sorți"
+    statistics:
+      sortitions_count: Trageri la sorți

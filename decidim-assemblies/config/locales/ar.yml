@@ -60,6 +60,7 @@ ar:
         full_name: الاسم الكامل
         gender: الجنس
         position: الموقع
+        user_id: مستخدم أو مجموعة
       assembly_user_role:
         email: البريد الإلكتروني
         name: الاسم
@@ -90,6 +91,7 @@ ar:
   decidim:
     admin:
       actions:
+        import_assembly: استيراد
         new_assembly: جمعية جديدة
         new_assembly_type: نوع جديد للجمعية
       assemblies:
@@ -129,6 +131,9 @@ ar:
           copy: نسخ
           select: حدد البيانات التي ترغب في تكرارها
           title: نسخ الجمعية
+      assembly_imports:
+        new:
+          import: استيراد
       assembly_members:
         create:
           error: حدثت مشكلة أثناء إضافة عضو لهذا التجميع.
@@ -172,6 +177,7 @@ ar:
           success: تم تحديث المشرف على هذه الجمعية بنجاح.
       menu:
         assemblies: الجمعيات
+        assemblies_settings: الإعدادات
         assemblies_submenu:
           assembly_admins: مدراء الجمعية
           assembly_members: الأعضاء
@@ -347,23 +353,6 @@ ar:
         scope: نطاق
         social_networks: شبكات التواصل الاجتماعي
         target: من يشارك
-      statistics:
-        answers_count: أجوبة
-        assemblies_count: الجمعيات
-        comments_count: تعليقات
-        debates_count: مناقشات
-        endorsements_count: موافقات
-        meetings_count: اجتماعات
-        orders_count: تأييدات
-        pages_count: صفحات
-        participants_count: مشارك
-        projects_count: مشاريع
-        proposals_count: اقتراحات
-        results_count: نتائج
-        supports_count: تأييدات
-        surveys_count: دراسات استقصائية
-        users_count: مشارك
-        votes_count: الدعم
     assembly_members:
       assembly_member:
         designated_on: المعينة على

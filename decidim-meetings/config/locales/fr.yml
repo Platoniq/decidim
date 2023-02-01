@@ -8,38 +8,44 @@ fr:
       close_meeting:
         attendees_count: Nombre de participants
         attending_organizations: Liste des organisations qui ont participé à cette rencontre
+        audio_url: URL de l'audio
         closing_report: Compte rendu
+        closing_visible: Est visible
         contributions_count: Nombre de contributions
         proposal_ids: Propositions élaborées lors de la rencontre
+        video_url: URL de la vidéo
       meeting:
         address: Adresse
         available_slots: Places disponibles pour cette rencontre
+        customize_registration_email: Personnaliser l'email d'inscription
         decidim_category_id: Catégorie
         decidim_scope_id: Périmètre d'application
         decidim_user_group_id: Groupe d'utilisateurs
         description: Description
         end_time: Date de fin
+        id: ID
         location: Lieu
         location_hints: Indicateurs d’emplacement
         online_meeting_url: URL de la rencontre
         organizer_gid: Créer en tant que
         organizer_id: Organisateur
         private_meeting: Rencontre privée
+        registration_email_custom_content: Contenu personnalisé de l'e-mail d'inscription
         registration_form_enabled: Formulaire d'inscription activé
         registration_terms: Conditions d'inscription
         registration_url: URL d'inscription
         registrations_enabled: Inscriptions ouvertes
+        show_embedded_iframe: Montrer l'iframe intégrée pour cette URL
         start_time: Heure de début
         title: Titre
         transparent: Visible par les non-membres
         type_of_meeting: Type
-      minutes:
-        audio_url: URL de l'audio
-        description: Description
-        video_url: URL de la vidéo
-        visible: Est visible
     errors:
       models:
+        meeting:
+          attributes:
+            show_embedded_iframe:
+              not_embeddable: Cette URL ne peut pas être intégrée
         meeting_agenda:
           attributes:
             base:
@@ -69,6 +75,34 @@ fr:
         other: Inscriptions
   decidim:
     admin:
+      filters:
+        meetings:
+          category_id_eq:
+            label: Catégorie
+          closed_at_present:
+            label: État
+            values:
+              'false': Ouvert
+              'true': Fermé
+          is_upcoming_true:
+            label: Date
+            values:
+              'false': Passées
+              'true': À venir
+          origin_eq:
+            label: Origine
+            values:
+              citizen: Participants
+              official: Officiel
+              user_group: Groupes d’utilisateurs
+          scope_id_eq:
+            label: Secteur
+          type_eq:
+            label: Type de rencontre
+            values:
+              hybrid: Hybride
+              in_person: En présentiel
+              online: En ligne
       meeting_copies:
         create:
           error: Une erreur s'est produite lors de la duplication de cette rencontre.
@@ -80,6 +114,7 @@ fr:
     components:
       meetings:
         actions:
+          comment: Commenter
           join: Rejoindre
         name: Rencontres
         settings:
@@ -90,6 +125,7 @@ fr:
             creation_enabled_for_participants: Les participants peuvent créer des rencontres
             default_registration_terms: Conditions d'inscription par défaut
             enable_pads_creation: Activer la création de pads
+            maps_enabled: Cartes activées
             registration_code_enabled: Code d'enregistrement activé
             resources_permissions_enabled: Les autorisations d'actions peuvent être définies pour chaque réunion
             scope_id: Secteur
@@ -105,46 +141,50 @@ fr:
         meeting_closed:
           affected_user:
             email_intro: 'La rencontre "%{resource_title}" est terminée. Vous pouvez lire les conclusions de la rencontre sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous avez organisé la réunion "%{resource_title}".
+            email_outro: Vous avez reçu cette notification parce que vous avez organisé la réunion "%{resource_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: La rencontre "%{resource_title}" est terminée
             notification_title: La rencontre <a href="%{resource_path}">%{resource_title}</a> est terminée.
           follower:
             email_intro: 'La rencontre "%{resource_title}" est terminée. Vous pouvez en lire le compte rendu sur sa page :'
-            email_outro: Vous avez reçu cette notification parce que vous suivez la réunion "%{resource_title}". Vous pouvez le désabonner du lien précédent.
+            email_outro: Vous avez reçu cette notification parce que vous suivez la réunion "%{resource_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: La rencontre "%{resource_title}" est terminée
             notification_title: La rencontre <a href="%{resource_path}">%{resource_title}</a> est terminée.
         meeting_created:
+          button_text: S'inscrire à la rencontre
           email_intro: La rencontre "%{resource_title}" a été ajoutée à "%{participatory_space_title}" que vous suivez.
-          email_outro: Vous avez reçu cette notification parce que vous suivez "%{participatory_space_title}". Vous pouvez arrêter le suivi à partir du lien précédent.
+          email_outro: Vous avez reçu cette notification parce que vous suivez "%{participatory_space_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Nouvelle rencontre ajoutée à %{participatory_space_title}
           notification_title: La rencontre <a href="%{resource_path}">%{resource_title}</a> a été ajoutée à %{participatory_space_title}
         meeting_registration_confirmed:
           notification_title: Votre inscription à la réunion <a href="%{resource_url}">%{resource_title}</a> a été confirmée. Votre code d'enregistrement est %{registration_code}.
         meeting_registrations_over_percentage:
           email_intro: Les places réservées pour la rencontre "%{resource_title}" dépassent %{percentage}%.
-          email_outro: Vous avez reçu cette notification parce que vous êtes administrateur de la concertation à laquelle est associée la rencontre.
+          email_outro: Vous avez reçu cette notification parce que vous êtes administrateur de la concertation à laquelle est associée la rencontre. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Les places réservées pour la rencontre "%{resource_title}" dépassent %{percentage}%
           notification_title: Les places réservées pour la rencontre <a href="%{resource_path}">%{resource_title}</a> dépassent %{percentage}%.
         meeting_updated:
           email_intro: 'La rencontre "%{resource_title}" a été mise à jour. Vous pouvez accéder aux modifications sur la page de la rencontre :'
-          email_outro: Vous avez reçu cette notification, car vous suivez la rencontre "%{resource_title}". Vous pouvez arrêter de la suivre à partir du lien précédent.
+          email_outro: Vous avez reçu cette notification, car vous suivez la rencontre "%{resource_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: La rencontre "%{resource_title}" a été mise à jour
           notification_title: La rencontre <a href="%{resource_path}">%{resource_title}</a> a été mise à jour.
         registration_code_validated:
           email_intro: Votre code d'enregistrement "%{registration_code}" pour la réunion "%{resource_title}" a été validé.
-          email_outro: Vous avez reçu cette notification parce que votre code d'enregistrement pour la réunion "%{resource_title}" a été validé.
+          email_outro: Vous avez reçu cette notification parce que votre code d'enregistrement pour la réunion "%{resource_title}" a été validé. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Votre code d'enregistrement "%{registration_code}" pour la réunion "%{resource_title}" a été validé
           notification_title: Votre code d'enregistrement "%{registration_code}" pour la réunion <a href="%{resource_path}">%{resource_title}</a> a été validé.
         registrations_enabled:
           email_intro: 'Les inscriptions pour la rencontre "%{resource_title}" sont ouvertes. Vous pouvez vous inscrire sur sa page :'
-          email_outro: Vous avez reçu cette notification, car vous suivez la rencontre "%{resource_title}". Vous pouvez arrêter de la suivre à partir du lien précédent.
+          email_outro: Vous avez reçu cette notification, car vous suivez la rencontre "%{resource_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Les inscriptions pour la rencontre "%{resource_title}" sont ouvertes.
           notification_title: Les inscriptions pour la rencontre <a href="%{resource_path}">%{resource_title}</a> sont ouvertes.
         upcoming_meeting:
           email_intro: La rencontre "%{resource_title}" commencera dans moins de 48h.
-          email_outro: Vous avez reçu cette notification, car vous suivez la rencontre "%{resource_title}". Vous pouvez arrêter de la suivre à partir du lien précédent.
+          email_outro: Vous avez reçu cette notification, car vous suivez la rencontre "%{resource_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: La rencontre "%{resource_title}" commencera dans moins de 48h.
           notification_title: La rencontre <a href="%{resource_path}">%{resource_title}</a> débutera dans moins de 48h.
+    forms:
+      meetings:
+        attendees_count_help_text: N’oubliez pas d’inclure le nombre total de participants à votre événement, que ce soit en présentiel, en ligne ou en hybride.
     gamification:
       badges:
         attended_meetings:
@@ -170,7 +210,7 @@ fr:
           proposals_count:
             one: 'La rencontre ne peut être supprimée car %{count} proposition y est rattachée:'
             other: 'La rencontre ne peut être supprimée car %{count} propositions y sont rattachées:'
-        minutes: Compte rendu
+        manage_poll: Gérer le sondage
         new: Nouvelle rencontre
         preview: Aperçu
         registrations: Inscriptions
@@ -207,6 +247,7 @@ fr:
             invalid: Un problème est survenu lors de la mise à jour de cet ordre du jour
             success: Ordre du jour mis à jour avec succès
         exports:
+          answers: Réponses
           meeting_comments: Commentaires
           meetings: Rencontres
           registrations: Inscriptions
@@ -241,13 +282,16 @@ fr:
           edit:
             close: Clore
             title: Clore la rencontre
+        meeting_copies:
+          form:
+            select_a_meeting_type: Veuillez sélectionner un type de rencontre
         meetings:
           close:
             invalid: Il y a eu un problème au moment de clore cette rencontre
             success: Rencontre close avec succès
           create:
             invalid: Il y a eu un problème lors de la création de cette rencontre
-            success: Rencontre créée avec succès
+            success: Rencontre créée avec succès. Notez que celle-ci n'est pas encore publiée, vous devez la publier manuellement.
           destroy:
             invalid:
               proposals_count:
@@ -264,14 +308,19 @@ fr:
             location_help: 'Le lieu indique le nom de l''endroit qui accueille la réunion (ex : Maison de la citoyenneté)'
             location_hints_help: 'Indices de localisation : informations complémentaires. Exemple: l''étage du bâtiment s''il s''agit d''une réunion en personne, ou le mot de passe de la réunion s''il s''agit d''une réunion en ligne avec accès restreint.'
             online_meeting_url_help: 'Lien : permet aux participants de se connecter directement à votre réunion'
+            registration_email_help: Ce texte apparaîtra au centre de l'e-mail de confirmation d'inscription, juste après le code d'inscription.
             registration_url_help: 'Lien : permet aux participants de partir sur le service externe que vous utilisez pour les inscriptions'
             select_a_meeting_type: Veuillez sélectionner un type de rencontre
             select_a_registration_type: Veuillez sélectionner un type d'inscription
+            show_embedded_iframe_help: Intégrer ou non l'iframe correspondant à cette URL de vidéoconférence. Seuls quelques services permettent l'intégration (c.-à-d. Youtube, Twitch...)
           index:
             title: Rencontres
           new:
             create: Créer
             title: Créer une rencontre
+          publish:
+            invalid: Une erreur s'est produite lors de la publication de la rencontre
+            success: Rencontre publiée avec succès
           service:
             description: Description
             down: Vers le bas
@@ -282,22 +331,18 @@ fr:
           services:
             add_service: Ajouter un service
             services: Services
+          unpublish:
+            invalid: Une erreur s'est produite lors de la dépublication de la rencontre
+            success: Rencontre dépubliée avec succès
           update:
             invalid: Il y a eu un problème lors de la mise à jour de cette rencontre
             success: Rencontre mise à jour avec succès
-        minutes:
-          create:
-            invalid: Un problème est survenu lors de la création de ce compte rendu
-            success: Compte rendu créé avec succès
-          edit:
-            title: Modifier le compte-rendu
-            update: Mettre à jour
-          new:
-            create: Créer
-            title: Créer un compte rendu
+        meetings_poll:
+          form:
+            title: Modifier le questionnaire de sondage pour %{questionnaire_for}
           update:
-            invalid: Un problème est survenu lors de la mise à jour de ce compte rendu
-            success: Compte rendu mis à jour avec succès
+            invalid: Une erreur s'est produite lors de la mise à jour du sondage de la rencontre
+            success: Sondage de rencontre mis à jour avec succès
         models:
           meeting:
             name: Rencontre
@@ -337,9 +382,6 @@ fr:
           value_types:
             organizer_presenter:
               not_found: 'L''organisateur n''a pas été trouvé dans la base de données (ID: %{id})'
-        minutes:
-          create: "%{user_name} a créé le compte rendu de la rencontre %{resource_name} sur l'espace %{space_name}"
-          update: "%{user_name} a mis à jour le compte rendu de la rencontre %{resource_name} sur l'espace %{space_name}"
       calendar_modal:
         calendar_url: URL du calendrier
         close_window: Fermer la fenêtre
@@ -361,8 +403,13 @@ fr:
             space_type: Espace participatif
             upcoming: À venir
       last_activity:
-        meeting_updated_at_html: "<span>Débat mis à jour à %{link}</span>"
+        meeting_updated_at_html: "<span>Rencontre mise à jour à %{link}</span>"
         new_meeting_at_html: "<span>Nouvelle rencontre dans %{link}</span>"
+      layouts:
+        live_event:
+          administrate: Administrer
+          close: fermer
+          questions: Questions
       mailer:
         invite_join_meeting_mailer:
           invite:
@@ -378,6 +425,13 @@ fr:
           close: Clore la rencontre
           title: Clore la rencontre
       meetings:
+        calendar_modal:
+          add_to_calendar: Ajouter au calendrier
+          apple: Ajouter au calendrier Apple
+          close_window: Fermer la fenêtre
+          full_details_html: Pour plus de détails, cliquez sur %{link}
+          google: Ajouter au calendrier Google
+          outlook: Ajouter au calendrier Outlook
         count:
           meetings_count:
             one: "%{count} rencontre"
@@ -430,10 +484,10 @@ fr:
           select_a_category: Veuillez sélectionner une catégorie
           select_a_meeting_type: Veuillez sélectionner un type de rencontre
           select_a_registration_type: Veuillez sélectionner un type d'inscription
+          show_embedded_iframe_help: Intégrer ou non l'iframe correspondant à cette URL de vidéoconférence. Seuls quelques services permettent l'intégration (c.-à-d. Youtube, Twitch...)
         index:
           new_meeting: Nouvelle rencontre
         meeting_minutes:
-          meeting_minutes: Comptes rendus des rencontres
           related_information: Informations liées
         meetings:
           no_meetings_warning: Aucune rencontre ne correspond à vos critères de recherche ou aucune rencontre n'est prévue.
@@ -452,9 +506,15 @@ fr:
           contributions: Décompte des contributions
           date: Date
           edit_meeting: Modifier la rencontre
-          going: J'y vais
+          going: Vous vous êtes inscrit à cette rencontre
           join: Participer à la rencontre
-          meeting_report: Compte rendu de la rencontre
+          leave: Annuler votre inscription
+          leave_confirmation: Êtes-vous sûr de vouloir annuler votre inscription à cette rencontre ?
+          link_available_soon: Lien bientôt disponible
+          link_closed: Le lien pour rejoindre la réunion sera disponible quelques minutes avant le début de la réunion
+          live_event: Cette réunion se déroule en ce moment
+          meeting_minutes: Comptes rendus des rencontres
+          micro_camera_permissions_warning: Lorsque vous cliquez sur le bouton ci-dessous, on vous demandera des autorisations de microphone et/ou de caméra, et vous rejoindrez la vidéoconférence
           no_slots_available: Il ne reste plus de place
           organizations: Organisations participantes
           registration_code_help_text: Votre code d'inscription
@@ -465,6 +525,7 @@ fr:
             one: "Il reste %{count} place"
             other: "Il reste %{count} places"
           view: Voir
+          visit_finished: Consulter l’historique des rencontres
         update:
           invalid: Une erreur s'est produite lors de la mise à jour de la rencontre.
           success: La rencontre a été mise à jour avec succès.
@@ -485,10 +546,36 @@ fr:
           fields:
             closed: Fermée
             end_time: Date de fin
+            id: Id
             map: Carte
             official_meeting: Rencontre officielle
             start_time: Date de début
             title: Titre
+      polls:
+        questions:
+          closed_question:
+            question_results: Résultats du sondage
+          index:
+            empty_questions: Tout au long de cette rencontre, certaines questions seront envoyées et vous pourrez y répondre. Elles seront affichées ici.
+          index_admin:
+            admin_dashboard: Administration du sondage
+            edit: Modifier le sondage dans le panneau d'administration (attention, une fois qu'une question a commencé à recevoir des réponses, vous ne pouvez plus modifier le sondage)
+            question: Question
+            received_answer: réponse reçue
+            received_answers: réponses reçues
+            results: Résultats
+            send: Publier
+            sent: Publiée
+          published_question:
+            max_choices_alert: Vous avez sélectionné trop de choix
+            question: Question
+            question_replied: Réponse envoyée
+            reply_question: Répondre
+      public_participants_list:
+        attending_participants: Participants présents
+        hidden_participants_count:
+          one: et %{count} personne de plus
+          other: et %{count} personnes de plus
       read_more: "(Voir la suite)"
       registration_mailer:
         confirmation:
@@ -537,6 +624,8 @@ fr:
       proposals_from_meeting:
         meeting_proposal: 'Propositions créées lors de cette rencontre :'
         proposal_meeting: 'Rencontres associées :'
+    statistics:
+      meetings_count: Rencontres
   devise:
     mailer:
       join_meeting:

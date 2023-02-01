@@ -3,33 +3,33 @@ lb:
     attributes:
       area:
         area_type: Bereichstyp
-        name: Numm
-        organization: Organisatioun
+        name: Name
+        organization: Organisation
       area_type:
-        name: Numm
-        organization: Organisatioun
+        name: Name
+        organization: Organisation
         plural: Plural
       attachment:
-        attachment_collection_id: Dossier
-        description: Beschreiwung
+        attachment_collection_id: Verzeichnis
+        description: Beschreibung
         file: Datei
         title: Anhang oder Bildname
       attachment_collection:
-        description: Beschreiwung
-        name: Numm
+        description: Beschreibung
+        name: Name
       category:
-        description: Beschreiwung
-        name: Numm
+        description: Beschreibung
+        name: Name
         parent_id: Übergeordnete Kategorie
       component:
-        name: Numm
+        name: Name
         published_at: Veröffentlicht unter
-        weight: Reihenfolge
+        weight: Bestellposition
       id: ID
       import:
         user_group_id: Importierte Inhalte erstellen als
       newsletter:
-        body: Haapttext
+        body: Haupttext
         subject: Betreff
       organization:
         admin_terms_of_use_body: Körper für die Admin-Nutzungsbedingungen
@@ -41,13 +41,14 @@ lb:
         cta_button_text: Call To Action Schaltfläche Text
         customize_welcome_notification: Willkommens-Benachrichtigung anpassen
         default_locale: Standardgebietsschema
-        description: Beschreiwung
+        description: Beschreibung
         enable_omnipresent_banner: Zeige allgegenwärtiges Banner
+        enable_participatory_space_filters: Bereichs- und Gebietsfilter aktivieren
         facebook_handler: Facebook-Handler
         favicon: Icon
         force_authentication: Authentifizierung erzwingen
         force_users_to_authenticate_before_access_organization: Benutzer müssen sich authentifizieren bevor sie auf die Organisation zugreifen können
-        from: Absender E-Mail
+        from: E-Mail-Adresse des Absenders
         github_handler: GitHub-Handler
         header_snippets: Header-Snippets
         highlight_alternative_color: Hervorhebung, Alternative
@@ -65,7 +66,7 @@ lb:
         machine_translation_display_priority: Priorität der maschinellen Übersetzung
         machine_translation_display_priority_original: Originaltext zuerst
         machine_translation_display_priority_translation: Übersetzter Text zuerst
-        name: Numm
+        name: Name
         official_img_footer: Offizielles Logo Fußzeile
         official_img_header: Offizieller Logo-Header
         official_url: Offizielle Organisations-URL
@@ -112,12 +113,12 @@ lb:
         show_in_footer: In der Fußzeile anzeigen
         slug: URL-Block
         title: Titel
-        weight: Gewicht
+        weight: Bestellposition
       static_page_topic:
         description: Beschreibung
         show_in_footer: In der Fußzeile anzeigen
         title: Titel
-        weight: Reihenfolge
+        weight: Bestellposition
       user_group_csv_verification:
         file: Datei
     errors:
@@ -157,7 +158,8 @@ lb:
         browse: Durchsuchen
         category:
           new: Neue Kategorie
-        export: Exportéieren
+        export: Alles exportéieren
+        export-selection: Export Auswiel
         import: Importieren
         manage: Verwalten
         new: Neu %{name}
@@ -178,12 +180,12 @@ lb:
           success: Super! Sie haben die Admin-Nutzungsbedingungen akzeptiert.
         actions:
           accept: Ich stimme den folgenden Bedingungen zu
-          are_you_sure: Sind Sie sicher, dass Sie die Admin-Nutzungsbedingungen ablehnen möchten?
+          are_you_sure: Sidd Dir sécher datt Dir d'Admin Benotzungsconditioune wëllt refuséieren? Sidd Dir sécher datt Dir d'Admin Notzungsbedéngunge refuséiere wëllt?
           refuse: Die Admin-Nutzungsbedingungen ablehnen
           title: Den Admin-Nutzungsbedingungen zustimmen
         required_review:
           alert: 'Erforderlich: Überprüfen Sie unsere Admin-Nutzungsbedingungen'
-          callout: Bitte nehmen Sie sich einen Moment Zeit, um die Admin-Nutzungsbedingungen zu lesen. Ansonsten können Sie die Plattform nicht administrieren.
+          callout: Huelt e Moment fir d'Admin Benotzungsconditiounen ze iwwerpréiwen. Soss kënnt Dir d'Plattform net managen
           cta: Lesen Sie sie jetzt.
         title: Admin-Nutzungsbedingungen
       area_types:
@@ -206,7 +208,7 @@ lb:
           error: Beim Erstellen eines neuen Bereichs ist ein Fehler aufgetreten.
           success: Bereich wurde erfolgreich erstellt.
         destroy:
-          has_spaces: Dieser Bereich hat abhängige Abschnitte. Es darf keine Abhängigkeiten geben, um gelöscht zu werden.
+          has_spaces: Dëse Beräich huet ofhängeg Plazen. Gitt w.e.g. sécher datt kee Participatiounsraum dëst Gebitt bezitt ier Dir et läscht
           success: Bereich wurde erfolgreich zerstört
         edit:
           title: Bereich bearbeiten
@@ -259,7 +261,7 @@ lb:
       block_user:
         new:
           action: Konto sperren und Begründung senden
-          description: Das Blockieren eines Benutzers wird sein Konto unbrauchbar machen. Sie können begründen und Richtlinien dafür bieten, wie der Benutzer vorgehen könnte, damit Sie in Betracht ziehen, die Blockierung wieder aufzuheben.
+          description: Das Sperren eines Benutzers macht sein Konto unbrauchbar. Sie können in Ihrer Begründung alle Richtlinien zur Entsperrung des Benutzers angeben.
           justification: Begründung
           title: Benutzer %{name} blockieren
       categories:
@@ -322,7 +324,7 @@ lb:
         'false': 'Nein'
         managed_user_name: Verwalteter Benutzer
         solved: Gelöst
-        title: Konflikte von Überprüfungen
+        title: "Überprüfungskonflikte\n\n"
         transfer:
           email: E-Mail
           error: Es gab ein Problem bei der Übertragung des aktuellen Teilnehmers zu den verwalteten Teilnehmern.
@@ -336,6 +338,12 @@ lb:
         show:
           view_more_logs: Weitere Protokolle anzeigen
           welcome: Willkommen im Decidim Admin Panel.
+      domain_whitelist:
+        form:
+          domain_too_short: Domain zu kurz
+        update:
+          error: Domain-Whitelist konnte nicht aktualisiert werden
+          success: Domain-Whitelist erfolgreich aktualisiert
       exports:
         export_as: "%{name} als %{export_format}"
         formats:
@@ -348,6 +356,16 @@ lb:
         category_id_eq:
           label: Kategorie
         filter_label: Filtern
+        invitation_accepted_at_present:
+          label: Einladung angenommen
+          values:
+            'false': 'Nein'
+            'true': 'ja'
+        last_sign_in_at_present:
+          label: Schon mal eingeloggt
+          values:
+            'false': 'Nee'
+            'true': 'Ja'
         moderations:
           reportable_type_string_eq:
             label: Art
@@ -356,6 +374,17 @@ lb:
           values:
             'false': Offizialisiert
             'true': Nicht offiziell
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Einladung akzeptiert
+            values:
+              'false': Nicht akzeptiert
+              'true': Akzeptiert
+          user_invitation_sent_at_not_null:
+            label: Einladung versendet
+            values:
+              'false': Nicht versendet
+              'true': Versendet
         private_space_eq:
           label: Privat
           values:
@@ -373,13 +402,14 @@ lb:
           name_or_nickname_or_email_cont: Suche in %{collection} nach E-Mail, Name oder Benutzername.
           reported_id_string_or_reported_content_cont: Suche %{collection} nach meldbarer Id oder Inhalt.
           title_cont: In %{collection} nach Titel suchen.
+          user_name_or_user_email_cont: In %{collection} nach Name oder E-Mail suchen.
         state_eq:
           label: Bundesland
       forms:
         file_help:
           import:
             explanation: 'Hinweise für die Datei:'
-            message_1: CSV, JSON und Excel (.xls) Dateien werden unterstützt
+            message_1: CSV, JSON und Excel (.xlsx) Dateien werden unterstützt
             message_2: Bei CSV-Dateien muss das Trennzeichen zwischen den Spalten ein Semikolon sein (";")
       help_sections:
         error: Beim Aktualisieren der Hilfeabschnitte ist ein Fehler aufgetreten
@@ -431,7 +461,6 @@ lb:
           accepted_mime_types:
             csv: CSV
             json: JSON
-            xls: xls
           actions:
             back: Zurück
           file_legend: Datei zum Importieren hinzufügen.
@@ -457,6 +486,7 @@ lb:
         areas: Bereiche
         configuration: Aufbau
         dashboard: Instrumententafel
+        external_domain_whitelist: Erlaabt extern Domainen
         help_sections: Hilfeabschnitte
         homepage: Startseite
         impersonations: Identitätswechsel
@@ -605,7 +635,7 @@ lb:
       newsletters:
         create:
           error: Beim Erstellen dieses Newsletters ist ein Fehler aufgetreten.
-          success: Newsletter erfolgreich erstellt Bitte, überprüfen Sie es vor dem Senden.
+          success: "Newsletter erfolgreich erstellt. Bitte überprüfen Sie es vor dem Senden\n\n"
         deliver:
           error: Beim Versand dieses Newsletters ist ein Fehler aufgetreten.
           success: Newsletter erfolgreich geliefert
@@ -688,12 +718,12 @@ lb:
           title: Benutzer "%{name}" offiziellisieren
         show_email_modal:
           close_modal: Modal schließen
-          description: Wenn Sie einen Teilnehmer direkt kontaktieren möchten, können Sie auf die Schaltfläche "Anzeigen" klicken, um die E-Mail-Adresse zu sehen. Diese Aktion wird protokolliert.
+          description: Wann Dir en Participant direkt kontaktéiere musst, kënnt Dir op de Show Knäppchen klickt fir hir E -Mail Adress ze gesinn. Dës Aktioun gëtt protokolléiert.
           email_address: E-Mail-Adresse
           full_name: Voller Name
           hidden: versteckt
           show: Anzeigen
-          title: Teilnehmer E-Mail-Adresse anzeigen
+          title: Weist dem E -Mail Adress vum Participant
         unblock:
           error: Beim Blockieren des Teilnehmers ist ein Fehler aufgetreten
           success: Blockierung des Teilnehmers wurde erfolgreich aufgehoben
@@ -728,6 +758,17 @@ lb:
             layout_appearance_title: Layout-Layout bearbeiten
             preview: Vorschau
           omnipresent_banner_appearance_title: Bearbeiten Sie das allgegenwärtige Banner
+      organization_external_domain_whitelist:
+        edit:
+          update: Aktualiséieren
+        external_domain:
+          down: Runter
+          external_domain: Externe Domäne
+          remove: Löschen
+          up: Hoch
+        form:
+          add: Zur Whitelist hinzufügen
+          title: Whitelist für externe Domains
       organization_homepage:
         edit:
           active_content_blocks: Aktive Inhaltsblöcke
@@ -873,7 +914,7 @@ lb:
         static_pages: Seiten
         statistics: Aktivität
         user_groups: Benutzergruppen
-        users: Benutzer
+        users: Teilnehmer
       user_group:
         csv_verify:
           invalid: Beim Lesen der CSV-Datei ist ein Fehler aufgetreten.
@@ -929,7 +970,7 @@ lb:
     forms:
       errors:
         impersonate_user:
-          reason: Sie müssen einen Grund angeben, wenn Sie sich als nicht verwalteter Benutzer ausgeben
+          reason: Sie müssen einen Grund angeben, wenn Sie einen nicht verwalteten Teilnehmer verwalten
     metrics:
       blocked_users:
         object: blockierte Benutzer

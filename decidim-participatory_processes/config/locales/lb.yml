@@ -34,7 +34,7 @@ lb:
         subtitle: Ënnertitel
         target: Wer nimmt teil
         title: Titel
-        weight: Gewicht
+        weight: Bestellposition
       participatory_process_group:
         description: Beschreibung
         developer_group: Gruppe der Unterstützer
@@ -270,25 +270,8 @@ lb:
         start_date: Ufanksdatum
         target: Wer nimmt teil
         unspecified: Keine Angabe
-      statistics:
-        answers_count: Antworten
-        comments_count: Bemerkungen
-        debates_count: Debatten
-        endorsements_count: Empfehlungen
-        followers_count: Follower
-        headline: Aktivität
-        meetings_count: Meetings
-        no_stats: Es gibt noch keine Statistiken.
-        orders_count: Votten
-        pages_count: Säiten
-        participants_count: Benotzer
-        processes_count: Beteiligungsprozesse
-        projects_count: Projeten
-        proposals_count: Virschléi
-        results_count: Resultater
-        supports_count: Votten
-        surveys_count: Emfroen
-        users_count: Benotzer
+    statistics:
+      processes_count: Bedeelegungsprozesser
   layouts:
     decidim:
       participatory_process_groups:

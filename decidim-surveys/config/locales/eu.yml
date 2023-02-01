@@ -49,6 +49,8 @@ eu:
         description: Erabiltzaileek emandako inkesta kopurua
         object: inkestak erantzunak
         title: Inkesten erantzunak
+    statistics:
+      answers_count: Erantzunak
     surveys:
       admin:
         exports:

@@ -205,6 +205,8 @@ en:
             label: Status
     components:
       accountability:
+        actions:
+          comment: Comment
         name: Accountability
         settings:
           global:
@@ -245,3 +247,5 @@ en:
         result_project: Projects included in this result
       included_proposals:
         result_proposal: Proposals included in this result
+    statistics:
+      results_count: Results

@@ -19,6 +19,8 @@ fr:
   decidim:
     components:
       sortitions:
+        actions:
+          comment: Commenter
         name: Tirages au sort
         settings:
           global:
@@ -28,16 +30,9 @@ fr:
       sortitions:
         sortition_created:
           email_intro: Le tirage au sort "%{resource_title}" a été ajouté à "%{participatory_space_title}" que vous suivez.
-          email_outro: Vous avez reçu cette notification car vous suivez "%{participatory_space_title}". Vous pouvez à tout moment ne plus suivre cet espace participatif en cliquant sur le lien précédent.
+          email_outro: Vous avez reçu cette notification car vous suivez "%{participatory_space_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Un nouveau tirage au sort vient d'être ajouté à %{participatory_space_title}
           notification_title: Le tirage au sort <a href="%{resource_path}">%{resource_title}</a> a été ajouté à %{participatory_space_title}
-    pages:
-      home:
-        statistics:
-          sortitions_count: Tirages au sort
-    participatory_processes:
-      statistics:
-        sortitions_count: Tirages au sort
     sortitions:
       admin:
         actions:
@@ -151,3 +146,5 @@ fr:
           count:
             one: 1 tirage au sort
             other: "%{count} tirages au sort"
+    statistics:
+      sortitions_count: Tirages au sort

@@ -19,6 +19,10 @@ eu:
       comments:
         create:
           error: Arazoa gertatu da iruzkina sortzean.
+        delete:
+          error: Iruzkina ezin izan da ezabatu.
+        update:
+          error: Arazoa gertatu da iruzkina eguneratzean.
       comments_count: Iruzkin kopurua
       comments_title: Iruzkinak
       last_activity:
@@ -39,7 +43,13 @@ eu:
           user_group_id:
             label: 'Egin iruzkina honako honen gisa:'
         opinion:
+          label: Zure iritzia gai honi buruz
+          negative: Negatiboa
+          negative_selected: Zure iritzia gai honi buruz negatiboa da
           neutral: Neutrala
+          neutral_selected: Zure iritzia gai honi buruz neutroa da
+          positive: Positiboa
+          positive_selected: Zure iritzia gai honi buruz positiboa da
         remaining_characters: "%{count} karaktere geratzen dira"
         remaining_characters_1: "karaktere %{count} geratzen da"
         title: Egin hemen zure iruzkina
@@ -47,7 +57,12 @@ eu:
         alignment:
           against: Aurka
           in_favor: Alde
+        confirm_destroy: Ziur zaude iruzkin hau ezabatu nahi duzula?
+        delete: Ezabatu
+        deleted_at: Iruzkina ezabatu da data honetan %{date}
         deleted_user: Erabiltzaile ezabatua
+        edit: Editatu
+        edited: Editatuta
         hide_replies: Ezkutatu erantzunak
         reply: Erantzuna
         report:
@@ -62,7 +77,7 @@ eu:
             spam: Bertan badago clickbait-ik, publizitaterik edo iruzurrik.
           title: Jakinarazi eduki desegokia
         show_replies: Erakutsi %{replies_count} erantzun
-        single_comment_link_title: Lortu lotura iruzkin bakar baterako
+        single_comment_link_title: Lortu lotura
       comment_order_selector:
         order:
           best_rated: Balorazio hoberenak
@@ -73,6 +88,7 @@ eu:
       comment_thread:
         title: 'Solasaldia honekin: %{authorName}'
       comments:
+        blocked_comments_for_unauthorized_user_warning: Egiaztatuta egon behar zara momentu honetan iruzkina egiteko, baina aurreko iruzkinak irakur ditzakezu.
         blocked_comments_for_user_warning: Oraindik ez duzu iruzkinik egin, baina aurrekoak irakurri ditzakezu.
         blocked_comments_warning: Iruzkinak desgaituta daude une honetan, baina aurrekoak irakur ditzakezu.
         comment_details_title: Iruzkinaren xehetasunak
@@ -81,6 +97,14 @@ eu:
         single_comment_warning_title: Iruzkin bakar bat ikusten ari zara
       down_vote_button:
         text: Ez nago ados iruzkin honekin
+      edit_comment_modal_form:
+        close: Itxi
+        form:
+          body:
+            label: Iruzkina
+            placeholder: Zer deritzozu honi?
+          submit: Bidali
+        title: Editatu zure iruzkina
       up_vote_button:
         text: Ados nago iruzkin honekin
     events:

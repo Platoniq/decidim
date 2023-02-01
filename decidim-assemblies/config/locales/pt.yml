@@ -52,7 +52,7 @@ pt:
         target: Quem participa
         title: Título
         twitter: Twitter
-        weight: Peso
+        weight: Posição de ordenamento
         youtube: Youtube
       assembly_member:
         birthday: Aniversário
@@ -63,7 +63,7 @@ pt:
         full_name: Nome completo
         gender: Género
         position: Posição
-        user_id: Utilizador
+        user_id: Utilizador ou grupo
       assembly_user_role:
         email: E-mail
         name: Nome
@@ -262,6 +262,7 @@ pt:
       admin:
         assemblies:
           form:
+            announcement_help: O texto que introduzir aqui será mostrado ao utilizador imediatamente abaixo da informação sobre a reunião.
             duration: Duração
             duration_help: Se a duração desta reunião for limitada, selecione a data final. Caso contrário, aparecerá como indefinida.
             filters: Filtros
@@ -381,38 +382,11 @@ pt:
         social_networks: Redes sociais
         social_networks_title: Partilhar esta reunião em
         target: Quem participa
-      statistics:
-        answers_count: Respostas
-        assemblies_count: Reuniões
-        comments_count: Comentários
-        debates_count: Debates
-        endorsements_count: Endossos
-        followers_count: Seguidores
-        headline: Estatísticas
-        meetings_count: Reuniões
-        no_stats: Ainda não há estatísticas.
-        orders_count: Votos
-        pages_count: Páginas
-        participants_count: Participantes
-        posts_count: Publicações
-        processes_count: Processos
-        projects_count: Projetos
-        proposals_count: Propostas
-        results_count: Resultados
-        supports_count: Votos
-        surveys_count: Inquéritos
-        users_count: Participantes
-        votes_count: Votos
     assembly_members:
       assembly_member:
         designated_on: Designado em
       index:
         title: Membros
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Ligação para a página de Conferências que apresenta todas as conferências
     events:
       assemblies:
         create_assembly_member:
@@ -445,19 +419,11 @@ pt:
         description: Número de reuniões criadas
         object: reuniões
         title: Reuniões
-    pages:
-      home:
-        hero:
-          participate_title: Participar nos processos da plataforma
-        sub_hero:
-          register_title: Registe-se para criar conta
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Hiperligação para a página de Processos que apresenta todos os processos
       show:
         related_assemblies: Reuniões relacionadas
+    statistics:
+      assemblies_count: Reuniões
   errors:
     messages:
       cannot_be_blank: não pode estar em branco

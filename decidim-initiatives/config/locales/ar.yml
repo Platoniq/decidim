@@ -66,6 +66,8 @@ ar:
       actions:
         new_initiative_type: نوع المبادرة الجديدة
       menu:
+        components: المكونات
+        information: معلومات
         initiatives: المبادرات
         initiatives_types: أنواع المبادرة
       models:
@@ -299,6 +301,8 @@ ar:
           email_outro: لقد تلقيت هذا الإشعار لأنك تتابع %{author_nickname}. يمكنك إيقاف تلقي الإخطارات باتباع الرابط السابق.
           email_subject: المبادرة التي أقرتها %{author_nickname}
           notification_title: تمت الموافقة على مبادرة <a href="%{resource_path}">%{resource_title}</a> من قبل <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+      form:
+        attachment_legend: "(اختياري) إضافة مرفقات"
       index:
         title: المبادرات
       initiative_signatures:
@@ -378,6 +382,8 @@ ar:
           recent: الأحدث
         print:
           city: مدينة
+          initiative:
+            description: 'الوصف:'
         result:
           initiative_rejected_reason: تم رفض هذه المبادرة بسبب افتقارها للتوقيعات.
         show:
@@ -439,11 +445,6 @@ ar:
           vote: إشارة
   layouts:
     decidim:
-      admin:
-        initiative:
-          committee_members: أعضاء اللجنة
-          components: المكونات
-          information: معلومات
       initiative_creation_header:
         back: الى الخلف
         fill_data: إنشاء

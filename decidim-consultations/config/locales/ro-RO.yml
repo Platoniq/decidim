@@ -124,6 +124,8 @@ ro:
           questions: Întrebări
           results: Rezultate
         questions_submenu:
+          attachments: Atașamente
+          categories: Categorii
           components: Componente
           configuration: Configurare
           consultation: Consultare
@@ -334,10 +336,6 @@ ro:
           title: Ce sunt consultările?
     menu:
       consultations: Consultări
-    pages:
-      home:
-        statistics:
-          consultations_count: Consultări
     questions:
       next_button: Următoarea întrebare
       previous_button: Întrebarea precedentă
@@ -371,13 +369,13 @@ ro:
     resources:
       consultations:
         actions:
+          comment: Comentează
           vote: Votează
+    statistics:
+      consultations_count: Consultări
+      votes_count: Voturi
   layouts:
     decidim:
-      admin:
-        question:
-          attachments: Atașamente
-          categories: Categorii
       consultation_voting_data:
         start_voting_date: Votarea începe
       question_components:

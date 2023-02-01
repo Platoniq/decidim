@@ -27,6 +27,7 @@ pt:
     components:
       debates:
         actions:
+          comment: Comentários
           create: Criar
           endorse: Apoiar
         name: Debates
@@ -235,3 +236,5 @@ pt:
         description: Número de debates criados
         object: debates
         title: Debates
+    statistics:
+      debates_count: Debates

@@ -28,6 +28,7 @@ ro:
     components:
       debates:
         actions:
+          comment: Comentează
           create: Creează
           endorse: Susține
         name: Dezbateri
@@ -237,3 +238,5 @@ ro:
         description: Numărul de dezbateri create
         object: dezbateri
         title: Dezbateri
+    statistics:
+      debates_count: Dezbateri

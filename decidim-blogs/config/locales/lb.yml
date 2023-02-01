@@ -15,6 +15,7 @@ lb:
         edit: Bearbeiten
         new: Neuer Beitrag
         title: Aktionen
+        user_group_id: Beitrag erstellen als
       admin:
         models:
           components:
@@ -76,10 +77,3 @@ lb:
           email_outro: Sie haben diese Benachrichtigung erhalten, weil Sie "%{participatory_space_title}" folgen. Falls Sie keine solchen Benachrichtigungen mehr erhalten möchten, besuchen Sie den obigen Link.
           email_subject: Neuer Beitrag in %{participatory_space_title}
           notification_title: Der Beitrag <a href="%{resource_path}">%{resource_title}</a> wurde in %{participatory_space_title} veröffentlicht
-    pages:
-      home:
-        statistics:
-          posts_count: Beiträge
-    participatory_processes:
-      statistics:
-        posts_count: Beiträge

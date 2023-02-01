@@ -4,7 +4,7 @@ fr:
       assemblies_setting:
         enable_organization_chart: Activer le schéma d'assemblée
       assembly:
-        area_id: Zone d'application
+        area_id: Périmètre d'assemblée
         assembly_type: Type d'assemblée
         assembly_type_other: Autre type d'assemblée
         banner_image: Image d'en-tête
@@ -17,7 +17,7 @@ fr:
         created_by: Créé par
         created_by_other: Si "autres", précisez
         creation_date: Date de création
-        decidim_area_id: Zone d'application
+        decidim_area_id: Périmètre d'assemblée
         decidim_assemblies_type_id: Type d'assemblée
         decidim_scope_id: Périmètre d'application
         description: Description
@@ -43,7 +43,7 @@ fr:
         published_at: Publiée à
         purpose_of_action: But de l'action
         scope_id: Périmètre d'application
-        scopes_enabled: Périmètres d'application activés
+        scopes_enabled: Secteurs activés
         short_description: Résumé
         show_statistics: Afficher les statistiques
         slug: Identifiant
@@ -63,7 +63,7 @@ fr:
         full_name: Nom et prénom
         gender: Genre
         position: Statut
-        user_id: Utilisateur
+        user_id: Utilisateur ou groupe
       assembly_user_role:
         email: E-mail
         name: "Nom\n"
@@ -262,6 +262,7 @@ fr:
       admin:
         assemblies:
           form:
+            announcement_help: Le texte que vous saisissez ici sera affiché aux utilisateurs juste en dessous des informations de l'assemblée.
             duration: Durée
             duration_help: Si la durée de cette assemblée est limitée, sélectionnez la date de fin. Sinon sa durée ne sera pas limitée.
             filters: Filtres
@@ -270,7 +271,7 @@ fr:
             metadata: Métadonnées
             other: Autre
             select_a_created_by: Sélectionnez un créateur
-            select_an_area: Sélectionnez une zone d'application
+            select_an_area: Sélectionnez un périmètre d'assemblée
             select_an_assembly_type: Sélectionnez un type d'assemblée
             select_parent_assembly: Sélectionnez l'assemblée parente
             slug_help: 'Les identifiants d''URL sont utilisés pour générer les liens qui renvoient vers cette assemblée. N''accepte que des lettres, des chiffres et des tirets et doit commencer par une lettre. Exemple: %{url}'
@@ -354,7 +355,7 @@ fr:
           member_of:
             member_of: Membre de
       show:
-        area: Zone d'application
+        area: Périmètre d'assemblée
         assembly_type: Type d'assemblée
         children: Sous-assemblées
         closing_date: Date de clôture
@@ -381,38 +382,11 @@ fr:
         social_networks: Réseaux sociaux
         social_networks_title: Partager cette assemblée sur
         target: Participants
-      statistics:
-        answers_count: Réponses
-        assemblies_count: Assemblées
-        comments_count: Commentaires
-        debates_count: Débats
-        endorsements_count: Soutiens
-        followers_count: Abonnés
-        headline: Statistiques
-        meetings_count: Rencontres
-        no_stats: Il n'y a pas encore de statistiques.
-        orders_count: Votes
-        pages_count: Pages
-        participants_count: Participants
-        posts_count: Publications
-        processes_count: Concertations
-        projects_count: Projets
-        proposals_count: Propositions
-        results_count: Réalisations
-        supports_count: Votes
-        surveys_count: Enquêtes
-        users_count: Participants
-        votes_count: Votes
     assembly_members:
       assembly_member:
         designated_on: Désigné le
       index:
         title: Membres
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Lien vers la page Conférences où toutes les conférences sont affichées
     events:
       assemblies:
         create_assembly_member:
@@ -445,19 +419,11 @@ fr:
         description: Nombre d'assemblées créées
         object: assemblées
         title: Assemblées
-    pages:
-      home:
-        hero:
-          participate_title: Participer aux processus de la plateforme
-        sub_hero:
-          register_title: Inscrivez-vous pour créer un compte
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Lien vers la page Concertation où toutes les concertations sont affichées
       show:
         related_assemblies: Assemblées associées
+    statistics:
+      assemblies_count: Assemblées
   errors:
     messages:
       cannot_be_blank: ne peut être vide

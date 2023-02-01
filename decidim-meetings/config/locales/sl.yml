@@ -3,8 +3,6 @@ sl:
     attributes:
       agenda:
         description: Opis
-      minutes:
-        description: Opis
     models:
       decidim/meetings/create_meeting_event: Sestanek
   decidim:

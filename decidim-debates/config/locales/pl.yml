@@ -29,6 +29,7 @@ pl:
     components:
       debates:
         actions:
+          comment: Skomentuj
           create: Tworzenie
           endorse: Rekomendacje
         name: Debaty
@@ -238,3 +239,5 @@ pl:
         description: Liczba utworzonych debat
         object: debaty
         title: Debaty
+    statistics:
+      debates_count: Debaty

@@ -40,14 +40,15 @@ pl:
         cta_button_path: Ścieżka przycisku CTA
         cta_button_text: Tekst przycisku CTA
         customize_welcome_notification: Dostosuj treść komunikatu powitalnego
-        default_locale: Domena domyślna
+        default_locale: Domyślny język
         description: Opis
         enable_omnipresent_banner: Pokaż stały banner
+        enable_participatory_space_filters: Włącz filtry przestrzeni partycypacyjnej
         facebook_handler: Handler Facebooka
         favicon: Ikona
         force_authentication: Wymuś uwierzytelnianie
         force_users_to_authenticate_before_access_organization: Wymuś uwierzytelnianie użytkowników przed dołączeniem do organizacji
-        from: Z adresu e-mail
+        from: Adres e-mail nadawcy
         github_handler: Handler GitHuba
         header_snippets: Fragmenty nagłówków
         highlight_alternative_color: Wyróżnij (alternatywny kolor)
@@ -157,7 +158,8 @@ pl:
         browse: Przeglądaj
         category:
           new: Nowa kategoria
-        export: Eksport
+        export: Eksportuj wszystko
+        export-selection: Eksportuj wybrane
         import: Importuj
         manage: Zarządzanie
         new: 'Nowy: %{name}'
@@ -178,7 +180,7 @@ pl:
           success: Świetnie! Zaakceptowano warunki użytkowania dla administratorów.
         actions:
           accept: Zgadzam się z warunkami użytkowania
-          are_you_sure: Czy na pewno chcesz odrzucić warunki dla administratorów?
+          are_you_sure: Czy na pewno nie wyrażasz zgody na warunki użytkowania dla administratorów?
           refuse: Nie akceptuję warunków dla administratorów
           title: Akceptuję warunki użytkowania
         required_review:
@@ -206,7 +208,6 @@ pl:
           error: Wystąpił błąd podczas tworzenia nowej ketegorii.
           success: Kategoria została utworzona.
         destroy:
-          has_spaces: Kategoria ma elementy zależne; aby można było ją usunąć, nie może mieć elementów zależnych.
           success: Kategoria została usunięta
         edit:
           title: Edytuj kategorię
@@ -259,7 +260,7 @@ pl:
       block_user:
         new:
           action: Zablokuj konto i wyślij uzasadnienie
-          description: Zablokowanie użytkownika spowoduje że jego konto nie będzie mogło być użytkowane, możesz podać w swoim uzasadnieniu i wytycznych opis działań, które pozwolą na odblokowanie użytkownika.
+          description: Blokowanie użytkownika sprawi, że jego konto nie będzie użyteczne. Możesz podać w uzasadnieniu wszelkie wytyczne dotyczące sposobu odblokowania użytkownika.
           justification: Uzasadnienie
           title: Zablokuj użytkownika %{name}
       categories:
@@ -336,6 +337,12 @@ pl:
         show:
           view_more_logs: Zobacz więcej logów
           welcome: Witamy w panelu administracyjnym Decidim.
+      domain_whitelist:
+        form:
+          domain_too_short: Domena jest zbyt krótka
+        update:
+          error: Nie udało się zaktualizować białej listy domen
+          success: Biała lista domen pomyślnie zaktualizowana
       exports:
         export_as: "%{name} jako %{export_format}"
         formats:
@@ -348,6 +355,16 @@ pl:
         category_id_eq:
           label: Kategoria
         filter_label: Filtr
+        invitation_accepted_at_present:
+          label: Zaproszenie zaakceptowane
+          values:
+            'false': 'Nie'
+            'true': 'Tak'
+        last_sign_in_at_present:
+          label: Zawsze zalogowany
+          values:
+            'false': 'Nie'
+            'true': 'Tak'
         moderations:
           reportable_type_string_eq:
             label: Typ
@@ -356,6 +373,17 @@ pl:
           values:
             'false': Oficjalny
             'true': Nieoficjalny
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Zaakceptowano zaproszenie
+            values:
+              'false': Nie zaakceptowano
+              'true': Zaakceptowano
+          user_invitation_sent_at_not_null:
+            label: Wysłano zaproszenie
+            values:
+              'false': Nie wysłano
+              'true': Wysłano
         private_space_eq:
           label: Prywatny
           values:
@@ -373,13 +401,14 @@ pl:
           name_or_nickname_or_email_cont: Przeszukaj %{collection} według adresu e-mail, nazwiska lub nazwy użytkownika.
           reported_id_string_or_reported_content_cont: Przeszukaj %{collection} według identyfikatora lub treści zgłoszenia.
           title_cont: Przeszukaj %{collection} według tytułu.
+          user_name_or_user_email_cont: Przeszukaj %{collection} według nazwy lub e-maila.
         state_eq:
           label: Stan
       forms:
         file_help:
           import:
             explanation: 'Wytyczne dotyczące pliku:'
-            message_1: 'Wspierane formaty: CSV, JSON i Exel (.xls)'
+            message_1: Pliki CSV, JSON i Excel (.xlsx) są obsługiwane
             message_2: Dla plików w formacie CSV separatorem kolumn musi być średnik (";")
       help_sections:
         error: Wystąpił błąd podczas aktualizowania sekcji pomocy
@@ -431,7 +460,6 @@ pl:
           accepted_mime_types:
             csv: csv
             json: json
-            xls: xls
           actions:
             back: Wróć
           file_legend: Zaimportuj plik, który zostanie przetworzony.
@@ -457,6 +485,7 @@ pl:
         areas: Kategorie
         configuration: Konfiguracja
         dashboard: Panel
+        external_domain_whitelist: Dozwolone domeny zewnętrzne
         help_sections: Sekcje pomocy
         homepage: Strona główna
         impersonations: Podszywanie się pod inne osoby
@@ -535,7 +564,7 @@ pl:
           fields:
             created_at: Data utworzenia
             email: E-mail
-            last_sign_in_at: Ostatni dzień rejestracji
+            last_sign_in_at: Ostatnie logowanie
             name: Imię
             role: Rola
             roles:
@@ -605,7 +634,7 @@ pl:
       newsletters:
         create:
           error: Podczas tworzenia newslettera wystąpił błąd.
-          success: Newsletter został pomyślnie utworzony. Prosimy o sprawdzenie go przed wysłaniem.
+          success: Newsletter został pomyślnie utworzony. Sprawdź go przed wysłaniem.
         deliver:
           error: Podczas dostarczania tego newslettera wystąpił błąd.
           success: Newsletter został dostarczony pomyślnie.
@@ -688,12 +717,12 @@ pl:
           title: Oficjalizuj użytkownika "%{name}"
         show_email_modal:
           close_modal: Zamknij okno
-          description: Jeśli chcesz się bezpośrednio skontaktować z użytkownikiem, możesz kliknąć przycisk Pokaż, aby wyświetlić adres e-mail. Ta akcja zostanie zarejestrowana.
+          description: Jeśli chcesz skontaktować się bezpośrednio z uczestnikiem, możesz kliknąć przycisk Pokaż aby zobaczyć jego adres e-mail. Ta akcja zostanie zarejestrowana.
           email_address: Adres e-mail
           full_name: Imię i nazwisko
           hidden: ukryty
           show: Pokaż
-          title: Pokaż adres e-mail użytkownika
+          title: Pokaż adres e-mail uczestnika
         unblock:
           error: Wystąpił błąd podczas odblokowywania użytkownika
           success: Użytkownik został odblokowany
@@ -728,6 +757,17 @@ pl:
             layout_appearance_title: Edytuj wygląd layoutu
             preview: Podgląd
           omnipresent_banner_appearance_title: Edytuj stały baner
+      organization_external_domain_whitelist:
+        edit:
+          update: Aktualizuj
+        external_domain:
+          down: W dół
+          external_domain: Domena zewnętrzna
+          remove: Usuń
+          up: W górę
+        form:
+          add: Dodaj do białej listy
+          title: Biała lista domen zewnętrznych
       organization_homepage:
         edit:
           active_content_blocks: Aktywne bloki treści
@@ -842,7 +882,7 @@ pl:
           title: Edytuj stronę
           update: Aktualizuj
         form:
-          none: Żadna
+          none: Bez tematu
           slug_help: 'Wpisz tutaj tylko to, co ma znaleźć się na końcu po znaku „/”, a nie pełny adres URL. Można użyć liter, cyfr i myślników. Musi zaczynać się od litery. Przykład: %{url}'
         index:
           last_notable_change: Ostatnia istotna zmiana
@@ -873,7 +913,7 @@ pl:
         static_pages: Strony
         statistics: Aktywność
         user_groups: Grupy użytkowników
-        users: Administratorzy
+        users: Użytkownicy
       user_group:
         csv_verify:
           invalid: Wystąpił błąd podczas odczytu pliku CSV.
@@ -929,7 +969,7 @@ pl:
     forms:
       errors:
         impersonate_user:
-          reason: Musisz podać powód podszywania się pod niezarządzanego użytkownika
+          reason: Aby zarządzać uczestnikiem niezarządzanym należy podać powód
     metrics:
       blocked_users:
         object: zablokowani użytkownicy

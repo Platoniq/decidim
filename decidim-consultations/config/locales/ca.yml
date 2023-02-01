@@ -120,6 +120,8 @@ ca:
           questions: Preguntes
           results: Resultats
         questions_submenu:
+          attachments: Adjunts
+          categories: Categories
           components: Components
           configuration: Configuració
           consultation: Consulta
@@ -324,10 +326,6 @@ ca:
           title: Què són les consultes?
     menu:
       consultations: Consultes
-    pages:
-      home:
-        statistics:
-          consultations_count: Consultes
     questions:
       next_button: Següent qüestió
       previous_button: Qüestió anterior
@@ -361,13 +359,13 @@ ca:
     resources:
       consultations:
         actions:
+          comment: Comentar
           vote: Vota
+    statistics:
+      consultations_count: Consultes
+      votes_count: Vots
   layouts:
     decidim:
-      admin:
-        question:
-          attachments: Adjunts
-          categories: Categories
       consultation_voting_data:
         start_voting_date: Comença la votació
       question_components:

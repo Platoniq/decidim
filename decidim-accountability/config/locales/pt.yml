@@ -204,6 +204,8 @@ pt:
             label: Estado
     components:
       accountability:
+        actions:
+          comment: Comentário
         name: Prestação de contas
         settings:
           global:
@@ -244,3 +246,5 @@ pt:
         result_project: Projetos incluídos neste resultado
       included_proposals:
         result_proposal: Propostas incluídas neste resultado
+    statistics:
+      results_count: Resultados

@@ -52,7 +52,7 @@ it:
         target: A chi è destinato il processo
         title: Titolo
         twitter: Twitter
-        weight: Peso
+        weight: Ordine di posizionamento
         youtube: Youtube
       assembly_member:
         birthday: Data di nascita
@@ -262,6 +262,7 @@ it:
       admin:
         assemblies:
           form:
+            announcement_help: Il testo che inserisci qui verrà mostrato all'utente proprio sotto le informazioni dell'assemblea.
             duration: Durata
             duration_help: Se la durata di questa assemblea è limitata, selezionare la data di fine. Altrimenti, apparirà come indefinita.
             filters: Filtri
@@ -377,42 +378,15 @@ it:
         read_less: Leggi di meno
         read_more: Leggi di più
         related_participatory_processes: Processi partecipativi correlati
-        scope: Obiettivi
+        scope: Ambito
         social_networks: Social Networks
         social_networks_title: Condividi questa assemblea su
         target: Chi partecipa
-      statistics:
-        answers_count: risposte
-        assemblies_count: Assemblee
-        comments_count: Commenti
-        debates_count: Discussioni
-        endorsements_count: Mi piace
-        followers_count: Follower
-        headline: Statistiche
-        meetings_count: Riunioni
-        no_stats: Non ci sono ancora statistiche.
-        orders_count: Supporti
-        pages_count: Pagine
-        participants_count: Partecipanti
-        posts_count: Messaggi
-        processes_count: Processi
-        projects_count: Progetti
-        proposals_count: Proposte
-        results_count: Risultati
-        supports_count: Supporti
-        surveys_count: Sondaggi
-        users_count: Partecipanti
-        votes_count: Voti
     assembly_members:
       assembly_member:
         designated_on: Designato su
       index:
         title: Utenti
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Link alla pagina delle Conferenze mostrata in tutte le conferenze
     events:
       assemblies:
         create_assembly_member:
@@ -445,19 +419,11 @@ it:
         description: Numero di assemblee create
         object: assemblee
         title: Assemblee
-    pages:
-      home:
-        hero:
-          participate_title: Partecipa ai processi della piattaforma
-        sub_hero:
-          register_title: Registrati e crea un account
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Link alla pagina dei Processi mostrata in tutti i processi
       show:
         related_assemblies: Assemblee collegate
+    statistics:
+      assemblies_count: Assemblee
   errors:
     messages:
       cannot_be_blank: non può essere vuoto

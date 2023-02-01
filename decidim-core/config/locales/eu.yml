@@ -5,6 +5,8 @@ eu:
         delete_reason: Zure kontua ezabatzeko arrazoia
       common:
         created_at: Sortze-data
+      conversation:
+        body: Gorputza
       group:
         about: Honi buruz
         avatar: Avatar
@@ -13,6 +15,8 @@ eu:
         name: Izena
         nickname: Goitizena
         phone: Telefonoa
+      message:
+        body: Gorputza
       report:
         details: Iruzkin gehigarriak
       user:
@@ -60,7 +64,6 @@ eu:
     'true': 'Bai'
   carrierwave:
     errors:
-      general: Errorea irudia prozesatzean
       image_too_big: Irudia pisuegia da
       not_inside_organization: Artxiboa ez dago antolatzaile batekin erlazionatuta
   date:
@@ -92,6 +95,7 @@ eu:
         error: Errore bat gertatu da zure kontua ezabatzean.
         success: Zure kontua ezabatu egin da.
       show:
+        available_locales_helper: Aukeratu zein hizkuntza erabili nahi duzun Decidimen nabigatzeko eta jakinarazpenak jasotzeko
         change_password: Aldatu pasahitza
         update_account: Eguneratu kontua
       update:
@@ -251,10 +255,13 @@ eu:
         download: Deskargatu fitxategia
       documents:
         related_documents: Honekin lotutako agiriak
+      geocoding:
+        geocoded_address: Helbidea
       photos:
         related_photos: Honekin lotutako argazkiak
     author:
-      avatar: Avatar
+      avatar: 'Avatarra: %{name}'
+      avatar_multiuser: Avatarra erabiltzaile batzuentzat
       comments:
         one: iruzkin
         other: iruzkinak
@@ -839,6 +846,15 @@ eu:
       index:
         last_activity: Azken jarduera
         resource_type: Mota
+    links:
+      invalid_url: URL baliogabea
+      warning:
+        body_1: Kanpoko lotura bat bisitatuko duzu eta eskatzen dizugu zuhurra izatea kanpoko orrialdeen edukiarekin.
+        body_2: Mesedez, jarraitu aurretik, egiaztatu bisitatuko duzun lotura leku seguru batena dela.
+        cancel: Utzi
+        close_modal: Itxi leihoa
+        proceed: Jarraitu
+        title: Ireki kanpoko lotura
     log:
       base_presenter:
         create: "%{user_name} sortu %{resource_name}"
@@ -1059,24 +1075,7 @@ eu:
         metrics:
           headline: Zifretan parte hartzea
         statistics:
-          answers_count: Amaitutako inkestak
-          assemblies_count: Batzar
-          comments_count: Iruzkinak
-          conferences_count: Jardunaldiak
-          debates_count: Eztabaidak
-          endorsements_count: Oniritziak
           headline: '%{organization} erakundearen egungo egoera'
-          meetings_count: Topaketa-zerrenda
-          orders_count: Euskarriak
-          pages_count: orrialdeak
-          processes_count: Prozesuak
-          projects_count: Proiektuak
-          proposals_accepted: Onartutako proposamenak
-          proposals_count: Proposamenak
-          results_count: Emaitzak
-          surveys_count: Inkestak
-          users_count: Parte-hartzaileak
-          votes_count: Euskarriak
         sub_hero:
           register: Erregistroa
       index:
@@ -1231,6 +1230,7 @@ eu:
         description: Eduki hau desegokia da?
         does_not_belong: Bertan badago legez kontrako jardunik, suizidio-mehatxurik, informazio pertsonalik edo beste zernahi, zure ustez %{organization_name}-ri ez dagokionik.
         offensive: Bertan badago arrazakeriarik, sexismorik, irainik, eraso pertsonalik, heriotza-mehatxurik, suizidio-eskaerarik edo beste edozein eratako gorroto-diskurtsorik.
+        reason: Arrazoia
         report: Txostena
         spam: Bertan badago clickbait-ik, publizitaterik edo iruzurrik.
         title: Salatu arazo bat
@@ -1256,6 +1256,8 @@ eu:
         filters:
           areas: Arloak
           select_an_area: Hautatu eremu bat
+      public_participation:
+        public_participation: Erakutsi nire asistentzia publikoki
       reference:
         reference: 'Erreferentzia: %{reference}'
       represent_user_group:
@@ -1266,8 +1268,21 @@ eu:
         title: Hautatu emaitza kopurua orrialde bakoitzeko
       share_modal:
         close_window: Itxi leihoa
+        copy_share_link: Kopia
+        copy_share_link_clarification: Kopiatu arbelera partekatzeko lotura
+        copy_share_link_copied: Kopiatuta!
+        copy_share_link_message: Lotura arbelera zuzen kopiatu da.
         share: Partekatu
         share_link: Partekatu esteka
+    statistics:
+      comments_count: Iruzkinak
+      endorsements_count: Atxikimenduak
+      followers_count: Jarraitzaileak
+      headline: Estatistikak
+      no_stats: Oraindik ez dago estatistikarik.
+      pages_count: Orrialdeak
+      participants_count: Erabiltzaileak
+      users_count: Erabiltzaileak
     tags:
       filter_results_for_category: 'Emaitzak kategoriaren arabera iragaztean: %{resource}'
       filter_results_for_scope: 'Emaitzak %{resource} esparruaren arabera iragaztean'
@@ -1305,6 +1320,7 @@ eu:
         send: Bidali
         title_reply: Erantzun
       show:
+        back: Erakutsi elkarrizketa guztiak
         not_allowed: Erabiltzaile honek ez du mezu zuzenik onartzen.
         title: Elkarrizketa honekin %{usernames}
       update:
@@ -1350,6 +1366,7 @@ eu:
         number_of_versions: Bertsioak
         title: Bertsioak
     versions_list_item:
+      back: Erakutsi bertsio guztiak
       show:
         version_index: '%{index} bertsioa'
     welcome_notification:
@@ -1547,9 +1564,11 @@ eu:
         made_with_open_source: Gune hau egiteko, <a target="_blank" href="https://github.com/decidim/decidim">software libre</a> erabili da.
       header:
         close_menu: Itxi menua
+        main_menu: Menu nagusia
         navigation: Nabigazioa
         sign_in: Sartu
         sign_up: Erregistratu
+        user_menu: Erabiltzailearen menua
       impersonation_warning:
         close_session: Itxi saioa
         description_html: 'Honako erabiltzaile honen plantak egiten ari zara: <b>%{user_name}</b>.'
@@ -1578,6 +1597,7 @@ eu:
         profile: Nire kontua
         public_profile: Nire profil publikoa
         sign_out: Irten
+        title: Profilaren loturak
       user_profile:
         account: Kontua
         authorizations: Baimenak
@@ -1591,7 +1611,7 @@ eu:
         see_more: Ikusi gehiago
   locale:
     name: Euskera
-    name_with_error: Ingelesa (akatsa!)
+    name_with_error: Euskera (akatsa!)
   password_validator:
     domain_included_in_password: domeinu izen honen antzekoa da
     email_included_in_password: zure posta elektronikoaren antzekoa da

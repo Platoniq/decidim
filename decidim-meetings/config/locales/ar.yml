@@ -8,7 +8,8 @@ ar:
       close_meeting:
         attendees_count: عدد الحضور
         attending_organizations: قائمة المنظمات التي حضرت
-        closing_report: أبلغ عن
+        closing_report: الدقائق
+        closing_visible: مرئي
         contributions_count: عدد المساهمات
         proposal_ids: المقترحات التي تم إنشاؤها في الاجتماع
       meeting:
@@ -28,11 +29,12 @@ ar:
         start_time: وقت البدء
         title: عنوان
         transparent: شفاف
-      minutes:
-        description: وصف
-        visible: مرئي
     errors:
       models:
+        meeting:
+          attributes:
+            show_embedded_iframe:
+              not_embeddable: لا يمكن تضمين هذا الرابط
         meeting_agenda:
           attributes:
             base:
@@ -74,6 +76,18 @@ ar:
         other: التسجيلات
   decidim:
     admin:
+      filters:
+        meetings:
+          category_id_eq:
+            label: الفئة
+          origin_eq:
+            values:
+              citizen: المواطن
+              user_group: مجموعات المستخدمين
+          type_eq:
+            label: نوع الاجتماع
+            values:
+              in_person: وجهًا لوجه
       meeting_copies:
         create:
           error: كانت هناك مشكلة في تكرار هذا الاجتماع.
@@ -162,7 +176,6 @@ ar:
         confirm_destroy: هل أنت متأكد أنك تريد حذف هذا الاجتماع؟
         destroy: حذف
         edit: تعديل
-        minutes: الدقائق
         new: اجتماع جديد
         preview: معاينة
         registrations: التسجيلات
@@ -238,11 +251,13 @@ ar:
             success: تم إغلاق الاجتماع بنجاح
           create:
             invalid: كانت هناك مشكلة في إنشاء هذا الاجتماع
-            success: تم إنشاء الاجتماع بنجاح
           destroy:
             success: تم حذف الاجتماع بنجاح
           edit:
             update: تحديث
+          form:
+            registration_email_help: سيظهر هذا النص في منتصف البريد الإلكتروني الخاص بتأكيد التسجيل مباشرة بعد رمز التسجيل.
+            show_embedded_iframe_help: سواء تم تضمين أو عدم تضمين الإطار iframe لعنوان الرابط URL الخاص بمؤتمر الفيديو. تسمح بعض الخِدْمَات فقط بتضمينه (مثل Youtube، Twitch...)
           index:
             title: اجتماعات
           new:
@@ -261,18 +276,6 @@ ar:
           update:
             invalid: حدثت مشكلة أثناء تحديث هذا الاجتماع
             success: تم تحديث الاجتماع بنجاح
-        minutes:
-          create:
-            invalid: كانت هناك مشكلة في إنشاء هذه الدقائق
-            success: تم إنشاء الدقائق بنجاح
-          edit:
-            update: تحديث
-          new:
-            create: إنشاء
-            title: خلق دقائق
-          update:
-            invalid: حدثت مشكلة أثناء تحديث هذه الدقائق
-            success: تم تحديث الدقائق بنجاح
         models:
           meeting:
             name: لقاء
@@ -315,9 +318,6 @@ ar:
           value_types:
             organizer_presenter:
               not_found: 'لم يتم العثور على المنظم في قاعدة البيانات (المعرف: %{id})'
-        minutes:
-          create: "%{user_name} خلق محضر الاجتماع %{resource_name} على %{space_name} الفضاء"
-          update: "%{user_name} تحديث محضر الاجتماع %{resource_name} على %{space_name} الفضاء"
       calendar_modal:
         calendar_url: العنوان الشبكي للتقويم
         close_window: أغلق النافذة
@@ -351,14 +351,18 @@ ar:
         filters:
           category: الفئة
           date: تاريخ
+          origin_values:
+            citizens: المواطنون
           search: بحث
         filters_small_view:
           close_modal: إغلاق مشروط
           filter: منقي
           filter_by: مصنف بواسطة
           unfold: كشف
+        form:
+          select_a_category: يُرجى اختيار فئة
+          show_embedded_iframe_help: سواء تم تضمين أو عدم تضمين الإطار iframe لعنوان الرابط URL الخاص بمؤتمر الفيديو. تسمح بعض الخِدْمَات فقط بتضمينه (مثل Youtube، Twitch...)
         meeting_minutes:
-          meeting_minutes: محضر الاجتماع
           related_information: معلومات ذات صله
         meetings:
           no_meetings_warning: لا توجد اجتماعات تطابق معايير البحث الخاصة بك أو لا يوجد أي اجتماع مجدولة.
@@ -369,9 +373,8 @@ ar:
         show:
           attendees: الحضور الحضور
           contributions: عدد المساهمات
-          going: ذاهب
           join: أنضم إلى الأجتماع
-          meeting_report: تقرير الاجتماع
+          meeting_minutes: محضر الاجتماع
           no_slots_available: لا فتحات المتاحة
           organizations: حضور المنظمات
           registration_code_help_text: رمز التسجيل الخاص بك
@@ -406,6 +409,10 @@ ar:
             map: خريطة
             start_time: تاريخ البدء
             title: عنوان
+      polls:
+        questions:
+          index_admin:
+            results: النتائج
       read_more: "(قراءة المزيد)"
       registration_mailer:
         confirmation:

@@ -204,6 +204,8 @@ fi-pl:
             label: Tila
     components:
       accountability:
+        actions:
+          comment: Kommentoi
         name: Vastuullisuus
         settings:
           global:
@@ -244,3 +246,5 @@ fi-pl:
         result_project: Tähän tulokseen liittyvät suunnitelmat
       included_proposals:
         result_proposal: Tähän tulokseen liittyvät ehdotukset
+    statistics:
+      results_count: Tulosta

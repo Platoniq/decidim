@@ -5,6 +5,8 @@ cs:
         delete_reason: Důvod odstranění účtu
       common:
         created_at: Vytvořeno v
+      conversation:
+        body: Tělo zprávy
       group:
         about: O nás
         avatar: Avatar
@@ -13,6 +15,8 @@ cs:
         name: Jméno
         nickname: Přezdívka
         phone: Telefon
+      message:
+        body: Tělo zprávy
       report:
         details: Další komentáře
       user:
@@ -71,7 +75,6 @@ cs:
     'true': 'Ano'
   carrierwave:
     errors:
-      general: Chyba při zpracování obrázku
       image_too_big: Obraz je příliš velký
       not_inside_organization: Soubor není připojen k žádné organizaci
   date:
@@ -103,6 +106,7 @@ cs:
         error: Při mazání účtu došlo k chybě.
         success: Účet byl úspěšně smazán.
       show:
+        available_locales_helper: Vyberte jazyk, který chcete použít k procházení a přijímání oznámení v Decidim
         change_password: Změnit heslo
         update_account: Aktualizovat účet
       update:
@@ -264,10 +268,13 @@ cs:
         download: Stáhnout soubor
       documents:
         related_documents: Související dokumenty
+      geocoding:
+        geocoded_address: Adresa
       photos:
         related_photos: Související fotografie
     author:
-      avatar: Avatar
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar pro více uživatelů
       comments:
         one: komentář
         few: komentáře
@@ -467,7 +474,7 @@ cs:
           newsletter: Chci dostávat příležitostný zpravodaj s relevantními informacemi
           newsletter_title: Povolení kontaktu
           nickname_help: Váš alias v %{organization}. Může obsahovat pouze písmena, číslice, '-' a '_'.
-          password_help: "%{minimun_characters} minimum znaků, nesmí být příliš běžné (např. 123456) a musí být jiné než vaše přezdívka a váš e-mail."
+          password_help: "%{minimun_characters} je minimum znaků, nesmí být příliš běžné (např. 123456) a musí být jiné než vaše přezdívka a váš e-mail."
           sign_in: Přihlásit se
           sign_up: Zaregistrovat se
           sign_up_as:
@@ -684,7 +691,7 @@ cs:
         click_button: 'Klikněte na následující odkaz pro stažení vašich dat.<br/>Soubor bude k dispozici do %{date}.<br/>Budete potřebovat <a href="https://www.7-zip.org/">7-Zip</a> (pro Windows), <a href="https://www.keka.io/en/">Keka</a> (pro MacOS) nebo <a href="https://peazip.github.io">PeaZip</a> (pro Linux) pro jeho otevření. Heslo: %{password}'
         download: Stažení
       export:
-        ready: V příloze naleznete exportovanou exportovanou verzi.
+        ready: V příloze naleznete zazipovanou verzi vašeho exportu.
       subject: Váš export "%{name}" je připraven
     filters:
       linked_classes:
@@ -712,6 +719,7 @@ cs:
       no_followers: Zatím žádní sledující.
     following:
       no_followings: Nesleduje nikoho ani nic.
+      non_public_followings: Některé z uvedených zdrojů nejsou veřejné.
     follows:
       create:
         button: Sledovat
@@ -873,6 +881,15 @@ cs:
       index:
         last_activity: Poslední aktivita
         resource_type: Typ
+    links:
+      invalid_url: Neplatná URL
+      warning:
+        body_1: Chystáte se navštívit externí odkaz a chtěli bychom, abyste byli opatrní, pokud jde o obsah na externím webu.
+        body_2: Zkontrolujte prosím odkaz, který se chystáte navštívit, a než budete pokračovat, ujistěte se, že jste jej rozpoznali jako bezpečný web.
+        cancel: Zrušit
+        close_modal: Zavřít modal
+        proceed: Pokračovat
+        title: Otevřít externí odkaz
     log:
       base_presenter:
         create: "%{user_name} vytvořil %{resource_name}"
@@ -975,6 +992,7 @@ cs:
         show:
           back: Zpět ke všem konverzacím
           chat_with: Konverzace s
+          deleted_accounts: Nemůžete mít konverzaci s odstraněnými účty.
           not_allowed: Tento uživatel nepřijímá přímé zprávy.
           title: Konverzace s číslem %{usernames}
         start:
@@ -1093,24 +1111,7 @@ cs:
         metrics:
           headline: Metriky
         statistics:
-          answers_count: Dokončené průzkumy
-          assemblies_count: Shromáždění
-          comments_count: Komentáře
-          conferences_count: Konference
-          debates_count: Debaty
-          endorsements_count: Schválení
           headline: Aktuální stav %{organization}
-          meetings_count: Setkání
-          orders_count: Hlasy
-          pages_count: Stránky
-          processes_count: Procesy
-          projects_count: Projekty
-          proposals_accepted: Přijaté návrhy
-          proposals_count: Návrhy
-          results_count: Výsledky
-          surveys_count: Průzkumy
-          users_count: Účastníci
-          votes_count: Hlasy
         sub_hero:
           register: Registrovat
       index:
@@ -1267,6 +1268,7 @@ cs:
         description: Je tento obsah nevhodný?
         does_not_belong: Obsahuje nezákonnou činnost, sebevražedné hrozby, osobní informace nebo něco jiného, o kterém si myslíte, že nepatří na %{organization_name}.
         offensive: Obsahuje rasismus, sexismus, podvody, osobní útoky, hrozby smrti, žádosti o sebevraždu nebo jakoukoli formu projevy nenávisti.
+        reason: Důvod
         report: Zpráva
         spam: Obsahuje clickbait, reklama, podvody nebo skripty.
         title: Nahlásit problém
@@ -1292,6 +1294,8 @@ cs:
         filters:
           areas: Oblasti
           select_an_area: Vyberte oblast
+      public_participation:
+        public_participation: Ukázat svou účast veřejně
       reference:
         reference: 'Odkaz: %{reference}'
       represent_user_group:
@@ -1302,8 +1306,21 @@ cs:
         title: Vyberte počet výsledků na stránku
       share_modal:
         close_window: Zavřete okno
+        copy_share_link: Kopírovat
+        copy_share_link_clarification: Zkopírovat odkaz pro sdílení do schránky
+        copy_share_link_copied: Zkopírováno!
+        copy_share_link_message: Odkaz byl úspěšně zkopírován do schránky.
         share: Sdílet
         share_link: Sdílet odkaz
+    statistics:
+      comments_count: Komentáře
+      endorsements_count: Schválení
+      followers_count: Sledující
+      headline: Statistiky
+      no_stats: Zatím nejsou žádné statistiky.
+      pages_count: Stránky
+      participants_count: Účastníci
+      users_count: Účastníci
     tags:
       filter_results_for_category: 'Filtrovat výsledky pro kategorii: %{resource}'
       filter_results_for_scope: 'Výsledky filtru pro rozsah: %{resource}'
@@ -1341,6 +1358,8 @@ cs:
         send: Odeslat
         title_reply: Odpovědět
       show:
+        back: Zobrazit všechny konverzace
+        deleted_accounts: Nemůžete mít konverzaci s odstraněnými účty.
         not_allowed: Tento uživatel již nepřijímá žádné přímé zprávy.
         title: Konverzace s %{usernames}
       update:
@@ -1386,6 +1405,7 @@ cs:
         number_of_versions: Verze
         title: Verze
     versions_list_item:
+      back: Zobrazit všechny verze
       show:
         version_index: Verze %{index}
     welcome_notification:
@@ -1594,9 +1614,11 @@ cs:
         made_with_open_source: Webová stránka vytvořená s <a target="_blank" href="https://github.com/decidim/decidim">svobodným softwarem</a>.
       header:
         close_menu: Zavřít nabídku
+        main_menu: Hlavní menu
         navigation: Navigace
         sign_in: Přihlásit se
         sign_up: Registrovat
+        user_menu: Uživatelské Menu
       impersonation_warning:
         close_session: Zavřít sezení
         description_html: Spravujete účastníka <b>%{user_name}</b>.
@@ -1625,6 +1647,7 @@ cs:
         profile: Můj účet
         public_profile: Můj veřejný profil
         sign_out: Odhlásit se
+        title: Profilové odkazy
       user_profile:
         account: Účet
         authorizations: Autorizace
@@ -1638,7 +1661,7 @@ cs:
         see_more: Vidět víc
   locale:
     name: Čeština
-    name_with_error: Čeština
+    name_with_error: Čeština (chyba!)
   password_validator:
     domain_included_in_password: je příliš podobné tomuto názvu domény
     email_included_in_password: je příliš podobný e-mailu

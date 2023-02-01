@@ -49,6 +49,8 @@ gl:
         description: Número de enquisas respondidas polos usuarios
         object: respostas a enquisas
         title: Respostas a enquisas
+    statistics:
+      answers_count: Respostas
     surveys:
       admin:
         exports:

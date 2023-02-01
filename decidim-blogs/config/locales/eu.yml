@@ -15,6 +15,7 @@ eu:
         edit: Editatu
         new: Post berria
         title: Ekintzak
+        user_group_id: Sortu argitalpena hau bezala
       admin:
         models:
           components:
@@ -58,6 +59,10 @@ eu:
       read_more: Irakurri gehiago
     components:
       blogs:
+        actions:
+          create: Sortu
+          destroy: Ezabatu
+          update: Eguneratu
         name: Bloga
         settings:
           global:
@@ -76,10 +81,5 @@ eu:
           email_outro: Jakinarazpena jaso duzu "%{participatory_space_title}" jarraitzen ari zarelako. Aurreko estekan utzi ahal diozu jarraitzeari.
           email_subject: '%{participatory_space_title} argitaratutako mezu berria'
           notification_title: <a href="%{resource_path}">%{resource_title}</a> posta %{participatory_space_title} argitaratu da
-    pages:
-      home:
-        statistics:
-          posts_count: Mezuak
-    participatory_processes:
-      statistics:
-        posts_count: Mezuak
+    statistics:
+      posts_count: Argitalpenak

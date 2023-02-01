@@ -19,8 +19,6 @@ ga:
       badges:
         test:
           name: Scrúduithe
-    pages:
-      home:
-        statistics:
-          bar: Bar
-          foo: Foo
+    statistics:
+      bar: Bar
+      foo: Foo

@@ -34,7 +34,7 @@ nl:
         subtitle: Ondertitel
         target: Wie doet mee
         title: Titel
-        weight: Gewicht
+        weight: Bestelpositie
       participatory_process_group:
         description: Beschrijving
         developer_group: Promoter groep
@@ -401,6 +401,7 @@ nl:
             more_information: Meer informatie
             participate: Deelnemen
             participate_in: Deelnemen aan proces %{resource_name}
+            processes_button_title: Link naar de pagina Processen waarop alle processen worden weergegeven
             see_all_processes: Bekijk alle thema's
       participatory_process_steps:
         index:
@@ -447,25 +448,8 @@ nl:
         start_date: Startdatum
         target: Wie neemt deel
         unspecified: Niet gespecificeerd
-      statistics:
-        answers_count: Antwoorden
-        comments_count: Reacties
-        debates_count: Debatten
-        endorsements_count: Ondersteuningen
-        followers_count: Volgers
-        headline: Activiteit
-        meetings_count: Vergaderingen
-        no_stats: Er zijn nog geen statistieken.
-        orders_count: Stemmen
-        pages_count: Pagina's
-        participants_count: Deelnemers
-        processes_count: Inspraakprocessen
-        projects_count: Projecten
-        proposals_count: Voorstellen
-        results_count: Resultaten
-        supports_count: Stemmen
-        surveys_count: Enquêtes
-        users_count: Deelnemers
+    statistics:
+      processes_count: Inspraakprocessen
   layouts:
     decidim:
       participatory_process_groups:

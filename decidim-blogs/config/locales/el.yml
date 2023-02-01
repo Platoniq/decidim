@@ -15,6 +15,7 @@ el:
         edit: Επεξεργασία
         new: Νέα δημοσίευση
         title: Ενέργειες
+        user_group_id: Δημιουργία ανάρτησης ως
       admin:
         models:
           components:
@@ -76,10 +77,5 @@ el:
           email_outro: Λάβατε αυτήν την ειδοποίηση επειδή ακολουθείτε τον χώρο συμμετοχής «%{participatory_space_title}». Μπορείτε να σταματήσετε να τον ακολουθείτε από τον προηγούμενο σύνδεσμο.
           email_subject: Νέα ανάρτηση δημοσιεύτηκε στον χώρο συμμετοχής %{participatory_space_title}
           notification_title: Η ανάρτηση <a href="%{resource_path}">%{resource_title}</a> δημοσιεύτηκε στον χώρο συμμετοχής %{participatory_space_title}
-    pages:
-      home:
-        statistics:
-          posts_count: Δημοσιεύσεις
-    participatory_processes:
-      statistics:
-        posts_count: Δημοσιεύσεις
+    statistics:
+      posts_count: Αναρτήσεις

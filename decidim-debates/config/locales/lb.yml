@@ -27,6 +27,7 @@ lb:
     components:
       debates:
         actions:
+          comment: Kommentar
           create: Erstellen
           endorse: Bestätigen
         name: Debatten
@@ -132,3 +133,5 @@ lb:
     metrics:
       debates:
         title: Debatten
+    statistics:
+      debates_count: Debatten

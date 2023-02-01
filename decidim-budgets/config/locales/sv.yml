@@ -108,6 +108,9 @@ sv:
         close_modal: Stäng fönster
         continue: Fortsätt
         more_information: Mer information
+      budget_list_item:
+        voting_finished: Du har röstat i denna medborgarbudget
+        voting_started: Du har börjat rösta i denna medborgarbudget
       budgets_list:
         cancel_order:
           more_than_one: dra tillbaka din röst på %{name} och börja om
@@ -230,6 +233,7 @@ sv:
     components:
       budgets:
         actions:
+          comment: Kommentera
           vote: Rösta
         name: Budgetar
         settings:
@@ -290,6 +294,9 @@ sv:
         success: Din röst har dragits tillbaka
     resource_links:
       included_proposals:
-        project_proposal: 'Förslag som ingår i detta projekt:'
+        project_proposal: Förslag som ingår i detta projekt
+    statistics:
+      orders_count: Stöd
+      projects_count: Projekt
   index:
     confirmed_orders_count: Antal röster

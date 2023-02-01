@@ -246,7 +246,7 @@ nl:
             price: Prijs
             registrations_count: Aantal registraties
             title: Titel
-            weight: Gewicht
+            weight: Bestelpositie
           name: Registratie type
       partners:
         create:
@@ -501,6 +501,7 @@ nl:
         home:
           highlighted_conferences:
             active_conferences: Actieve conferenties
+            conferences_button_title: Link naar de pagina Conferenties waarop alle conferenties worden weergegeven
             see_all_conferences: Bekijk alle conferenties
       photo:
         image:
@@ -532,23 +533,6 @@ nl:
         related_assemblies: Gerelateerde bijeenkomsten
         related_consultations: Gerelateerde consultaties
         related_participatory_processes: Verwante participatieve processen
-      statistics:
-        answers_count: antwoorden
-        comments_count: Comments
-        conference_count: Conferenties
-        debates_count: debatten
-        endorsements_count: Endorsements
-        headline: Activiteit
-        meetings_count: vergaderingen
-        orders_count: stemmen
-        pages_count: Pages
-        posts_count: berichten
-        projects_count: projecten
-        proposals_count: voorstellen
-        results_count: resultaten
-        surveys_count: onderzoeken
-        users_count: Deelnemers
-        votes_count: stemmen
     events:
       conferences:
         conference_registration_confirmed:
@@ -596,6 +580,8 @@ nl:
         title: Media en links
     menu:
       conferences: Conferenties
+    statistics:
+      conferences_count: Conferenties
   devise:
     mailer:
       join_conference:

@@ -163,11 +163,18 @@ describe "Admin manages organization", type: :system do
           )
         end
 
+        it "creates single br tag" do
+          find('div[contenteditable="true"].ql-editor').send_keys([:left, :left, :left, :left, :left], [:shift, :enter])
+          expect(find(
+            "#organization-admin_terms_of_use_body-tabs-admin_terms_of_use_body-panel-0 .editor .ql-editor"
+          )["innerHTML"]).to eq('<p>foo<br><br><a href="https://www.decidim.org" rel="noopener noreferrer" target="_blank">link</a></p>')
+        end
+
         it "doesnt create br tag inside a tag" do
           find('div[contenteditable="true"].ql-editor').send_keys([:left, :left, :left, :left], [:shift, :enter])
           expect(find(
             "#organization-admin_terms_of_use_body-tabs-admin_terms_of_use_body-panel-0 .editor .ql-editor"
-          )["innerHTML"]).to eq('<p>foo<br><br><a href="https://www.decidim.org" target="_blank">link</a></p>')
+          )["innerHTML"]).to eq('<p>foo<br><br><a href="https://www.decidim.org" rel="noopener noreferrer" target="_blank">link</a></p>')
         end
       end
 

@@ -5,6 +5,8 @@ pt:
         delete_reason: Razão para cancelar a sua conta
       common:
         created_at: Criado em
+      conversation:
+        body: Corpo
       group:
         about: Sobre
         avatar: Avatar
@@ -13,11 +15,13 @@ pt:
         name: Nome
         nickname: Alcunha
         phone: Telefone
+      message:
+        body: Corpo
       report:
         details: Comentários adicionais
       user:
         about: Sobre
-        email: O seu email
+        email: O seu e-mail
         name: O seu nome
         nickname: Alcunha
         password: Palavra-passe
@@ -40,7 +44,7 @@ pt:
     attributes:
       decidim/user:
         current_password: Senha atual
-        email: Email
+        email: E-mail
         name: Alcunha
         password: Senha
         password_confirmation: Confirmação da senha
@@ -63,7 +67,6 @@ pt:
     'true': 'Sim'
   carrierwave:
     errors:
-      general: Erro ao processar a imagem
       image_too_big: A imagem é demasiado grande
       not_inside_organization: O ficheiro não está anexado a nenhuma organização
   date:
@@ -95,6 +98,7 @@ pt:
         error: Ocorreu um problema ao eliminar a sua conta.
         success: A sua conta foi eliminada corretamente.
       show:
+        available_locales_helper: Escolha a linguagem que quer usar para navegar e receber notificações no Decidim
         change_password: Mudar senha
         update_account: Atualizar conta
       update:
@@ -253,10 +257,13 @@ pt:
         download: Transferir ficheiro
       documents:
         related_documents: Documentos relacionados
+      geocoding:
+        geocoded_address: Endereço
       photos:
         related_photos: Imagens relacionadas
     author:
-      avatar: Avatar
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar para múltiplos utilizadores
       comments:
         one: comentário
         other: comentários
@@ -450,7 +457,7 @@ pt:
           newsletter: Receber um boletim informativo ocasional com informações relevantes
           newsletter_title: Permissão de contacto
           nickname_help: A sua alcunha em %{organization}. Só pode conter letras, números, “-”, e “_”
-          password_help: "%{minimun_characters} caracteres no mínimo, não deverá ser muito comum (por ex. 123456) e deverá ser diferente da sua alcunha e do seu e-mail."
+          password_help: "%{minimun_characters} de caracteres no mínimo, não deverá ser muito comum (por ex. 123456) e deverá ser diferente da sua alcunha e do seu e-mail."
           sign_in: Entrar
           sign_up: Inscreva-se
           sign_up_as:
@@ -850,6 +857,15 @@ pt:
       index:
         last_activity: Última atividade
         resource_type: Tipo
+    links:
+      invalid_url: URL inválido
+      warning:
+        body_1: Está prestes a visitar uma ligação externa e gostaríamos que fosse cuidadoso quanto ao conteúdo do sítio externo.
+        body_2: Como medida de precaução, por favor verifique o link que está prestes a visitar e certifique-se que o reconhece.
+        cancel: Cancelar
+        close_modal: Fechar modal
+        proceed: Continuar
+        title: Abrir ligação externa
     log:
       base_presenter:
         create: "%{user_name} criou %{resource_name}"
@@ -1070,24 +1086,7 @@ pt:
         metrics:
           headline: Métricas
         statistics:
-          answers_count: Inquéritos Concluídos
-          assemblies_count: Reuniões
-          comments_count: Comentários
-          conferences_count: Conferências
-          debates_count: Debates
-          endorsements_count: Endossos
           headline: Estado atual de %{organization}
-          meetings_count: Reuniões
-          orders_count: Votos
-          pages_count: Páginas
-          processes_count: Processos
-          projects_count: Projetos
-          proposals_accepted: Propostas aceites
-          proposals_count: Propostas
-          results_count: Resultados
-          surveys_count: Inquéritos
-          users_count: Participantes
-          votes_count: Votos
         sub_hero:
           register: Registar
       index:
@@ -1242,6 +1241,7 @@ pt:
         description: Este conteúdo é impróprio?
         does_not_belong: Contém atividades ilegais, ameaças suicidas, informações pessoais ou qualquer outra coisa que pense não pertencer a %{organization_name}.
         offensive: Contém racismo, sexismo, insultos, ataques pessoais, ameaças de morte, pedidos de suicídio ou qualquer tipo de discurso de ódio.
+        reason: Motivo
         report: Reportar
         spam: Contém clickbait, publicidade, fraudes ou robots de scripts.
         title: Denunciar um problema
@@ -1267,6 +1267,8 @@ pt:
         filters:
           areas: Áreas
           select_an_area: Selecione uma área
+      public_participation:
+        public_participation: Mostrar publicamente a minha participação
       reference:
         reference: 'Referência: %{reference}'
       represent_user_group:
@@ -1277,8 +1279,21 @@ pt:
         title: Selecionar número de resultados por página
       share_modal:
         close_window: Fechar janela
+        copy_share_link: Copiar
+        copy_share_link_clarification: Copiar a ligação de partilha para o clipboard
+        copy_share_link_copied: Copiado!
+        copy_share_link_message: A ligação foi  copiada para o clipboard com êxito.
         share: Partilhar
         share_link: Partilhar link
+    statistics:
+      comments_count: Comentários
+      endorsements_count: Apoios
+      followers_count: Seguidores
+      headline: Estatísticas
+      no_stats: Ainda não há estatísticas.
+      pages_count: Páginas
+      participants_count: Participantes
+      users_count: Participantes
     tags:
       filter_results_for_category: 'Resultados do filtro para a categoria: %{resource}'
       filter_results_for_scope: 'Resultados do filtro para o âmbito: %{resource}'
@@ -1316,6 +1331,7 @@ pt:
         send: Enviar
         title_reply: Responder
       show:
+        back: Mostrar todas as conversas
         not_allowed: Este utilizador não aceita mais mensagens diretas.
         title: Conversa com %{usernames}
       update:
@@ -1361,6 +1377,7 @@ pt:
         number_of_versions: Versões
         title: Versões
     versions_list_item:
+      back: Mostrar todas as versões
       show:
         version_index: Versão %{index}
     welcome_notification:
@@ -1563,9 +1580,11 @@ pt:
         made_with_open_source: Site criado com <a target="_blank" href="https://github.com/decidim/decidim"> software livre</a>.
       header:
         close_menu: Fechar menu
+        main_menu: Menu principal
         navigation: Navegação
         sign_in: Entrar
         sign_up: Inscrever-se
+        user_menu: Menu de utilizador
       impersonation_warning:
         close_session: Terminar sessão
         description_html: Está a gerir o participante <b>%{user_name}</b>.
@@ -1594,6 +1613,7 @@ pt:
         profile: A minha conta
         public_profile: O meu perfil público
         sign_out: Sair
+        title: Ligações de perfil
       user_profile:
         account: Conta
         authorizations: Autorizações

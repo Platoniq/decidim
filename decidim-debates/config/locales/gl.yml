@@ -162,3 +162,5 @@ gl:
         description: Número de debates creados
         object: debates
         title: Debates
+    statistics:
+      debates_count: Debates

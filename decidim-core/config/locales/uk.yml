@@ -449,21 +449,7 @@ uk:
           participate: Взяти участь
           welcome: Ласкаво просимо до %{organization}!
         statistics:
-          answers_count: Пройдених опитувань
-          assemblies_count: Зборів
-          comments_count: Коментарів
-          debates_count: Обговорення
-          endorsements_count: Проявів підтримки
           headline: Поточний стан %{organization}
-          meetings_count: Зустрічі
-          orders_count: Голосів
-          processes_count: Рухів
-          projects_count: Проекти
-          proposals_accepted: Прийняті пропозиції
-          proposals_count: Пропозиції
-          results_count: Підсумки
-          surveys_count: Опитувань
-          votes_count: Голосів
         sub_hero:
           register: Зареєструватися
       terms_and_conditions:
@@ -553,6 +539,8 @@ uk:
         close_window: Закрити вікно
         share: Поділитися
         share_link: Поділитись посиланням
+    statistics:
+      comments_count: Коментарів
     user_conversations:
       update:
         error: Повідомлення не надіслано. Спробуйте ще раз пізніше

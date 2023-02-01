@@ -218,11 +218,8 @@ tr:
           filter_by: Şuna göre filtrele
           unfold: Aç
         preview:
-          available_answers: Mevcut cevaplar
-          description: Oylama sürecinde bulacağınız sorular bunlar
           title: Seçim soruları
         results:
-          description: Bunlar, her soru için oylamanın sonuçlarıdır
           selected: Seçili
           title: Seçim sonuçları
         show:
@@ -233,7 +230,6 @@ tr:
             upcoming: Oylama %{start_time} tarihinde başlıyor
       feedback:
         answer:
-          invalid: Geri bildiriminizi gönderirken bir sorun oluştu.
           spam_detected: Formu yanıtlarken bir sorun oluştu. Belki çok hızlı davrandın, tekrar deneyebilir misin?
           success: Geri bildirim başarıyla gönderildi.
       models:
@@ -265,6 +261,11 @@ tr:
         older: Daha eski
         recent: En son
       trustee_zone:
+        elections:
+          tally_steps:
+            back: Geri
+            list:
+              status: Statü
         menu:
           trustee_zone: Vekil bölgesi
         trustees:
@@ -314,15 +315,10 @@ tr:
           experience: Şu ana kadarki deneyiminiz nasıl?
           feedback: Bize geri bildirim verin
           header: Oy onaylandı
-          lead: Oyunuz çoktan verildi!
           text: 'Aşağıdaki tanımlayıcıyla oyunuzun başarıyla oy sandığına eklenip eklenmediğini kontrol edebilirsiniz: <strong class = "evote__poll-id">%{e_vote_poll_id} </strong>'
-        encrypting:
-          header: Oy kodlanıyor...
-          text: Anonim olarak kullanabilmeniz için oyunuz şifreleniyor.
         header:
           confirm: Oyunu onayla
           confirmed: Oy onaylandı
-          encrypting: Onaylanan oy
         messages:
           not_allowed: Şu anda bu seçim için oy kullanmanıza izin verilmiyor.
         modal:
@@ -359,21 +355,10 @@ tr:
             email_outro: Bu bildirimi, %{resource_name} için vekil kişi olarak eklendiğiniz için aldınız.
             email_subject: '%{resource_name} için vekil birisiniz.'
             notification_title: <a href="%{participatory_space_url}">%{resource_name} </a> için vekil birisiniz.
-    pages:
-      home:
-        statistics:
-          elections_count: Seçimler
-    participatory_processes:
-      statistics:
-        elections_count: Seçimler
     votings:
-      polling_officer_zone:
-        polling_officers:
-          show:
-            polling_stations:
-              list:
-                actions: Eylemler
-                name: Adı
+      votings:
+        filters:
+          state: Statü
   layouts:
     decidim:
       election_votes_header:

@@ -16,6 +16,7 @@ ro:
         edit: Editează
         new: Postare nouă
         title: Acțiuni
+        user_group_id: Creează postare ca
       admin:
         models:
           components:
@@ -59,6 +60,10 @@ ro:
       read_more: Citește mai mult
     components:
       blogs:
+        actions:
+          create: Creează
+          destroy: Șterge
+          update: Actualizează
         name: Blog
         settings:
           global:
@@ -77,10 +82,5 @@ ro:
           email_outro: Ai primit această notificare deoarece urmărești „%{participatory_space_title}”. Poți anula abonarea de la link-ul anterior.
           email_subject: Postare nouă publicată în %{participatory_space_title}
           notification_title: Postarea <a href="%{resource_path}">%{resource_title}</a> a fost publicată în %{participatory_space_title}
-    pages:
-      home:
-        statistics:
-          posts_count: Postări
-    participatory_processes:
-      statistics:
-        posts_count: Postări
+    statistics:
+      posts_count: Postări

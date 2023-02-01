@@ -52,6 +52,7 @@ el:
         target: Ποιος συμμετέχει
         title: Τίτλος
         twitter: Twitter
+        weight: Θέση κατάταξης
         youtube: YouTube
       assembly_member:
         birthday: Γενέθλια
@@ -62,6 +63,7 @@ el:
         full_name: Ονοματεπώνυμο
         gender: Φύλο
         position: Θέση
+        user_id: Χρήστης ή ομάδα
       assembly_user_role:
         email: Email
         name: Όνομα
@@ -260,6 +262,7 @@ el:
       admin:
         assemblies:
           form:
+            announcement_help: Το κείμενο που εισάγετε εδώ θα εμφανίζεται στο χρήστη ακριβώς κάτω από τις πληροφορίες συνέλευσης.
             duration: Διάρκεια
             duration_help: Εάν η διάρκεια αυτής της συνέλευσης είναι περιορισμένη, επιλέξτε την ημερομηνία λήξης. Διαφορετικά, θα εμφανίζεται ως απεριόριστη.
             filters: Φίλτρα
@@ -376,34 +379,11 @@ el:
         social_networks: Κοινωνικά δίκτυα
         social_networks_title: Κοινοποίηση αυτής της συνέλευσης σε
         target: Ποιος συμμετέχει
-      statistics:
-        answers_count: Απαντήσεις
-        assemblies_count: Συνελεύσεις
-        comments_count: Σχόλια
-        debates_count: Συζητήσεις
-        endorsements_count: Επιδοκιμασίες
-        meetings_count: Συσκέψεις
-        orders_count: Υποστηρίξεις
-        pages_count: Σελίδες
-        participants_count: Συμμετέχοντες
-        posts_count: Δημοσιεύσεις
-        projects_count: Έργα
-        proposals_count: Προτάσεις
-        results_count: Αποτελέσματα
-        supports_count: Υποστηρίξεις
-        surveys_count: Έρευνες
-        users_count: Συμμετέχοντες
-        votes_count: Υποστηρίξεις
     assembly_members:
       assembly_member:
         designated_on: Διορίστηκε στις
       index:
         title: Μέλη
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Σύνδεσμος προς τη σελίδα «Διασκέψεις» που εμφανίζει όλες τις διασκέψεις
     events:
       assemblies:
         create_assembly_member:
@@ -436,17 +416,11 @@ el:
         description: Αριθμός συνελεύσεων που δημιουργήθηκαν
         object: συνελεύσεις
         title: Συνελεύσεις
-    pages:
-      home:
-        hero:
-          participate_title: Συμμετάσχετε στις διαδικασίες της πλατφόρμας
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Σύνδεσμος προς τη σελίδα «Διαδικασίες» που εμφανίζει όλες τις διαδικασίες
       show:
         related_assemblies: Σχετικές συνελεύσεις
+    statistics:
+      assemblies_count: Συνελεύσεις
   errors:
     messages:
       cannot_be_blank: δεν μπορεί να είναι κενό

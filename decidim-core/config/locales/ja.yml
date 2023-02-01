@@ -5,6 +5,8 @@ ja:
         delete_reason: アカウントを削除する理由
       common:
         created_at: 作成日時
+      conversation:
+        body: 本文
       group:
         about: About
         avatar: アバター
@@ -13,6 +15,8 @@ ja:
         name: 名前
         nickname: アカウントID
         phone: 電話番号
+      message:
+        body: 本文
       report:
         details: 追加コメント
       user:
@@ -59,7 +63,6 @@ ja:
     'true': 'はい'
   carrierwave:
     errors:
-      general: 画像処理中にエラー
       image_too_big: 画像が大きすぎます
       not_inside_organization: ファイルはどの組織にも添付されていません
   date:
@@ -91,6 +94,7 @@ ja:
         error: アカウントの削除中に問題が発生しました。
         success: アカウントが正常に削除されました。
       show:
+        available_locales_helper: Decidimからの通知を閲覧および受信するために使用する言語を選択します
         change_password: パスワードの変更
         update_account: アカウントを更新
       update:
@@ -127,9 +131,9 @@ ja:
       organization:
         update: "%{user_name} が組織設定を更新しました"
       participatory_space_private_user:
-        create: "%{user_name} が %{resource_name} を非公開参加者に招待しました"
-        create_via_csv: "%{user_name} が %{resource_name} をCSV経由で非公開参加者に招待しました"
-        delete: "%{user_name} が参加者 %{resource_name} を非公開参加者として削除しました"
+        create: "%{user_name} が %{resource_name} をプライベート参加者に招待しました"
+        create_via_csv: "%{user_name} が %{resource_name} をCSV経由でプライベート参加者に招待しました"
+        delete: "%{user_name} がプライベート参加者の %{resource_name} を削除しました"
       scope:
         create: "%{user_name} が %{resource_name} スコープを作成しました"
         create_with_parent: "%{user_name} は %{resource_name} スコープ内で %{parent_scope} スコープを作成しました"
@@ -249,10 +253,13 @@ ja:
         download: ファイルをダウンロード
       documents:
         related_documents: 関連ドキュメント
+      geocoding:
+        geocoded_address: 住所
       photos:
         related_photos: 関連画像
     author:
-      avatar: アバター
+      avatar: 'アバター: %{name}'
+      avatar_multiuser: 複数のユーザーのアバター
       comments:
         other: コメント
       endorsements:
@@ -391,7 +398,7 @@ ja:
         name: ヒーロー画像
       hero_settings_form:
         background_image: 背景画像
-        welcome_text: ようこそテキスト
+        welcome_text: ウェルカムテキスト
       highlighted_content_banner:
         name: 強調表示されたコンテンツバナー
       highlighted_elements_settings_form:
@@ -681,6 +688,7 @@ ja:
       no_followers: フォロワーはまだいません。
     following:
       no_followings: フォローしている人やコンテンツはありません
+      non_public_followings: フォローしているリソースのいくつかは公開されていません。
     follows:
       create:
         button: フォロー
@@ -842,6 +850,15 @@ ja:
       index:
         last_activity: 最後のアクティビティ
         resource_type: タイプ
+    links:
+      invalid_url: 無効な URL
+      warning:
+        body_1: あなたは外部リンクにアクセスしようとしています。外部サイトの内容にはご注意ください。
+        body_2: サイトにアクセスする前に、訪問しようとしているリンクをチェックし、安全なサイトであるか確認してください。
+        cancel: キャンセル
+        close_modal: 閉じる
+        proceed: 続行
+        title: 外部リンクを開く
     log:
       base_presenter:
         create: "%{user_name} が %{resource_name} を作成しました"
@@ -862,7 +879,7 @@ ja:
         scope_type_presenter:
           not_found: 'スコープ種別がデータベース上に見つかりませんでした (ID: %{id})'
     managed_users:
-      expired_session: 出席者の現在の管理セッションの有効期限が切れています。
+      expired_session: 参加者の現在の管理セッションの有効期限が切れています。
     map:
       dynamic:
         screen_reader_explanation: 以下の要素は、このページ上のアイテムを地図上のポイントとして表示するマップです。 この要素はスクリーンリーダーで使用することができますが、理解しにくいかもしれません。
@@ -944,6 +961,7 @@ ja:
         show:
           back: すべての会話に戻る
           chat_with: 会話
+          deleted_accounts: 削除されたアカウントと会話することはできません。
           not_allowed: この参加者はダイレクトメッセージを受け付けません。
           title: '%{usernames} との会話'
         start:
@@ -1062,24 +1080,7 @@ ja:
         metrics:
           headline: 指標
         statistics:
-          answers_count: 完了した調査
-          assemblies_count: 参加スペース
-          comments_count: コメント
-          conferences_count: カンファレンス
-          debates_count: ディベート
-          endorsements_count: オススメ
           headline: '%{organization} の現在の状態'
-          meetings_count: ミーティング
-          orders_count: 投票
-          pages_count: ページ
-          processes_count: 参加型プロセス
-          projects_count: プロジェクト
-          proposals_accepted: 承認された提案
-          proposals_count: 提案
-          results_count: 結果
-          surveys_count: 調査
-          users_count: 参加者
-          votes_count: 投票
         sub_hero:
           register: 登録
       index:
@@ -1233,6 +1234,7 @@ ja:
         description: このコンテンツは不適切ですか？
         does_not_belong: 違法行為、個人情報、または %{organization_name} に属していないと思われる内容が含まれています。
         offensive: 差別的な内容、誹謗中傷などの不適切な内容が含まれています。
+        reason: 理由
         report: 報告
         spam: 本来の内容に関係が無い広告、詐欺や悪意のある処理などが含まれています。
         title: 不適切な内容を報告する
@@ -1258,6 +1260,8 @@ ja:
         filters:
           areas: エリア
           select_an_area: エリアを選択
+      public_participation:
+        public_participation: 参加を公開する
       reference:
         reference: 'リファレンス： %{reference}'
       represent_user_group:
@@ -1268,8 +1272,21 @@ ja:
         title: ページあたりの結果数を選択
       share_modal:
         close_window: ウィンドウを閉じる
+        copy_share_link: コピー
+        copy_share_link_clarification: 共有リンクをクリップボードにコピー
+        copy_share_link_copied: コピーしました
+        copy_share_link_message: リンクをクリップボードにコピーしました。
         share: 共有
         share_link: リンクを共有
+    statistics:
+      comments_count: コメント
+      endorsements_count: オススメ
+      followers_count: フォロワー
+      headline: 統計情報
+      no_stats: 統計情報はまだありません。
+      pages_count: ページ
+      participants_count: 参加者
+      users_count: 参加者
     tags:
       filter_results_for_category: 'カテゴリの検索結果: %{resource}'
       filter_results_for_scope: 'スコープの検索結果: %{resource}'
@@ -1290,7 +1307,7 @@ ja:
         add_max_users: '会話にユーザーを追加: 最大 9 人のユーザー'
         add_users_placeholder: 検索...
         close: 閉じる
-        conversations_info: 会話は非公開です。他の誰も見ることはできません。会話はプラットフォームに登録されている参加者またはグループで開始できます。
+        conversations_info: 会話はプライベートです。他の誰も見ることはできません。会話はプラットフォームに登録されている参加者またはグループで開始できます。
         from: '差出人:'
         last_message: 最後のメッセージ
         modal_title: 新しい会話
@@ -1307,6 +1324,8 @@ ja:
         send: 送信
         title_reply: 返信
       show:
+        back: すべての会話を表示
+        deleted_accounts: 削除されたアカウントと会話することはできません。
         not_allowed: このユーザーはこれ以上のダイレクトメッセージを受け付けません。
         title: '%{usernames} との会話'
       update:
@@ -1352,6 +1371,7 @@ ja:
         number_of_versions: バージョン
         title: バージョン
     versions_list_item:
+      back: すべてのバージョンを表示
       show:
         version_index: バージョン %{index}
     welcome_notification:
@@ -1551,9 +1571,11 @@ ja:
         made_with_open_source: このサイトは <a target="_blank" href="https://github.com/decidim/decidim">フリーソフトウェア</a>で作られています。
       header:
         close_menu: メニューを閉じる
+        main_menu: メインメニュー
         navigation: ナビゲーション
         sign_in: ログイン
         sign_up: 新規登録
+        user_menu: ユーザーメニュー
       impersonation_warning:
         close_session: セッションを閉じる
         description_html: 参加者 <b>%{user_name}</b> を管理しています。
@@ -1582,6 +1604,7 @@ ja:
         profile: マイアカウント
         public_profile: 公開プロフィール
         sign_out: ログアウト
+        title: プロフィールリンク
       user_profile:
         account: アカウント
         authorizations: 権限
@@ -1595,7 +1618,7 @@ ja:
         see_more: もっと見る
   locale:
     name: 日本語
-    name_with_error: 英語 (エラー!)
+    name_with_error: 日本語 (エラー!)
   password_validator:
     domain_included_in_password: このドメイン名に似ています
     email_included_in_password: はあなたのメールアドレスに似ています

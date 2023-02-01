@@ -8,38 +8,44 @@ ja:
       close_meeting:
         attendees_count: 出席者数
         attending_organizations: 参加した組織一覧
-        closing_report: レポート
+        audio_url: 音声URL
+        closing_report: 議事録
+        closing_visible: 表示する
         contributions_count: 貢献数
         proposal_ids: ミーティングで作成された提案
+        video_url: 動画URL
       meeting:
         address: 住所
         available_slots: このミーティングで利用可能なスロット
+        customize_registration_email: 登録メールのカスタマイズ
         decidim_category_id: カテゴリ
         decidim_scope_id: スコープ
         decidim_user_group_id: ユーザーグループ
         description: 説明
         end_time: 終了時刻
+        id: ID
         location: 場所
         location_hints: 位置情報のヒント
         online_meeting_url: オンラインミーティングURL
         organizer_gid: '次として作成:'
         organizer_id: オーガナイザー
         private_meeting: プライベートミーティング
+        registration_email_custom_content: 登録メールのカスタムコンテンツ
         registration_form_enabled: 登録フォームが有効
         registration_terms: 登録条件
         registration_url: 登録URL
         registrations_enabled: 登録が有効
+        show_embedded_iframe: この URL の埋め込まれた iframe を表示
         start_time: 開始時刻
         title: タイトル
         transparent: 透明度
         type_of_meeting: 種別
-      minutes:
-        audio_url: 音声URL
-        description: 説明
-        video_url: 動画URL
-        visible: 非表示にする
     errors:
       models:
+        meeting:
+          attributes:
+            show_embedded_iframe:
+              not_embeddable: このURLは埋め込めません
         meeting_agenda:
           attributes:
             base:
@@ -66,6 +72,34 @@ ja:
         other: 登録
   decidim:
     admin:
+      filters:
+        meetings:
+          category_id_eq:
+            label: カテゴリ
+          closed_at_present:
+            label: 状態
+            values:
+              'false': 開く
+              'true': 終了済
+          is_upcoming_true:
+            label: 日付
+            values:
+              'false': 過去
+              'true': 近日公開
+          origin_eq:
+            label: 起案者：
+            values:
+              citizen: 市民
+              official: 事務局
+              user_group: ユーザーグループ
+          scope_id_eq:
+            label: スコープ
+          type_eq:
+            label: ミーティングの種類
+            values:
+              hybrid: ハイブリッド
+              in_person: 対面
+              online: オンライン
       meeting_copies:
         create:
           error: このミーティングを複製する際に問題が発生しました。
@@ -77,6 +111,7 @@ ja:
     components:
       meetings:
         actions:
+          comment: コメント
           join: 参加する
         name: ミーティング
         settings:
@@ -87,6 +122,7 @@ ja:
             creation_enabled_for_participants: 出席者はミーティングを作成できます
             default_registration_terms: デフォルトの登録条件
             enable_pads_creation: パッドの作成を有効にする
+            maps_enabled: 地図が有効
             registration_code_enabled: 登録コードが有効
             resources_permissions_enabled: アクションの権限はミーティングごとに設定できます
             scope_id: スコープ
@@ -111,6 +147,7 @@ ja:
             email_subject: '「%{resource_title}」のミーティングは終了しました'
             notification_title: <a href="%{resource_path}">%{resource_title}</a> のミーティングは終了しました。
         meeting_created:
+          button_text: ミーティングに登録する
           email_intro: フォローしているミーティング "%{resource_title}" が "%{participatory_space_title}" に追加されました．
           email_outro: '「%{participatory_space_title}」をフォローしているため、この通知を受け取りました。前のリンクからこの通知をアンフォローすることができます。'
           email_subject: '%{participatory_space_title} に新しいミーティングが追加されました'
@@ -142,6 +179,9 @@ ja:
           email_outro: '「%{resource_title}」ミーティングをフォローしているため、この通知を受け取りました．前のリンクからフォローを解除することができます．'
           email_subject: '"%{resource_title}" のミーティングは48時間以内に開始されます．'
           notification_title: <a href="%{resource_path}">%{resource_title}</a> のミーティングは48時間以内に開始されます．
+    forms:
+      meetings:
+        attendees_count_help_text: イベントに参加者の合計数を含めることを忘れないでください。 対面、ハイブリッド、オンラインに関わらず、何人が関わっているかを知ることが重要です。
     gamification:
       badges:
         attended_meetings:
@@ -166,7 +206,7 @@ ja:
         invalid_destroy:
           proposals_count:
             other: '%{count} 件の提案が関連付けられているため、ミーティングを削除できません:'
-        minutes: 議事録
+        manage_poll: アンケートの管理
         new: 新しいミーティング
         preview: プレビュー
         registrations: 登録
@@ -203,6 +243,7 @@ ja:
             invalid: この議題の更新中に問題が発生しました
             success: アジェンダを正常に更新しました
         exports:
+          answers: 回答
           meeting_comments: コメント
           meetings: ミーティング
           registrations: 登録
@@ -237,13 +278,16 @@ ja:
           edit:
             close: 閉じる
             title: ミーティングを閉じる
+        meeting_copies:
+          form:
+            select_a_meeting_type: ミーティング種別を選択してください
         meetings:
           close:
             invalid: このミーティングを終了する際に問題が発生しました
             success: ミーティングが正常に閉じられました
           create:
             invalid: このミーティングを作成する際に問題が発生しました
-            success: ミーティングを作成しました
+            success: ミーティングが正常に作成されました．これはまだ公開されていません．手動で公開する必要があります．
           destroy:
             invalid:
               proposals_count:
@@ -259,14 +303,19 @@ ja:
             location_help: '場所: ユーザーにメッセージが表示されます。'
             location_hints_help: '位置情報のヒント：追加情報。 例: 対面ミーティングでの建物のフロア、またはアクセス制限のあるオンラインミーティングでのミーティングパスワード。'
             online_meeting_url_help: 'リンク: 参加者があなたのミーティングに直接接続できるようにします'
+            registration_email_help: このテキストは登録確認メールの途中に表示されます。場所は登録コードの直後になります。
             registration_url_help: 'リンク: 参加者が登録に使用している外部サービスにアクセスできるようにします'
             select_a_meeting_type: ミーティング種別を選択してください
             select_a_registration_type: 登録種別を選択してください
+            show_embedded_iframe_help: このビデオ会議URLのiframeを埋め込むかどうか。いくつかのサービスのみが埋め込めます (例：YouTube、Twitchなど) 。
           index:
             title: ミーティング
           new:
             create: 作成
             title: ミーティングを作成
+          publish:
+            invalid: このミーティングの公開中に問題が発生しました
+            success: ミーティングが正常に公開されました
           service:
             description: 説明
             down: 下
@@ -277,22 +326,18 @@ ja:
           services:
             add_service: サービスを追加
             services: サービス
+          unpublish:
+            invalid: このミーティングを非公開にする際に問題が発生しました
+            success: ミーティングを非公開にしました
           update:
             invalid: このミーティングの更新中に問題が発生しました
             success: ミーティングを更新しました
-        minutes:
-          create:
-            invalid: この分を作成する際に問題が発生しました
-            success: 議事録が正常に作成された
-          edit:
-            title: 議事録を編集
-            update: 更新
-          new:
-            create: 作成
-            title: 議事録を作成
+        meetings_poll:
+          form:
+            title: '%{questionnaire_for} のアンケートを編集'
           update:
-            invalid: この議事録の更新中に問題が発生しました
-            success: 議事録が正常に更新されました
+            invalid: このミーティング投票の更新中に問題が発生しました
+            success: ミーティングのアンケートが正常に更新されました
         models:
           meeting:
             name: ミーティング
@@ -331,9 +376,6 @@ ja:
           value_types:
             organizer_presenter:
               not_found: '主催者がデータベース上に見つかりませんでした (ID: %{id})'
-        minutes:
-          create: "%{user_name} が %{resource_name} スペースにミーティング %{space_name} の議事録を作成しました"
-          update: "%{user_name} が %{resource_name} スペースでミーティング %{space_name} の議事録を更新しました"
       calendar_modal:
         calendar_url: カレンダー URL
         close_window: ウィンドウを閉じる
@@ -357,6 +399,11 @@ ja:
       last_activity:
         meeting_updated_at_html: "<span>ミーティングが %{link} に更新されました</span>"
         new_meeting_at_html: "<span> %{link}に新しいミーティング</span>"
+      layouts:
+        live_event:
+          administrate: 管理
+          close: 閉じる
+          questions: 質問
       mailer:
         invite_join_meeting_mailer:
           invite:
@@ -372,6 +419,13 @@ ja:
           close: ミーティングを閉じる
           title: ミーティングを閉じる
       meetings:
+        calendar_modal:
+          add_to_calendar: カレンダーに追加
+          apple: Apple カレンダーに追加
+          close_window: ウィンドウを閉じる
+          full_details_html: 詳細は %{link} をご覧ください
+          google: Google カレンダーに追加
+          outlook: Outlookカレンダーに追加
         count:
           meetings_count:
             other: "%{count} 個のミーティング"
@@ -423,10 +477,10 @@ ja:
           select_a_category: カテゴリを選択してください
           select_a_meeting_type: ミーティング種別を選択してください
           select_a_registration_type: 登録種別を選択してください
+          show_embedded_iframe_help: このビデオ会議URLのiframeを埋め込むかどうか。いくつかのサービスのみが埋め込めます (例：YouTube、Twitchなど) 。
         index:
           new_meeting: 新しいミーティング
         meeting_minutes:
-          meeting_minutes: ミーティング議事録
           related_information: 関連情報
         meetings:
           no_meetings_warning: 検索条件に一致するミーティングがないか，スケジュールされたミーティングがありません．
@@ -445,9 +499,15 @@ ja:
           contributions: コントリビューション数
           date: 日付
           edit_meeting: ミーティングを編集
-          going: 次へ
+          going: このミーティングにログインしました
           join: ミーティングに参加
-          meeting_report: ミーティングレポート
+          leave: 登録をキャンセルする
+          leave_confirmation: このミーティングの登録をキャンセルしてもよろしいですか？
+          link_available_soon: 間もなくリンクが利用可能です
+          link_closed: ミーティングに参加するリンクは開始数分前に利用可能になります
+          live_event: このミーティングは現在開催中です
+          meeting_minutes: ミーティング議事録
+          micro_camera_permissions_warning: 下のボタンをクリックすると、マイクおよび/またはカメラの権限を求められ、ビデオ会議に参加できます
           no_slots_available: 利用可能なスロットがありません
           organizations: 組織に参加
           registration_code_help_text: 登録コード
@@ -457,6 +517,7 @@ ja:
           remaining_slots:
             other: "残り%{count} スロット"
           view: 表示
+          visit_finished: 過去のミーティングを表示
         update:
           invalid: ミーティングの更新に問題がありました。
           success: ミーティングを更新しました．
@@ -477,10 +538,35 @@ ja:
           fields:
             closed: クローズ済み
             end_time: 終了日
+            id: ID
             map: 地図
             official_meeting: 公式ミーティング
             start_time: 開始日
             title: タイトル
+      polls:
+        questions:
+          closed_question:
+            question_results: 質問の結果
+          index:
+            empty_questions: このミーティングを通じて、いくつかの質問が送信され、回答することができます。質問はここに表示されます。
+          index_admin:
+            admin_dashboard: 管理者ダッシュボード
+            edit: 管理画面で編集
+            question: 質問
+            received_answer: 受理した回答
+            received_answers: 受理した回答
+            results: 結果
+            send: 送信
+            sent: 送信済み
+          published_question:
+            max_choices_alert: 選択された選択肢が多すぎます
+            question: 質問
+            question_replied: 質問に回答しました
+            reply_question: 質問に返信する
+      public_participants_list:
+        attending_participants: 参加する
+        hidden_participants_count:
+          other: 他 %{count} 人
       read_more: "(続きを読む)"
       registration_mailer:
         confirmation:
@@ -529,6 +615,8 @@ ja:
       proposals_from_meeting:
         meeting_proposal: '関連する提案:'
         proposal_meeting: '関連するミーティング:'
+    statistics:
+      meetings_count: ミーティング
   devise:
     mailer:
       join_meeting:

@@ -5,6 +5,8 @@ sv:
         delete_reason: Skäl att ta bort ditt konto
       common:
         created_at: Skapad den
+      conversation:
+        body: Innehåll
       group:
         about: Om
         avatar: Profilbild
@@ -13,6 +15,8 @@ sv:
         name: Namn
         nickname: Smeknamn
         phone: Telefon
+      message:
+        body: Innehåll
       report:
         details: Ytterligare kommentarer
       user:
@@ -63,7 +67,6 @@ sv:
     'true': 'Ja'
   carrierwave:
     errors:
-      general: Fel vid bearbetning av bild
       image_too_big: Bilden är för stor
       not_inside_organization: Den här filen är inte bifogad till någon organisation
   date:
@@ -90,11 +93,12 @@ sv:
           ok: Ja, radera mitt konto
           question: Är du säker på att du vill radera ditt konto?
           title: Radera mitt konto
-        explanation: Ange skälet till varför du vill radera ditt konto (valfritt).
+        explanation: Ange skälet till varför du vill radera ditt konto (frivilligt).
       destroy:
         error: Det gick inte att radera ditt konto.
         success: Ditt konto har raderats.
       show:
+        available_locales_helper: Välj det språk du vill använda på plattformen och i de notiserna du får
         change_password: Ändra lösenord
         update_account: Uppdatera konto
       update:
@@ -149,6 +153,7 @@ sv:
         block: "%{user_name} blockerade användaren %{resource_name}"
         invite: "%{user_name} bjöd in användaren %{resource_name} med rollen: %{role}"
         officialize: "%{user_name} gjorde deltagaren %{resource_name} officiell"
+        promote: "%{user_name} befordrade %{resource_name}"
         remove_from_admin: "%{user_name} tog bort deltagaren %{resource_name} med rollen: %{role}"
         show_email: "%{user_name} hämtade e-postadressen för deltagaren %{resource_name}"
         transfer: "%{user_name} överförde deltagaren %{resource_name}"
@@ -252,10 +257,13 @@ sv:
         download: Hämta fil
       documents:
         related_documents: Relaterade dokument
+      geocoding:
+        geocoded_address: Adress
       photos:
         related_photos: Relaterade bilder
     author:
-      avatar: Profilbild
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar för flera användare
       comments:
         one: kommentar
         other: kommentarer
@@ -689,6 +697,7 @@ sv:
       no_followers: Inga följare än.
     following:
       no_followings: Följer inte någon eller något än.
+      non_public_followings: Vissa resurser som följs är inte offentliga.
     follows:
       create:
         button: Följ
@@ -850,6 +859,15 @@ sv:
       index:
         last_activity: Senaste aktivitet
         resource_type: Typ
+    links:
+      invalid_url: Ogiltig URL
+      warning:
+        body_1: Du är på väg att besöka en extern länk och vi vill att du ska vara försiktig med innehållet på den externa webbplatsen.
+        body_2: Kontrollera länken du är på väg att besöka och se till att den är säker innan du fortsätter.
+        cancel: Avbryt
+        close_modal: Stäng fönster
+        proceed: Fortsätt
+        title: Öppna extern länk
     log:
       base_presenter:
         create: "%{user_name} skapade %{resource_name}"
@@ -952,6 +970,7 @@ sv:
         show:
           back: Tillbaka till alla konversationer
           chat_with: Konversation med
+          deleted_accounts: Du kan inte meddela raderade konton.
           not_allowed: Deltagaren tar inte emot direktmeddelanden.
           title: Samtal med %{usernames}
         start:
@@ -1026,13 +1045,13 @@ sv:
         administrators: Administratörer
         allow_public_contact: Tillåt alla att skicka direktmeddelanden till mig, även de som jag inte följer.
         direct_messages: Ta emot direktmeddelanden från alla
-        email_on_moderations: Jag vill få ett e-brev varje gång något anmäls för moderering.
-        email_on_notification: Jag vill få ett e-brev varje gång jag får ett meddelande.
+        email_on_moderations: Jag vill få ett e-post varje gång något anmäls för moderering.
+        email_on_notification: Jag vill få ett e-post varje gång jag får en notis.
         everything_followed: Allt jag följer
         newsletter_notifications: Jag vill få nyhetsbrev
         newsletters: Nyhetsbrev
         own_activity: Min egen verksamhet, som när någon kommenterar mitt förslag eller nämner mig
-        receive_notifications_about: Jag vill få meddelanden om
+        receive_notifications_about: Jag vill få notiser om
         send_notifications_by_email: Skicka meddelanden via e-post
         update_notifications_settings: Spara ändringar
       update:
@@ -1070,24 +1089,7 @@ sv:
         metrics:
           headline: Deltagande i siffror
         statistics:
-          answers_count: Genomförda undersökningar
-          assemblies_count: Grupper
-          comments_count: Kommentarer
-          conferences_count: Konferenser
-          debates_count: Debatter
-          endorsements_count: Instämmanden
           headline: Aktuellt läge för %{organization}
-          meetings_count: Möten
-          orders_count: Omröstningar
-          pages_count: Sidor
-          processes_count: Dialoger
-          projects_count: Projekt
-          proposals_accepted: Accepterade förslag
-          proposals_count: Förslag
-          results_count: Resultat
-          surveys_count: Undersökningar
-          users_count: Deltagare
-          votes_count: Omröstningar
         sub_hero:
           register: Registrera
       index:
@@ -1242,6 +1244,7 @@ sv:
         description: Är detta innehåll olämpligt?
         does_not_belong: Innehåller olaglig aktivitet, självmordshot, personlig information eller något annat du tror inte hör hemma på %{organization_name}.
         offensive: Innehåller rasism, sexism, nedsättande kommentarer, personliga attacker, dödshot, självmordsförfrågningar eller någon form av hatpropaganda.
+        reason: Anledning
         report: Rapportera
         spam: Innehåller klickbete, reklam, bedrägerier eller skräpprogramvara.
         title: Rapportera ett problem
@@ -1267,6 +1270,8 @@ sv:
         filters:
           areas: Områden
           select_an_area: Välj ett område
+      public_participation:
+        public_participation: Gör mitt deltagande synligt
       reference:
         reference: 'Referens: %{reference}'
       represent_user_group:
@@ -1277,8 +1282,21 @@ sv:
         title: Välj antal resultat per sida
       share_modal:
         close_window: Stäng fönster
+        copy_share_link: Kopiera
+        copy_share_link_clarification: Kopiera länk
+        copy_share_link_copied: Kopierad!
+        copy_share_link_message: Länken kopierades.
         share: Dela
         share_link: Dela länk
+    statistics:
+      comments_count: Kommentarer
+      endorsements_count: Instämmanden
+      followers_count: Följare
+      headline: Statistik
+      no_stats: Det finns ingen statistik ännu.
+      pages_count: Sidor
+      participants_count: Deltagare
+      users_count: Deltagare
     tags:
       filter_results_for_category: 'Filtrera resultat för kategori: %{resource}'
       filter_results_for_scope: 'Filtrera resultat för omfattning: %{resource}'
@@ -1316,6 +1334,8 @@ sv:
         send: Skicka
         title_reply: Svara
       show:
+        back: Visa alla samtal
+        deleted_accounts: Du kan inte meddela raderade konton.
         not_allowed: Den här användaren accepterar inte fler direkta meddelanden.
         title: Konversation med %{usernames}
       update:
@@ -1361,6 +1381,7 @@ sv:
         number_of_versions: Versioner
         title: Versioner
     versions_list_item:
+      back: Visa alla versioner
       show:
         version_index: Version %{index}
     welcome_notification:
@@ -1563,9 +1584,11 @@ sv:
         made_with_open_source: Webbplats skapad med <a target="_blank" href="https://github.com/decidim/decidim">fri programvara</a>.
       header:
         close_menu: Stäng meny
+        main_menu: Huvudmeny
         navigation: Navigera
         sign_in: Logga in
         sign_up: Registrera
+        user_menu: Användarmeny
       impersonation_warning:
         close_session: Stäng session
         description_html: Du hanterar deltagaren <b>%{user_name}</b>.
@@ -1588,12 +1611,13 @@ sv:
         title: Vill du fortsätta med din session?
       user_menu:
         account: 'Användarkonto: %{name}'
-        admin_dashboard: Admin kontrollpanel
+        admin_dashboard: Adminpanel
         conversations: Konversationer
         notifications: Meddelanden
         profile: Mitt konto
         public_profile: Min offentliga profil
         sign_out: Logga ut
+        title: Profillänkar
       user_profile:
         account: Konto
         authorizations: Auktoriseringar

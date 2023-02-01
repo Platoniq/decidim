@@ -2,7 +2,7 @@ eu:
   activemodel:
     attributes:
       area:
-        area_type: Area mota
+        area_type: Eremu mota
         name: Izena
         organization: Erakundea
       area_type:
@@ -24,7 +24,7 @@ eu:
       component:
         name: Izena
         published_at: Argitaratu at
-        weight: Pisua
+        weight: Kokapenaren hurrenkera
       id: NAN
       import:
         user_group_id: Inportatu hau bezala
@@ -43,13 +43,14 @@ eu:
         default_locale: Eskualdeko ezarpen lehenetsiak
         description: Deskribapena
         enable_omnipresent_banner: Erakutsi omnipresent banner
+        enable_participatory_space_filters: Gaitu iragazkiak parte hartzeko gunean
         facebook_handler: Facebook kudeatzailea
         favicon: Ikonoa
         force_authentication: Behartu autentikazioa
         force_users_to_authenticate_before_access_organization: Behartu erabiltzaileak autentikatzera erakundean sartu baino lehen
-        from: Igorlearen posta elektronikoa
+        from: Igorlearen helbide elektronikoa
         github_handler: GitHub kudeatzailea
-        header_snippets: Goiburuko mozkinak
+        header_snippets: Goiburuko zatiak
         highlight_alternative_color: Nabarmendua, aukerakoa
         highlight_color: Nabarmendua
         highlighted_content_banner_action_subtitle: Ekintza botoia azpititulua
@@ -112,12 +113,12 @@ eu:
         show_in_footer: Erakutsi orri-oinean
         slug: URL laburra
         title: Titulua
-        weight: Pisua
+        weight: Kokapenaren hurrenkera
       static_page_topic:
         description: Deskribapena
         show_in_footer: Erakutsi orri-oinean
         title: Izenburua
-        weight: Pisua
+        weight: Kokapenaren hurrenkera
       user_group_csv_verification:
         file: file
     errors:
@@ -157,7 +158,8 @@ eu:
         browse: Arakatu
         category:
           new: Kategoria berria
-        export: Esportatu
+        export: Esportatu dena
+        export-selection: Esportatu hautatua
         import: Inportatu
         manage: Kudeatu
         new: '%{name}berria'
@@ -178,12 +180,12 @@ eu:
           success: Ederto! Onartu dituzu Administrazioaren Gaiak eta Baldintzak.
         actions:
           accept: Ados nago ondoko gai hauekin
-          are_you_sure: Ziur zaude ez dituzula onartu nahi Administrazioko Irizpideak eta Baldintzak?
+          are_you_sure: Ziur zaude ez dituzula onartu nahi administratzaileentzako erabilera-irizpideak?
           refuse: Ez onartu Administrazio-irizpideak eta baldintzak
           title: Onartzen ditut Administrazio-irizpideak eta baldintzak
         required_review:
           alert: 'Eskatuta: berrikusi gure Administrazio-irizpideak eta baldintzak'
-          callout: Mesedez, hartu tarte bat Administrazioko erabilera-irizpideak eta baldintzak berrikusteko. Bestela, ezin izango duzu plataforma erabili.
+          callout: Mesedez, hartu tarte bat administratzaileentzako erabilera-irizpideak erabiltzeko. Bestela, ezin izango duzu plataforma administratu.
           cta: Berrikusi orain.
         title: Administrazioaren Irizpideak eta Baldintzak
       area_types:
@@ -206,7 +208,7 @@ eu:
           error: Errore bat gertatu da area berri bat sortzean.
           success: Area sortu da behar bezala.
         destroy:
-          has_spaces: Eremuak mendekotasuna duten espazioak ditu, ez du mendekotasunik izan behar ezabatzeko.
+          has_spaces: Eremu honek mendekotasuna duten espazioak ditu. Kendu aurretik, ziurtatu ez duela parte hartzeko gunerik aipatzen.
           success: Area behar bezala suntsitu da
         edit:
           title: Editatu eremua
@@ -336,6 +338,12 @@ eu:
         show:
           view_more_logs: Ikusi gehiago erregistroak
           welcome: Ongi etorri Decidim Admin Panelera.
+      domain_whitelist:
+        form:
+          domain_too_short: Domeinu laburregia
+        update:
+          error: Errorea gertatu da domeinuaren zerrenda zuria eguneratzean
+          success: Domeinuaren zerrenda zuria zuzen eguneratu da
       exports:
         export_as: "%{name} honako hau gisa: %{export_format}"
         formats:
@@ -348,6 +356,16 @@ eu:
         category_id_eq:
           label: Kategoria
         filter_label: Iragazkia
+        invitation_accepted_at_present:
+          label: Gonbidapena onartu da
+          values:
+            'false': 'Ez'
+            'true': 'Bai'
+        last_sign_in_at_present:
+          label: Inoiz konektatu da
+          values:
+            'false': 'Ez'
+            'true': 'Bai'
         moderations:
           reportable_type_string_eq:
             label: Mota
@@ -356,6 +374,17 @@ eu:
           values:
             'false': Officialized
             'true': Ez ofiziala
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Gonbidapena onartu da
+            values:
+              'false': Ez da onartu
+              'true': Onartuta
+          user_invitation_sent_at_not_null:
+            label: Gonbidapena bidali da
+            values:
+              'false': Ez da bidali
+              'true': Bidali da
         private_space_eq:
           label: Pribatua
           values:
@@ -373,6 +402,7 @@ eu:
           name_or_nickname_or_email_cont: Bilatu %{collection} helbide elektroniko, izen edo ezizenaren arabera.
           reported_id_string_or_reported_content_cont: Bilatu %{collection} eduki edo Id erreportablearen arabera.
           title_cont: Bilatu %{collection} tituluaren arabera.
+          user_name_or_user_email_cont: Bilatu %{collection} helbide elektroniko, izen edo ezizenaren arabera.
         state_eq:
           label: Egoera
       forms:
@@ -431,7 +461,7 @@ eu:
           accepted_mime_types:
             csv: csv
             json: json
-            xls: xls
+            xlsx: xlsx
           actions:
             back: Atzera
           file_legend: Gehitu prozesatuko den inportazio-artxibo bat.
@@ -457,6 +487,7 @@ eu:
         areas: Arloak
         configuration: konfigurazioa
         dashboard: Kontrol-panela
+        external_domain_whitelist: Kanpoko domeinuak baimenduta
         help_sections: Laguntza atalak
         homepage: Hasiera
         impersonations: impersonations
@@ -605,7 +636,7 @@ eu:
       newsletters:
         create:
           error: ' Errorea gertatu da buletin hau sortzean.'
-          success: Buletina ongi sortu da. Mesedez, berrikusi bidali baino lehen.
+          success: Buletina zuzen sortu da. Mesedez, berrikusi bidali baino lehen.
         deliver:
           error: Errorea gertatu da buletin hau entregatzean.
           success: Buletina ongi bidali da.
@@ -728,6 +759,17 @@ eu:
             layout_appearance_title: Editatu itxura diseinua
             preview: Aurrebistaratu
           omnipresent_banner_appearance_title: Editatu omnipresent banner
+      organization_external_domain_whitelist:
+        edit:
+          update: Eguneratu
+        external_domain:
+          down: Jaitsi
+          external_domain: Kanpoko domeinua
+          remove: Kendu
+          up: Igo
+        form:
+          add: Gehitu zerrenda zuzrian
+          title: Kanpoko domeinuen zerrenda zuria
       organization_homepage:
         edit:
           active_content_blocks: Eduki bloke aktiboak
@@ -873,7 +915,7 @@ eu:
         static_pages: Orriak
         statistics: Jarduera
         user_groups: Erabiltzaile-taldeak
-        users: Erabiltzaileak
+        users: Parte-hartzaileak
       user_group:
         csv_verify:
           invalid: Errore bat gertatu da CSV fitxategia irakurtzean.
@@ -929,7 +971,7 @@ eu:
     forms:
       errors:
         impersonate_user:
-          reason: Arrazoi bat eman behar duzu erabiltzaile ez kudeatzaile bat ordezkatuz
+          reason: Arrazoi bat adierazi behar duzu kudeatu gabeko parte-hartzaile bat kudeatzeko
     metrics:
       blocked_users:
         object: erabiltzaileak blokeatuta

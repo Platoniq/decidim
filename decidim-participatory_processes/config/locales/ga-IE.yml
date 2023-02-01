@@ -15,7 +15,6 @@ ga:
         slug: Píosa URL
         subtitle: Fotheideal
         title: Teideal
-        weight: Meáchan
       participatory_process_group:
         group_url: Suíomh Gréasáin
         hashtag: Haischlib
@@ -143,20 +142,6 @@ ga:
         dates: Dátaí
         end_date: Dáta deiridh
         scope: Scóip
-      statistics:
-        answers_count: Freagraí
-        comments_count: Tráchtanna
-        debates_count: Díospóireachtaí
-        endorsements_count: Formhuinithe
-        meetings_count: Cruinnithe
-        orders_count: Tacaíochtaí
-        pages_count: Leathanaigh
-        processes_count: Próisis
-        projects_count: Tionscadail
-        proposals_count: Moltaí
-        results_count: Torthaí
-        supports_count: Tacaíochtaí
-        surveys_count: Suirbhéanna
   layouts:
     decidim:
       participatory_process_groups:

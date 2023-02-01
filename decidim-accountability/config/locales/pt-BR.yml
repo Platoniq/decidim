@@ -244,3 +244,5 @@ pt-BR:
         result_project: Projetos incluídos neste resultado
       included_proposals:
         result_proposal: Propostas incluídas neste resultado
+    statistics:
+      results_count: Resultados

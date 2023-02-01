@@ -262,6 +262,7 @@ sv:
       admin:
         assemblies:
           form:
+            announcement_help: Texten du skriver här visas för användaren direkt under gruppinformationen.
             duration: Varaktighet
             duration_help: Om varaktigheten för gruppen är begränsad, välj ett slutdatum. Annars kommer den att visas som permanent.
             filters: Filter
@@ -381,38 +382,11 @@ sv:
         social_networks: Sociala nätverk
         social_networks_title: Dela denna grupp på
         target: Vilka deltar
-      statistics:
-        answers_count: Svar
-        assemblies_count: Grupper
-        comments_count: Kommentarer
-        debates_count: Debatter
-        endorsements_count: Instämmanden
-        followers_count: Följare
-        headline: Statistik
-        meetings_count: Möten
-        no_stats: Det finns inga statistik ännu.
-        orders_count: Stöd
-        pages_count: Sidor
-        participants_count: Deltagare
-        posts_count: Inlägg
-        processes_count: Dialoger
-        projects_count: Projekt
-        proposals_count: Förslag
-        results_count: Resultat
-        supports_count: Stöd
-        surveys_count: Undersökningar
-        users_count: Deltagare
-        votes_count: Stöd
     assembly_members:
       assembly_member:
         designated_on: Utsedd den
       index:
         title: Medlemmar
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Länk till sidan över konferenser som visar alla konferenser
     events:
       assemblies:
         create_assembly_member:
@@ -445,19 +419,11 @@ sv:
         description: Antal skapade grupper
         object: grupper
         title: Grupper
-    pages:
-      home:
-        hero:
-          participate_title: Delta i plattformens dialoger
-        sub_hero:
-          register_title: Skapa ett konto
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Länk till sidan som visar alla dialoger
       show:
         related_assemblies: Relaterade grupper
+    statistics:
+      assemblies_count: Grupper
   errors:
     messages:
       cannot_be_blank: kan inte vara tomt

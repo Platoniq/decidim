@@ -57,6 +57,9 @@ pt:
         update:
           error: Ocorreu um problema ao atualizar este administrador.
           success: Administrador atualizado corretamente
+      dashboard:
+        show:
+          current_organizations: Organizações actuais
       default_pages:
         placeholders:
           content: Por favor adicione conteúdo relevante à página estática %{page} no painel de administrador.
@@ -112,6 +115,9 @@ pt:
           error: Houve um problema ao actualizar esta votação
           success: Aplicativo actualizado com êxito.
       organizations:
+        advanced_settings:
+          hide: Esconder definições avançadas
+          show: Mostrar definições avançadas
         create:
           error: Ocorreu um problema ao criar uma nova organização.
           success: Organização criada corretamente.

@@ -14,6 +14,7 @@ ja:
         edit: 編集
         new: 新規投稿
         title: アクション
+        user_group_id: 次のように投稿を作成
       admin:
         models:
           components:
@@ -57,6 +58,10 @@ ja:
       read_more: もっと読む
     components:
       blogs:
+        actions:
+          create: 作成
+          destroy: 削除
+          update: 更新
         name: ブログ
         settings:
           global:
@@ -75,10 +80,5 @@ ja:
           email_outro: '「%{participatory_space_title}」をフォローしているため、この通知を受け取りました。前のリンクからこの通知をアンフォローすることができます。'
           email_subject: '%{participatory_space_title} に新しい投稿が公開されました'
           notification_title: '%{participatory_space_title} で投稿 <a href="%{resource_path}">%{resource_title}</a> が公開されました'
-    pages:
-      home:
-        statistics:
-          posts_count: 投稿
-    participatory_processes:
-      statistics:
-        posts_count: 投稿
+    statistics:
+      posts_count: 投稿

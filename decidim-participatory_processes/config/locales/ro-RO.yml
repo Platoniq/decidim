@@ -34,7 +34,7 @@ ro:
         subtitle: Subtitlu
         target: Cine participă
         title: Titlu
-        weight: Ordinea în poziționare
+        weight: Ordinea procesului
       participatory_process_group:
         description: Descriere
         developer_group: Grup promotor
@@ -407,6 +407,7 @@ ro:
             more_information: Mai multe informații
             participate: Participă
             participate_in: Participă la procesul %{resource_name}
+            processes_button_title: Link către pagina unde sunt afișate toate procesele participative
             see_all_processes: Afișează toate procesele
       participatory_process_steps:
         index:
@@ -457,25 +458,8 @@ ro:
         start_date: Data de început
         target: Cine participă
         unspecified: Nespecificat
-      statistics:
-        answers_count: Răspunsuri
-        comments_count: Comentarii
-        debates_count: Dezbateri
-        endorsements_count: Susțineri
-        followers_count: Urmăritori
-        headline: Statistici
-        meetings_count: Întâlniri
-        no_stats: Nu există încă statistici.
-        orders_count: Voturi
-        pages_count: Pagini
-        participants_count: Participanți
-        processes_count: Procese participative
-        projects_count: Proiecte
-        proposals_count: Propuneri
-        results_count: Rezultate
-        supports_count: Voturi
-        surveys_count: Sondaje
-        users_count: Participanți
+    statistics:
+      processes_count: Procese
   layouts:
     decidim:
       participatory_process_groups:

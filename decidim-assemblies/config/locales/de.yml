@@ -52,7 +52,7 @@ de:
         target: Wer nimmt teil?
         title: Titel
         twitter: Twitter
-        weight: Gewicht
+        weight: Bestellposition
         youtube: Youtube
       assembly_member:
         birthday: Geburtstag
@@ -262,6 +262,7 @@ de:
       admin:
         assemblies:
           form:
+            announcement_help: Der Text, den Sie hier eingeben, wird dem Benutzer direkt unter den Gremien-Informationen angezeigt.
             duration: Dauer
             duration_help: Wenn die Dauer dieser Assembly begrenzt ist, wählen Sie das Enddatum aus. Andernfalls wird es als unbestimmt angezeigt.
             filters: Filter
@@ -381,38 +382,11 @@ de:
         social_networks: Soziale Netzwerke
         social_networks_title: Diese Versammlung auf teilen
         target: Wer nimmt teil?
-      statistics:
-        answers_count: Antworten
-        assemblies_count: Gremien
-        comments_count: Bemerkungen
-        debates_count: Debatten
-        endorsements_count: Empfehlungen
-        followers_count: Beobachter
-        headline: Statistiken
-        meetings_count: Meetings
-        no_stats: Noch keine Statistik vorhanden.
-        orders_count: Stimmen
-        pages_count: Seiten
-        participants_count: Teilnehmer
-        posts_count: Beiträge
-        processes_count: Prozesse
-        projects_count: Projekte
-        proposals_count: Vorschläge
-        results_count: Ergebnisse
-        supports_count: Stimmen
-        surveys_count: Umfragen
-        users_count: Teilnehmer
-        votes_count: Stimmen
     assembly_members:
       assembly_member:
         designated_on: Bezeichnet am
       index:
         title: Mitglieder
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Verknüpfung zu der Konferenzseite mit einem Überblick aller Konferenzen
     events:
       assemblies:
         create_assembly_member:
@@ -445,19 +419,11 @@ de:
         description: Anzahl der erstellten Gremien
         object: Gremien
         title: Gremien
-    pages:
-      home:
-        hero:
-          participate_title: Nehmen Sie an den Prozessen der Plattform teil
-        sub_hero:
-          register_title: Benutzerkonto registrieren
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Verknüpfung zu der Prozessseite mit einem Überblick aller Prozesse
       show:
         related_assemblies: Ähnliche Versammlungen
+    statistics:
+      assemblies_count: Gremien
   errors:
     messages:
       cannot_be_blank: darf nicht leer sein

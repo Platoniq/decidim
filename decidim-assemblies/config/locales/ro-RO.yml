@@ -63,7 +63,7 @@ ro:
         full_name: Numele complet
         gender: Sexul
         position: Poziție
-        user_id: Utilizator
+        user_id: Utilizator sau grup
       assembly_user_role:
         email: E-mail
         name: Nume
@@ -265,6 +265,7 @@ ro:
       admin:
         assemblies:
           form:
+            announcement_help: Textul pe care îl introduceți aici va fi prezentat utilizatorului sub informațiile despre grupul de lucru.
             duration: Durată
             duration_help: În cazul în care durata acestui grup de lucru este limitată, selectaţi data de încheiere. În caz contrar, va apărea ca nelimitată.
             filters: Filtre
@@ -384,38 +385,11 @@ ro:
         social_networks: Rețele sociale
         social_networks_title: Distribuie aceast grup de lucru pe
         target: Cine participă
-      statistics:
-        answers_count: Răspunsuri
-        assemblies_count: Grupuri de lucru
-        comments_count: Comentarii
-        debates_count: Dezbateri
-        endorsements_count: Susțineri
-        followers_count: Urmăritori
-        headline: Statistici
-        meetings_count: Întâlniri
-        no_stats: Încă nu există statistici.
-        orders_count: Voturi
-        pages_count: Pagini
-        participants_count: Participanți
-        posts_count: Mesaje
-        processes_count: Procese
-        projects_count: Proiecte
-        proposals_count: Propuneri
-        results_count: Rezultate
-        supports_count: Voturi
-        surveys_count: Chestionare
-        users_count: Participanți
-        votes_count: Voturi
     assembly_members:
       assembly_member:
         designated_on: Desemnat la
       index:
         title: Membri
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Link către pagina de conferințe care afișează toate conferințele
     events:
       assemblies:
         create_assembly_member:
@@ -448,19 +422,11 @@ ro:
         description: Număr de grupuri de lucru create
         object: grupuri de lucru
         title: Grupuri de lucru
-    pages:
-      home:
-        hero:
-          participate_title: Participă la procesele platformei
-        sub_hero:
-          register_title: Înregistrează-te pentru a crea un cont
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Link către pagina Proceselor care afișează toate procesele
       show:
         related_assemblies: Grupuri de lucru asociate
+    statistics:
+      assemblies_count: Grupuri de lucru
   errors:
     messages:
       cannot_be_blank: nu poate fi gol

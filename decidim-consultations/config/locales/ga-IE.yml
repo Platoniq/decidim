@@ -40,6 +40,9 @@ ga:
         consultations_submenu:
           questions: Ceisteanna
           results: Torthaí
+        questions_submenu:
+          attachments: Ceangaltáin
+          categories: Catagóirí
       models:
         consultation:
           fields:
@@ -124,12 +127,11 @@ ga:
     resources:
       consultations:
         actions:
+          comment: Tabhair Trácht
           vote: Vótáil
+    statistics:
+      votes_count: Vótaí
   layouts:
     decidim:
-      admin:
-        question:
-          attachments: Ceangaltáin
-          categories: Catagóirí
       question_components:
         unfold: Oscail

@@ -12,6 +12,7 @@ ga:
     components:
       debates:
         actions:
+          comment: Tabhair Trácht
           create: Cruthaigh
           endorse: Formhuinigh
         name: Díospóireachtaí
@@ -84,3 +85,5 @@ ga:
       debates:
         object: díospóireachtaí
         title: Díospóireachtaí
+    statistics:
+      debates_count: Díospóireachtaí

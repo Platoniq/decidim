@@ -8,23 +8,29 @@ lb:
       close_meeting:
         attendees_count: Anzahl der Teilnehmer
         attending_organizations: Liste der Organisationen, die teilgenommen haben
-        closing_report: Bericht
+        audio_url: Audio-URL
+        closing_report: Protokoll
+        closing_visible: Ist sichtbar
         contributions_count: Anzahl der Beiträge
         proposal_ids: An der Sitzung entstandene Vorschläge
+        video_url: Video-URL
       meeting:
         address: Adresse
         available_slots: Verfügbare Slots für dieses Meeting
+        customize_registration_email: Registrierungs-E-Mail anpassen
         decidim_category_id: Kategorie
         decidim_scope_id: Ëmfang
         decidim_user_group_id: Benutzergruppe
         description: Beschreiwung
         end_time: Endzeit
+        id: ID
         location: Standuert
         location_hints: Standorthinweise
         online_meeting_url: Online Meeting URL
         organizer_gid: Erstellt als
         organizer_id: Veranstalter
         private_meeting: Private Sitzung
+        registration_email_custom_content: Angepasster Inhalt des Registrierungs-E-Mails
         registration_form_enabled: Anmeldeformular aktiviert
         registration_terms: Registrierungsbedingungen
         registration_url: Registrierungs-URL
@@ -33,11 +39,6 @@ lb:
         title: Titel
         transparent: Transparent
         type_of_meeting: Zort
-      minutes:
-        audio_url: Audio-URL
-        description: Beschreibung
-        video_url: Video-URL
-        visible: Ist sichtbar
     errors:
       models:
         meeting_agenda:
@@ -69,6 +70,28 @@ lb:
         other: Anmeldungen
   decidim:
     admin:
+      filters:
+        meetings:
+          category_id_eq:
+            label: Kategorie
+          closed_at_present:
+            label: Zustand
+            values:
+              'false': Öffnen
+              'true': Geschlossen
+          is_upcoming_true:
+            label: Datum
+            values:
+              'false': Vergaangenes
+              'true': Demnächst stattfannend
+          origin_eq:
+            values:
+              citizen: Bierger*in
+              user_group: Benotzergruppen
+          scope_id_eq:
+            label: Ëmfang
+          type_eq:
+            label: Typ vu Versammlung
       meeting_copies:
         create:
           error: Es gab einen Fehler beim Duplizieren dieses Meetings.
@@ -80,6 +103,7 @@ lb:
     components:
       meetings:
         actions:
+          comment: Kommentar
           join: Beitreten
         name: Meetings
         settings:
@@ -133,8 +157,6 @@ lb:
         registration_code_validated:
           email_intro: Ihr Registrierungscode "%{registration_code}" für die Sitzung "%{resource_title}" wurde bestätigt.
     meetings:
-      actions:
-        minutes: Protokoll
       admin:
         agenda:
           edit:
@@ -152,6 +174,7 @@ lb:
             invalid: Beim Aktualisieren dieser Agenda ist ein Problem aufgetreten
             success: Agenda erfolgreich aktualisiert
         exports:
+          answers: Antworten
           meeting_comments: Kommentare
           meetings: Treffen
           registrations: Anmeldungen
@@ -192,7 +215,7 @@ lb:
             success: Sitzung erfolgreich abgeschlossen
           create:
             invalid: Beim Erstellen dieses Meetings ist ein Problem aufgetreten
-            success: Besprechung erfolgreich erstellt
+            success: Sitzung erfolgreich erstellt. Beachten Sie, dass dies noch nicht veröffentlicht wurde. Sie müssen es manuell veröffentlichen.
           destroy:
             invalid:
               proposals_count:
@@ -204,19 +227,23 @@ lb:
             update: Aktualisieren
           form:
             address_help: 'Adresse: wird von Geocoder zur Lokalisierung verwendet'
-            available_slots_help: Belassen Sie es auf 0, wenn Sie unbegrenzte Plätze zur Verfügung haben
             disclaimer: 'Haftungsausschluss: Durch Verwendung eines externen Registrierungssystems wissen Sie, dass die Organisatoren von %{organization} nicht für die Daten verantwortlich sind, welche die Benutzer dem externen Dienst zur Verfügung stellen.'
             location_help: 'Ort: an die Benutzer gerichtete Nachricht mit dem Treffpunkt'
             location_hints_help: 'Hinweise zum Standort: Zusätzliche Informationen. Beispiel: das Stockwerk im Gebäude wenn es eine Sitzung vor Ort ist, oder das Passwort wenn es eine Online-Sitzung mit eingeschränktem Zugriff ist.'
             online_meeting_url_help: 'Link: Erlaubt Teilnehmern, sich direkt mit Ihrem Meeting zu verbinden'
+            registration_email_help: Dieser Text erscheint in der Mitte der Registrierungs-E-Mail, direkt nach dem Registrierungscode.
             registration_url_help: 'Link: Erlaubt den Teilnehmern den externen Service zu nutzen, den Sie für die Registrierung verwenden'
             select_a_meeting_type: Bitte eine Meeting-Typ auswählen
             select_a_registration_type: Bitte wählen Sie eine Registrierungsart aus
+            show_embedded_iframe_help: Intégrer ou non l'iframe correspondant à cette URL de vidéoconférence. Seuls quelques services permettent l'intégration (c.-à-d. Youtube, Twitch...)
           index:
             title: Versammlungen
           new:
             create: Erstellen
             title: Versammlung erstellen
+          publish:
+            invalid: Beim Veröffentlichen dieser Sitzung ist ein Fehler aufgetreten
+            success: Sitzung erfolgreich veröffentlicht
           service:
             description: Beschreibung
             down: Nieder
@@ -227,22 +254,12 @@ lb:
           services:
             add_service: Service dobäisetzen
             services: Dienstleistungen
+          unpublish:
+            invalid: Beim Aufheben der Veröffentlichung dieser Sitzung ist ein Fehler aufgetreten
+            success: Veröffentlichung der Sitzung erfolgreich rückgängig gemacht
           update:
             invalid: Beim Aktualisieren dieses Meetings ist ein Problem aufgetreten
             success: Sitzung erfolgreich aktualisiert
-        minutes:
-          create:
-            invalid: Beim Erstellen dieser Minuten ist ein Problem aufgetreten
-            success: Minuten erfolgreich erstellt
-          edit:
-            title: Minuten bearbeiten
-            update: Aktualiséieren
-          new:
-            create: Erstellen
-            title: Erstellen Sie Minuten
-          update:
-            invalid: Beim Aktualisieren dieser Minuten ist ein Problem aufgetreten
-            success: Minuten erfolgreich aktualisiert
         models:
           meeting:
             name: Versammlung
@@ -279,9 +296,6 @@ lb:
           delete: "%{user_name} hat die Sitzung %{resource_name} aus %{space_name} gelöscht"
           export_registrations: "%{user_name} hat die Anmeldungen der Sitzung %{resource_name} in %{space_name} exportiert"
           update: "%{user_name} hat die Sitzung %{resource_name} in %{space_name} aktualisiert"
-        minutes:
-          create: "%{user_name} hat das Protokoll der Sitzung %{resource_name} in %{space_name} erstellt"
-          update: "%{user_name} hat das Protokoll der Sitzung %{resource_name} in %{space_name} aktualisiert"
       calendar_modal:
         calendar_url: Kalender-URL
         close_window: Fenster schließen
@@ -301,6 +315,10 @@ lb:
       last_activity:
         meeting_updated_at_html: "<span>Besprechung aktualisiert unter %{link}</span>"
         new_meeting_at_html: "<span>Neues Treffen um %{link}</span>"
+      layouts:
+        live_event:
+          close: schließen
+          questions: Fragen
       mailer:
         invite_join_meeting_mailer:
           invite:
@@ -316,12 +334,13 @@ lb:
           close: Sitzung beenden
           title: Sitzung beenden
       meetings:
+        calendar_modal:
+          add_to_calendar: An de Kalenner androen
         form:
           select_a_registration_type: Bitte wählen Sie eine Registrierungsart aus
         index:
           new_meeting: Nei Versammlung
         meeting_minutes:
-          meeting_minutes: Sitzungsprotokolle
           related_information: Zugehörige Informationen
         meetings:
           no_meetings_warning: Keine Besprechung entspricht Ihren Suchkriterien oder es ist keine Besprechung geplant.
@@ -340,9 +359,11 @@ lb:
           contributions: Beiträge zählen
           date: Datum
           edit_meeting: Versammlung bearbeiten
-          going: Gehen
+          going: Sie haben sich für diese Sitzung angemeldet
           join: Tritt dem Treffen bei
-          meeting_report: Gesprächsprotokoll
+          leave: Registrierung stornieren
+          leave_confirmation: Sind Sie sicher dass Sie Ihre Registrierung für diese Sitzung stornieren möchten?
+          meeting_minutes: Sitzungsprotokolle
           no_slots_available: Keine Steckplätze verfügbar
           organizations: Teilnahme an Organisationen
           registration_code_help_text: Ihr Registrierungscode
@@ -370,6 +391,7 @@ lb:
           fields:
             closed: Geschlossen
             end_time: Schlussdatum
+            id: Id
             map: Kaart
             official_meeting: Offizielle Besprechung
             start_time: Ufanksdatum
@@ -378,6 +400,8 @@ lb:
       proposals_from_meeting:
         meeting_proposal: 'Ähnliche Vorschläge:'
         proposal_meeting: 'Ähnlech Versammlungen:'
+    statistics:
+      meetings_count: Versammlungen
   devise:
     mailer:
       join_meeting:

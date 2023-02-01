@@ -52,7 +52,7 @@ ja:
         target: 参加者
         title: タイトル
         twitter: Twitter
-        weight: 重みづけ
+        weight: 順番の位置
         youtube: YouTube
       assembly_member:
         birthday: 誕生日
@@ -96,7 +96,7 @@ ja:
           update: 更新
         index:
           not_published: 未公開
-          private: 非公開
+          private: プライベート
           public: 公開
           published: 公開済み
         new:
@@ -192,7 +192,7 @@ ja:
           components: コンポーネント
           info: 情報
           moderations: モデレーション
-          private_users: 非公開ユーザー
+          private_users: プライベートユーザー
         assemblies_types: 参加スペース種別
       models:
         assemblies_types:
@@ -202,7 +202,7 @@ ja:
         assembly:
           fields:
             created_at: 作成日時
-            private: 非公開
+            private: プライベート
             promoted: 強調表示
             published: 公開済み
             title: タイトル
@@ -259,6 +259,7 @@ ja:
       admin:
         assemblies:
           form:
+            announcement_help: ここに入力したテキストは、アセンブリ情報のすぐ下に表示されます。
             duration: 持続期間
             duration_help: この参加スペースの持続時間が限られている場合は、終了日を選択します。それ以外の場合は、不定義として表示されます。
             filters: フィルタ
@@ -378,38 +379,11 @@ ja:
         social_networks: ソーシャル ネットワーク
         social_networks_title: この参加スペースを共有
         target: 参加者
-      statistics:
-        answers_count: 回答
-        assemblies_count: 参加スペース
-        comments_count: コメント
-        debates_count: ディベート
-        endorsements_count: オススメ
-        followers_count: フォロワー
-        headline: 統計情報
-        meetings_count: ミーティング
-        no_stats: 統計情報はまだありません。
-        orders_count: サポート
-        pages_count: ページ
-        participants_count: 参加者
-        posts_count: 投稿
-        processes_count: プロセス
-        projects_count: プロジェクト
-        proposals_count: 提案
-        results_count: 結果
-        supports_count: サポート
-        surveys_count: 調査
-        users_count: 参加者
-        votes_count: サポート
     assembly_members:
       assembly_member:
         designated_on: 指定日時：
       index:
         title: メンバー
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: すべてのカンファレンスを表示するカンファレンスページへのリンク
     events:
       assemblies:
         create_assembly_member:
@@ -426,8 +400,8 @@ ja:
     help:
       participatory_spaces:
         assemblies:
-          contextual: "<p> <strong>参加スペース</strong>とは、組織の特定の領域や範囲について決定を下すために定期的に会合を開く組織のメンバーのグループです。</p> <p>会議体は非公開のものもあれば、公開されているものもあります。公開されている場合は、その集会に参加することができます (例えば、定員に余裕があれば出席したり、議題にポイントを追加したり、この組織の提案や決定に対してコメントしたりすることができます)。</p> <p>例：総会（年に一度開催され、組織の主要な活動方針と執行機関を投票で決定する）、平等諮問評議会（組織内の男女比率等を改善する方法についての提案を行うために2ヶ月ごとに開催される）、評価委員会（プロセスを監視するために毎月開催される）、保証機関（意思決定手続きを改善するために事件や虐待、提案を収集する）などは、すべて会議体の例です。</p>\n"
-          page: "<p> <strong>参加型スペース</strong>とは、組織の特定の領域や範囲について決定を下すために定期的に会合を開く組織のメンバーのグループです。</p> <p>会議体は非公開のものもあれば、公開されているものもあります。公開されている場合は、その集会に参加することができます (例えば、定員に余裕があれば出席したり、議題にポイントを追加したり、この組織の提案や決定に対してコメントしたりすることができます)。</p> <p>例：総会（年に一度開催され、組織の主要な活動方針と執行機関を投票で決定する）、平等諮問評議会（組織内の男女比率等を改善する方法についての提案を行うために2ヶ月ごとに開催される）、評価委員会（プロセスを監視するために毎月開催される）、保証機関（意思決定手続きを改善するために事件や虐待、提案を収集する）などは、すべて会議体の例です。</p>\n"
+          contextual: "<p> <strong>参加スペース</strong>とは、組織の特定の領域や範囲について決定を下すために定期的に会合を開く組織のメンバーのグループです。</p> <p>会議体はプライベートのものもあれば、公開されているものもあります。公開されている場合は、その集会に参加することができます (例えば、定員に余裕があれば出席したり、議題にポイントを追加したり、この組織の提案や決定に対してコメントしたりすることができます)。</p> <p>例：総会（年に一度開催され、組織の主要な活動方針と執行機関を投票で決定する）、平等諮問評議会（組織内の男女比率等を改善する方法についての提案を行うために2ヶ月ごとに開催される）、評価委員会（プロセスを監視するために毎月開催される）、保証機関（意思決定手続きを改善するために事件や虐待、提案を収集する）などは、すべて会議体の例です。</p>\n"
+          page: "<p> <strong>参加型スペース</strong>とは、組織の特定の領域や範囲について決定を下すために定期的に会合を開く組織のメンバーのグループです。</p> <p>会議体はプライベートのものもあれば、公開されているものもあります。公開されている場合は、その集会に参加することができます (例えば、定員に余裕があれば出席したり、議題にポイントを追加したり、この組織の提案や決定に対してコメントしたりすることができます)。</p> <p>例：総会（年に一度開催され、組織の主要な活動方針と執行機関を投票で決定する）、平等諮問評議会（組織内の男女比率等を改善する方法についての提案を行うために2ヶ月ごとに開催される）、評価委員会（プロセスを監視するために毎月開催される）、保証機関（意思決定手続きを改善するために事件や虐待、提案を収集する）などは、すべて会議体の例です。</p>\n"
           title: 参加スペースとは？
     log:
       value_types:
@@ -442,19 +416,11 @@ ja:
         description: 作成された参加スペース数
         object: 参加スペース
         title: 参加スペース
-    pages:
-      home:
-        hero:
-          participate_title: プラットフォームの参加型プロセスに参加する
-        sub_hero:
-          register_title: サインアップしてアカウントを作成
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: すべての参加型プロセスを表示するページへのリンク
       show:
         related_assemblies: 関連する参加スペース
+    statistics:
+      assemblies_count: 参加スペース
   errors:
     messages:
       cannot_be_blank: 空白にできません

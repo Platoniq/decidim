@@ -98,6 +98,8 @@ ga:
             label: Stádas
     components:
       accountability:
+        actions:
+          comment: Tabhair Trácht
         settings:
           global:
             categories_label: Ainm do "Catagóirí"
@@ -108,3 +110,5 @@ ga:
       results:
         object: torthaí
         title: Torthaí
+    statistics:
+      results_count: Torthaí

@@ -6,6 +6,7 @@ el:
         description: Περιγραφή
         title: Τίτλος
         total_budget: Συνολικός προϋπολογισμός
+        weight: Θέση κατάταξης
       project:
         budget_amount: Ποσό προϋπολογισμού
         decidim_category_id: Κατηγορία
@@ -107,6 +108,9 @@ el:
         close_modal: Κλείσιμο παραθύρου
         continue: Συνέχεια
         more_information: Περισσότερες πληροφορίες
+      budget_list_item:
+        voting_finished: Ψηφίσατε αυτόν τον προϋπολογισμό
+        voting_started: Έχετε αρχίσει να ψηφίζετε σε αυτόν τον προϋπολογισμό
       budgets_list:
         cancel_order:
           more_than_one: διαγράψτε την ψήφο σας στο %{name} και ξεκινήστε από την αρχή
@@ -229,6 +233,7 @@ el:
     components:
       budgets:
         actions:
+          comment: Σχόλιο
           vote: Ψηφοφορία
         name: Προϋπολογισμοί
         settings:
@@ -289,6 +294,9 @@ el:
         success: Η ψήφος σας ακυρώθηκε με επιτυχία
     resource_links:
       included_proposals:
-        project_proposal: 'Προτάσεις που περιλαμβάνονται σε αυτό το έργο:'
+        project_proposal: Προτάσεις που περιλαμβάνονται στο παρόν έργο
+    statistics:
+      orders_count: Υποστηρίξεις
+      projects_count: Έργα
   index:
     confirmed_orders_count: Πλήθος ψήφων

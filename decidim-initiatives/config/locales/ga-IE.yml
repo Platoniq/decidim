@@ -35,6 +35,8 @@ ga:
               created: Cruthaithe
           type_id_eq:
             label: Cineál
+      menu:
+        attachments: Ceangaltáin
       models:
         initiatives:
           fields:
@@ -183,15 +185,15 @@ ga:
         accepted: Glactha
         expired: Éagtha
     resources:
+      initiative:
+        actions:
+          comment: Tabhair Trácht
       initiatives_type:
         actions:
           title: Gníomhartha
           vote: Sínigh
   layouts:
     decidim:
-      admin:
-        initiative:
-          attachments: Ceangaltáin
       initiative_creation_header:
         back: Ar Ais
         fill_data: Cruthaigh

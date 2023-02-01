@@ -8,38 +8,44 @@ eu:
       close_meeting:
         attendees_count: Bertaratuen kopurua
         attending_organizations: 'Parte hartu duten erakundeen zerrenda:'
-        closing_report: Salatu
+        audio_url: Audioaren URLa
+        closing_report: Aktak
+        closing_visible: Ikusgai dago
         contributions_count: Ekarpen-kopurua
         proposal_ids: Topaketan sortutako proposamenak
+        video_url: Bideoaren URLa
       meeting:
         address: Helbidea
         available_slots: Bilera honetarako zirrikitu erabilgarriak
+        customize_registration_email: Pertsonalizatu izena emateko e-maila
         decidim_category_id: Kategoria
         decidim_scope_id: Esparrua
         decidim_user_group_id: Erabiltzaile-taldea
         description: Deskribapena
         end_time: Amaiera-ordua
+        id: ID
         location: Kokapena
         location_hints: Kokapen-argibideak
         online_meeting_url: Lineako topaketaren URLa
         organizer_gid: Honela sortua
         organizer_id: Antolatzailea
         private_meeting: Bilera pribatua
+        registration_email_custom_content: Izena emateko e-mailaren eduki pertsonalizatua
         registration_form_enabled: Izena emateko inprimakia gaituta
         registration_terms: Izen-emateak
         registration_url: Izena ematearen URLa
         registrations_enabled: Erregistroak gaituta
+        show_embedded_iframe: Erakutsi iframe txertatua URL honentzat
         start_time: Hasiera-ordua
         title: Titulua
         transparent: gardena
         type_of_meeting: Mota
-      minutes:
-        audio_url: Audioaren URLa
-        description: deskribapena
-        video_url: Bideoaren URLa
-        visible: Ikusgai dago
     errors:
       models:
+        meeting:
+          attributes:
+            show_embedded_iframe:
+              not_embeddable: URL hau ezin da txertatu
         meeting_agenda:
           attributes:
             base:
@@ -69,6 +75,34 @@ eu:
         other: Izen-emateak
   decidim:
     admin:
+      filters:
+        meetings:
+          category_id_eq:
+            label: Kategoria
+          closed_at_present:
+            label: Egoera
+            values:
+              'false': Zabalik
+              'true': Itxita
+          is_upcoming_true:
+            label: Data
+            values:
+              'false': Aurrekoak
+              'true': Hurrengoak
+          origin_eq:
+            label: Jatorria
+            values:
+              citizen: Hiritarrak
+              official: Ofiziala
+              user_group: Erabiltzaile-taldeak
+          scope_id_eq:
+            label: Eremua
+          type_eq:
+            label: Topaketa mota
+            values:
+              hybrid: Biok
+              in_person: Aurrez aurre
+              online: Lineakoa
       meeting_copies:
         create:
           error: Akatsa gertatu da bilera hau bikoiztea.
@@ -80,6 +114,7 @@ eu:
     components:
       meetings:
         actions:
+          comment: Iruzkina
           join: Parte hartu
         name: Bilerak
         settings:
@@ -90,6 +125,7 @@ eu:
             creation_enabled_for_participants: Parte-hartzaileek topaketak sortu ahal dituzte
             default_registration_terms: Izen-emate baldintzak lehenetsiak
             enable_pads_creation: Gaitu pads sortzea
+            maps_enabled: Mapak gaituta
             registration_code_enabled: Izena emateko kodea aktibatuta
             resources_permissions_enabled: Akzioen baimenak bilera bakoitzerako ezarri daitezke
             scope_id: Eremua
@@ -114,6 +150,7 @@ eu:
             email_subject: '"%{resource_title}" bilera itxita zegoen'
             notification_title: <a href="%{resource_path}">%{resource_title}</a> bilera itxita zegoen.
         meeting_created:
+          button_text: Eman izena topaketan
           email_intro: Bilera "%{resource_title}" | gehitu da "%{participatory_space_title}" " jarraitzen ari zarela.
           email_outro: Jakinarazpena jaso duzu "%{participatory_space_title}" jarraitzen ari zarenagatik. Aurreko esteka estekan jarrai dezakezu.
           email_subject: Bilera berria %{participatory_space_title}
@@ -145,6 +182,9 @@ eu:
           email_outro: Jakinarazpen hori jaso duzu "%{resource_title}" bilera jarraitzen duzulako. Aurreko esteka estekan jarrai dezakezu.
           email_subject: '"%{resource_title}" topaketa 48 ordu baino gutxiagotan hasiko da.'
           notification_title: <a href="%{resource_path}">%{resource_title}</a> topaketa 48 ordu baino gutxiagoan hasiko da.
+    forms:
+      meetings:
+        attendees_count_help_text: Ez ahaztu zure topaketara joandako guztien kopurua sartzea, bai aurrez aurre, bai linean edo hibridoan.
     gamification:
       badges:
         attended_meetings:
@@ -170,7 +210,7 @@ eu:
           proposals_count:
             one: 'Topaketa ezin da ezabatu lotutako %{count} proposamen dituelako:'
             other: 'Topaketa ezin da ezabatu lotutako %{count} proposamen dituelako:'
-        minutes: Aktak
+        manage_poll: Konfiguratu inkesta
         new: Bilera berria
         preview: Aurreikusi
         registrations: Izen-emateak
@@ -207,6 +247,7 @@ eu:
             invalid: Arazo bat izan da agenda hau eguneratzean
             success: Agenda ondo eguneratu da
         exports:
+          answers: Erantzunak
           meeting_comments: Iruzkinak
           meetings: Bilerak
           registrations: Izen-emateak
@@ -247,7 +288,7 @@ eu:
             success: Topaketa ongi itxi da
           create:
             invalid: Arazo bat izan da topaketa hau sortzean.
-            success: Topaketa ongi sortu da
+            success: Topaketa zuzen sortu da. Kontuan hartu oraindik ez dela argitaratu, eskuz argitaratu beharko duzu.
           destroy:
             invalid:
               proposals_count:
@@ -264,14 +305,19 @@ eu:
             location_help: 'Kokapena: mezua part-hartzaileei zuzendua biltzeko lekua adieraziz'
             location_hints_help: 'Kokapen-aholkuak: informazio gehigarria. Adibidea: eraikinaren solairua, aurrez aurreko topaketa bada, edo aretoaren pasahitza, sarrera mugatua duen online topaketa bada.'
             online_meeting_url_help: 'Lotura: Utzi parte-hartzaileei zuzenean konektatzen zure topaketara'
+            registration_email_help: Testu hau izen-ematea baieztatzeko postaren erdian agertuko da. Inskripzio kodearen ondoren.
             registration_url_help: 'Lotura: parte-hartzaileei aukera ematea izena emateko erabiltzen ari zaren kanpoko zerbitzura joateko'
             select_a_meeting_type: Mesedez, hautatu topaketa mota bat
             select_a_registration_type: Mesedez, hautatu erregistro mota bat
+            show_embedded_iframe_help: Sartu edo ez iframea bideokonferentziako URL honetarako. Zerbitzu batzuek baino ez dute aukera ematen (adibidez, Youtube, Twitch, etab.)
           index:
             title: Topaketa-zerrenda
           new:
             create: Sortu
             title: Sortu topaketa
+          publish:
+            invalid: Arazo bat izan da topaketa hau argitaratzean
+            success: Topaketa zuzen argitaratu da
           service:
             description: deskribapena
             down: Down
@@ -282,22 +328,18 @@ eu:
           services:
             add_service: Gehitu zerbitzua
             services: Zerbitzuak
+          unpublish:
+            invalid: Arazo bat gertatu da topaketa hau desargitaratzean
+            success: Topaketa zuzen desargitaratu da
           update:
             invalid: Arazo bat izan da topaketa hau eguneratzean.
             success: Topaketa zuzen eguneratu da.
-        minutes:
-          create:
-            invalid: Arazo bat izan da minutu hau sortzeko
-            success: Akta ongi sortu da
-          edit:
-            title: Editatu aktak
-            update: eguneratzearen
-          new:
-            create: Sortu
-            title: Sortu akta
+        meetings_poll:
+          form:
+            title: Editatu inkestaren galdetegia honetarako %{questionnaire_for}
           update:
-            invalid: Arazo bat izan da akta hau eguneratzean
-            success: Akta ongi eguneratu da
+            invalid: Arazo bat izan da topaketa hau eguneratzean
+            success: Topaketa zuzen eguneratu da
         models:
           meeting:
             name: Topaketa
@@ -337,9 +379,6 @@ eu:
           value_types:
             organizer_presenter:
               not_found: 'Antolatzailea ez da aurkitu datu-basean (ID: %{id})'
-        minutes:
-          create: "%{user_name} %{resource_name} topaketako akta %{space_name} espazioan sortu du"
-          update: "%{user_name} %{resource_name} topaketaren akta %{space_name} espazioan eguneratu du"
       calendar_modal:
         calendar_url: Egutegiaren URLa
         close_window: Itxi leihoa
@@ -363,6 +402,11 @@ eu:
       last_activity:
         meeting_updated_at_html: "<span>eztabaida ordu honetan %{link}</span> eguneratuta"
         new_meeting_at_html: "<span>Bilera berria %{link}</span>"
+      layouts:
+        live_event:
+          administrate: Administratu
+          close: itxi
+          questions: Galderak
       mailer:
         invite_join_meeting_mailer:
           invite:
@@ -378,6 +422,13 @@ eu:
           close: Itxi topaketa
           title: Itxi topaketa
       meetings:
+        calendar_modal:
+          add_to_calendar: Gehitu egutegira
+          apple: Gehitu Appleren egutegira
+          close_window: Itxi leihoa
+          full_details_html: Xehetasun guztiak edukitzeko, zoaz hona %{link}
+          google: Gehitu Googleren egutegira
+          outlook: Ireki Outlooken egutegia
         count:
           meetings_count:
             one: "%{count} topaketa"
@@ -430,10 +481,10 @@ eu:
           select_a_category: Mesedez, hautatu kategoria bat
           select_a_meeting_type: Mesedez, hautatu topaketa mota bat
           select_a_registration_type: Mesedez, hautatu erregistro mota bat
+          show_embedded_iframe_help: Sartu edo ez iframea bideokonferentziako URL honetarako. Zerbitzu batzuek baino ez dute aukera ematen (adibidez, Youtube, Twitch, etab.)
         index:
           new_meeting: Topaketa berria
         meeting_minutes:
-          meeting_minutes: Bileraren akta
           related_information: Lotutako informazioa
         meetings:
           no_meetings_warning: Ez dago bilaketa-irizpidearekin bat datorren topaketarik, edo ez dago ezein topaketarik programaturik.
@@ -452,9 +503,15 @@ eu:
           contributions: Ekarpen-kopurua
           date: Data
           edit_meeting: Editatu topaketa
-          going: Ari da
+          going: Topaketa honetan eman duzu izena
           join: Izena eman topaketan
-          meeting_report: Topaketaren txostena
+          leave: Baliogabetu zure izen-ematea
+          leave_confirmation: Ziur zaude topaketa honetarako zure izen-ematea indargabetu nahi duzula?
+          link_available_soon: Lotura hau laster erabilgarri
+          link_closed: Sartzeko lotura bilera hasi baino minutu batzuk lehenago egongo da erabilgarri
+          live_event: Topaketa hau oraintxe gertatzen ari da
+          meeting_minutes: Bileraren akta
+          micro_camera_permissions_warning: Beheko botoia sakatzen duzunean, mikrofono eta/edo kamerarako baimena eskatuko zaizu eta bideohitzaldian sartuko zara
           no_slots_available: Ez dago leku librerik
           organizations: Bertaratutako erakundeak
           registration_code_help_text: Zure izena emateko kodea
@@ -465,6 +522,7 @@ eu:
             one: "%{count} slot geratzen da"
             other: "%{count} slot geratzen dira"
           view: ikusi
+          visit_finished: Ikusi egindako topaketa
         update:
           invalid: Arazo bat izan da topaketa hau eguneratzean.
           success: Topaketa zuzen eguneratu duzu.
@@ -485,10 +543,33 @@ eu:
           fields:
             closed: Itxita
             end_time: Bukaera-data
+            id: Id
             map: Mapa
             official_meeting: Topaketa ofiziala
             start_time: Hasiera-data
             title: Titulua
+      polls:
+        questions:
+          closed_question:
+            question_results: Galderaren emaitzak
+          index:
+            empty_questions: Topaketa honetan zehar, galdera batzuk bidaliko dira eta erantzun ahal izango dituzu. Hemen erakutsiko dira.
+          index_admin:
+            admin_dashboard: Administrazio-panela
+            edit: Editatu administrazio-panelean
+            question: Galdera
+            received_answer: jasotako erantzuna
+            received_answers: jasotako erantzunak
+            results: Emaitzak
+            send: Bidali
+            sent: Bidalita
+          published_question:
+            max_choices_alert: Aukera gehiegi daude hautatuta
+            question: Galdera
+            question_replied: Galdera erantzunda
+            reply_question: Erantzun galdera
+      public_participants_list:
+        attending_participants: Bertaratutako parte-hartzaileak
       read_more: "(geihago irakurri)"
       registration_mailer:
         confirmation:
@@ -537,6 +618,8 @@ eu:
       proposals_from_meeting:
         meeting_proposal: 'Topaketari dagozkion proposamenak:'
         proposal_meeting: 'Proposamenarekin lotutako topaketak:'
+    statistics:
+      meetings_count: Topaketak
   devise:
     mailer:
       join_meeting:

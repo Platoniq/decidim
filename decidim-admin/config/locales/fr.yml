@@ -43,11 +43,12 @@ fr:
         default_locale: Langue par défaut
         description: Description
         enable_omnipresent_banner: Montrer une bannière d'actualités
+        enable_participatory_space_filters: Activer les filtres d'espace participatif
         facebook_handler: Gestionnaire Facebook
         favicon: Icône
         force_authentication: Forcer l'authentification
         force_users_to_authenticate_before_access_organization: Forcer les utilisateurs à s'authentifier avant d'accéder à l'organisation
-        from: Adresse e-mail de l’expéditeur
+        from: Adresse email de l’expéditeur
         github_handler: Gestionnaire GitHub
         header_snippets: Éléments à ajouter entre les balises HTML
         highlight_alternative_color: Surbrillance alternative
@@ -157,7 +158,8 @@ fr:
         browse: Parcourir
         category:
           new: Nouvelle catégorie
-        export: Exporter
+        export: Tout exporter
+        export-selection: Exporter la sélection
         import: Importer
         manage: Gérer
         new: + %{name}
@@ -178,12 +180,12 @@ fr:
           success: Super! Vous avez accepté les conditions d'utilisation administrateur.
         actions:
           accept: J'accepte les conditions d'utilisation suivantes
-          are_you_sure: Êtes-vous certain de vouloir refuser les conditions d'utilisation administrateur?
+          are_you_sure: Êtes-vous sûr de vouloir refuser les conditions d'utilisation de l'administrateur ?
           refuse: Refuser les conditions d'utilisation administrateur
           title: Accepter les conditions d'utilisation
         required_review:
           alert: 'Obligatoire: Consultez nos conditions d''utilisation administrateur'
-          callout: Veuillez prendre un moment pour consulter les conditions d'utilisation administrateur. Sinon, vous ne pourrez pas utiliser la plateforme en tant qu'administrateur.
+          callout: Veuillez prendre un moment pour consulter les conditions d'utilisation de l'administration. Sinon, vous ne pourrez pas gérer la plateforme.
           cta: Consultez les maintenant.
         title: Conditions d'utilisation administrateur
       area_types:
@@ -203,21 +205,21 @@ fr:
           success: Le type de périmètre d'assemblée a été mis à jour avec succès
       areas:
         create:
-          error: Une erreur s'est produite lors de la création d'une nouvelle zone d'application.
-          success: Zone d'application créée avec succès.
+          error: Une erreur s'est produite lors de la création d'un nouveau périmètre d'assemblée.
+          success: Périmètre d'assemblée créé avec succès.
         destroy:
-          has_spaces: Le secteur a des sous-secteur dépendants, il ne doit pas avoir de dépendances pour être supprimé.
-          success: La zone d'application a bien été supprimée
+          has_spaces: Des espaces dépendent de ce périmètre d'assemblée. Veuillez vous assurer qu'aucun espace participatif n'est lié à périmètre avant de la supprimer.
+          success: Le périmètre d'assemblée a bien été supprimé
         edit:
-          title: Modifier la zone d'application
+          title: Modifier le périmètre d'assemblée
           update: Mettre à jour
         new:
-          create: Créer une zone d'application
-          title: Nouvelle zone d'application
-        no_areas: Aucune zone d'application
+          create: Créer un périmètre d'assemblée
+          title: Nouveau périmètre d'assemblée
+        no_areas: Aucun périmètre d'assemblée
         update:
-          error: Une erreur s'est produite lors de la mise à jour de cette zone d'application.
-          success: Zone d'application mise à jour avec succès
+          error: Une erreur s'est produite lors de la mise à jour de ce périmètre d'assemblée.
+          success: Périmètre d'assemblée mise à jour avec succès
       attachment_collections:
         create:
           error: Une erreur s'est produite lors de la création d'un nouveau dossier.
@@ -259,7 +261,7 @@ fr:
       block_user:
         new:
           action: Bloquer le compte et envoyer la justification
-          description: Bloquer un utilisateur rendra son compte inutilisable, vous devriez fournir dans votre justification et vos directives les conditions de déblocage de l'utilisateur.
+          description: Bloquer un utilisateur rendra son compte inutilisable, vous devriez fournir dans votre justification les conditions de déblocage de l'utilisateur.
           justification: Justification
           title: Bloquer l'utilisateur %{name}
       categories:
@@ -336,6 +338,12 @@ fr:
         show:
           view_more_logs: Afficher plus
           welcome: Bienvenue dans l'espace d'administration de Decidim.
+      domain_whitelist:
+        form:
+          domain_too_short: Le nom de domaine est trop court
+        update:
+          error: Échec lors de la mise à jour de la liste blanche du domaine
+          success: Liste blanche du domaine mise à jour avec succès
       exports:
         export_as: "%{name} en format %{export_format}"
         formats:
@@ -348,6 +356,16 @@ fr:
         category_id_eq:
           label: Catégorie
         filter_label: Filtre
+        invitation_accepted_at_present:
+          label: Invitation acceptée
+          values:
+            'false': 'Non'
+            'true': 'Oui'
+        last_sign_in_at_present:
+          label: Déjà connecté
+          values:
+            'false': 'Non'
+            'true': 'Oui'
         moderations:
           reportable_type_string_eq:
             label: Type
@@ -356,6 +374,17 @@ fr:
           values:
             'false': Validé
             'true': Non validé
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Invitation acceptée
+            values:
+              'false': Non acceptée
+              'true': Acceptée
+          user_invitation_sent_at_not_null:
+            label: Invitation envoyée
+            values:
+              'false': Non envoyée
+              'true': Envoyée
         private_space_eq:
           label: Privé
           values:
@@ -373,13 +402,14 @@ fr:
           name_or_nickname_or_email_cont: Rechercher les %{collection} par e-mail, nom ou pseudo.
           reported_id_string_or_reported_content_cont: Rechercher %{collection} par Id ou par contenu.
           title_cont: Rechercher %{collection} par titre.
+          user_name_or_user_email_cont: Rechercher %{collection} par nom ou par email.
         state_eq:
           label: État
       forms:
         file_help:
           import:
             explanation: 'Instructions concernant le fichier:'
-            message_1: Les fichiers CSV, JSON et Excel (.xls) sont supportés
+            message_1: Les fichiers CSV, JSON et Excel (.xlsx) sont supportés
             message_2: Pour les fichiers CSV, le séparateur entre les colonnes doit être un point-virgule (";")
       help_sections:
         error: Une erreur s'est produite lors de la mise à jour des sections d'aide.
@@ -431,7 +461,7 @@ fr:
           accepted_mime_types:
             csv: csv
             json: json
-            xls: xls
+            xlsx: xlsx
           actions:
             back: Retour
           file_legend: Ajouter un fichier d'import qui sera analysé.
@@ -454,9 +484,10 @@ fr:
         admins: Administrateurs
         appearance: Apparence
         area_types: Types de périmètre d'assemblée
-        areas: Zones d'application
+        areas: Périmètres d'assemblée
         configuration: Configuration
         dashboard: Tableau de bord
+        external_domain_whitelist: Domaines externes autorisés
         help_sections: Sections d'aide
         homepage: Page d'accueil
         impersonations: Utilisateurs représentés
@@ -465,7 +496,7 @@ fr:
         participants: Participants
         reported_users: Utilisateurs signalés
         scope_types: Types de secteur
-        scopes: Périmètres d’application
+        scopes: Secteurs
         settings: Paramètres
         static_pages: Pages
         user_groups: Groupes d'utilisateurs
@@ -605,7 +636,7 @@ fr:
       newsletters:
         create:
           error: Il y a eu une erreur lors de la création de cette newsletter.
-          success: Newsletter créée avec succès. Veuillez la vérifier avant de l'envoyer.
+          success: Newsletter créée avec succès. N'hésitez pas à la relire avant de l'envoyer.
         deliver:
           error: Il y a eu une erreur lors de l'envoi de cette newsletter.
           success: Newsletter envoyée avec succès.
@@ -688,12 +719,12 @@ fr:
           title: Valider l'utilisateur "%{name}"
         show_email_modal:
           close_modal: Fermer la fenêtre de dialogue
-          description: Si vous avez besoin de contacter directement un participant, vous pouvez cliquer sur le bouton Afficher pour voir l'adresse e-mail. Cette action sera enregistrée.
+          description: Si vous avez besoin de contacter directement un participant, vous pouvez cliquer sur le bouton Afficher pour voir son adresse mail. Cette action sera enregistrée.
           email_address: Adresse e-mail
           full_name: Nom complet
           hidden: masqués
           show: Afficher
-          title: Afficher l'adresse e-mail des participants
+          title: Afficher l'adresse e-mail de l'utilisateur
         unblock:
           error: Une erreur s'est produite lors du déblocage du participant
           success: Participant débloqué avec succès
@@ -728,6 +759,17 @@ fr:
             layout_appearance_title: Modifier l’aspect de la mise en page
             preview: Aperçu
           omnipresent_banner_appearance_title: Modifier la bannière permanente
+      organization_external_domain_whitelist:
+        edit:
+          update: Mettre à jour
+        external_domain:
+          down: Descendre
+          external_domain: Domaine externe
+          remove: Retirer
+          up: Monter
+        form:
+          add: Ajouter à la liste blanche
+          title: Liste blanche du domaine externe
       organization_homepage:
         edit:
           active_content_blocks: Blocs de contenu actif
@@ -860,7 +902,7 @@ fr:
       titles:
         admin_log: Journal d'administration
         area_types: Types de périmètre d'assemblée
-        areas: Zones d'application
+        areas: Périmètres d'assemblée
         authorization_workflows: Méthodes de vérification
         dashboard: Tableau de bord
         impersonatable_users: Utilisateurs pouvant être représentés
@@ -869,11 +911,11 @@ fr:
         panel: Administrateur
         participants: Utilisateurs
         scope_types: Types de secteur
-        scopes: Périmètres d'application
+        scopes: Secteurs
         static_pages: Pages
         statistics: Activité
         user_groups: Groupes d'utilisateurs
-        users: Utilisateurs
+        users: Participants
       user_group:
         csv_verify:
           invalid: Une erreur s'est produite lors de la lecture du fichier CSV.
@@ -929,7 +971,7 @@ fr:
     forms:
       errors:
         impersonate_user:
-          reason: Vous devez fournir une raison lors de l'emprunt d'identité d'un utilisateur standard
+          reason: Vous devez fournir une raison si vous modérer un utilisateur actuellement non-modéré
     metrics:
       blocked_users:
         object: utilisateurs bloqués

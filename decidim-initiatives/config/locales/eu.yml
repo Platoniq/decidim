@@ -85,8 +85,13 @@ eu:
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Bilatu %{collection} izenburuaren, deskribapenaren, IDaren edo egiletzaren arabera.
       menu:
+        attachments: Erantsita
+        committee_members: Batzorde-kideak
+        components: Osagaiak
+        information: informazioa
         initiatives: Ekimenak
         initiatives_types: Ekimen motak
+        moderations: Moderazioak
       models:
         initiatives:
           fields:
@@ -502,7 +507,7 @@ eu:
           phone_number: Telefono zenbakia
           place_date: Lekua, data
           postal_code: Posta-kodea/ZIP
-          print: Inprimatu	
+          print: Inprimatu
           province: Probintzia/Estatua
           section: 'Antolakuntzak eskatzen badu, mesedez, inprimatu eta bete formulario hau, adierazten den tokira bidaltzeko:'
           signature: Sinadura
@@ -571,18 +576,15 @@ eu:
     menu:
       initiatives: Ekimenak
     resources:
+      initiative:
+        actions:
+          comment: Egin iruzkina
       initiatives_type:
         actions:
           title: Ekintzak
           vote: Bozkatu
   layouts:
     decidim:
-      admin:
-        initiative:
-          attachments: Erantsitako artxiboak
-          committee_members: Batzorde kideak
-          components: Osagaiak
-          information: informazioa
       initiative_creation_header:
         back: Back
         fill_data: Sortu

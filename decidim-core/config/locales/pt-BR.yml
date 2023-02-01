@@ -5,6 +5,8 @@ pt-BR:
         delete_reason: Motivo para excluir sua conta
       common:
         created_at: Criado em
+      conversation:
+        body: Corpo
       group:
         about: Sobre
         avatar: Avatar
@@ -13,6 +15,8 @@ pt-BR:
         name: Nome
         nickname: Nome de usuário
         phone: Telefone
+      message:
+        body: Corpo
       report:
         details: Comentários adicionais
       user:
@@ -63,7 +67,6 @@ pt-BR:
     'true': 'Sim'
   carrierwave:
     errors:
-      general: Erro ao processar a imagem
       image_too_big: A imagem é muito grande
       not_inside_organization: O arquivo não está anexado a nenhuma organização
   date:
@@ -254,10 +257,13 @@ pt-BR:
         download: Baixar arquivo
       documents:
         related_documents: Documentos relacionados
+      geocoding:
+        geocoded_address: Endereço
       photos:
         related_photos: Fotos relacionadas
     author:
-      avatar: Avatar
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar para múltiplos usuários
       comments:
         one: comentário
         other: comentários
@@ -851,6 +857,15 @@ pt-BR:
       index:
         last_activity: Última atividade
         resource_type: Tipo
+    links:
+      invalid_url: URL inválido
+      warning:
+        body_1: Você está prestes a visitar um link externo e gostaríamos que fosse cauteloso com o conteúdo do site externo.
+        body_2: Verifique o link que está prestes a visitar e certifique-se de reconhecê-lo como um site seguro antes de prosseguir.
+        cancel: Cancelar
+        close_modal: Fechar modal
+        proceed: Prosseguir
+        title: Abrir Link Externo
     log:
       base_presenter:
         create: "%{user_name} criado %{resource_name}"
@@ -1071,24 +1086,7 @@ pt-BR:
         metrics:
           headline: Participação em números
         statistics:
-          answers_count: Inquéritos concluídos
-          assemblies_count: Assembleias
-          comments_count: Comentários
-          conferences_count: Conferências
-          debates_count: Debates
-          endorsements_count: Avais
           headline: Estado atual de %{organization}
-          meetings_count: Encontros
-          orders_count: Votos
-          pages_count: Páginas
-          processes_count: Processos
-          projects_count: Projetos
-          proposals_accepted: Propostas aceitas
-          proposals_count: Propostas
-          results_count: Resultados
-          surveys_count: pesquisas
-          users_count: Participantes
-          votes_count: Votos
         sub_hero:
           register: Registrar-se
       index:
@@ -1243,6 +1241,7 @@ pt-BR:
         description: Este conteúdo é impróprio?
         does_not_belong: Contém atividades ilegais, ameaças suicidas, informações pessoais ou qualquer outra coisa que você acha que não pertence ao %{organization_name}.
         offensive: Contém racismo, sexismo, insultos, ataques pessoais, ameaças de morte, pedidos de suicídio ou qualquer tipo de discurso de ódio.
+        reason: Motivo
         report: Denunciar
         spam: Contém clickbait, publicidade, fraudes ou script bots.
         title: Reportar um problema
@@ -1268,6 +1267,8 @@ pt-BR:
         filters:
           areas: Áreas
           select_an_area: Selecione uma área
+      public_participation:
+        public_participation: Mostre minha presença publicamente
       reference:
         reference: 'Referência: %{reference}'
       represent_user_group:
@@ -1278,8 +1279,21 @@ pt-BR:
         title: Selecione o número de resultados por página
       share_modal:
         close_window: Fechar janela
+        copy_share_link: Copiar
+        copy_share_link_clarification: Copiar link para área de transferência
+        copy_share_link_copied: Copiado!
+        copy_share_link_message: Link copiado para área de transferência.
         share: Compartilhar
         share_link: Partilhar link
+    statistics:
+      comments_count: Comentários
+      endorsements_count: Endossos
+      followers_count: Seguidores
+      headline: Estatísticas
+      no_stats: Ainda não há estatísticas.
+      pages_count: Páginas
+      participants_count: Participantes
+      users_count: Participantes
     tags:
       filter_results_for_category: 'Filtrar resultados para a categoria: %{resource}'
       filter_results_for_scope: 'Resultados do filtro para escopo: %{resource}'
@@ -1317,6 +1331,7 @@ pt-BR:
         send: Enviar
         title_reply: Resposta
       show:
+        back: Mostrar todas as conversas
         not_allowed: Este usuário não aceita mais mensagens diretas.
         title: Conversa com %{usernames}
       update:
@@ -1362,6 +1377,7 @@ pt-BR:
         number_of_versions: Versões
         title: Versões
     versions_list_item:
+      back: Mostrar todas as versões
       show:
         version_index: Versão %{index}
     welcome_notification:
@@ -1564,9 +1580,11 @@ pt-BR:
         made_with_open_source: Site criado com <a target="_blank" href="https://github.com/decidim/decidim"> software livre</a>.
       header:
         close_menu: Fechar menu
+        main_menu: Menu principal
         navigation: Navegação
         sign_in: Entrar
         sign_up: Inscrever-se
+        user_menu: Menu de usuários
       impersonation_warning:
         close_session: Fechar sessão
         description_html: Você está representando o usuário <b>%{user_name}</b>.
@@ -1595,6 +1613,7 @@ pt-BR:
         profile: Minha conta
         public_profile: Meu perfil público
         sign_out: Sair
+        title: Links do perfil
       user_profile:
         account: Conta
         authorizations: Autorizações
@@ -1608,7 +1627,7 @@ pt-BR:
         see_more: Ver mais
   locale:
     name: Português
-    name_with_error: Inglês (erro!)
+    name_with_error: Português (erro!)
   password_validator:
     domain_included_in_password: é muito semelhante a este nome de domínio
     email_included_in_password: é muito parecido com o seu email

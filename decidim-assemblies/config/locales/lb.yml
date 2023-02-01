@@ -52,6 +52,7 @@ lb:
         target: Wer nimmt teil?
         title: Titel
         twitter: Twitter
+        weight: Bestellposition
         youtube: Youtube
       assembly_member:
         birthday: Geburtstag
@@ -62,6 +63,7 @@ lb:
         full_name: Vollständiger Name
         gender: Geschlecht
         position: Position
+        user_id: User
       assembly_user_role:
         email: Email
         name: Name
@@ -324,8 +326,6 @@ lb:
         social_networks: Soziale Netzwerke
         social_networks_title: Diese Versammlung auf teilen
         target: Wer nimmt teil?
-      statistics:
-        assemblies_count: Gremien
     assembly_members:
       assembly_member:
         designated_on: Bezeichnet am
@@ -366,6 +366,8 @@ lb:
     participatory_processes:
       show:
         related_assemblies: Ähnliche Versammlungen
+    statistics:
+      assemblies_count: Gremien
   errors:
     messages:
       cannot_be_blank: darf nicht leer sein

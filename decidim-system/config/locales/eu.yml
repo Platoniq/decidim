@@ -57,6 +57,9 @@ eu:
         update:
           error: Errorea gertatu da administratzaile hau eguneratzean.
           success: Administratzailea zuzen eguneratu da
+      dashboard:
+        show:
+          current_organizations: Uneko antolatzaileak
       default_pages:
         placeholders:
           content: Gehitu eduki adierazgarria %{page} (a)ren orri estatikoaren administrazio-panelean.
@@ -112,6 +115,9 @@ eu:
           error: Errorea izan da aplikazio hau eguneratzean.
           success: Aplikazioa ondo eguneratu da.
       organizations:
+        advanced_settings:
+          hide: Ezkutatu ezarpen aurreratua
+          show: Erakutsi aukera aurreratua
         create:
           error: Errorea izan da antolatzaile berri bat sortzean.
           success: Antolatzailea zuzen sortu da.
@@ -133,7 +139,7 @@ eu:
             default_hint: Megabytes (MB). Fitxategiaren tamainaren muga hori fitxategien igoera guztietarako erabiltzen den lehenetsia da, kontrakoa zehaztu ezean.
             title: Gehieneko fitxategi tamaina
           intro: |
-            Mesedez, kontuz ibili doikuntza horiek aldatzean. 
+            Mesedez, kontuz ibili doikuntza horiek aldatzean.
             Zenbat eta aukera gutxiago, hobe.
             Fitxategi espezifikoen luzapenak edo MIME motakoak baimentzeak segurtasun-arriskuen eraginpean jar ditzake sistemaren erabiltzaileak, eta webgunearen irisgarritasunari ere eragin diezaioke.
         index:

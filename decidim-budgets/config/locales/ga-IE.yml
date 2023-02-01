@@ -4,7 +4,6 @@ ga:
       budget:
         decidim_scope_id: Scóip
         title: Teideal
-        weight: Meáchan
       project:
         decidim_category_id: Catagóir
         decidim_scope_id: Scóip
@@ -76,6 +75,7 @@ ga:
     components:
       budgets:
         actions:
+          comment: Tabhair Trácht
           vote: Vótáil
         name: Buiséid
         settings:
@@ -87,3 +87,6 @@ ga:
             votes: Vótáil
             votes_choices:
               finished: Vótáil críochnaithe
+    statistics:
+      orders_count: Tacaíochtaí
+      projects_count: Tionscadail

@@ -254,10 +254,11 @@ fr-LU:
         download: Télécharger le fichier
       documents:
         related_documents: Documents à consulter
+      geocoding:
+        geocoded_address: Adresse
       photos:
         related_photos: Photos associées
     author:
-      avatar: Avatar
       comments:
         one: commentaire
         other: commentaires
@@ -846,6 +847,15 @@ fr-LU:
       index:
         last_activity: Dernière Activité
         resource_type: Type
+    links:
+      invalid_url: URL invalide
+      warning:
+        body_1: Vous êtes sur le point de visiter un lien externe et nous aimerions que vous soyez prudent quant au contenu du site externe.
+        body_2: Veuillez vérifier le lien que vous êtes sur le point de visiter et assurez-vous de le reconnaître comme un site sûr avant de poursuivre.
+        cancel: Annuler
+        close_modal: Fermer la fenêtre de dialogue
+        proceed: Continuer
+        title: Ouvrir le lien externe
     log:
       base_presenter:
         create: "%{user_name} a créé %{resource_name}"
@@ -1066,24 +1076,7 @@ fr-LU:
         metrics:
           headline: Participation en chiffres
         statistics:
-          answers_count: Enquêtes terminées
-          assemblies_count: Assemblées
-          comments_count: Commentaires
-          conferences_count: Conférences
-          debates_count: Débats
-          endorsements_count: Soutiens
           headline: État actuel de %{organization}
-          meetings_count: Rencontres
-          orders_count: Votes
-          pages_count: Pages
-          processes_count: Processus participatifs
-          projects_count: Projets
-          proposals_accepted: Propositions acceptées
-          proposals_count: Propositions
-          results_count: Réalisations
-          surveys_count: Enquêtes
-          users_count: Participants
-          votes_count: Votes
         sub_hero:
           register: S'inscrire
       index:
@@ -1263,6 +1256,8 @@ fr-LU:
         filters:
           areas: Zones d'application
           select_an_area: Sélectionnez une zone d'application
+      public_participation:
+        public_participation: Afficher ma présence publiquement
       reference:
         reference: 'Référence : %{reference}'
       represent_user_group:
@@ -1275,6 +1270,8 @@ fr-LU:
         close_window: Fermer la fenêtre
         share: Partager
         share_link: Lien de partage
+    statistics:
+      comments_count: Commentaires
     tags:
       filter_results_for_category: 'Filtrer les résultats de la catégorie : %{resource}'
       filter_results_for_scope: 'Filtrer les résultats pour le secteur : %{resource}'
@@ -1555,9 +1552,11 @@ fr-LU:
         made_with_open_source: Site réalisé grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
       header:
         close_menu: Fermer le menu
+        main_menu: Menu principal
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+        user_menu: Menu utilisateur
       impersonation_warning:
         close_session: Fermer la session
         description_html: Vous agissez en tant que l'utilisateur <b>%{user_name}</b>.
@@ -1586,6 +1585,7 @@ fr-LU:
         profile: Mon compte
         public_profile: Mon profil public
         sign_out: Déconnexion
+        title: Liens du profil
       user_profile:
         account: Compte
         authorizations: Autorisations

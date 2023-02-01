@@ -204,6 +204,8 @@ de:
             label: Status
     components:
       accountability:
+        actions:
+          comment: Kommentar
         name: Rechenschaftspflicht
         settings:
           global:
@@ -244,3 +246,5 @@ de:
         result_project: Projekte in diesem Ergebnis enthalten
       included_proposals:
         result_proposal: Vorschläge in diesem Ergebnis enthalten
+    statistics:
+      results_count: Ergebnisse

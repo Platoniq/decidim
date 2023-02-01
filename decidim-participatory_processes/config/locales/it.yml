@@ -34,7 +34,7 @@ it:
         subtitle: Sottotitolo
         target: Chi partecipa
         title: Titolo
-        weight: Ordinamento nella barra dei componenti
+        weight: Posizionamento
       participatory_process_group:
         description: Descrizione
         developer_group: Gruppo promotore
@@ -403,6 +403,7 @@ it:
             more_information: Maggiori informazioni
             participate: Partecipa
             participate_in: Partecipa al processo %{resource_name}
+            processes_button_title: Link alla pagina "Processi" in cui sono visualizzati tutti i processi
             see_all_processes: Vedi tutti i processi
       participatory_process_steps:
         index:
@@ -449,25 +450,8 @@ it:
         start_date: Data di inizio
         target: Chi partecipa
         unspecified: Non specificato
-      statistics:
-        answers_count: risposte
-        comments_count: Commenti
-        debates_count: Dibattiti
-        endorsements_count: Mi piace
-        followers_count: Followers
-        headline: Attività
-        meetings_count: Eventi
-        no_stats: Non ci sono ancora statistiche.
-        orders_count: Voti
-        pages_count: Pagine di testo
-        participants_count: Partecipanti
-        processes_count: Processi
-        projects_count: Progetti
-        proposals_count: Proposte
-        results_count: Risultati
-        supports_count: Voti
-        surveys_count: Questionari
-        users_count: Partecipanti
+    statistics:
+      processes_count: Processi
   layouts:
     decidim:
       participatory_process_groups:

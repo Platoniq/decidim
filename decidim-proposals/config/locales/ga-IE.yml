@@ -52,6 +52,7 @@ ga:
       proposals:
         actions:
           amend: Leasaigh
+          comment: Tabhair Trácht
           create: Cruthaigh
           endorse: Formhuinigh
           vote: Tacaigh le
@@ -221,8 +222,6 @@ ga:
           continue: Lean ar aghaidh
         complete:
           send: Seol
-        dynamic_map_instructions:
-          instructions: <h3>Is féidir leat an pointe a bhogadh ar an léarscáil.</h3><p>Ná déan dearmad cliceáil ar an gcnaipe "Nuashonraigh Seasamh" roimh do mholadh a fhoilsithe.</p>
         edit:
           add_images: Comhad
           back: Ar Ais
@@ -250,7 +249,6 @@ ga:
           recent: Is Déanaí
         preview:
           publish: Foilsigh
-          update_position: Nuashonraigh seasamh
         show:
           answer: Freagra
           back_to: Siar
@@ -272,3 +270,6 @@ ga:
       versions:
         index:
           title: Leaganacha
+    statistics:
+      proposals_count: Moltaí
+      supports_count: Tacaíochtaí

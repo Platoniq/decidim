@@ -27,6 +27,7 @@ es:
     components:
       debates:
         actions:
+          comment: Comentar
           create: Crear
           endorse: Adherirse
         name: Debates
@@ -235,3 +236,5 @@ es:
         description: Número de debates creados
         object: debates
         title: Debates
+    statistics:
+      debates_count: Debates

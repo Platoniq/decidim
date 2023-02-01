@@ -108,6 +108,9 @@ fr:
         close_modal: Fermer la fenêtre de dialogue
         continue: Continuer
         more_information: Plus d'information
+      budget_list_item:
+        voting_finished: Vous avez voté dans ce budget
+        voting_started: Vous avez commencé à voter dans ce budget
       budgets_list:
         cancel_order:
           more_than_one: supprimer votre vote sur %{name} et recommencer
@@ -230,6 +233,7 @@ fr:
     components:
       budgets:
         actions:
+          comment: Commenter
           vote: Voter
         name: Budgets
         settings:
@@ -278,7 +282,7 @@ fr:
       budgets:
         budget_published:
           email_intro: 'Le budget %{resource_title} est maintenant actif pour %{participatory_space_title}. Vous pouvez le voir sur cette page :'
-          email_outro: Vous recevez cette notification car vous suivez « %{participatory_space_title} ». Vous pouvez cesser de le suivre en allant sur le lien précédent.
+          email_outro: Vous recevez cette notification car vous suivez « %{participatory_space_title} ». Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Le budget %{resource_title} est maintenant actif pour %{participatory_space_title}.
           notification_title: Le budget <a href="%{resource_path}">%{resource_title}</a> est maintenant actif pour %{participatory_space_title}.
     orders:
@@ -290,6 +294,9 @@ fr:
         success: Votre vote a été annulé avec succès
     resource_links:
       included_proposals:
-        project_proposal: 'Propositions incluses dans ce projet:'
+        project_proposal: Propositions incluses dans ce projet
+    statistics:
+      orders_count: Votes
+      projects_count: Projets
   index:
     confirmed_orders_count: Nombre de votes

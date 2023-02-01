@@ -24,7 +24,7 @@ nl:
       component:
         name: Naam
         published_at: Gepubliceerd op
-        weight: Gewicht
+        weight: Bestelpositie
       id: ID
       import:
         user_group_id: Import maken als
@@ -43,11 +43,12 @@ nl:
         default_locale: Standaard taal
         description: Beschrijving
         enable_omnipresent_banner: Toon permanente header
+        enable_participatory_space_filters: Schakel filters in voor de participatieve ruimte
         facebook_handler: Facebook naam
-        favicon: Pictogram
+        favicon: Favicon
         force_authentication: Verplicht aanmelden
         force_users_to_authenticate_before_access_organization: Verplicht gebruikers om zich aan te melden voor toegang tot de organisatie
-        from: Afzender van de e-mail
+        from: E-mailadres afzender
         github_handler: GitHub gebruikersnaam
         header_snippets: Elementen om toe te voegen tussen HTML-tags
         highlight_alternative_color: In de kijker, alternatief
@@ -62,6 +63,9 @@ nl:
         host: Host
         instagram_handler: Instagram gebruikersnaam
         logo: Logo
+        machine_translation_display_priority: Voorrang weergave machinevertaling
+        machine_translation_display_priority_original: Oorspronkelijke tekst eerst
+        machine_translation_display_priority_translation: Vertaalde tekst eerst
         name: Naam
         official_img_footer: Officieel logo voettekst
         official_img_header: Officieel logo header
@@ -99,6 +103,8 @@ nl:
         name: Naam
         organization: Organisatie
         plural: Meervoud
+      settings:
+        scope_id: Scope
       static_page:
         allow_public_access: Toegang zonder authenticatie toestaan
         changed_notably: Er zijn merkbare veranderingen geweest.
@@ -107,12 +113,12 @@ nl:
         show_in_footer: Laat het in het voettekst zien
         slug: URL pad
         title: Titel
-        weight: Gewicht
+        weight: Bestelpositie
       static_page_topic:
         description: Beschrijving
         show_in_footer: Laat het in het voettekst zien
         title: Titel
-        weight: Gewicht
+        weight: Bestelpositie
       user_group_csv_verification:
         file: Bestand
     errors:
@@ -152,7 +158,8 @@ nl:
         browse: Browsen
         category:
           new: Nieuwe categorie
-        export: Exporteren
+        export: Alles exporteren
+        export-selection: Selectie exporteren
         import: Importeren
         manage: Beheer
         new: Nieuwe %{name}
@@ -163,6 +170,7 @@ nl:
         per_page: Per pagina
         permissions: Permissies
         reject: Weigeren
+        share: Deel
         user:
           new: Nieuwe gebruiker
         verify: Verifiëren
@@ -172,12 +180,12 @@ nl:
           success: Geweldig! Je hebt de admin gebruiksvoorwaarden geaccepteerd.
         actions:
           accept: Ik ga akkoord met de volgende voorwaarden
-          are_you_sure: Weet u zeker dat u de admin gebruiksvoorwaarden wilt weigeren?
+          are_you_sure: Weet je zeker dat je de Admin gebruiksvoorwaarden wil resetten?
           refuse: Weiger de admin gebruiksvoorwaarden
           title: Ga akkoord met de gebruiksvoorwaarden
         required_review:
           alert: 'Vereist: neem onze admin gebruiksvoorwaarden door'
-          callout: Neem even de tijd om Admin Gebruiksvoorwaarden door te nemen. Anders kunt u het platform niet beheren.
+          callout: Neem even de tijd om de Admin Gebruiksvoorwaarden door te nemen. Anders kan je het platform niet beheren.
           cta: Bekijk ze nu.
         title: Admin gebruiksvoorwaarden
       area_types:
@@ -200,7 +208,7 @@ nl:
           error: Er is een fout opgetreden bij het maken van een nieuwe pagina.
           success: Pagina succesvol aangemaakt.
         destroy:
-          has_spaces: Gebied heeft afhankelijke ruimten, het mag geen afhankelijkheden hebben om te worden verwijderd.
+          has_spaces: Dit gebied heeft nog onderliggende ruimtes. Zorg ervoor dat er geen participatieve ruimte meer naar dit gebied verwijst om het te verwijderen.
           success: Pagina succesvol verwijderd
         edit:
           title: Pagina bewerken
@@ -311,10 +319,31 @@ nl:
         update:
           error: Er is een fout opgetreden bij het bijwerken van dit onderdeel.
           success: Het onderdeel is met succes bijgewerkt.
+      conflicts:
+        attempts: Pogingen
+        'false': 'Nee'
+        managed_user_name: Beheerde gebruiker
+        solved: Opgelost
+        title: Controle conflicten
+        transfer:
+          email: E-mail
+          error: Er is een probleem opgetreden bij het overbrengen van de huidige deelnemer naar een beheerde deelnemer.
+          name: Naam
+          reason: Reden
+          success: De overdracht is met succes voltooid.
+          title: Overdracht
+        'true': 'Ja'
+        user_name: Gebruiker
       dashboard:
         show:
           view_more_logs: Bekijk meer logs
           welcome: Welkom bij het Decidim Admin Panel.
+      domain_whitelist:
+        form:
+          domain_too_short: Domein te kort
+        update:
+          error: Kan domein whitelist niet bijwerken
+          success: Domain whitelist succesvol bijgewerkt
       exports:
         export_as: "%{name} als %{export_format}"
         formats:
@@ -327,6 +356,16 @@ nl:
         category_id_eq:
           label: Categorie
         filter_label: Filteren
+        invitation_accepted_at_present:
+          label: Uitnodiging geaccepteerd
+          values:
+            'false': 'Nee'
+            'true': 'Ja'
+        last_sign_in_at_present:
+          label: Ooit ingelogd
+          values:
+            'false': 'Nee'
+            'true': 'Ja'
         moderations:
           reportable_type_string_eq:
             label: Type
@@ -335,6 +374,17 @@ nl:
           values:
             'false': Gevalideerd
             'true': Niet gevalideerd
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Uitnodiging geaccepteerd
+            values:
+              'false': Niet geaccepteerd
+              'true': Geaccepteerd
+          user_invitation_sent_at_not_null:
+            label: Uitnodiging verzonden
+            values:
+              'false': Niet verzonden
+              'true': Verzonden
         private_space_eq:
           label: Privé
           values:
@@ -352,13 +402,14 @@ nl:
           name_or_nickname_or_email_cont: Zoek %{collection} op e-mail, naam of bijnaam.
           reported_id_string_or_reported_content_cont: Zoek %{collection} op rapporteerbaar id of op inhoud.
           title_cont: Zoek %{collection} op titel.
+          user_name_or_user_email_cont: '%{collection} doorzoeken op Id of titel.'
         state_eq:
           label: Provincie
       forms:
         file_help:
           import:
             explanation: 'Eigenschappen bestand:'
-            message_1: CSV, JSON en Excel (.xls) bestanden worden ondersteund
+            message_1: CSV, JSON en Excel (.xlsx) bestanden worden ondersteund
             message_2: Voor CSV-bestanden moet het scheidingsteken tussen kolommen een puntkomma (";") zijn
       help_sections:
         error: Er is een fout opgetreden bij het bijwerken van de Help-gedeelten
@@ -410,7 +461,7 @@ nl:
           accepted_mime_types:
             csv: csv
             json: json
-            xls: xls
+            xlsx: xlsx
           actions:
             back: Terug
           file_legend: Een importbestand toevoegen dat zal worden verwerkt.
@@ -436,11 +487,14 @@ nl:
         areas: Thema's
         configuration: Configuratie
         dashboard: Dashboard
+        external_domain_whitelist: Toegelaten externe domeinen
         help_sections: Helpsecties
         homepage: Startpagina
         impersonations: Zich voordoen als
+        moderation: Algemene moderatie
         newsletters: Nieuwsbrieven
         participants: Deelnemers
+        reported_users: Gerapporteerde gebruikers
         scope_types: Scope types
         scopes: Scopes
         settings: Instellingen
@@ -496,6 +550,14 @@ nl:
           fields:
             name: Naam
             plural: Meervoud
+        share_token:
+          fields:
+            created_at: Aangemaakt op
+            expires_at: Vervalt op
+            last_used_at: Laatste keer gebruikt
+            times_used: Aantal keren gebruikt
+            token: Token
+            user: Aangemaakt door
         static_page:
           fields:
             created_at: Aangemaakt op
@@ -521,8 +583,25 @@ nl:
             state: Staat
             users_count: Aantal deelnemers
       moderated_users:
+        index:
+          actions:
+            block: Gebruiker blokkeren
+            title: Acties
+            unblock: Deblokkeer gebruiker
+            unreport: Niet langer rapporteren
+          name: Naam
+          nickname: Bijnaam
+          reason: Reden
+          reports: Aantal rapporteringen
+          title: Gerapporteerde gebruikers weergeven
+        report:
+          reasons:
+            does_not_belong: Hoort niet bij
+            offensive: Beledigend
+            spam: Spam
         tabs:
           blocked: Geblokkeerd
+          unblocked: Niet geblokkeerd
       moderations:
         index:
           title: Moderaties
@@ -557,7 +636,7 @@ nl:
       newsletters:
         create:
           error: Er is een fout opgetreden bij het maken van deze nieuwsbrief.
-          success: Nieuwsbrief is succesvol gemaakt. Controleer het alvorens te verzenden.
+          success: Nieuwsbrief is succesvol gemaakt. Gelieve te controleren voor verzenden.
         deliver:
           error: Er is een fout opgetreden bij het leveren van deze nieuwsbrief.
           success: Nieuwsbrief is succesvol geleverd.
@@ -629,6 +708,7 @@ nl:
           officialize: "Valideren\n"
           officialized: Gevalideerd
           reofficialize: Hervalideren
+          reports: Rapporten
           show_email: Toon e-mailadres
           status: status
           unblock: Deblokkeer gebruiker
@@ -639,12 +719,12 @@ nl:
           title: Deelnemer "%{name}" officieel maken
         show_email_modal:
           close_modal: Sluit venster
-          description: Als u rechtstreeks contact wilt opnemen met een deelnemer, kunt u klikken op de Toon knop om het e-mailadres te zien. Deze actie wordt geregistreerd.
+          description: Als je rechtstreeks contact wil opnemen met een deelnemer, kun je op de knop Weergeven klikken om het e-mailadres te zien. Voor deze actie worden logbestanden bewaard.
           email_address: E-mail adres
           full_name: Volledige naam
           hidden: hidden
           show: Weergeven
-          title: Toon e-mailadres van gebruiker
+          title: E-mailadres deelnemer weergeven
         unblock:
           error: Er was een probleem bij het deblokkeren van de deelnemer
           success: Deelnemer met succes gedeblokkeerd
@@ -679,6 +759,17 @@ nl:
             layout_appearance_title: Weergave van de lay-out bewerken
             preview: Voorvertoning
           omnipresent_banner_appearance_title: Bewerk de permanente banner
+      organization_external_domain_whitelist:
+        edit:
+          update: Bijwerken
+        external_domain:
+          down: Naar beneden
+          external_domain: Extern domein
+          remove: Verwijderen
+          up: Naar boven
+        form:
+          add: Toevoegen aan whitelist
+          title: Externe domein whitelist
       organization_homepage:
         edit:
           active_content_blocks: Actieve inhoudsblokken
@@ -704,6 +795,7 @@ nl:
           invalid: Er is een fout opgetreden bij het lezen van het CSV-bestand.
           success: Het CSV-bestand is succesvol geüploaded. We sturen een uitnodigingsmail naar de deelnemers. Dit kan even duren.
         new:
+          explanation: 'Upload het CSV-bestand zonder headers. Het moet uit twee kolommen bestaan, met het e-mailadres in de eerste kolom en de naam in de laatste kolom van de gebruikers die je wil toevoegen aan de participatieve ruimte (e-mail, naam). Vermijd tekens als `<>?%&^*#@()[]=+:;"{}\|` in de namen.'
           title: Upload het CSV-bestand
           upload: Upload
       resource_permissions:
@@ -754,6 +846,11 @@ nl:
           share: Deel
         destroy:
           error: Er is een fout opgetreden bij het vernietigen van de token.
+          success: Token met succes verwijderd.
+        share_tokens:
+          empty: Er zijn geen actieve tokens
+          help: Deze tokens worden gebruikt om deze niet-gepubliceerde bron openbaar te delen met alle gebruikers. Ze worden verborgen wanneer de bron is gepubliceerd. Klik op het pictogram “delen” van het token om de deelbare URL te bezoeken.
+          title: Tokens delen
       shared:
         gallery:
           add_images: Afbeeldingen toevoegen
@@ -811,6 +908,7 @@ nl:
         impersonatable_users: Beheersbare deelnemers
         impersonations: Beheer van deelnemers
         metrics: Cijfers
+        panel: Admin
         participants: Deelnemers
         scope_types: Scope types
         scopes: Scopes
@@ -873,10 +971,11 @@ nl:
     forms:
       errors:
         impersonate_user:
-          reason: U moet een reden opgeven voor het beheer van een niet-beheerde deelnemer
+          reason: Je moet een reden opgeven voor het beheer van een niet-beheerde deelnemer
     metrics:
       blocked_users:
         object: geblokkeerde gebruikers
+        title: Geblokkeerde gebruikers
       reported_users:
         object: gerapporteerde gebruikers
         title: Gerapporteerde gebruikers

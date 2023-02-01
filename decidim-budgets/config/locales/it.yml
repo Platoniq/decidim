@@ -6,7 +6,7 @@ it:
         description: Descrizione
         title: Titolo
         total_budget: Budget totale
-        weight: Peso
+        weight: Ordine di posizionamento
       project:
         budget_amount: Importo del budget
         decidim_category_id: Categoria
@@ -108,6 +108,9 @@ it:
         close_modal: Chiudi modalità
         continue: Prosegui
         more_information: Altre informazioni
+      budget_list_item:
+        voting_finished: Hai votato in questo budget
+        voting_started: Hai iniziato a votare in questo budget
       budgets_list:
         cancel_order:
           more_than_one: elimina il tuo voto su %{name} e ricomincia
@@ -230,6 +233,7 @@ it:
     components:
       budgets:
         actions:
+          comment: Commenta
           vote: Votazione
         name: Budget
         settings:
@@ -290,6 +294,9 @@ it:
         success: OK, il tuo voto è stato cancellato.
     resource_links:
       included_proposals:
-        project_proposal: 'Proposte incluse in questo progetto:'
+        project_proposal: Proposte incluse in questo progetto
+    statistics:
+      orders_count: Supporti
+      projects_count: Progetti
   index:
     confirmed_orders_count: Computo dei voti

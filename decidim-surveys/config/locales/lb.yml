@@ -49,6 +49,8 @@ lb:
         description: Anzahl der Umfragen, die von den Benutzern beantwortet wurden
         object: Antworten auf Umfragen
         title: Antworten zu Umfragen
+    statistics:
+      answers_count: Äntwerten
     surveys:
       admin:
         exports:

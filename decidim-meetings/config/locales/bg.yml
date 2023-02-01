@@ -5,8 +5,6 @@ bg:
         description: Описание
         duration: Продължителност
         title: Заглавие
-      minutes:
-        description: Описание
   decidim:
     meetings:
       actions:

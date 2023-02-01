@@ -171,7 +171,6 @@ ru:
       photos:
         related_photos: Сопутствующие фотографии
     author:
-      avatar: Аватар
       comments:
         one: комментарий
         few: комментария
@@ -301,7 +300,6 @@ ru:
           already_have_an_account?: У вас уже есть учетная запись?
           newsletter: Получать время от времени рассылку со свежими новостями
           newsletter_title: Разрешение на связь с вами
-          password_help: "Минимум %{minimun_characters} символов, не должен быть слишком распространенным (например, 123456) и должен отличаться от вашего имени и электронной почты."
           sign_in: Войти
           sign_up: Зарегистрироваться
           sign_up_as:
@@ -578,21 +576,7 @@ ru:
           participate: Принять участие
           welcome: Добро пожаловать в %{organization}!
         statistics:
-          answers_count: Пройденных опросов
-          assemblies_count: Собраний
-          comments_count: Комментариев
-          debates_count: Обсуждения
-          endorsements_count: Выражений поддержки
           headline: Текущее состояние %{organization}
-          meetings_count: Встречи
-          orders_count: Голосов
-          processes_count: Движений
-          projects_count: Проекты
-          proposals_accepted: Принятые предложения
-          proposals_count: Предложения
-          results_count: Итоги
-          surveys_count: Опросов
-          votes_count: Голосов
         sub_hero:
           register: Зарегистрироваться
       terms_and_conditions:
@@ -693,6 +677,8 @@ ru:
         close_window: Закрыть окно
         share: Поделиться
         share_link: Поделиться ссылкой
+    statistics:
+      comments_count: Комментариев
     user_conversations:
       update:
         error: Сообщение не отправлено. Попробуйте позже
@@ -776,6 +762,8 @@ ru:
       edit:
         new_password: Пароль
     registrations:
+      edit:
+        are_you_sure: Вы уверены?
       new:
         sign_up: Зарегистрироваться
       signed_up: Добро пожаловать! Вы успешно зарегистрировались.

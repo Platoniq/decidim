@@ -3,12 +3,27 @@
     attributes:
       dummy_resource:
         created_at: Opprettet på
+        decidim_scope_id: Tema
         field: Mitt felt
         start_date: Startdato
         title: Tittel
         translatable_text: Oversettbar tekst
         updated_at: Oppdatert på
   decidim:
+    components:
+      dummy:
+        settings:
+          global:
+            readonly_attribute: Skrivebeskyttet attributt
+            test: En test
+            test_choices:
+              a: A-valg
+              b: B-valg
+              c: C-valg
+          step:
+            endorsements_blocked: Påtegnelser blokkert
+            endorsements_enabled: Påtegnelser aktivert
+            readonly_step_attribute: Skrivebeskyttet trinn-attributt
     dummy:
       admin:
         exports:
@@ -25,17 +40,11 @@
           next_level_in: Opprett %{score} flere tester for å nå neste nivå!
           unearned_another: Denne deltakeren har ikke opprettet en test ennå.
           unearned_own: Du har ikke laget noen tester ennå.
-    pages:
-      home:
-        statistics:
-          bar: Felt
-          dummies_count_high: Dukker høy
-          dummies_count_medium: Dukker medium
-          foo: Foo
-    participatory_processes:
-      statistics:
-        dummies_count_high: Dukker høy
-        dummies_count_medium: Dukker medium
     resource_links:
       test_link:
         dummy_resource_dummy: Relaterte dukke
+    statistics:
+      bar: Felt
+      dummies_count_high: Dukker høy
+      dummies_count_medium: Dukker medium
+      foo: Foo

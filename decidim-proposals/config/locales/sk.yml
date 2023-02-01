@@ -45,7 +45,9 @@ sk:
               invalid_document_type: 'Neplatný typ dokumentu. Prijateľné formáty sú: %{valid_mime_types} '
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Je potrebné priložiť znovu
+            add_photos:
               needs_to_be_reattached: Je potrebné priložiť znovu
             body:
               cant_be_equal_to_template: nemôže byť rovnaké, ako šablóna
@@ -145,7 +147,7 @@ sk:
             answers_with_costs: Povoliť náklady v rámci odpovedí na návrhy
             automatic_hashtags: Do všetkých návrhov boli pridané značky hashtags
             comments_blocked: Komentáre boli blokované
-            creation_enabled: Vytváranie návrhu je povolené
+            creation_enabled: Tvorba návrhu povolená
             endorsements_blocked: Schvaľovanie blokované
             endorsements_enabled: Schvaľovanie povolené
             proposal_answering_enabled: Odpovedanie na návrh je povolené
@@ -677,6 +679,7 @@ sk:
             many: "%{count} návrhov"
             other: "%{count} návrhov"
         edit:
+          add_documents: Dokumenty
           attachment_legend: "(Voliteľné) Pridanie prílohy"
           back: Zadná
           select_a_category: Vyberte kategóriu

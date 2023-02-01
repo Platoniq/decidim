@@ -1,6 +1,8 @@
 "no":
   activemodel:
     attributes:
+      assemblies_setting:
+        enable_organization_chart: Aktiver organisasjonskart
       assembly:
         area_id: Område
         assembly_type: Forsamlingstype
@@ -50,7 +52,7 @@
         target: Hvem deltar
         title: Tittel
         twitter: Twitter
-        weight: Vekting
+        weight: Prioritert rekkefølge
         youtube: YouTube
       assembly_member:
         birthday: Fødselsdag
@@ -61,6 +63,7 @@
         full_name: Fullt navn
         gender: Kjønn
         position: Stilling
+        user_id: Bruker eller gruppe
       assembly_user_role:
         email: Epost
         name: Navn
@@ -247,6 +250,7 @@
         update: "%{user_name} oppdaterte forsamlingens innstillinger"
       assembly_type:
         create: "%{user_name} opprettet %{resource_name} forsamlingstypen"
+        delete: "%{user_name} fjernet forsamlingstypen %{resource_name}"
         publish: "%{user_name} publiserte %{resource_name} forsamlingstypen"
         unpublish: "%{user_name} avpubliserte %{resource_name} forsamlingstypen"
         update: "%{user_name} oppdaterte %{resource_name} forsamlingstypen"
@@ -258,6 +262,7 @@
       admin:
         assemblies:
           form:
+            announcement_help: Teksten du skriver her vil bli vist til brukeren rett under forsamlingsinformasjonen.
             duration: Varighet
             duration_help: Hvis varigheten av denne forsamlingen er limitert, velg en sluttdato. Hvis ikke, vil den vises som ubestemt.
             filters: Filter
@@ -377,38 +382,11 @@
         social_networks: Sosiale nettverk
         social_networks_title: Del denne forsamlingen på
         target: Hvem deltar
-      statistics:
-        answers_count: Svar
-        assemblies_count: Forsamlinger
-        comments_count: Kommentarer
-        debates_count: Debatter
-        endorsements_count: Påtegnelser
-        followers_count: Følgere
-        headline: Statistikk
-        meetings_count: Møter
-        no_stats: Det finnes ingen statistikk enda.
-        orders_count: Støtter
-        pages_count: Sider
-        participants_count: Deltakere
-        posts_count: Innlegg
-        processes_count: Prosesser
-        projects_count: Prosjekter
-        proposals_count: Forslag
-        results_count: Resultater
-        supports_count: Støtter
-        surveys_count: Undersøkelse
-        users_count: Deltakere
-        votes_count: Støtter
     assembly_members:
       assembly_member:
         designated_on: Utpekt på
       index:
         title: Medlemmer
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Lenke til konferansesiden som viser alle konferansene
     events:
       assemblies:
         create_assembly_member:
@@ -441,19 +419,11 @@
         description: Antall forsmalinger opprettet
         object: forsamlinger
         title: Forsamlinger
-    pages:
-      home:
-        hero:
-          participate_title: Delta i plattformens prosesser
-        sub_hero:
-          register_title: Registrer deg for å opprette en konto
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Lenke til prosessiden som viser alle prosesser
       show:
         related_assemblies: Relaterte forsamlinger
+    statistics:
+      assemblies_count: Forsamlinger
   errors:
     messages:
       cannot_be_blank: kan ikke være blank

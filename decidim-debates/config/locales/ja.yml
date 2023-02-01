@@ -26,6 +26,7 @@ ja:
     components:
       debates:
         actions:
+          comment: コメント
           create: 作成
           endorse: オススメ
         name: ディベート
@@ -233,3 +234,5 @@ ja:
         description: 作成されたディベート数
         object: ディベート
         title: ディベート
+    statistics:
+      debates_count: ディベート

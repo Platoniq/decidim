@@ -183,6 +183,8 @@ lb:
         filter: Filter
         filter_by: Filtern nach
         unfold: Entfalten
+      last_activity:
+        new_consultation: Neue Konsultation
       pages:
         home:
           highlighted_consultations:
@@ -274,7 +276,11 @@ lb:
     resources:
       consultations:
         actions:
+          comment: Kommentar
           vote: Abstimmen
+    statistics:
+      consultations_count: Beratungen
+      votes_count: Stimmen
   layouts:
     decidim:
       consultation_voting_data:

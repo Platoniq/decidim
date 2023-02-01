@@ -246,7 +246,7 @@ es-PY:
             price: Precio
             registrations_count: Número de inscripciones
             title: Título
-            weight: Peso
+            weight: Orden de posición
           name: Tipo de inscripción
       partners:
         create:
@@ -501,6 +501,7 @@ es-PY:
         home:
           highlighted_conferences:
             active_conferences: Conferencias activas
+            conferences_button_title: Enlace a la página de Jornadas que muestra todas las jornadas
             see_all_conferences: Ver todas las conferencias
       photo:
         image:
@@ -532,23 +533,6 @@ es-PY:
         related_assemblies: Asambleas relacionadas
         related_consultations: Consultas Relacionadas
         related_participatory_processes: Procesos participativos relacionados
-      statistics:
-        answers_count: Respuestas
-        comments_count: Comentarios
-        conference_count: Conferencias
-        debates_count: Debates
-        endorsements_count: Endosos
-        headline: Actividad
-        meetings_count: Reuniones
-        orders_count: Votos
-        pages_count: Páginas
-        posts_count: Publicaciones
-        projects_count: Proyectos
-        proposals_count: Propuestas
-        results_count: Resultados
-        surveys_count: Encuestas
-        users_count: Participantes
-        votes_count: Votos
     events:
       conferences:
         conference_registration_confirmed:
@@ -596,6 +580,8 @@ es-PY:
         title: Medios y enlaces
     menu:
       conferences: Conferencias
+    statistics:
+      conferences_count: Jornadas
   devise:
     mailer:
       join_conference:

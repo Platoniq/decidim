@@ -35,6 +35,7 @@ cs:
         origin_component_id: Komponenta pro kopírování návrhů z
       proposals_import:
         import_proposals: Návrhy na dovoz
+        keep_answers: Zachovat stav a odpovědi
         keep_authors: Uchovávejte původní autory
       valuation_assignment:
         admin_log:
@@ -47,7 +48,9 @@ cs:
               invalid_document_type: 'Neplatný typ dokumentu. Přijaté formáty jsou: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Potřebuje být znovu připojen
+            add_photos:
               needs_to_be_reattached: Potřebuje být znovu připojen
             body:
               cant_be_equal_to_template: nelze se rovnat šabloně
@@ -121,9 +124,11 @@ cs:
       proposals:
         actions:
           amend: Pozměnit
+          comment: Komentář
           create: Vytvořit
           endorse: Schválit
           vote: Hlasování
+          vote_comment: Komentář hlasování
           withdraw: Ustoupit
         name: Návrhy
         settings:
@@ -727,7 +732,8 @@ cs:
             many: "%{count} návrhů"
             other: "%{count} návrhů"
         dynamic_map_instructions:
-          instructions: <h3>Můžete přesunout bod na mapě. </h3><p>Nezapomeňte kliknout na tlačítko "Aktualizovat pozici" před zveřejněním vašeho návrhu.</p>
+          description: Souřadnice budou aktualizovány po kliknutí na tlačítko 'náhled'. Adresa se však nemění.
+          instructions: Můžete přesunout bod na mapě.
         edit:
           add_documents: Dokumenty
           add_images: Soubor
@@ -803,7 +809,6 @@ cs:
             other: Budete mít možnost upravit tento návrh během prvních %{count} minut po návrh zveřejněn. Po uplynutí tohoto časového okna nebudete moci návrh upravit.
           publish: Publikovat
           title: Publikujte svůj návrh
-          update_position: Aktualizovat pozici
         proposal:
           creation_date: 'Tvorba: %{date}'
           view_proposal: Zobrazit návrh
@@ -924,3 +929,7 @@ cs:
       included_proposals:
         proposal_project: 'Návrh se objevuje v těchto projektech:'
         proposal_result: 'Návrh se objeví v těchto výsledcích:'
+    statistics:
+      proposals_accepted: Přijaté návrhy
+      proposals_count: Návrhy
+      supports_count: Podpory

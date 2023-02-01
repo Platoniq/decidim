@@ -8,3 +8,5 @@ ga:
         settings:
           global:
             scope_id: Scóip
+    statistics:
+      answers_count: Freagraí

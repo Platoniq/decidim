@@ -35,6 +35,7 @@ eu:
         origin_component_id: Proposamenen kopia egiteko osagaia
       proposals_import:
         import_proposals: Inportatu proposamenak
+        keep_answers: Mantendu egoera eta erantzunak
         keep_authors: Mantendu jatorrizko egileak
       valuation_assignment:
         admin_log:
@@ -47,7 +48,9 @@ eu:
               invalid_document_type: 'Dokumentu mota baliogabea. Onartutako formatuak hauek dira: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Artxiboa berriro erantsi behar da
+            add_photos:
               needs_to_be_reattached: Artxiboa berriro erantsi behar da
             body:
               cant_be_equal_to_template: ezin da plantillaren berdina izan
@@ -113,9 +116,11 @@ eu:
       proposals:
         actions:
           amend: Zuzendu
+          comment: Iruzkina
           create: Sortu
           endorse: gatoz
           vote: Bozkatu
+          vote_comment: Bozkatu iruzkina
           withdraw: Erretiratuko
         name: proposamenak
         settings:
@@ -708,7 +713,8 @@ eu:
             one: "%{count} proposamen"
             other: "%{count} proposamen"
         dynamic_map_instructions:
-          instructions: <h3>Puntua mapan mugi dezakezu. </h3><p>Ez ahaztu "Eguneratu posizioa" botoian klik egitea zure proposamena argitaratu aurretik.</p>
+          description: Koordenatuak eguneratu egingo dira 'aurrebistaratu' botoian klik egiten duzunean. Baina helbidea ez da aldatzen.
+          instructions: Kokapena mugitu ahal duzu mapan.
         edit:
           add_documents: Dokumentuak
           add_images: Fitxategia
@@ -780,7 +786,6 @@ eu:
             other: Proposamen hau editatu ahal izango duzu lehenengo %{count} Proposamenaren ondoren argitaratutako minutuak. Behin leiho hau igarotzen denean, ezingo duzu proposamen hori editatu.
           publish: Argitaratu
           title: Argitaratu zure proposamena
-          update_position: Eguneratu aukera
         proposal:
           creation_date: 'Sorkuntza: %{date}'
           view_proposal: Ikusi proposamena
@@ -897,3 +902,7 @@ eu:
       included_proposals:
         proposal_project: 'Proiektu hauetatik sortutako proposamena:'
         proposal_result: 'Emaitza hauetatik sortutako proposamena:'
+    statistics:
+      proposals_accepted: Onartutako proposamenak
+      proposals_count: Proposamenak
+      supports_count: Aldeko botoak

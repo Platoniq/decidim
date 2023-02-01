@@ -42,7 +42,9 @@ hu:
               invalid_document_type: 'Érvénytelen dokumentumtípus. Az elfogadott formátumok: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Újra kell csatolni
+            add_photos:
               needs_to_be_reattached: Újra kell csatolni
             body:
               cant_be_equal_to_template: nem lehet egyenlő a sablonnal
@@ -682,11 +684,13 @@ hu:
           proposals_count:
             one: "%{count} javaslat"
             other: "%{count} javaslatot"
-        dynamic_map_instructions:
-          instructions: <h3>Áthelyezheti a pontot a térképen. </h3> <p>A javaslat közzététele előtt ne felejtsen el rákattintani a "Pozíció frissítése" gombra.</p>
         edit:
+          add_documents: Dokumentumok
+          add_images: Fájl
           attachment_legend: "(Nem kötelező) Melléklet hozzáadása"
           back: Vissza
+          delete_document: Dokumentum törlése
+          delete_image: Kép törlése
           select_a_category: Válassz kategóriát
           send: Küldés
           title: Javaslat szerkesztése
@@ -746,7 +750,6 @@ hu:
             other: Ezt a javaslatot a közzétételt követő %{count}. percben már szerkesztheted. Miután azonban ez az ablak bezárult, többé nem fogod tudni szerkeszteni a javaslatot.
           publish: Közzétesz
           title: Javaslatod közzététele
-          update_position: Pozíció frissítése
         proposal:
           creation_date: 'Létrehozás: %{date}'
           view_proposal: Javaslat megtekintése

@@ -6,15 +6,16 @@ nl:
     models:
       decidim/blogs/post:
         one: Post
-        other: berichten
+        other: Posts
   decidim:
     blogs:
       actions:
         confirm_destroy: Weet je zeker dat je dit bericht wilt verwijderen?
         destroy: Verwijder
         edit: Bewerk
-        new: Nieuw bericht
+        new: Nieuwe blogpost
         title: acties
+        user_group_id: Bericht aanmaken als
       admin:
         models:
           components:
@@ -36,8 +37,8 @@ nl:
             create: creëren
             title: Maak bericht
           update:
-            invalid: Er zijn fouten opgetreden bij het opslaan van het bericht.
-            success: Bericht succesvol opgeslagen
+            invalid: Er zijn fouten opgetreden bij het opslaan van deze blogpost.
+            success: Post succesvol opgeslagen
       last_activity:
         new_post_at_html: "<span>Nieuw bericht op %{link}</span>"
       models:
@@ -58,6 +59,10 @@ nl:
       read_more: Lees meer
     components:
       blogs:
+        actions:
+          create: Creëren
+          destroy: Verwijderen
+          update: Bijwerken
         name: blog
         settings:
           global:
@@ -76,10 +81,5 @@ nl:
           email_outro: Je hebt deze melding ontvangen omdat je "%{participatory_space_title}" volgt. Ontvolgen kan door te klikken op de voorgaande link.
           email_subject: Nieuw bericht gepubliceerd in %{participatory_space_title}
           notification_title: Het bericht <a href="%{resource_path}">%{resource_title}</a> is gepubliceerd in %{participatory_space_title}
-    pages:
-      home:
-        statistics:
-          posts_count: berichten
-    participatory_processes:
-      statistics:
-        posts_count: berichten
+    statistics:
+      posts_count: Berichten

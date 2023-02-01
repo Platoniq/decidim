@@ -27,6 +27,7 @@ fi-pl:
     components:
       debates:
         actions:
+          comment: Kommentoi
           create: Luo
           endorse: Suosittele
         name: Keskustelut
@@ -235,3 +236,5 @@ fi-pl:
         description: Keskustelujen määrä
         object: keskustelut
         title: Keskustelut
+    statistics:
+      debates_count: Keskustelua

@@ -1,6 +1,8 @@
 ga:
   activemodel:
     attributes:
+      conversation:
+        body: Corp
       group:
         about: Faoi
         avatar: Abhatár
@@ -8,6 +10,8 @@ ga:
         name: Ainm
         nickname: Leasainm
         phone: Fón
+      message:
+        body: Corp
       user:
         about: Faoi
         nickname: Leasainm
@@ -57,8 +61,8 @@ ga:
           few: Cáipéisí
           many: Cáipéisí
           other: Cáipéisí
-    author:
-      avatar: Abhatár
+      geocoding:
+        geocoded_address: Seoladh
     authorization_handlers:
       another_dummy_authorization_handler:
         fields:
@@ -166,6 +170,10 @@ ga:
     last_activities:
       index:
         resource_type: Cineál
+    links:
+      warning:
+        cancel: Cealaigh
+        proceed: Gabh ar aghaidh
     menu:
       help: Cabhair
       home: Baile
@@ -211,18 +219,6 @@ ga:
           register: Cláraigh
         metrics:
           headline: Méadrachtaí
-        statistics:
-          comments_count: Tráchtanna
-          debates_count: Díospóireachtaí
-          endorsements_count: Formhuinithe
-          meetings_count: Cruinnithe
-          orders_count: Vótaí
-          pages_count: Leathanaigh
-          projects_count: Tionscadail
-          proposals_count: Moltaí
-          results_count: Torthaí
-          surveys_count: Suirbhéanna
-          votes_count: Vótaí
         sub_hero:
           register: Cláraigh
       index:
@@ -282,6 +278,7 @@ ga:
         unfold: Oscail
       flag_modal:
         close: Dún
+        reason: Cúis
         report: Tuairiscigh
       flag_user_modal:
         close: Dún
@@ -294,7 +291,13 @@ ga:
         filters:
           areas: Ceantair
       share_modal:
+        copy_share_link: Cóipeáil
+        copy_share_link_copied: Cóipeáilte!
         share: Roinn
+    statistics:
+      comments_count: Tráchtanna
+      endorsements_count: Formhuinithe
+      pages_count: Leathanaigh
     user_conversations:
       index:
         close: Dún

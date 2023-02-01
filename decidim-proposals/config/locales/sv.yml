@@ -35,6 +35,7 @@ sv:
         origin_component_id: Komponent att kopiera förslagen från
       proposals_import:
         import_proposals: Importera förslag
+        keep_answers: Behåll status och svar
         keep_authors: Behåll originalförfattare
       valuation_assignment:
         admin_log:
@@ -47,7 +48,9 @@ sv:
               invalid_document_type: 'Ogiltig dokumenttyp. Godkända format är: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Måste bifogas igen
+            add_photos:
               needs_to_be_reattached: Måste bifogas igen
             body:
               cant_be_equal_to_template: kan inte vara detsamma som mallen
@@ -113,9 +116,11 @@ sv:
       proposals:
         actions:
           amend: Ändra
+          comment: Kommentera
           create: Skapa
           endorse: Instäm
           vote: Stötta
+          vote_comment: Rösta på en kommentar
           withdraw: Dra tillbaka
         name: Förslag
         settings:
@@ -424,7 +429,7 @@ sv:
             title: Uppdatera förslag
             update: Uppdatera
           form:
-            attachment_legend: "(Valfritt) Lägg till en bilaga"
+            attachment_legend: "(Frivilligt) Lägg till en bilaga"
             created_in_meeting: Detta förslag kommer från ett möte
             delete_attachment: Ta bort bilaga
             select_a_category: Välj en kategori
@@ -533,7 +538,7 @@ sv:
         evaluating: Utvärderas
         not_answered: Ej besvarat
         rejected: Avvisat
-        withdrawn: Tillbakadragna
+        withdrawn: Tillbakadraget
       application_helper:
         filter_category_values:
           all: Alla
@@ -582,7 +587,7 @@ sv:
           error: Det gick inte att skapa det gemensamma utkastet
           success: Det gemensamma utkastet har skapats.
         edit:
-          attachment_legend: "(Valfritt) Lägg till en bilaga"
+          attachment_legend: "(Frivilligt) Lägg till en bilaga"
           back: Tillbaka
           select_a_category: Välj en kategori
           send: Skicka
@@ -711,11 +716,12 @@ sv:
             one: "%{count} förslag"
             other: "%{count} förslag"
         dynamic_map_instructions:
-          instructions: <h3>Nu kan du dra markören och flytta den på kartan. </h3><p>Glöm inte att klicka på knappen "Uppdatera position" innan du publicerar ditt förslag.</p>
+          description: Koordinaterna uppdateras när du klickar på knappen 'Förhandsgranska'. Adressen ändras dock inte.
+          instructions: Nu kan du flytta markören på kartan.
         edit:
           add_documents: Dokument
           add_images: Bild
-          attachment_legend: "(Valfritt) Lägg till en bilaga"
+          attachment_legend: "(Frivilligt) Lägg till en bilaga"
           back: Tillbaka
           delete_document: Radera dokument
           delete_image: Radera bild
@@ -783,7 +789,6 @@ sv:
             other: Du kommer att kunna redigera förslaget upp till %{count} minuter efter att förslaget har publicerats. När det tidsfönstret passerat kommer du inte att kunna redigera förslaget.
           publish: Publicera
           title: Publicera ditt förslag
-          update_position: Uppdatera position
         proposal:
           creation_date: 'Skapat: %{date}'
           view_proposal: Visa förslag
@@ -815,7 +820,7 @@ sv:
           read_more: Läs mer
           report: Rapport
           withdraw_btn_hint: Du kan dra tillbaka ett förslag om du ändrar dig, så länge som det inte har fått något stöd. Förslaget raderas inte utan kommer att visas i listan över förslag som dragits tillbaka.
-          withdraw_confirmation_html: Är du säker på att du vill återkalla förslaget?<br><br><strong>Denna åtgärd kan inte avbrytas!</strong>
+          withdraw_confirmation_html: Är du säker på att du vill dra tillbaka förslaget?<br><br><strong>Denna åtgärd kan inte ångras!</strong>
           withdraw_proposal: Dra tillbaka förslaget
         tags:
           changed_from: "(ändrad från <u>%{previous_name}</u> av en administratör)"
@@ -900,3 +905,7 @@ sv:
       included_proposals:
         proposal_project: 'Förslag som ingår i dessa projekt:'
         proposal_result: 'Förslag som ingår i dessa resultat:'
+    statistics:
+      proposals_accepted: Godkända Förslag
+      proposals_count: Förslag
+      supports_count: Stöd

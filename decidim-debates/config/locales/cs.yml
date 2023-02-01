@@ -29,6 +29,7 @@ cs:
     components:
       debates:
         actions:
+          comment: Komentář
           create: Vytvořit
           endorse: Schválit
         name: Debaty
@@ -239,3 +240,5 @@ cs:
         description: Počet vytvořených debat
         object: debaty
         title: Debaty
+    statistics:
+      debates_count: Debaty

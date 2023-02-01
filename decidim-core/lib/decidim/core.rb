@@ -50,7 +50,6 @@ module Decidim
   autoload :Menu, "decidim/menu"
   autoload :MenuItem, "decidim/menu_item"
   autoload :MenuRegistry, "decidim/menu_registry"
-  autoload :Messaging, "decidim/messaging"
   autoload :ManifestRegistry, "decidim/manifest_registry"
   autoload :EngineRouter, "decidim/engine_router"
   autoload :Events, "decidim/events"
@@ -95,6 +94,7 @@ module Decidim
   autoload :ShareableWithToken, "decidim/shareable_with_token"
   autoload :RecordEncryptor, "decidim/record_encryptor"
   autoload :AttachmentAttributes, "decidim/attachment_attributes"
+  autoload :CarrierWaveMigratorService, "decidim/carrier_wave_migrator_service"
 
   include ActiveSupport::Configurable
   # Loads seeds from all engines.
@@ -150,6 +150,11 @@ module Decidim
     true
   end
 
+  # Having this on true will change the way the svg assets are being served.
+  config_accessor :cors_enabled do
+    false
+  end
+
   # Exposes a configuration option: The application available locales.
   config_accessor :available_locales do
     %w(en bg ar ca cs da de el eo es es-MX es-PY et eu fi-pl fi fr fr-CA ga gl hr hu id is it ja ko lb lt lv mt nl no pl pt pt-BR ro ru sk sl sr sv tr uk vi zh-CN zh-TW)
@@ -158,6 +163,13 @@ module Decidim
   # Exposes a configuration option: The application default locale.
   config_accessor :default_locale do
     :en
+  end
+
+  # Disable the redirection to the external host when performing redirect back
+  # For more details https://github.com/rails/rails/issues/39643
+  # Additional context: This has been revealed as an issue during a security audit on Future of Europe installation
+  config_accessor :allow_open_redirects do
+    false
   end
 
   # Exposes a configuration option: an array of symbols representing processors
@@ -580,9 +592,20 @@ module Decidim
     Decidim::OrganizationSettings.for(organization)
   end
 
+  # Defines the time after which the machine translation job should be enabled.
+  # In some cases, it is required to have a delay, otherwise the ttanslation job will be discarded:
+  #  Discarded Decidim::MachineTranslationResourceJob due to a ActiveJob::DeserializationError.
+  config_accessor :machine_translation_delay do
+    0.seconds
+  end
+
   def self.machine_translation_service_klass
     return unless Decidim.enable_machine_translations
 
     Decidim.machine_translation_service.to_s.safe_constantize
+  end
+
+  def self.register_assets_path(path)
+    Rails.autoloaders.main.ignore(path) if Rails.configuration.autoloader == :zeitwerk
   end
 end

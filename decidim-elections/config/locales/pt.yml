@@ -58,6 +58,12 @@ pt:
       decidim/elections/question:
         one: Pergunta
         other: Perguntas
+      decidim/votings/census/dataset:
+        one: Conjunto de dados
+        other: Conjuntos de dados
+      decidim/votings/census/datum:
+        one: Dado
+        other: Dados
       decidim/votings/polling_officer:
         one: Oficial de votação
         other: Oficiais de votação
@@ -85,6 +91,16 @@ pt:
           name_or_email_or_nickname_or_presided_station_title_or_managed_station_title_cont: Pesquisar %{coleção} pelo nome/email/alcunha ou posto de votação.
           ? title_or_address_or_manager_name_or_manager_email_or_manager_nickname_or_president_name_or_president_email_or_president_nickname_cont
           : Pesquisar %{coleção} por título, endereço ou nome do oficial/email/alcunha.
+        signed_eq:
+          label: Assinado
+          values:
+            'false': Assinado
+            'true': Não assinado
+        validated_eq:
+          label: Validado
+          values:
+            'false': Validado
+            'true': Não validado
     components:
       elections:
         actions:
@@ -127,11 +143,13 @@ pt:
           new:
             create: Criar resposta
             title: Nova resposta
+          not_selected: Não seleccionado
           select:
             disable: Resposta não seleccionada
             enable: Marcar resposta como seleccionada
             invalid: Houve um problema ao seleccionar esta resposta
             success: Resposta seleccionada com êxito
+          selected: Seleccionado
           unselect:
             invalid: Houve um problema ao desseleccionar esta resposta
             success: Resposta desseleccionada com êxito
@@ -164,6 +182,8 @@ pt:
         exports:
           elections: Eleições
           feedback_form_answers: Respostas do formulário de retroacção
+        menu:
+          trustees: Curadores
         models:
           answer:
             name: Resposta
@@ -246,13 +266,25 @@ pt:
             title: Pronto para começar
           processing: A processar...
           results_published:
+            answer: Responder
+            not_selected: Não seleccionado
+            question: Pergunta
+            result: Resultado
+            selected: Seleccionado
+            submit: Enviar
             title: Resultados publicados
           tally:
             title: Processo de contagem
             trustees: Curadores
           tally_ended:
+            answer: Resposta
+            not_selected: Não seleccionado
+            question: Pergunta
+            result: Resultado
+            selected: Seleccionado
             submit: Publicar resultados
-            title: Resultados recalculados
+            success: Pedido publicação de resultados enviado com êxito para o Quadro Informativo
+            title: Resultados calculados
           vote:
             errors:
               time_after: A eleição ainda está a decorrer. Tem que esperar até à hora de fecho (%{end_time}) para poder fechar o período de votação.
@@ -266,6 +298,7 @@ pt:
             invalid: Houve um problema ao começar a contagem
             submit: Começar a contagem
             success: Pedido começar a contagem enviado com êxito para o Quadro Informativo
+            text: A votação terminou. Pode comoçar a contagem agora.
             title: Período de votação terminou
           vote_stats:
             no_vote_statistics_yet: Ainda não há estatísticas da votação
@@ -321,6 +354,51 @@ pt:
           elections_count:
             one: "%{count} eleição"
             other: "%{count} eleições"
+        election_log:
+          chained_hash: O código Hash desta mensagem
+          complete: Concluir
+          creation_description:
+            complete: A eleição foi criada e foi configurada com êxito no Quadro Informativo.
+            not_created: A eleição ainda não foi criada.
+          creation_title: Eleição criada
+          description: Este é o registo de eleição onde pode verificar o estado de cada etapa, por exemplo, quando a eleição foi criada, se o processo de contagem está concluído e quando a eleição está fechada.
+          download: Descarregar
+          key_ceremony_description:
+            complete: A cerimónia principal está concluída. Cada curador tem chaves válidas e descarregou as chaves de reserva necessárias.
+            not_started: A cerimónia principal  ainda não começou.
+            started: A cerimónia principal começou, mas ainda não está concluída.
+          key_ceremony_title: Cerimónia principal
+          not_available: Ainda não disponível
+          not_created: Não criado
+          not_published: Não publicado
+          not_ready: Não está pronto
+          not_started: Não iniciado
+          published: Publicado
+          results_description:
+            not_published: Os resultados ainda não foram publicados.
+            published: Os resultados estão publicados.
+          results_title: Resultado
+          started: Início
+          tally_description:
+            finished: O processo de contagem está terminado.
+            not_started: O processo de contagem ainda não começou.
+            started: O processo de contagem começou.
+          tally_title: Processo de contagem
+          title: Registo de Eleições
+          verifiable_results:
+            checksum: 'Soma de verificação SHA256 do ficheiro:'
+            description:
+              not_ready: O ficheiro verificável da eleição e a soma de verificação SHA256 ainda não estão disponíveis. Assim que os resultados forem publicados, poderá verificar esta eleição.
+              ready: 'Aqui é possível verificar a eleição. Primeiro, descarregue o ficheiro e certifique-se que não foi corrompido. Para isso, execute o seguinte comando e verifique se o resultado corresponde à soma de controlo:'
+            how_to_verify: "Assim que descarregar o ficheiro e se tiver certificado que está conforme, pode continuar para a execução do verificador universal.\nClone <a href='https://github.com/decidim/decidim-bulletin-board'>este repositório</a> e, a partir da pasta de raiz, execute o comando seguinte:"
+            title: Verifique o resultado da eleição
+            verifiable_file: 'Ficheiro da eleição verificável:'
+          verify: Verificar a eleição
+          vote_description:
+            finished: O processo de votação está concluído.
+            not_started: O processo de votação ainda não começou.
+            started: O processo de votação já começou.
+          vote_title: Processo de votação
         filters:
           active: Activo
           all: Todos
@@ -334,11 +412,12 @@ pt:
           filter_by: Filtrar por
           unfold: Desdobrar
         preview:
-          available_answers: Respostas disponíveis
-          description: Estas são as questões que encontrará no processo de votação
+          available_answers: 'Respostas disponíveis:'
+          description: 'Estas são as perguntas que encontrará no processo de votação:'
           title: Questões da eleição
         results:
-          description: Estes são os resultados da votação, para cada questão
+          description: 'Estes são os resultados da votação, para cada pergunta:'
+          percentage: "%{count}%"
           selected: Seleccionado
           title: Resultados da eleição
           votes:
@@ -346,19 +425,21 @@ pt:
             other: "%{count} votos"
             zero: "%{count} votos"
         show:
-          action-button:
-            change-vote: Mudar o seu voto
+          action_button:
+            change_vote: Mudar o seu voto
             vote: Começar votação
-            vote-again: Votar de novo
+            vote_again: Votar de novo
           back: Eleições disponíveis
           callout:
-            already-voted: Já votou nesta eleição. Pode alterar o seu voto ou verificá-lo.
-            vote-rejected: Não foi possível certificar o seu voto. Por favor registe-o de novo.
+            already_voted: Já votou nesta eleição. Pode alterar o seu voto ou verificá-lo.
+            pending_vote: O seu voto está a ser registado no servidor.
+            vote_rejected: Não foi possível certificar o seu voto. Por favor registe-o de novo.
+          election_log: Registo de eleições
           preview: Pré-visualizar
           verify:
-            already-voted: Já votou?
-            verify-here: Verifique o seu voto aqui.
-            will-verify: Poderá verificar o seu voto assim que a eleição tenha começado.
+            already_voted: Já votou?
+            verify_here: Verifique o seu voto aqui.
+            will_verify: Poderá verificar o seu voto assim que a eleição tenha começado.
           voting_period_status:
             finished: A votação começou em %{start_time} e terminou em %{end_time}
             ongoing: 'Votação ativa até: %{end_time}'
@@ -372,13 +453,17 @@ pt:
         answer:
           fields:
             proposals: Propostas
+            selected: Seleccionado
             title: Título
+            votes: Votos
         election:
           fields:
             bb_status: Estado do Quadro Informativo
             end_time: Termina às
             start_time: Inicia às
             title: Título
+            verifiable_results_file_hash: Soma de controlo SHA256 do ficheiro
+            verifiable_results_file_url: Processo eleitoral verificável
         question:
           fields:
             answers: Respostas
@@ -429,7 +514,7 @@ pt:
             upload_election_keys: Enviar chaves de eleição
             upload_icon: Ícone que indica uma acção de descarregar
           tally_steps:
-            back: Recuar
+            back: Retroceder
             description: Os resultados desta eleição estão a ser processados no Quadro Informativo. Para completar este processo é necessária a sua participação como curador.
             keys:
               end_tally: A contagem  terminou
@@ -493,6 +578,16 @@ pt:
           update:
             success: A sua chave de identificação pública foi guardada com êxito.
       votes:
+        ballot_decision:
+          audit: "( Auditar o boletim de voto )"
+          back: Começar o processo de votação de novo
+          ballot_hash: 'O seu identificador de boletim de voto é:'
+          cast: Registar o boletim de voto
+          description: Aqui tem as opções para registar o seu boletim de voso para que este possa ser contabilizado ou, alternativamente, pode auditar se o seu boletim foi encriptado correctamente. Por razões de segurança, auditar o seu voto pode estragá-lo. Isto significa, que para registar o seu voto, irá necessário recomeçar o processo de votação.
+          header: 'O boletim de voto está encriptado: registe-o ou audite-o'
+        casting:
+          header: A registar o voto...
+          text: O seu boletim de voto está a ser registado na urna de voto.
         confirm:
           answer: Responder
           answer_number: resposta %{number}
@@ -504,25 +599,31 @@ pt:
           question: Questão %{count}
         confirmed:
           back: Retroceder às eleições
-          error: Deculpe, houve um erro ao confirmar o voto. Por favor tente de novo.
           experience: Como foi a sua experiência?
           feedback: Dê-nos algum feedback
           header: Voto confirmado
-          lead: O seu voto já foi transmitido!
+          lead: O seu voto foi registado!
           text: 'Pode verificar que o seu voto foi adicionado corretamente à caixa de voto com o seguinte identificador: <strong class="evote__poll-id">%{e_vote_poll_id}</strong>'
           verify_link: Para verificar, copie o identificador e cole-o na <a href="%{link}">página de verificação de voto</a>
+        create:
+          error: Houve um problema ao registrar o seu voto. Por favor, tente de novo.
         encrypting:
-          header: A codificar voto...
-          text: O seu voto está a ser encriptado para garantir que pode transmiti-lo anonimamente.
+          header: A encriptar o voto...
+          text: O seu boletim de voto está a ser encriptado para garantir o segredo do seu voto.
         failed:
           header: Votação falhou
           lead: O seu voto não foi registado!
           text: Algo correu mal, por favor tente de novo.
+          try_again: Tente de novo
         header:
+          ballot_decision: Registe ou audite o seu voto
+          casting: A registar o voto
           confirm: Confirmar o seu voto
           confirmed: Voto confirmado
-          encrypting: A confirmar voto
+          encrypting: A encriptar o voto
+          failed: Votação falhou
         messages:
+          invalid_token: A sua sessão na cabine de voto não é válida. Tente votar de novo.
           not_allowed: Não está autorizado a votar nesta eleição neste momento.
         modal:
           close: Fechar
@@ -534,12 +635,14 @@ pt:
           preview_alert: Isto é uma pré-visualização da cabina de voto.
           question_steps: Questão %{current_step} de %{total_steps}
           selections: "%{selected} de %{max_selections}<br> seleções"
-        processing:
-          header: A processar o voto...
-          text: O seu voto foi recebido e está a ser processado. Por favor aguarde.
+        onboarding_modal:
+          close: Fechar o modal
+          create_account: Criar conta
+          description: Deseja criar uma conta nova com Decidim? Será capaz de participar nos processos e de ser um parte activa da organização.
+          no_account: Não, obrigado.
+          title: Novo no Decidim?
         update:
-          error: Ocorreu um problema ao actualizar o estado do seu voto
-          success: Estado do voto actualizado com êxito
+          error: Houve um problema ao actualizar o seu voto. Por favor, tente de novo.
         verify:
           content:
             heading: Verificar o seu voto
@@ -593,6 +696,9 @@ pt:
             email_outro: Recebeu esta notificação porque lhe foi atribuído o papel de %{role} na %{polling_station_name}.
             email_subject: É %{role} na Secção de Voto %{polling_station_name}.
             notification_title: É %{role} na Secção de Voto %{polling_station_name} na votação <a href="%{resource_path}">%{resource_title}</a>.
+        send_access_code:
+          instruction: 'Aqui está o Código de Acesso que pediu: %{access_code}. Com este código pode participar em %{voting}.'
+          subject: O seu Código de Acesso para participar em %{voting}
     help:
       participatory_spaces:
         votings:
@@ -601,15 +707,42 @@ pt:
           title: O que são votações?
     menu:
       votings: Votações
-    pages:
-      home:
-        statistics:
-          elections_count: Eleições
-    participatory_processes:
-      statistics:
-        elections_count: Eleições
+    statistics:
+      elections_count: Eleições
+      votings_count: Votações
     votings:
       admin:
+        ballot_styles:
+          create:
+            error: Ocorreu um problema ao criar este estilo de boletim de voto
+            success: Estilo de boletim de voto criado com êxito
+          destroy:
+            invalid: Ocorreu um problema ao eliminar este estilo de boletim de voto
+            success: Estilo de boletim de voto eliminado com êxito
+          edit:
+            title: Editar estilo de boletim de voto
+            update: Actualizar
+          form:
+            code_help: 'Sugestão: o código é a ligação entre o recenseamento e o estilo do boletim de voto. Quando enviando os dados do recenseamento será designado para todas as entradas o estilo de boletim de voto correspondente ao código'
+            election: Eleição
+            questions: Questões para este estilo de boletim de voto
+            questions_help: 'Sugestão: seleccione as questões dos componentes da eleição para serem apresentadas aos eleitores designados para este estilo de boletim de voto.'
+          index:
+            actions:
+              confirm_destroy: Tem a certeza?
+              destroy: Eliminar
+              edit: Editar
+              new: Novo
+              title: Acções
+            associated_census_data: Entradas de recenseamento associadas
+            explanation_callout: O estilo de boletim de voto específica que questões que serão apresentadas ao eleitor na cabine de voto. Num estilo de boletim de voto, pode escolher quais as questões os componentes da eleição que pertencem ao boletim de voto. O código do estilo de boletim de voto é utilizado para corresponder um eleitor do recenseamento com o boletim de voto que lhe será apresentado na cabine de voto. Não crie nenhum estile de boletim de voto se quiser apresentar todas as questões.
+            title: Estilos de boletim de voto
+          new:
+            create: Criar
+            title: Criar estilo de boletim de voto
+          update:
+            invalid: Ocorreu um problema ao actualizar este estilo de boletim de voto
+            success: Estilo do boletim de voto actualizado com êxito
         content_blocks:
           highlighted_votings:
             max_results: Montante máximo dos projectos a mostrar
@@ -652,13 +785,23 @@ pt:
             attachment_collections: Pastas
             attachment_files: Ficheiros
             attachments: Anexos
+            ballot_styles: Estilos de boletim de voto
+            census: Recenseamento
             components: Componentes
             info: Informação
             landing_page: Página de entrada
-            monitoring_committee_members: Comissão de controlo
+            monitoring_committee: Comissão de controlo
+            monitoring_committee_election_results: Valide Resultados
+            monitoring_committee_members: Membros
+            monitoring_committee_polling_station_closures: Certificados válidos
+            monitoring_committee_verify_elections: Verificar a eleição
             polling_officers: Oficiais de votação
             polling_stations: Secções de voto
         models:
+          ballot_style:
+            fields:
+              code: Código
+            name: Estilo de boletim de voto
           monitoring_committee_member:
             fields:
               email: E-Mail
@@ -683,6 +826,33 @@ pt:
               promoted: Realçado
               published: Publicado
               title: Título
+        monitoring_committee_election_results:
+          actions:
+            title: Acções
+            view: Visualizar
+          index:
+            title: Escolher uma eleição de qual quer ver os resultados
+          results:
+            bulletin_board: Quadro Informativo
+            election_totals: Totais da eleição
+            polling_stations: Secções de voto
+            result_types:
+              blank_answers: Respostas em branco
+              blank_ballots: Boletins de voto em branco
+              null_ballots: Boletins de voto nulos
+              total_ballots: Total de boletins de voto
+              valid_ballots: Boletins de voto válidos
+            selected: Seleccionado
+            title: Resultados para a eleição <i>%{election_title}</i>
+            totals: Totais
+          show:
+            change_election: Mudar eleição
+            publish_results: Publicar resultados
+            publishing: Publicar resultados
+          update:
+            invalid: Ocorreu um problema ao publicar os resultados
+            rejected: A publicação dos resultados foi registada pelo Quadro Informativo. Tente de novo ou contacte o administrador do sistema.
+            success: Os resultados foram publicados com êxito
         monitoring_committee_members:
           create:
             invalid: Ocorreu um problema ao criar este membro dda comissão de controlo
@@ -700,6 +870,38 @@ pt:
           new:
             create: Criar
             title: Criar membro da comissão de controlo
+        monitoring_committee_polling_station_closures:
+          actions:
+            title: Acções
+            validate: Validado
+            view: Visualizar
+          closures:
+            change_election: Mudar eleição
+            signed: Assinado
+            title: Secções de voto para a eleição <i>%{election_title}</i>
+            validated: Validado
+          edit:
+            change_polling_station: Retroceder para as Secções de Voto
+            monitoring_committee_notes: Reparos
+            monitoring_committee_notes_placeholder: Denunciar um incidente aqui
+            title: Resultados para a eleição <i>%{election_title}</i> na secção de voto <i>%{polling_station_title}</i>
+          elections:
+            title: Escolher a eleição que quer validar
+          show:
+            change_polling_station: Retroceder para as Secções de Voto
+            monitoring_committee_notes: Reparos da Comissão de Controlo
+          validate:
+            error: Ocorreu um problema ao validar o encerramento
+            success: O encerramento foi validade com êxito
+        monitoring_committee_verify_elections:
+          index:
+            download: Descarregar
+            how_to_checksum: 'Para se certificar que o ficheiro que descarregou não está corrompido ou não foi alterado durante o processo execute o comando seguinte na sua consola e verifique que o resultado corresponde à soma de controlo anunciada acima:'
+            how_to_download: Pare verificar uma eleição descarregue o seu ficheiro verificável a partir da taabela acima.
+            how_to_run_verifier: "Assim que descarregar o ficheiro e se tiver certificado que está conforme, pode continuar para a execução do verificador universal.\nClone <a href='https://github.com/decidim/decidim-bulletin-board'>este repositório</a> e, a partir da pasta de raiz, execute o comando seguinte:"
+            how_to_title: Como verificar a validade da eleição
+            not_available: Não disponível ainda
+            title: Eleições
         polling_officers:
           create:
             invalid: Ocorreu um problema ao criar este oficial de votação
@@ -766,6 +968,7 @@ pt:
             assign_missing_officers: Há Secções de Voto sem Presidente e/ou Gestores. Por favor atribua-os a partir da área de Secções de Voto
             update: Actualizar
           form:
+            census_contact_information_help: Esta informação de contacto destina-se a um participante que queira denunciar problemas com o recenseamento. Pode ser um endereço de e-mail, um formulário de contacto noutro sítio internet, um inquérito Decidim para visitantes, etc.
             select_a_voting_type: Por favor seleccione um tipo de votação
             slug_help: 'Os identificadores URL são utilizados para gerar os URLs que direccionam para esta votação. Apenas aceitam letras, números e traços, devendo começar com uma letra. Exemplo: %{url}'
             title: Título
@@ -788,9 +991,83 @@ pt:
           create: "%{user_name} publicou a votação%{resource_name}"
           publish: "%{user_name} publicou a votação%{resource_name}"
           unpublish: "%{user_name} publicou a votação%{resource_name}"
+      census:
+        admin:
+          census:
+            create:
+              invalid: Ocorreu um erro ao enviar o recenseamento, por favor tente de novo.
+            creating_data:
+              info_message: "<strong>Por favor</strong>, processadas %{processed_count} de %{raw_count} do ficheiro %{file}"
+            delete:
+              button: Eliminar todos os dados do censo
+              confirm: Eliminar todo o censo não pode ser desfeito. Tem a certeza que quer continuar?
+            destroy:
+              error: Ocorreu um erro ao eliminar o recenseamento, por favor tente de novo.
+              success: Dados do recenseamento eliminados
+            export_access_codes:
+              button: Exportar Códigos de Acesso de votação
+              callout: Pode continuar com a exportação dos códigos de acesso. Isto só pode ser feito uma vez. Assim que comece a exportação irá receber um e-mail <strong>%{email}</strong> em com instruções
+              confirm: Só pode exportar os códigos de acesso uma vez. Certifique-se que tem acesso à conta de e-mail <strong>%{email}</strong>.
+              file_not_exists: O ficheiro não existe
+              launch_error: Problemas ao lançar a exportação dos códigos de acesso
+              launch_success: Exportação dos códigos de acesso lançada. Em breve irá receber um e-mail em %{email}
+            exporting_access_codes:
+              info_message: "<strong>Por favor aguarde</strong>, a exportação está a ser preparada, irá recebe-la em breve em %{email}"
+            freeze:
+              callout: O recenseamento está congelado e não pode ser modificado
+            generate_access_codes:
+              button: Gerar Códigos de Acesso à votação
+              callout: Pode agora continuar para gerar os códigos de acesso. Atenção que depois de gerar os códigos de acesso não poderá depois modificar o recenseamento.
+              confirm: Se continuar não poderá depois modificar o recenseamento.
+              info_message_all: "<strong>Todas as linhas do ficheiro %{file} importadas com êxito</strong> (%{raw_count} de %{data_count})."
+              info_message_warn: Por favor verifique que não há dados em falta, porque %{data_count} registos foram criados e o ficheiro %{file} enviado tinha %{raw_count} linhas.
+              launch_error: Problemas ao lançar a geração dos códigos de acesso
+              launch_success: Geração de códigos lançada.
+            generating_access_codes:
+              info_message: "<strong>Por favor</strong> aguarde, os código de acesso para a votação estão a ser gerados..."
+            new:
+              file_help:
+                explanation: 'Orientação para o ficheiro:'
+                message_1: Só são permitidos ficheiros CSV (.csv).
+                message_2: O separador entre colunas deve ser um ponto e vírgula (“;”)
+              has_ballot_styles_message: Está a configurar Estilos de Boletim de Voto. Por favor certifique-se de que o campo “%{ballot_style_code_header}” no ficheiro CSV corresponde ao Estilo de Boletim de Voto desejado.
+              info_message: "<strong>Não há ainda recenseamento.</strong> Por favor use o formulário abaixo para o criar importando um ficheiro CSV."
+              missing_ballot_styles_message: 'Não há ainda um Estilo de Boletim de Voto para esta votação. Se ter questões condicionais (exemplo: apresentar ao eleitor questões diferentes dependendo, entre outros, no distrito/regioão de residência), precisa de configurar os <a href=%{ballot_styles_admin_path}>Estilos de Boletim de Voto</a> <strong>antes</strong> de importar o recenseamento. Se quiser apresentar as mesmas questões a todos os eleitores pode continuar com o procedimento de importação de recenseamento.'
+              submit: Submeter csv
+              title: Criar recenseamento
+            show:
+              heading: Recenseamento do espaço de votação
+            upload_info:
+              csv_example_with_ballot_style: 'Um exemplo de ficheiro <strong>com</strong> estilos de boletim de voto:'
+              csv_example_without_ballot_style: 'Um exemplo de ficheiro <strong>sem</strong> estilos de boletim de voto:'
+              csv_header_after: Não inclua o último campo ("%{ballot_style_code_header}") se não precisar de estilos de boletim de voto/questões condicionais
+              csv_header_before: 'O recenseamento deve ser um ficheiro CSV com o seguinte cabeçalho:'
+        document_types:
+          dni: DNI
+          nie: NIE
+          passport: Passaporte
+        export_mailer:
+          access_codes_export:
+            click_button: 'Clique na ligação para descarregar os dados códigos de acesso.<br/>O ficheiro estará disponível até %{date}.<br/>Irá precisar  de<a href="https://www.7-zip.org/">7-Zip</a> (para Windows), <a href="https://www.keka.io/en/">Keka</a> (para MacOS), ou <a href="https://peazip.github.io">PeaZip</a> (para Linux) para abrir o ficheiro. Palavra-chave: %{password}'
+            download: Descarregar
+            subject: Estão disponíveis para exportação os códigos de acesso À votação para %{voting_title}
+        vote_flow:
+          already_voted_in_person: Este participante já votou presencialmente e não tem o direito de votar.
+          datum_not_found: Os dados fornecidos não correspondem a nenhum eleitor.
       content_blocks:
         highlighted_votings:
           name: Votações realçadas
+        landing_page:
+          description:
+            show_less: Ler menos
+            show_more: Ler mais
+          metrics:
+            heading: Métricas
+          polling_stations:
+            heading: Secções de voto
+            no_polling_stations: Não há ainda secções de voto.
+          timeline:
+            heading: Cronograma
       monitoring_committee_members:
         actions:
           confirm_destroy: Tem a certeza?
@@ -804,23 +1081,124 @@ pt:
             see_all_votings: Ver todas as votações
             votings_button_title: Ligação para a página de Votações que mostra todas as votações
       polling_officer_zone:
+        closures:
+          back_to_polling_stations: Retroceder para as secções de voto
+          certify:
+            add_images: Adicionar imagens
+            error: Ocorreu um erro ao anexar o certificado, por favor tente de novo.
+            form_legend: Envie a fotografia do Certificado de Encerramento Eleitoral
+            heading: Recontagem de votos - Envie o certificado
+            info_text: Por favor envie uma fotografia do Certificado de Encerramento Eleitoral.
+            submit: Envie o certificado
+            success: Certificado enviado com êxito
+          create:
+            error: Ocorreu um erro ao criar o encerramento, por favor tente de novo.
+            success: Encerramento criado com êxito.
+          edit:
+            heading: Recontagem de votos - Recontagem de respostas
+            info_text: Por favor introduza o número toral de respostas para cada questão.
+            modal_ballots_results_count_error:
+              close_modal: Fechar
+              info_text: O número total de boletins de voto não corresponde ao número total de envelopes. Por favor reveja o total de boletins de voto.
+              title: A contagem de boletins de voto não está correcta
+            save_recount: Guardar recontagem
+            total_ballots: Total de boletins de voto
+            total_blank_ballots: Total de boletins de voto em branco
+            total_null_ballots: Total de boletins de voto nulos
+            total_valid_ballots: 'Total dos boletins de voto válidos:'
+          new:
+            election: 'Eleição'
+            heading: Recontagem de votos
+            info_text: 'Por favor introduza o número total de boletins de voto (envelopes) recontados nesta Secção de Voto:'
+            modal_ballots_count_error:
+              btn_validate_total: Validar total de recontagem de boletins de voto
+              close_modal: Fechar
+              info_explanation_text: 'Por favor reveja o número de boletins de voto. Se o número total estiver correcto, deve fornecer uma explicação à Comissão de Controlo:'
+              info_text: Número total de boletins de voto (envelopes) introduzido não corresponde ao registo de pessoas que votou nesta Secção de Voto.
+              message_for_monitoring_committee: Mensagem da Comissão de Controlo
+              review_recount: Rever a recontagem
+              text_area_placeholder: Por favor escreva a sua mensagem
+              title: A contagem de registos não está correcta
+              total_ballots: 'Total de boletins de voto:'
+              total_people: 'Total de pessoas:'
+            polling_station: 'Secção de voto'
+            submit: Verificar números totais
+            total_ballots_count: Número de boletins de voto
+          show:
+            heading: Recontagem de votos
+            info_text: Encerramento eleitoral da secção de voto
+          sign:
+            cancel: Cancelar
+            check_box: Confirmo que este é o mesmo que o certificado de encerramento eleitoral físico
+            close_modal: Fechar
+            confirm: Ok, continuar
+            error: Ocorreu um erro, por favor tente de novo.
+            heading: Recontagem de votos - Assine o encerramento
+            info_text: Se continuar já pode modificar nenhuma informação, esta acção não pode ser desfeita.
+            submit: Assinar o encerramento
+            success: Encerramento assinado com êxito
+            title: A acção não pode ser desfeita
+          update:
+            error: Ocorreu um erro ao actualizar os resultados do encerramento, por favor tente de novo.
+            success: Resultados de encerramento actualizados com êxito
+        in_person_votes:
+          complete_voting:
+            available_answers: 'Respostas disponíveis:'
+            census_verified: O participante ainda não votou.
+            complete_voting: Completar votação
+            identify_another: Identificar outro participante
+            questions_title: 'Ela tem o direito de votar nas seguintes questões:'
+            questions_title_voted: 'O participante já voto on-line e tem direito a votar nas seguintes questões:'
+            voted: O participante já votou
+          create:
+            error: O voto não foi registado. Por favor tente de novo.
+          in_person_form:
+            census_not_present: Este participante está listado no recenseamento.
+            census_not_present_description: Ela deve ir gabinete de queixas do recenseamento ou contactar o apoio.
+            date_of_birth: Data de nascimento
+            day: Dia
+            day_placeholder: DD
+            document_number: Número do documento
+            document_number_placeholder: Número de identificação
+            month: Mês
+            month_placeholder: MM
+            select: Seleccione o tipo de documento
+            title: 'Seleccione o tipo de documento e introduza o número do documento do participante:'
+            validate_document: Validar documento
+            year: Ano
+            year_placeholder: YYYY
+          new:
+            back: Retroceder para as secções de voto
+            title: Identificar e verificar um participante
+          show:
+            back: Retroceder para as secções de voto
+            title: A aguardar que a votação presencial seja registada
+          update:
+            error: Houve um erro ao registrar o seu voto. Por favor, tente de novo.
+            success:
+              accepted: A votação foi registada com êxito.
+              rejected: O voto não foi aceite pelo Quadro Informativo. Por favor contacte o administrador do sistema.
+          verify_document:
+            census_present: Este participante está listado no recenseamento.
+            name: Nome
+            title: 'Verifique se os seguintes dados estão correctos:'
+            verify_document: Verificar o documento
         menu:
           polling_officer_zone: Zona do Oficial de Votação
         polling_officers:
-          show:
-            actions:
-              count_votes: Conte os votos na urna de votos
-              identify_person: Identificar e verificar uma pessoa
+          index:
             polling_officer_role_description: Foi designado para agir como Oficial de Secção de Voto (presidente ou gestor) em algumas eleições celebradas nesta plataforma.
-            polling_stations:
-              list:
-                actions: Ações
-                address: Endereço
-                name: Nome
-                role: O seu papel
-                voting: Votação
+            polling_station:
+              address: Endereço
+              count_votes: Contagem de votos
+              election: Eleição
+              identify_person: Identificar uma pessoa
+              name: Nome
               no_polling_stations: Não está ainda designado a nenhuma Secção de Voto.
+              role: O seu papel
+              show_closure: Ver encerramento
               title: Secções de voto
+              voting: Votação
       polling_officers:
         actions:
           confirm_destroy: Tem a certeza?
@@ -831,6 +1209,16 @@ pt:
           manager: Gestor
           president: Presidente
           unassigned: Não atribuído
+      polling_station_closure_recount:
+        nota_option: Branco / Nenhum dos itens acima
+        polling_officer_notes: 'Notas do Oficial de Votação:'
+        polling_officer_notes_blank: Não há notas
+        recount_summary: 'Resumo da recontagem:'
+        signed: Assinado
+        total_ballots: 'Total de boletins de voto:'
+        total_blank_ballots: 'Total de boletins de voto em branco:'
+        total_null_ballots: 'Total de boletins de voto nulos:'
+        total_valid_ballots: 'Total dos boletins de voto válidos:'
       polling_stations:
         actions:
           confirm_destroy: Tem a certeza?
@@ -839,10 +1227,48 @@ pt:
           new: Novo
           title: Acções
       votings:
+        access_code_modal:
+          email: Enviar e-mail para %{email}
+          info: Necessita dum Código de Acesso para participar. Se não tiver recebido um por correio postal podemos enviar um novo.
+          no_email: Nenhum e-mail disponível
+          no_sms: Nenhum número de telefone disponível
+          sms: Enviar por SMS para %{sms}
+          title: Obter código de acesso
+        check_census:
+          check_status: Verificar estado
+          description: Aqui tem a opção de verificar os dados do seu recenseamento para saber se tem o direito a participar nesta votação. Deve ter já um código de acesso mas se o perdeu pode pedi-lo de novo se os seus dados estiverem correctos.
+          error:
+            info: 'Por favor tente de novo. Se acha que os dados do sistema estão incorrectos pode denunciá-lo aqui: %{census_contact_information}.'
+            title: Os seus dados de recenseamento estão incorrectos!
+          form_title: 'Preencha o formulário seguinte para verificar os seus dados de recenseamento:'
+          invalid: Ocorreu um problema ao verificar o recenseamento.
+          success:
+            access_link: via SMS ou e-mail.
+            info: Deve ter já recebido o seu Código de Acesso por correio postal. No caso de não o ter pode pedi-lo aqui
+            title: Os seus dados de recenseamento estão correctos!
+          title: Posso votar?
+        check_fields:
+          date_of_birth: Data de nascimento
+          day: Dia
+          day_placeholder: DD
+          document_number: Número do documento
+          document_number_placeholder: Número de identificação
+          month: Mês
+          month_placeholder: MM
+          postal_code: Código postal
+          postal_code_placeholder: Código postal número
+          select: Seleccione o tipo de documento
+          year: Ano
+          year_placeholder: YYYY
         count:
           title:
             one: "%{count} votos"
             other: "%{count} votos"
+        elections_log:
+          bb_status: Estado da eleição
+          description: O registo da eleição irá mostrar toda a informação relevante sobre cada votação. Por exemplo, o estado da cerimónia-chave ou contagem ou se os resultados já foram publicados. Clique na eleição da qual quer  o a informação de registo.
+          election_log: Registo de Eleições
+          title: Registo de eleições
         filters:
           active: Activo
           all: Todos
@@ -859,10 +1285,23 @@ pt:
           no_votings: Nenhuma votação corresponde aos seus critérios de pesquisa.
           only_finished: Actualmente, não há votações agendadas, mas aqui pode encontrar listadas todas as votações passadas.
           title: Votações
+        login:
+          access_code: Código de acesso
+          access_code_placeholder: Código de acesso
+          ask_for_a_new_one: Pedir um novo.
+          dont_have_access_code: Não tem um código de acesso?
+          form_title: 'Preencha o formulário seguinte para aceder à votação:'
+          start_voting: Começar votação
+          step: Identificação
+          title: Identificar-me com os meus dados de recenseamento para votação
+        no_census_contact_information: Não há ainda informação de contacto
         orders:
           label: 'Ordenar votações por:'
           random: Aleatório
           recent: Mais recente
+        send_access_code:
+          invalid: Ocorreu um problema ao enviar o Código de Acesso
+          success: O seu Código de Acesso foi enviado com êxito
         show:
           dates: Datas
       votings_m:
@@ -884,6 +1323,10 @@ pt:
     decidim:
       election_votes_header:
         exit: Sair
+      voting_navigation:
+        check_census: Posso votar?
+        election_log: Registo de eleições
+        voting_menu_item: A votação
       votings:
         index:
           promoted_votings: Votações realçadas

@@ -164,6 +164,7 @@ lb:
             price: Preis
             registrations_count: Registrierungen zählen
             title: Titel
+            weight: Bestellposition
           name: Registrierungstyp
       partners:
         create:
@@ -418,6 +419,7 @@ lb:
         home:
           highlighted_conferences:
             active_conferences: Aktive Konferenzen
+            conferences_button_title: Link zur Konferenz-Seite die alle Konferenzen anzeigt
             see_all_conferences: Alle Konferenzen anzeigen
       photo:
         image:
@@ -449,8 +451,6 @@ lb:
         related_assemblies: Ähnliche Gremien
         related_consultations: Verwandte Konsultationen
         related_participatory_processes: Ähnliche Beteiligungsprozesse
-      statistics:
-        conference_count: Konferenzen
     events:
       conferences:
         conference_registration_confirmed:
@@ -498,6 +498,8 @@ lb:
         title: Medien und Links
     menu:
       conferences: Konferenzen
+    statistics:
+      conferences_count: Konferenzen
   devise:
     mailer:
       join_conference:

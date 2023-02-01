@@ -62,7 +62,6 @@ tr:
     'true': 'Evet'
   carrierwave:
     errors:
-      general: İsteği işlerken bir hata oluştu
       image_too_big: Görüntü çok büyük
       not_inside_organization: Dosya herhangi bir kuruluşa eklenmemiş
   date:
@@ -253,7 +252,6 @@ tr:
       photos:
         related_photos: İlgili fotoğraflar
     author:
-      avatar: Avatar
       comments:
         one: yorum
         other: yorumlar
@@ -1061,24 +1059,7 @@ tr:
         metrics:
           headline: Metrikler
         statistics:
-          answers_count: Tamamlanmış Anketler
-          assemblies_count: Kurullar
-          comments_count: Yorumlar
-          conferences_count: Konferanslar
-          debates_count: Tartışmalar
-          endorsements_count: Cirolar
           headline: Mevcut durum %{organization}
-          meetings_count: Toplantılar
-          orders_count: Oylar
-          pages_count: Sayfalar
-          processes_count: Süreçler
-          projects_count: Projeler
-          proposals_accepted: Kabul Edilen Teklifler
-          proposals_count: Teklif
-          results_count: Sonuçlar
-          surveys_count: Anketler
-          users_count: Katılımcılar
-          votes_count: Oylar
         sub_hero:
           register: Kayıt Ol
       index:
@@ -1269,6 +1250,8 @@ tr:
         close_window: Pencereyi kapat
         share: Pay
         share_link: Linki paylaş
+    statistics:
+      comments_count: Yorumlar
     tags:
       filter_results_for_category: 'Kategori için sonuçları filtrele: %{resource}'
       filter_results_for_scope: 'Sonuçları kapsam için filtrele: %{resource}'

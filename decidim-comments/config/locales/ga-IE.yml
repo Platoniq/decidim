@@ -29,6 +29,9 @@ ga:
         alignment:
           against: In Aghaidh
           in_favor: I bhfabhar
+        delete: Scrios
+        edit: Eagar
+        edited: Curtha in eagar
         reply: Freagra
         report:
           action: Tuairiscigh
@@ -37,6 +40,12 @@ ga:
         order:
           older: Níos Sine
           recent: Is Déanaí
+      edit_comment_modal_form:
+        close: Dún
+        form:
+          body:
+            label: Trácht
+          submit: Seol
     metrics:
       comments:
         object: tráchtanna

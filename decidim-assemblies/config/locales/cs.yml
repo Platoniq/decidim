@@ -52,7 +52,7 @@ cs:
         target: Kdo se účastní
         title: Titul
         twitter: Twitter
-        weight: Váha
+        weight: Pozice v řazení
         youtube: Youtube
       assembly_member:
         birthday: Narozeniny
@@ -268,6 +268,7 @@ cs:
       admin:
         assemblies:
           form:
+            announcement_help: Text, který sem vložíte, se uživateli zobrazí přímo pod informacemi o procesu.
             duration: Doba trvání
             duration_help: Pokud je doba trvání tohoto shromáždění omezená, zvolte konečné datum, jinak se objeví jako neurčitá.
             filters: Filtry
@@ -387,38 +388,11 @@ cs:
         social_networks: Sociální sítě
         social_networks_title: Sdílet toto shromáždění na
         target: Kdo se účastní
-      statistics:
-        answers_count: Odpovědi
-        assemblies_count: Shromáždění
-        comments_count: Komentáře
-        debates_count: Debaty
-        endorsements_count: Schválení
-        followers_count: Sledující
-        headline: Statistiky
-        meetings_count: Setkání
-        no_stats: Zatím nejsou žádné statistiky.
-        orders_count: Hlasy
-        pages_count: Stránky
-        participants_count: Účastníci
-        posts_count: Příspěvky
-        processes_count: Procesy
-        projects_count: Projekty
-        proposals_count: Návrhy
-        results_count: Výsledky
-        supports_count: Hlasy
-        surveys_count: Průzkumy
-        users_count: Účastníci
-        votes_count: Hlasy
     assembly_members:
       assembly_member:
         designated_on: Určen pro
       index:
         title: Členové
-    conferences:
-      pages:
-        home:
-          highlighted_conferences:
-            conferences_button_title: Odkaz na stránku Konference zobrazující všechny konference
     events:
       assemblies:
         create_assembly_member:
@@ -451,19 +425,11 @@ cs:
         description: Počet vytvořených shromáždění
         object: shromáždění
         title: Shromáždění
-    pages:
-      home:
-        hero:
-          participate_title: Účast na procesech platformy
-        sub_hero:
-          register_title: Zaregistrujte se pro vytvoření účtu
     participatory_processes:
-      pages:
-        home:
-          highlighted_processes:
-            processes_button_title: Odkaz na stránku Procesů zobrazující všechny procesy
       show:
         related_assemblies: Související shromáždění
+    statistics:
+      assemblies_count: Shromáždění
   errors:
     messages:
       cannot_be_blank: nemůže být prázdný

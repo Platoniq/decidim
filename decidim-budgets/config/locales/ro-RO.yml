@@ -109,6 +109,9 @@ ro:
         close_modal: Închide fereastra
         continue: Continuă
         more_information: Mai multe informații
+      budget_list_item:
+        voting_finished: Ai votat în acest buget
+        voting_started: Ai început să votezi în acest buget
       budgets_list:
         cancel_order:
           more_than_one: șterge votul tău pentru %{name} și reia procesul
@@ -234,6 +237,7 @@ ro:
     components:
       budgets:
         actions:
+          comment: Comentează
           vote: Votează
         name: Bugete
         settings:
@@ -294,6 +298,9 @@ ro:
         success: Votul tău a fost anulat cu succes
     resource_links:
       included_proposals:
-        project_proposal: 'Propuneri incluse în acest proiect:'
+        project_proposal: Propuneri incluse în acest proiect
+    statistics:
+      orders_count: Voturi
+      projects_count: Proiecte
   index:
     confirmed_orders_count: Numărul de voturi

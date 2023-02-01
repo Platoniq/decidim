@@ -5,6 +5,8 @@ fr:
         delete_reason: Pour quelle(s) raison(s) supprimez-vous votre compte ?
       common:
         created_at: Créé le
+      conversation:
+        body: Corps de texte
       group:
         about: A propos
         avatar: Avatar
@@ -13,6 +15,8 @@ fr:
         name: Nom
         nickname: Pseudonyme
         phone: Téléphone
+      message:
+        body: Corps de texte
       report:
         details: Commentaires supplémentaires
       user:
@@ -63,7 +67,6 @@ fr:
     'true': 'Oui'
   carrierwave:
     errors:
-      general: Erreur de traitement de l'image
       image_too_big: L'image est trop grande
       not_inside_organization: Le fichier n'est relié à aucune organisation
   date:
@@ -95,6 +98,7 @@ fr:
         error: Une erreur s'est produite lors de la suppression de votre compte.
         success: Votre compte a été supprimé avec succès.
       show:
+        available_locales_helper: Choisissez la langue que vous souhaitez utiliser pour naviguer et recevoir des notifications dans %{organization_name}
         change_password: Changer de mot de passe
         update_account: Mettre à jour votre compte
       update:
@@ -106,9 +110,9 @@ fr:
         cancel: Annuler
     admin_log:
       area:
-        create: "%{user_name} a créé la zone d'application %{resource_name}"
-        delete: "%{user_name} a supprimé la zone d'application %{resource_name}"
-        update: "%{user_name} a mis à jour la zone d'application %{resource_name}"
+        create: "%{user_name} a créé le périmètre d'assemblée %{resource_name}"
+        delete: "%{user_name} a supprimé le périmètre d'assemblée %{resource_name}"
+        update: "%{user_name} a mis à jour le périmètre d'assemblée %{resource_name}"
       component:
         create: "%{user_name} a ajouté la fonctionnalité %{resource_name} à l'espace %{space_name}"
         delete: "%{user_name} a supprimé la fonctionnalité %{resource_name} de l'espace %{space_name}"
@@ -254,10 +258,13 @@ fr:
         download: Télécharger le fichier
       documents:
         related_documents: Documents à consulter
+      geocoding:
+        geocoded_address: Adresse
       photos:
         related_photos: Photos associées
     author:
-      avatar: Avatar
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar pour plusieurs utilisateurs
       comments:
         one: commentaire
         other: commentaires
@@ -443,7 +450,7 @@ fr:
           complete_profile: Complétez votre profil
           nickname_help: Cet identifiant est public et unique sur %{organization} ; il permet aux autres utilisateurs de vous suivre, de vous contacter ou de vous mentionner dans leurs commentaires. Il s’affichera précédé d’un « @ » ; il ne doit pas contenir d’espace ni de caractère spécial.
           sign_up: Veuillez compléter votre profil
-          subtitle: Remplissez le formulaire suivant pour compléter l'inscription
+          subtitle: Remplissez le formulaire suivant pour créer votre compte
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
       registrations:
         new:
@@ -452,21 +459,21 @@ fr:
           newsletter_title: Autorisation de contact
           nickname_help: Cet identifiant est public et unique sur %{organization} ; il permet aux autres utilisateurs de vous suivre, de vous contacter ou de vous mentionner dans leurs commentaires. Il s’affichera précédé d’un « @ » ; il ne doit pas contenir d’espace ni de caractère spécial.
           password_help: "%{minimun_characters} caractères minimum, ne doit pas être trop commun (par exemple 123456) et doit être différent de votre pseudo et de votre email."
-          sign_in: Se connecter
-          sign_up: S'inscrire
+          sign_in: S'identifier
+          sign_up: Créer un compte
           sign_up_as:
-            legend: S'inscrire en tant que
-          subtitle: Inscrivez-vous pour participer aux discussions et pour exprimer votre soutien aux propositions de votre choix.
+            legend: Créer un compte en tant que
+          subtitle: Créez un compte pour participer aux discussions et pour exprimer votre soutien aux propositions de votre choix.
           terms: les termes et conditions d'utilisation
-          tos_agreement: En vous inscrivant, vous acceptez %{link}.
+          tos_agreement: En vous créant un compte, vous acceptez %{link}.
           tos_title: Conditions d'utilisation
           username_help: Le nom est public et apparaît dans votre profil et sur vos messages. Dans le but de garantir l'anonymat, vous pouvez choisir n'importe quel nom.
       sessions:
         new:
           are_you_new?: Nouveau sur la plateforme ?
-          register: Créer un compte
+          register: S'inscrire
           sign_in_disabled: Vous pouvez accéder avec un compte externe
-          sign_up_disabled: L'inscription est désactivée, vous pouvez utiliser un utilisateur existant pour accéder
+          sign_up_disabled: La création de compte est désactivée, mais vous pouvez vous identifier avec votre compte si vous en avez déjà un
         user:
           timed_out: Vous avez été inactif pendant trop longtemps et vous avez été automatiquement déconnecté du service. Si vous souhaitez continuer à utiliser le service, veuillez vous reconnecter.
       shared:
@@ -518,119 +525,119 @@ fr:
         amendment_accepted:
           affected_user:
             email_intro: 'Une modification a été acceptée pour %{amendable_title}. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}.
+            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Un amendement accepté pour %{amendable_title} du %{emendation_author_nickname}
             notification_title: Le <a href="%{emendation_path}">amendement</a> créé par <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> a été accepté pour <a href="%{amendable_path}">%{amendable_title}</a>.
           follower:
             email_intro: 'Une modification a été acceptée pour %{amendable_title}. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Vous pouvez cesser de recevoir des notifications en suivant le lien précédent.
+            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Un amendement accepté pour %{amendable_title} du %{emendation_author_nickname}
             notification_title: Le <a href="%{emendation_path}">amendement</a> créé par <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> a été accepté pour <a href="%{amendable_path}">%{amendable_title}</a>.
         amendment_created:
           affected_user:
             email_intro: 'Une nouvelle modification a été créée pour %{amendable_title}. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}.
+            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Nouvel amendement pour %{amendable_title}
             notification_title: Un nouvel amendement a été créé pour <a href="%{amendable_path}">%{amendable_title}</a>.
           follower:
             email_intro: 'Une nouvelle modification a été créée pour %{amendable_title}. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Vous pouvez cesser de recevoir des notifications en suivant le lien précédent.
+            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Nouvel amendement pour %{amendable_title}
             notification_title: Un nouvel amendement a été créé pour <a href="%{amendable_path}">%{amendable_title}</a>.
         amendment_promoted:
           affected_user:
             email_intro: 'Une modification rejetée pour %{amendable_title} a été promue en %{amendable_type}indépendante. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}.
+            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Un amendement de %{emendation_author_nickname} a été publié en tant que nouveau %{amendable_type}
             notification_title: A <a href="%{emendation_path}">a rejeté l' amendement</a> pour <a href="%{amendable_path}">%{amendable_title}</a> a été publiée en tant que nouveau %{amendable_type} par <a href="%{emendation_author_path}">%{emendation_author_nickname}</a>.
           follower:
             email_intro: 'Une modification rejetée pour %{amendable_title} a été promue en %{amendable_type}indépendante. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Vous pouvez cesser de recevoir des notifications en suivant le lien précédent.
+            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Un amendement de %{emendation_author_nickname} a été publié en tant que nouveau %{amendable_type}
             notification_title: A <a href="%{emendation_path}">a rejeté l' amendement</a> pour <a href="%{amendable_path}">%{amendable_title}</a> a été publiée en tant que nouveau %{amendable_type} par <a href="%{emendation_author_path}">%{emendation_author_nickname}</a>.
         amendment_rejected:
           affected_user:
             email_intro: 'Une modification a été rejetée pour %{amendable_title}. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}.
+            email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Un amendement rejeté pour %{amendable_title} à %{emendation_author_nickname}
             notification_title: Le <a href="%{emendation_path}">amendement</a> créé par <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> a été rejetée pour <a href="%{amendable_path}">%{amendable_title}</a>.
           follower:
             email_intro: 'Une modification a été rejetée pour %{amendable_title}. Vous pouvez le voir sur cette page:'
-            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Vous pouvez cesser de recevoir des notifications en suivant le lien précédent.
+            email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Un amendement rejeté pour %{amendable_title} à %{emendation_author_nickname}
             notification_title: Le <a href="%{emendation_path}">amendement</a> créé par <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> a été rejetée pour <a href="%{amendable_path}">%{amendable_title}</a>.
       attachments:
         attachment_created:
           email_intro: 'Un nouveau document a été ajouté à %{resource_title}. Vous pouvez le voir sur cette page :'
-          email_outro: Vous avez reçu cette notification, car vous suivez %{resource_title}. Vous pouvez arrêter de recevoir des notifications à partir du lien précédent.
+          email_outro: Vous avez reçu cette notification, car vous suivez %{resource_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Une mise à jour de %{resource_title}
           notification_title: Un <a href="%{resource_path}"> nouveau document</a> a été ajouté à <a href="%{attached_to_url}">%{resource_title}</a>
       components:
         component_published:
           email_intro: 'La fonctionnalité %{resource_title} est maintenant active dans %{participatory_space_title}. Vous pouvez y accéder ici :'
-          email_outro: Vous avez reçu cette notification, car vous suivez %{participatory_space_title}. Vous pouvez arrêter de recevoir des notifications en suivant le lien précédent.
+          email_outro: Vous avez reçu cette notification, car vous suivez %{participatory_space_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Une mise à jour de %{participatory_space_title}
           notification_title: La fonctionnalité %{resource_title} est maintenant active pour <a href="%{resource_path}">%{participatory_space_title}</a>
       email_event:
         email_greeting: Bonjour %{user_name},
         email_intro: '« %{resource_title} » a été mis à jour. Vous pouvez y accéder ici :'
-        email_outro: Vous recevez cet notification car vous suivez « %{resource_title} ». Vous pouvez cesser de le suivre en allant sur le lien précédent.
+        email_outro: Vous recevez cet notification car vous suivez « %{resource_title} ». Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
         email_subject: Mise à jour de %{resource_title}
       gamification:
         badge_earned:
           email_intro: Bravo ! Vous avez gagné le badge <a href="%{resource_url}">%{badge_name}</a> (niveau %{current_level}).
-          email_outro: Vous avez reçu cette notification car vous avez été actif sur notre plateforme.
+          email_outro: Vous avez reçu cette notification car vous avez été actif sur notre plateforme. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: 'Vous avez gagné un nouveau badge : %{badge_name} !'
           notification_title: Bon travail ! Vous avez gagné le badge <a href="%{resource_path}">%{badge_name}</a> (niveau %{current_level}).
         level_up:
           email_intro: Bravo ! Vous avez atteint le niveau %{current_level} sur le badge <a href="%{resource_url}">%{badge_name}</a> !
-          email_outro: Vous avez reçu cette notification car vous avez été actif sur notre plateforme.
+          email_outro: Vous avez reçu cette notification car vous avez été actif sur notre plateforme. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous avez atteint le niveau %{current_level} sur le badge %{badge_name} !
           notification_title: Bravo ! Vous avez atteint le niveau %{current_level} sur le badge <a href="%{resource_path}">%{badge_name}</a> !
       groups:
         demoted_membership:
           email_intro: Un administrateur du groupe <a href="%{resource_url}">%{user_group_name}</a> a supprimé vos droits d'administrateur sur ce groupe.
-          email_outro: Vous avez reçu cette notification parce que vous êtes membre de ce groupe.
+          email_outro: Vous avez reçu cette notification parce que vous êtes membre de ce groupe. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous n'êtes plus un administrateur du groupe %{user_group_name}!
           notification_title: Vous n'êtes plus un administrateur du groupe <a href="%{resource_path}">%{user_group_name}</a>.
         invited_to_group:
           email_intro: Un administrateur du groupe <a href="%{resource_url}">%{user_group_name}</a> vous a invité à le rejoindre.
-          email_outro: Vous avez reçu cette notification parce que vous avez été invité à un groupe. Veuillez vérifier l'onglet Groupes dans votre profil pour l'approuver.
+          email_outro: Vous avez reçu cette notification parce que vous avez été invité à un groupe. Veuillez vérifier l'onglet Groupes dans votre profil pour l'approuver. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous avez été invité à rejoindre le groupe %{user_group_name}!
           notification_title: Vous avez été invité à rejoindre le groupe <a href="%{resource_path}">%{user_group_name}</a> . Vérifiez les <a href="%{groups_profile_tab_path}">page Groupes</a> dans votre profil pour l' approuver!
         join_request_accepted:
           email_intro: Toutes nos félicitations! Un administrateur du groupe <a href="%{resource_url}">%{user_group_name}</a> a accepté votre demande d’adhésion.
-          email_outro: Vous avez reçu cette notification car votre demande de participation a été mise à jour.
+          email_outro: Vous avez reçu cette notification car votre demande de participation a été mise à jour. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous avez été accepté dans le groupe %{user_group_name}!
           notification_title: Vous avez été accepté dans le groupe <a href="%{resource_path}">%{user_group_name}</a>.
         join_request_created:
           email_intro: Quelqu'un a demandé à rejoindre le groupe %{user_group_name} . Vous pouvez accepter ou rejeter de <a href="%{resource_url}">les membres du groupe la page</a>.
-          email_outro: Vous avez reçu cette notification car vous pouvez gérer le groupe %{user_group_name}.
+          email_outro: Vous avez reçu cette notification car vous pouvez gérer le groupe %{user_group_name}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Quelqu'un a demandé à rejoindre le groupe %{user_group_name}!
           notification_title: Quelqu'un a demandé à rejoindre le groupe %{user_group_name} . Vous pouvez accepter ou rejeter de <a href="%{resource_path}">les membres du groupe la page</a>.
         join_request_rejected:
           email_intro: Un administrateur du groupe <a href="%{resource_url}">%{user_group_name}</a> a rejeté votre demande d'adhésion.
-          email_outro: Vous avez reçu cette notification car votre demande de participation a été mise à jour.
+          email_outro: Vous avez reçu cette notification car votre demande de participation a été mise à jour. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Votre demande d'adhésion au groupe %{user_group_name} a été rejetée!
           notification_title: Votre demande d'adhésion au groupe <a href="%{resource_path}">%{user_group_name}</a> a été rejetée.
         promoted_to_admin:
           email_intro: Un administrateur du groupe <a href="%{resource_url}">%{user_group_name}</a> vous a attribué les droits d’administrateur pour ce groupe.
-          email_outro: Vous avez reçu cette notification parce que vous êtes membre de ce groupe.
+          email_outro: Vous avez reçu cette notification parce que vous êtes membre de ce groupe. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous êtes maintenant un administrateur du groupe %{user_group_name}!
           notification_title: Vous êtes maintenant un administrateur du groupe <a href="%{resource_path}">%{user_group_name}</a>.
         removed_from_group:
           email_intro: Un administrateur du groupe <a href="%{resource_url}">%{user_group_name}</a> vous a retiré de la liste.
-          email_outro: Vous avez reçu cette notification parce que vous étiez membre de ce groupe.
+          email_outro: Vous avez reçu cette notification parce que vous étiez membre de ce groupe. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous avez été retiré du groupe %{user_group_name}!
           notification_title: Vous avez été supprimé du groupe <a href="%{resource_path}">%{user_group_name}</a>.
         user_group_created:
           email_intro: Un nouveau groupe d'utilisateurs a été créé avec le nom %{user_group_name}. Vous pouvez maintenant le vérifier dans le <a href="%{groups_admin_url}">panneau d'administration</a>.
-          email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme.
+          email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Un nouveau groupe d'utilisateurs a été créé
           notification_title: Le groupe d'utilisateurs %{user_group_name} a été créé. Vous pouvez maintenant le vérifier dans le <a href="%{groups_admin_path}">panneau d'administration</a>.
         user_group_updated:
           email_intro: Un groupe d'utilisateurs avec le nom %{user_group_name} a mis à jour son profil, le laissant non vérifié. Vous pouvez maintenant le vérifier dans le <a href="%{groups_admin_url}">panneau d'administration</a>.
-          email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme.
+          email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Un groupe d'utilisateurs viens de mettre à jour son profil
           notification_title: Le groupe d'utilisateurs %{user_group_name} a mis à jour son profil, le laissant non vérifié. Vous pouvez maintenant le vérifier dans le <a href="%{groups_admin_path}">panneau d'administration</a>.
       notification_event:
@@ -638,20 +645,20 @@ fr:
       reports:
         resource_hidden:
           email_intro: Un administrateur a modéré votre %{resource_type} car il a été signalé comme %{report_reasons}.
-          email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur du contenu modéré.
+          email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur du contenu modéré. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Votre %{resource_type} a été modérée
           notification_title: |-
             Un administrateur a modéré votre %{resource_type} car il a été signalé comme %{report_reasons}.</br>
             <i>%{resource_content}</i>
       resource_endorsed:
         email_intro: '%{endorser_name} %{endorser_nickname}, que vous suivez, vient de soutenir "%{resource_title}" et nous pensons que cela pourrait vous intéresser. Découvrez-le et contribuez :'
-        email_outro: Vous avez reçu cette notification parce que vous suivez %{endorser_nickname}. Vous pouvez arrêter de recevoir des notifications en suivant le lien précédent.
+        email_outro: Vous avez reçu cette notification parce que vous suivez %{endorser_nickname}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
         email_subject: "%{endorser_nickname} a soutenu un nouveau contenu"
         notification_title: Le <a href="%{resource_path}">%{resource_title}</a> %{resource_type} a été soutenu par <a href="%{endorser_path}">%{endorser_name} %{endorser_nickname}</a>.
       users:
         profile_updated:
           email_intro: Le <a href="%{resource_url}">profil public</a> de %{name} (%{nickname}), que vous suivez, a été mis à jour.
-          email_outro: Vous recevez cette notification car vous suivez « %{nickname} ». Vous pouvez cesser de le suivre à partir du lien précédent.
+          email_outro: Vous recevez cette notification car vous suivez « %{nickname} ». Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: "%{nickname} a mis à jour son profil public"
           notification_title: Le <a href="%{resource_path}">profil public</a> de %{name} (%{nickname}), que vous suivez, a été mis à jour.
     export_mailer:
@@ -685,6 +692,7 @@ fr:
       no_followers: Aucun abonné pour le moment.
     following:
       no_followings: Aucun abonnement
+      non_public_followings: Certaines des ressources suivies ne sont pas publiques.
     follows:
       create:
         button: Suivre
@@ -835,7 +843,7 @@ fr:
     help:
       main_topic:
         default_page:
-          content: "<p>Sur %{organization} vous pouvez participer et décider sur différents sujets grâce aux espaces que vous voyez dans le menu principal: Processus, Assemblées, Initiatives, Consultations.</p> <p>Au sein de chacune d’elles, vous trouverez différentes options de participation: faites des propositions - individuellement ou avec d’autres personnes -, participez aux débats, accordez la priorité aux projets à mettre en œuvre, participez aux réunions en personne et autres actions.</p>\n"
+          content: "<p>Sur %{organization} vous pouvez participer et décider sur différents sujets grâce aux espaces que vous voyez dans le menu principal: Processus, Assemblées, Pétitions, Consultations.</p> <p>Au sein de chacune d’elles, vous trouverez différentes options de participation: faites des propositions - individuellement ou avec d’autres personnes -, participez aux débats, accordez la priorité aux projets à mettre en œuvre, participez aux réunions en personne et autres actions.</p>\n"
           title: Que puis-je faire sur la plateforme %{organization} ?
         description: En savoir plus sur %{organization}
         title: Aide générale
@@ -846,6 +854,15 @@ fr:
       index:
         last_activity: Dernière Activité
         resource_type: Type
+    links:
+      invalid_url: URL invalide
+      warning:
+        body_1: Vous êtes sur le point de visiter un lien externe et nous aimerions que vous soyez prudent quant au contenu du site externe.
+        body_2: Veuillez vérifier le lien que vous êtes sur le point de visiter et assurez-vous de le reconnaître comme un site sûr avant de poursuivre.
+        cancel: Annuler
+        close_modal: Fermer la fenêtre de dialogue
+        proceed: Continuer
+        title: Ouvrir le lien externe
     log:
       base_presenter:
         create: "%{user_name} a créé %{resource_name}"
@@ -948,6 +965,7 @@ fr:
         show:
           back: Retour à toutes les conversations
           chat_with: Conversation avec
+          deleted_accounts: Vous ne pouvez pas avoir de conversation avec des comptes supprimés.
           not_allowed: Cet utilisateur ne souhaite pas recevoir de messages directs.
           title: Conversation avec %{usernames}
         start:
@@ -1020,7 +1038,7 @@ fr:
     notifications_settings:
       show:
         administrators: Administrateurs
-        allow_public_contact: Permettre à n'importe quoi de m'envoyer un message direct, même si je ne les suis pas.
+        allow_public_contact: Permettre à quelqu'un de m'envoyer un message direct, même si je ne les suis pas.
         direct_messages: Recevoir des messages directs de n'importe qui
         email_on_moderations: Je veux recevoir un email chaque fois que quelque chose est signalé pour modération.
         email_on_notification: Je souhaite recevoir un email à chaque fois que je reçois une notification.
@@ -1066,24 +1084,7 @@ fr:
         metrics:
           headline: Participation en chiffres
         statistics:
-          answers_count: Enquêtes terminées
-          assemblies_count: Assemblées
-          comments_count: Commentaires
-          conferences_count: Conférences
-          debates_count: Débats
-          endorsements_count: Soutiens
           headline: État actuel de %{organization}
-          meetings_count: Rencontres
-          orders_count: Votes
-          pages_count: Pages
-          processes_count: Processus participatifs
-          projects_count: Projets
-          proposals_accepted: Propositions acceptées
-          proposals_count: Propositions
-          results_count: Réalisations
-          surveys_count: Enquêtes
-          users_count: Participants
-          votes_count: Votes
         sub_hero:
           register: S'inscrire
       index:
@@ -1186,7 +1187,7 @@ fr:
         currently_selected: Secteur actuellement sélectionné
         title: Sélectionnez %{field}
       prompt: Sélectionnez un périmètre d'application
-      scopes: Périmètre d'application
+      scopes: Secteurs
       scopes_picker_input:
         select_scope: 'Sélectionnez un secteur (actuellement: %{current})'
     search:
@@ -1238,6 +1239,7 @@ fr:
         description: Ce contenu est-il inapproprié ?
         does_not_belong: Contient d’autres types de contenus qui vous semblent inappropriés à %{organization_name} (activités illégales, menaces suicidaires, informations personnelles,...).
         offensive: Contient des propos contraires à la loi (propos racistes, sexistes, insultes, attaques personnelles, menaces de mort, incitations au suicide ou toute forme de discours de haine,...).
+        reason: Motif
         report: Signaler
         spam: Contient des publicités, des escroqueries, des pièges à clic (clickbait) ou des robots fonctionnant au script (script bots).
         title: Signaler un contenu inapproprié
@@ -1257,12 +1259,14 @@ fr:
         sign_in_before_follow: Veuillez vous connecter avant d'effectuer cette action
       login_modal:
         close_modal: Fermer la fenêtre de dialogue
-        please_sign_in: Veuillez vous connecter
-        sign_up: S'inscrire
+        please_sign_in: Veuillez vous identifier
+        sign_up: Créer un compte
       participatory_space_filters:
         filters:
-          areas: Zones d'application
-          select_an_area: Sélectionnez une zone d'application
+          areas: Périmètres d'assemblée
+          select_an_area: Sélectionnez un périmètre d'assemblée
+      public_participation:
+        public_participation: Afficher ma présence publiquement
       reference:
         reference: 'Référence : %{reference}'
       represent_user_group:
@@ -1273,8 +1277,21 @@ fr:
         title: Sélectionner le nombre de résultats par page
       share_modal:
         close_window: Fermer la fenêtre
+        copy_share_link: Copier
+        copy_share_link_clarification: Copier le lien de partage dans le presse-papiers
+        copy_share_link_copied: Copié!
+        copy_share_link_message: Le lien a bien été copié dans le presse-papier.
         share: Partager
         share_link: Lien de partage
+    statistics:
+      comments_count: Commentaires
+      endorsements_count: Soutiens
+      followers_count: Abonnés
+      headline: Statistiques
+      no_stats: Il n'y a pas encore de statistiques.
+      pages_count: Pages
+      participants_count: Participants
+      users_count: Participants
     tags:
       filter_results_for_category: 'Filtrer les résultats de la catégorie : %{resource}'
       filter_results_for_scope: 'Filtrer les résultats pour le secteur : %{resource}'
@@ -1312,6 +1329,8 @@ fr:
         send: Envoyer
         title_reply: Répondre
       show:
+        back: Afficher toutes les conversations
+        deleted_accounts: Vous ne pouvez pas avoir de conversation avec des comptes supprimés.
         not_allowed: Cet utilisateur n'accepte plus de messages directs.
         title: Conversation avec %{usernames}
       update:
@@ -1357,10 +1376,11 @@ fr:
         number_of_versions: Versions
         title: Versions
     versions_list_item:
+      back: Afficher toutes les versions
       show:
         version_index: Version %{index}
     welcome_notification:
-      default_body: <p>Bonjour {{name}}, merci d'avoir rejoint {{organization}} et bienvenue!</p><ul><li>Si vous souhaitez avoir une idée rapide de ce que vous pouvez faire ici, consultez la section <a href="{{help_url}}">Aide</a> .</li><li>En somme, rejoignez d'autres personnes, partagez avec eux l'expérience d'être engagés et participer à {{organization}}. Faites des propositions, des commentaires, lancez des débats, réfléchissez à la manière de contribuer au bien commun, fournissez des arguments pour convaincre, écoutez et lisez pour être convaincu, exprimez vos idées de manière concrète et directe, répondez avec patience et décision, défendez vos idées dans un esprit ouvert pour collaborer et enrichir les idées des autres.</li></ul>
+      default_body: <p>Bonjour {{name}}, merci d'avoir rejoins {{organization}} et bienvenue!</p><ul><li>Si vous souhaitez avoir une idée rapide de ce que vous pouvez faire ici, consultez la section <a href="{{help_url}}">Aide</a> .</li><li>Une fois que vous l'avez lu, vous recevrez votre premier badge. Voici une <a href="{{badges_url}}">liste de tous les badges</a> vous pouvez obtenir vous participez à {{organization}}</li><li>En somme, rejoignez d'autres personnes, partagez avec eux l'expérience d'être engagés et participer à {{organization}}. Faites des propositions, des commentaires, lancez des débats, réfléchissez à la manière de contribuer au bien commun, fournissez des arguments pour convaincre, écoutez et lisez pour être convaincu, exprimez vos idées de manière concrète et directe, répondez avec patience et décision, défendez vos idées un esprit ouvert pour collaborer et rejoindre les idées des autres.</li></ul>
       default_subject: Merci d'avoir rejoint {{organization}}!
     wizard_step_form:
       wizard_aside:
@@ -1384,7 +1404,7 @@ fr:
       locked: Votre compte est bloqué.
       not_found_in_database: '%{authentication_keys} ou mot de passe invalide.'
       timeout: Votre session a expiré. Veuillez vous connecter à nouveau pour continuer.
-      unauthenticated: Vous devez vous connecter ou vous inscrire avant de continuer.
+      unauthenticated: Vous devez vous identifier ou vous créer un compte avant de continuer.
     invitations:
       edit:
         header: Terminer la création de votre compte
@@ -1475,14 +1495,14 @@ fr:
         currently_waiting_confirmation_for_email: 'En attente de confirmation pour: %{email}'
         leave_blank_if_you_don_t_want_to_change_it: laisser vide si vous ne voulez pas le changer
         title: Modifier %{resource}
-        unhappy: Pas satisfait ? 
+        unhappy: Pas satisfait ?
         update: Mettre à jour
         we_need_your_current_password_to_confirm_your_changes: nous avons besoin de votre mot de passe actuel pour confirmer vos modifications
       new:
-        sign_up: S'inscrire
-      signed_up: Bienvenue! Vous vous êtes inscrit avec succès.
-      signed_up_but_inactive: Vous vous êtes inscrit avec succès. Cependant, nous ne pouvons pas vous connecter car votre compte n'est pas encore activé.
-      signed_up_but_locked: Vous vous êtes inscrit avec succès. Cependant, nous ne pouvons pas vous connecter car votre compte est verrouillé.
+        sign_up: Créer un compte
+      signed_up: Bienvenue! Votre compte a été créé avec succès.
+      signed_up_but_inactive: Votre compte a été créé avec succès. Cependant, nous ne pouvons pas vous identifier car votre compte n'est pas encore activé.
+      signed_up_but_locked: Votre compte a été créé avec succès. Cependant, nous ne pouvons pas vous identifier car votre compte est verrouillé.
       signed_up_but_unconfirmed: Un message avec un lien de confirmation a été envoyé à votre adresse e-mail. Veuillez suivre le lien pour activer votre compte.
       update_needs_confirmation: Vous avez mis à jour votre compte avec succès, mais nous devons vérifier votre nouvelle adresse e-mail. S'il vous plaît vérifier votre email et suivez le lien de confirmation pour confirmer votre nouvelle adresse e-mail.
       updated: Votre compte a été mis à jour avec succès.
@@ -1499,8 +1519,8 @@ fr:
         didn_t_receive_unlock_instructions: Si la plateforme vous indique que votre compte est bloqué, cliquez ici pour recevoir les instructions de déblocage
         forgot_your_password: Mot de passe oublié?
         sign_in: S'identifier
-        sign_in_with_provider: Se connecter avec %{provider}
-        sign_up: S'inscrire
+        sign_in_with_provider: S'identifier avec %{provider}
+        sign_up: Créer un compte
       minimum_password_length:
         one: "(%{count} caractère minimum)"
         other: "(%{count} caractères minimum)"
@@ -1518,14 +1538,14 @@ fr:
       already_confirmed: était déjà confirmé, s'il vous plaît essayez de vous connecter
       confirmation_period_expired: doit être confirmé dans les %{period}, s'il vous plaît demander un nouveau
       content_type_allowlist_error: le type de fichier n'est pas valide
-      cycle_detected: un périmètre d'application ne peut pas être du même niveau que ses descendants
+      cycle_detected: un périmètre d'assemblée parent ne peut pas être du même niveau que ses descendants
       expired: a expiré, s'il vous plaît demander un nouveau
       file_size_is_less_than_or_equal_to: la taille du fichier doit être inférieure ou égale à %{count}
       invalid_time_zone: n'est pas un fuseau horaire valide
       long_words: contient des mots trop longs (plus de 35 caractères)
       must_start_with_caps: doit commencer par une majuscule
       nesting_too_deep: ne peut pas être à l'intérieur d'une sous-catégorie
-      not_found: introuvable. Vous êtes-vous déjà inscrit ?
+      not_found: Compte introuvable. Vous êtes-vous déjà inscrit ?
       not_locked: n'était pas verrouillé
       not_saved:
         one: 'Une erreur est survenue pendant le traitement de votre requête.'
@@ -1554,14 +1574,16 @@ fr:
         edit: Modifier
       footer:
         cc_by_license: Licence Creative Commons
-        decidim_logo: Logo Decidim
+        decidim_logo: Decidim.org (ouverture dans une nouvelle fenêtre)
         download_open_data: Télécharger les fichiers Open Data
         made_with_open_source: Site réalisé grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
       header:
         close_menu: Fermer le menu
+        main_menu: Menu principal
         navigation: Navigation
-        sign_in: Se connecter
-        sign_up: S'inscrire
+        sign_in: S'identifier
+        sign_up: Créer un compte
+        user_menu: Menu utilisateur
       impersonation_warning:
         close_session: Fermer la session
         description_html: Vous agissez en tant que l'utilisateur <b>%{user_name}</b>.
@@ -1578,7 +1600,7 @@ fr:
         twitter: "%{organization} sur Twitter"
         youtube: "%{organization} sur YouTube"
       timeout_modal:
-        body: Vous avez été inactif pendant %{minutes} minutes. Si vous continuez à être inactif, vous serez automatiquement déconnecté pour votre propre sécurité.
+        body: Vous avez été inactif pendant %{minutes} minutes. Si vous continuez à être inactif, vous serez automatiquement déconnecté de la plateforme pour des raisons de sécurité.
         continue_session: Continuer la session
         sign_out: Se déconnecter
         title: Voulez-vous poursuivre votre session ?
@@ -1590,6 +1612,7 @@ fr:
         profile: Mon compte
         public_profile: Mon profil public
         sign_out: Déconnexion
+        title: Liens du profil
       user_profile:
         account: Compte
         authorizations: Autorisations
@@ -1603,7 +1626,7 @@ fr:
         see_more: Voir plus
   locale:
     name: Français
-    name_with_error: Anglais (erreur !)
+    name_with_error: Français (erreur !)
   password_validator:
     domain_included_in_password: est trop similaire au nom de domaine de cette plateforme
     email_included_in_password: est trop similaire à votre email

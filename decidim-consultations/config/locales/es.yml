@@ -120,6 +120,8 @@ es:
           questions: Preguntas
           results: Resultados
         questions_submenu:
+          attachments: Adjuntos
+          categories: Categorías
           components: Componentes
           configuration: Configuración
           consultation: Consulta
@@ -324,10 +326,6 @@ es:
           title: '¿Qué son las consultas?'
     menu:
       consultations: Consultas
-    pages:
-      home:
-        statistics:
-          consultations_count: Consultas
     questions:
       next_button: Siguiente pregunta
       previous_button: Pregunta anterior
@@ -361,13 +359,13 @@ es:
     resources:
       consultations:
         actions:
+          comment: Comentar
           vote: Votar
+    statistics:
+      consultations_count: Consultas
+      votes_count: Votos
   layouts:
     decidim:
-      admin:
-        question:
-          attachments: Adjuntos
-          categories: Categorías
       consultation_voting_data:
         start_voting_date: Empieza la votación
       question_components:

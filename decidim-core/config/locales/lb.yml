@@ -5,6 +5,8 @@ lb:
         delete_reason: Grond fir d'Läschen vum Kont
       common:
         created_at: Erstallt den
+      conversation:
+        body: Haapt-Text
       group:
         about: Iwwert eisen Grupp
         avatar: Profil-Bild
@@ -13,6 +15,8 @@ lb:
         name: Numm
         nickname: Spëtznumm
         phone: Telefon
+      message:
+        body: Haapt-Text
       report:
         details: Zousätzleche Kommentar
       user:
@@ -63,7 +67,6 @@ lb:
     'true': 'Jo'
   carrierwave:
     errors:
-      general: Fehler bei der Bildverarbeitung
       image_too_big: Bild ass ze grouss
       not_inside_organization: D'Datei ass net mat enger Organisatioun verbonnen
   date:
@@ -95,6 +98,7 @@ lb:
         error: Et gouf e Problem beim Läschen vum Kont.
         success: De Kont gouf geläscht.
       show:
+        available_locales_helper: Wiel eng Sprooch fir deng Sichfunktioun an deng Noriichten op der Decidim-Plattform
         change_password: Passwuert änneren
         update_account: Kont aktualiséieren
       update:
@@ -254,10 +258,13 @@ lb:
         download: Datei erof lueden
       documents:
         related_documents: Dokumenter déi dobäi gehéieren
+      geocoding:
+        geocoded_address: Adress
       photos:
         related_photos: Biller déi dobäi gehéieren
     author:
-      avatar: Profil-Bild
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar für méi Benotzer
       comments:
         one: Kommentar
         other: Kommentare
@@ -451,7 +458,7 @@ lb:
           newsletter: Heiansdo en Newsletter mat relevanten Informatiounen zougeschéckt kréien
           newsletter_title: Erlabnis Kontakt opzehuelen
           nickname_help: Däin Pseudonym an %{organization}. Dierf nëmmen aus Buschtawen, Zuelen, _ an - bestoen.
-          password_help: "Muss op mannst aus %{minimun_characters} Zeechen bestoen, keng ze banal (z.B. 123456) an et dierf net däin Benotzernumm oder deng Email-Adress enthalen."
+          password_help: "Muss op mannst aus %{minimun_characters} Zeechen bestoen, keng ze banal Zeechen (z.B. 123456) an et dierf weder däin Pseudonym nach deng Email-Adress enthalen."
           sign_in: Umelden
           sign_up: Registréieren
           sign_up_as:
@@ -847,6 +854,15 @@ lb:
       index:
         last_activity: Lescht Aktivitéit
         resource_type: Zort
+    links:
+      invalid_url: Ongülteg URL
+      warning:
+        body_1: Du kënns elo op en externen Link an mir bieden dech, virsiichteg mam Inhalt vun externen Säiten ëmzegoen.
+        body_2: W. e. g. iwwerpréif de Link den s'de besiche wëlls an iwwerpréif ob et eng sécher Säit ass, éier s'de weider méchs.
+        cancel: Ofbriechen
+        close_modal: Modal zou maachen
+        proceed: Weidermaachen
+        title: Externen Link op maachen
     log:
       base_presenter:
         create: "%{user_name} huet %{resource_name} erstallt"
@@ -1067,24 +1083,7 @@ lb:
         metrics:
           headline: Statistiken
         statistics:
-          answers_count: Abgeschlossene Umfragen
-          assemblies_count: Versammlungen
-          comments_count: Kommentare
-          conferences_count: Konferenzen
-          debates_count: Debatten
-          endorsements_count: Ennerstëtzungen
           headline: Aktuellen Stand vun %{organization}
-          meetings_count: Versammlung
-          orders_count: Stimmen
-          pages_count: Säiten
-          processes_count: Beteiligungsprozesse
-          projects_count: Projeten
-          proposals_accepted: Akzeptierte Vorschläge
-          proposals_count: Virschléi
-          results_count: Resultater
-          surveys_count: Umfragen
-          users_count: Teilnehmer
-          votes_count: Stimmen
         sub_hero:
           register: Registréieren
       index:
@@ -1239,6 +1238,7 @@ lb:
         description: Ass dësen Inhalt net zoulässeg?
         does_not_belong: Enthält illegal Aktivitéit, Selbstmord-Dreeung, perséinlech Informatiounen oder soss Inhalter déi net an Verbindung zu %{organization_name} stinn.
         offensive: Enthält Rassismus, Sexismus, Verleumdung, perséinlechen Ugrëff, Doudesdreeung, Opfuerderung zu Selbstmord oder aner Formen vun Haassrieden.
+        reason: Grond
         report: Bericht
         spam: Enthält Klickbait, Reklamm, Bedruch oder Script-Bots.
         title: Inhalt mellen den net zoulässeg ass
@@ -1264,6 +1264,8 @@ lb:
         filters:
           areas: Beräicher
           select_an_area: Wiel e Beräich
+      public_participation:
+        public_participation: Uweisen, dass ech ageloggt sinn
       reference:
         reference: 'Referenz: %{reference}'
       represent_user_group:
@@ -1274,8 +1276,21 @@ lb:
         title: Wiel d'Unzuel vun de Resultater pro Säit
       share_modal:
         close_window: Fenster schließen
+        copy_share_link: Kopieren
+        copy_share_link_clarification: Ëffentlechen Link an d'Tëschenoflag kopéieren
+        copy_share_link_copied: Kopéiert!
+        copy_share_link_message: De Link gouf an d'Tëschenoflag kopéiert.
         share: Deelen
         share_link: Link deelen
+    statistics:
+      comments_count: Kommentarer
+      endorsements_count: Ënnerstëtzungen
+      followers_count: Follower
+      headline: Statistiken
+      no_stats: Et gëtt nach keng Statistiken.
+      pages_count: Säiten
+      participants_count: Benotzer
+      users_count: Benotzer
     tags:
       filter_results_for_category: 'Resultater no Kategorie filteren: %{resource}'
       filter_results_for_scope: 'Resultater no Uwendungsberäich filteren: %{resource}'
@@ -1313,6 +1328,7 @@ lb:
         send: Senden
         title_reply: Äntweren
       show:
+        back: All d'Konversatiounen uweisen
         not_allowed: Dësen Benotzer akzeptéiert keng direkt Noriichten méi.
         title: Konversatioun mat %{usernames}
       update:
@@ -1358,6 +1374,7 @@ lb:
         number_of_versions: Versiounen
         title: Versiounen
     versions_list_item:
+      back: All Versiounen uweisen
       show:
         version_index: Versioun %{index}
     welcome_notification:
@@ -1471,7 +1488,7 @@ lb:
     registrations:
       destroyed: Däin Kont gouf zou gemaach. Mir hoffen dech geschwënn erëm ze gesinn.
       edit:
-        are_you_sure: Bass de sécher?
+        are_you_sure: Bass du sécher?
         cancel_my_account: Kont erstellen ofbriechen
         currently_waiting_confirmation_for_email: 'Op Bestätegung waarden fir: %{email}'
         leave_blank_if_you_don_t_want_to_change_it: net ausfëllen wann s'de keng Ännerung wëlls
@@ -1560,9 +1577,11 @@ lb:
         made_with_open_source: Website mat <a target="_blank" href="https://github.com/decidim/decidim">fräi Software erstallt</a>.
       header:
         close_menu: Menü zoumaachen
+        main_menu: Hauptmenü
         navigation: Navigation
         sign_in: Umellen
         sign_up: Registréieren
+        user_menu: Benotzer-Menü
       impersonation_warning:
         close_session: Sëtzung zoumaachen
         description_html: Du verwalts den Benotzer <b>%{user_name}</b>.
@@ -1591,6 +1610,7 @@ lb:
         profile: Mäin Kont
         public_profile: Mäin ëffentlechen Profil
         sign_out: Ofmellen
+        title: Profil-Links
       user_profile:
         account: Kont
         authorizations: Berechtegungen

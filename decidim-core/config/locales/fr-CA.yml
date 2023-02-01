@@ -5,6 +5,8 @@ fr-CA:
         delete_reason: Pour quelle(s) raison(s) supprimez-vous votre compte ?
       common:
         created_at: Créé le
+      conversation:
+        body: Corps de texte
       group:
         about: A propos
         avatar: Avatar
@@ -13,6 +15,8 @@ fr-CA:
         name: Nom
         nickname: Nom d'utilisateur
         phone: Téléphone
+      message:
+        body: Corps de texte
       report:
         details: Commentaires supplémentaires
       user:
@@ -63,7 +67,6 @@ fr-CA:
     'true': 'Oui'
   carrierwave:
     errors:
-      general: Erreur de traitement de l'image
       image_too_big: L'image est trop grande
       not_inside_organization: Le fichier n'est relié à aucune organisation
   date:
@@ -95,6 +98,7 @@ fr-CA:
         error: Une erreur s'est produite lors de la suppression de votre compte.
         success: Votre compte a été supprimé avec succès.
       show:
+        available_locales_helper: Choisissez la langue que vous souhaitez utiliser pour naviguer et recevoir des notifications dans Decidim
         change_password: Changer de mot de passe
         update_account: Mettre à jour votre compte
       update:
@@ -254,10 +258,13 @@ fr-CA:
         download: Télécharger le fichier
       documents:
         related_documents: Documents à consulter
+      geocoding:
+        geocoded_address: Adresse
       photos:
         related_photos: Photos associées
     author:
-      avatar: Avatar
+      avatar: 'Avatar: %{name}'
+      avatar_multiuser: Avatar pour plusieurs utilisateurs
       comments:
         one: commentaire
         other: commentaires
@@ -685,6 +692,7 @@ fr-CA:
       no_followers: Aucun abonné pour le moment.
     following:
       no_followings: Aucun abonnement
+      non_public_followings: Certaines des ressources suivies ne sont pas publiques.
     follows:
       create:
         button: Suivre
@@ -846,6 +854,15 @@ fr-CA:
       index:
         last_activity: Dernière Activité
         resource_type: Type
+    links:
+      invalid_url: URL invalide
+      warning:
+        body_1: Vous êtes sur le point de visiter un lien externe et nous aimerions que vous soyez prudent quant au contenu du site externe.
+        body_2: Veuillez vérifier le lien que vous êtes sur le point de visiter et assurez-vous de le reconnaître comme un site sûr avant de poursuivre.
+        cancel: Annuler
+        close_modal: Fermer la fenêtre de dialogue
+        proceed: Continuer
+        title: Ouvrir le lien externe
     log:
       base_presenter:
         create: "%{user_name} a créé %{resource_name}"
@@ -948,6 +965,7 @@ fr-CA:
         show:
           back: Retour à toutes les conversations
           chat_with: Conversation avec
+          deleted_accounts: Vous ne pouvez pas avoir de conversation avec des comptes supprimés.
           not_allowed: Cet utilisateur ne souhaite pas recevoir de messages directs.
           title: Conversation avec %{usernames}
         start:
@@ -1066,24 +1084,7 @@ fr-CA:
         metrics:
           headline: Participation en chiffres
         statistics:
-          answers_count: Enquêtes terminées
-          assemblies_count: Assemblées
-          comments_count: Commentaires
-          conferences_count: Conférences
-          debates_count: Débats
-          endorsements_count: Soutiens
           headline: État actuel de %{organization}
-          meetings_count: Rencontres
-          orders_count: Votes
-          pages_count: Pages
-          processes_count: Processus participatifs
-          projects_count: Projets
-          proposals_accepted: Propositions acceptées
-          proposals_count: Propositions
-          results_count: Réalisations
-          surveys_count: Enquêtes
-          users_count: Participants
-          votes_count: Votes
         sub_hero:
           register: S'inscrire
       index:
@@ -1238,6 +1239,7 @@ fr-CA:
         description: Ce contenu est-il inapproprié ?
         does_not_belong: Contient d’autres types de contenus qui vous semblent inappropriés à %{organization_name} (activités illégales, menaces suicidaires, informations personnelles,...).
         offensive: Contient des propos contraires à la loi (propos racistes, sexistes, insultes, attaques personnelles, menaces de mort, incitations au suicide ou toute forme de discours de haine,...).
+        reason: Motif
         report: Signaler
         spam: Contient des publicités, des escroqueries, des pièges à clic (clickbait) ou des robots fonctionnant au script (script bots).
         title: Signaler un problème
@@ -1263,6 +1265,8 @@ fr-CA:
         filters:
           areas: Zones d'application
           select_an_area: Sélectionnez une zone d'application
+      public_participation:
+        public_participation: Afficher ma présence publiquement
       reference:
         reference: 'Référence : %{reference}'
       represent_user_group:
@@ -1273,8 +1277,21 @@ fr-CA:
         title: Sélectionner le nombre de résultats par page
       share_modal:
         close_window: Fermer la fenêtre
+        copy_share_link: Copier
+        copy_share_link_clarification: Copier le lien de partage dans le presse-papiers
+        copy_share_link_copied: Copié!
+        copy_share_link_message: Le lien a bien été copié dans le presse-papier.
         share: Partager
         share_link: Lien de partage
+    statistics:
+      comments_count: Commentaires
+      endorsements_count: Soutiens
+      followers_count: Abonnés
+      headline: Statistiques
+      no_stats: Il n'y a pas encore de statistiques.
+      pages_count: Pages
+      participants_count: Participant·e·s
+      users_count: Participant·e·s
     tags:
       filter_results_for_category: 'Filtrer les résultats de la catégorie : %{resource}'
       filter_results_for_scope: 'Filtrer les résultats pour la portée : %{resource}'
@@ -1312,6 +1329,8 @@ fr-CA:
         send: Envoyer
         title_reply: Répondre
       show:
+        back: Afficher toutes les conversations
+        deleted_accounts: Vous ne pouvez pas avoir de conversation avec des comptes supprimés.
         not_allowed: Cet utilisateur n'accepte plus de messages directs.
         title: Conversation avec %{usernames}
       update:
@@ -1357,6 +1376,7 @@ fr-CA:
         number_of_versions: Versions
         title: Versions
     versions_list_item:
+      back: Afficher toutes les versions
       show:
         version_index: Version %{index}
     welcome_notification:
@@ -1559,9 +1579,11 @@ fr-CA:
         made_with_open_source: Site réalisé grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
       header:
         close_menu: Fermer le menu
+        main_menu: Menu principal
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+        user_menu: Menu utilisateur
       impersonation_warning:
         close_session: Fermer la session
         description_html: Vous agissez en tant que l'utilisateur <b>%{user_name}</b>.
@@ -1590,6 +1612,7 @@ fr-CA:
         profile: Mon compte
         public_profile: Mon profil public
         sign_out: Déconnexion
+        title: Liens du profil
       user_profile:
         account: Compte
         authorizations: Autorisations
@@ -1603,7 +1626,7 @@ fr-CA:
         see_more: Voir plus
   locale:
     name: Français
-    name_with_error: Anglais (erreur !)
+    name_with_error: Français (erreur !)
   password_validator:
     domain_included_in_password: est trop similaire au nom de domaine de cette plateforme
     email_included_in_password: est trop similaire à votre email

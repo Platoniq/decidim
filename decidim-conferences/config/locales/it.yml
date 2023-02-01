@@ -246,7 +246,7 @@ it:
             price: Prezzo
             registrations_count: Conteggio delle iscrizioni
             title: Titolo
-            weight: Peso
+            weight: Ordine di posizionamento
           name: Tipo di iscrizione
       partners:
         create:
@@ -501,6 +501,7 @@ it:
         home:
           highlighted_conferences:
             active_conferences: Conferenze attive
+            conferences_button_title: Link alla pagina Conferenze in cui sono visualizzate tutte le conferenze
             see_all_conferences: Vedi tutte le conferenze
       photo:
         image:
@@ -532,23 +533,6 @@ it:
         related_assemblies: Assemblee collegate
         related_consultations: Consultazioni correlate
         related_participatory_processes: Processi di partecipazione correlati
-      statistics:
-        answers_count: Risposte
-        comments_count: Commenti
-        conference_count: Conferenze
-        debates_count: dibattiti
-        endorsements_count: Mi piace
-        headline: Attività
-        meetings_count: Incontri
-        orders_count: voti
-        pages_count: pagine
-        posts_count: Messaggi
-        projects_count: Progetti
-        proposals_count: Proposte
-        results_count: Risultati
-        surveys_count: Sondaggi
-        users_count: Partecipanti
-        votes_count: Voti
     events:
       conferences:
         conference_registration_confirmed:
@@ -596,6 +580,8 @@ it:
         title: Media e collegamenti
     menu:
       conferences: Conferenze
+    statistics:
+      conferences_count: Conferenze
   devise:
     mailer:
       join_conference:

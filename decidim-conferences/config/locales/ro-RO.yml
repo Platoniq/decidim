@@ -505,6 +505,7 @@ ro:
         home:
           highlighted_conferences:
             active_conferences: Conferințe active
+            conferences_button_title: Link către pagina de conferințe care afișează toate conferințele
             see_all_conferences: Vezi toate conferințele
       photo:
         image:
@@ -536,23 +537,6 @@ ro:
         related_assemblies: Grupuri de lucru asociate
         related_consultations: Consultări asociate
         related_participatory_processes: Procese participative asociate
-      statistics:
-        answers_count: Răspunsuri
-        comments_count: Comentarii
-        conference_count: Conferințe
-        debates_count: Dezbateri
-        endorsements_count: Susțineri
-        headline: Activitate
-        meetings_count: Întâlniri
-        orders_count: Voturi
-        pages_count: Pagini
-        posts_count: Postări
-        projects_count: Proiecte
-        proposals_count: Propuneri
-        results_count: Rezultate
-        surveys_count: Sondaje
-        users_count: Participanți
-        votes_count: Voturi
     events:
       conferences:
         conference_registration_confirmed:
@@ -600,6 +584,8 @@ ro:
         title: Mass-media și link-uri
     menu:
       conferences: Conferințe
+    statistics:
+      conferences_count: Conferințe
   devise:
     mailer:
       join_conference:

@@ -5,6 +5,8 @@ pl:
         delete_reason: Powód usunięcia konta
       common:
         created_at: Utworzono
+      conversation:
+        body: Treść
       group:
         about: O grupie
         avatar: Awatar
@@ -13,6 +15,8 @@ pl:
         name: Nazwa
         nickname: Pseudonim
         phone: Telefon
+      message:
+        body: Treść
       report:
         details: Dodatkowe uwagi
       user:
@@ -71,7 +75,6 @@ pl:
     'true': 'Tak'
   carrierwave:
     errors:
-      general: Błąd podczas przetwarzania obrazu
       image_too_big: Obraz jest zbyt duży
       not_inside_organization: Plik nie jest dołączony do żadnej organizacji
   date:
@@ -262,10 +265,13 @@ pl:
         download: Pobierz plik
       documents:
         related_documents: Materiały
+      geocoding:
+        geocoded_address: Adres
       photos:
         related_photos: Powiązane zdjęcia
     author:
-      avatar: Awatar
+      avatar: 'Awatar: %{name}'
+      avatar_multiuser: Awatar dla wielu użytkowników
       comments:
         one: komentarz
         few: komentarze
@@ -865,6 +871,11 @@ pl:
       index:
         last_activity: Ostatnia aktywność
         resource_type: Typ
+    links:
+      warning:
+        close_modal: Zamknij okno
+        proceed: Dalej
+        title: Otwórz zewnętrzny link
     log:
       base_presenter:
         create: "%{user_name} stworzył(a) %{resource_name}"
@@ -1085,24 +1096,7 @@ pl:
         metrics:
           headline: Partycypacja w liczbach
         statistics:
-          answers_count: Ankiety zakończone
-          assemblies_count: Zespoły
-          comments_count: Komentarze
-          conferences_count: Konferencje
-          debates_count: Debaty
-          endorsements_count: Rekomendacje
           headline: Aktualny stan %{organization}
-          meetings_count: Spotkania
-          orders_count: Głosowania
-          pages_count: Strony
-          processes_count: Procesy
-          projects_count: Projekty
-          proposals_accepted: Przyjęte propozycje
-          proposals_count: Propozycje
-          results_count: Wyniki
-          surveys_count: Ankiety
-          users_count: Użytkownicy
-          votes_count: Głosowania
         sub_hero:
           register: Zarejestruj się
       index:
@@ -1259,6 +1253,7 @@ pl:
         description: Czy ta treść jest nieodpowiednia?
         does_not_belong: Promuje nielegalną działalność, groźby samobójcze, informacje osobiste lub coś innego, co według Ciebie nie powinno pojawić się w %{organization_name}.
         offensive: Promuje rasizm, seksizm, nienawiść, ataki osobiste, groźby śmierci, groźby samobójcze jakąkolwiek formę mowy nienawiści.
+        reason: Powód
         report: Zgłoś
         spam: Zawiera clickbaity, reklamy, oszustwa lub wrogie skrypty.
         title: Zgłoś nieodpowiednią zawartość
@@ -1294,8 +1289,19 @@ pl:
         title: Wybierz liczbę wyników na stronie
       share_modal:
         close_window: Zamknij okno
+        copy_share_link_copied: Skopiowano!
+        copy_share_link_message: Link został pomyślnie skopiowany do schowka.
         share: Udostępnij
         share_link: Udostępnij link
+    statistics:
+      comments_count: Komentarze
+      endorsements_count: Rekomendacje
+      followers_count: Obserwujący
+      headline: Statystyki
+      no_stats: Nie ma jeszcze żadnych statystyk.
+      pages_count: Stron
+      participants_count: Użytkowników
+      users_count: Uczestników
     tags:
       filter_results_for_category: 'Filtruj wyniki dla kategorii: %{resource}'
       filter_results_for_scope: 'Filtruj wyniki dla zakresu: %{resource}'
@@ -1333,6 +1339,7 @@ pl:
         send: Wyślij
         title_reply: Odpowiedz
       show:
+        back: Pokaż wszystkie rozmowy
         not_allowed: Ten użytkownik nie przyjmuje więcej bezpośrednich wiadomości.
         title: Konwersacja z %{usernames}
       update:
@@ -1378,6 +1385,7 @@ pl:
         number_of_versions: Wersje
         title: Wersje
     versions_list_item:
+      back: Pokaż wszystkie wersje
       show:
         version_index: Wersja %{index}
     welcome_notification:
@@ -1557,7 +1565,7 @@ pl:
         other: 'Podczas przetwarzania Twojego żądania wystąpiły błędy:'
       too_many_marks: używa zbyt wielu kolejnych znaków interpunkcyjnych (np.! i?)
       too_much_caps: używa zbyt dużej liczby wielkich liter (ponad 25% tekstu)
-      too_short: jest za krótki (poniżej 15 znaków)
+      too_short: jest za krótkie
   forms:
     correct_errors: Wystąpiły błędy w formularzu, popraw je, aby kontynuować.
     length_validator:
@@ -1586,9 +1594,11 @@ pl:
         made_with_open_source: Strona internetowa powstała z użyciem <a target="_blank" href="https://github.com/decidim/decidim">free software</a>.
       header:
         close_menu: Zamknij menu
+        main_menu: Menu główne
         navigation: Nawigacja
         sign_in: Zaloguj się
         sign_up: Zarejestruj się
+        user_menu: Menu użytkownika
       impersonation_warning:
         close_session: Zakończ sesję
         description_html: Zarządzasz uczestnikiem <b>%{user_name}</b>.

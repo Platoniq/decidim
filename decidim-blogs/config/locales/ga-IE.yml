@@ -48,10 +48,5 @@ ga:
           step:
             endorsements_blocked: Formhuinithe blocáilte
             endorsements_enabled: Formhuinithe cumasaithe
-    pages:
-      home:
-        statistics:
-          posts_count: Postálacha
-    participatory_processes:
-      statistics:
-        posts_count: Postálacha
+    statistics:
+      posts_count: Postálacha

@@ -20,21 +20,21 @@ describe "Key ceremony", type: :system do
   end
 
   describe "key ceremony process" do
-    include_context "when mocking the bulletin board in the browser"
-
     include_context "when managing a component as an admin" do
       let(:admin_component_organization_traits) { [:secure_context] }
     end
 
-    context "when performing the key ceremony", :vcr, :billy, :slow, download: true do
+    context "when performing the key ceremony", :slow, download: true do
+      include_context "with test bulletin board"
+
       it "generates backup keys, restores them and creates election keys" do
         setup_election(election)
 
-        proxy.cache.with_scope("trustee 1 download") { download_election_keys(0) }
-        proxy.cache.with_scope("trustee 2 download") { download_election_keys(1) }
+        download_election_keys(0)
+        download_election_keys(1)
 
-        proxy.cache.with_scope("complete ceremony with trustee 1") { complete_key_ceremony(0) }
-        proxy.cache.with_scope("check complete ceremony with trustee 2") { check_key_ceremony_completed(1) }
+        complete_key_ceremony(0)
+        check_key_ceremony_completed(1)
       end
     end
 
@@ -64,8 +64,8 @@ describe "Key ceremony", type: :system do
 
       click_link "Download keys"
 
-      content = download_content("#{trustee.unique_id}-*.bak")
-      expect(content).to have_content(%(trusteeId":"#{trustee.unique_id}))
+      content = download_content("#{trustee.slug}-*.bak")
+      expect(content).to have_content(%(trusteeId":"#{trustee.slug}))
       expect(content).to have_content('"status":1')
     end
 
@@ -112,7 +112,7 @@ describe "Key ceremony", type: :system do
 
       expect(page).to have_content("Restore election keys for #{translated(election.title, locale: :en)}")
 
-      attach_file(download_path("#{trustee.unique_id}-*.bak")) do
+      attach_file(download_path("#{trustee.slug}-*.bak")) do
         page.find_all(:xpath, "//*[normalize-space(text())='Upload election keys']").first.click
       end
 

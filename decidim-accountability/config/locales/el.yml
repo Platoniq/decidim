@@ -204,6 +204,8 @@ el:
             label: Κατάσταση
     components:
       accountability:
+        actions:
+          comment: Σχόλιο
         name: Υπευθυνότητα
         settings:
           global:
@@ -244,3 +246,5 @@ el:
         result_project: Έργα που περιλαμβάνονται σε αυτό το αποτέλεσμα
       included_proposals:
         result_proposal: Προτάσεις που περιλαμβάνονται σε αυτό το αποτέλεσμα
+    statistics:
+      results_count: Αποτελέσματα

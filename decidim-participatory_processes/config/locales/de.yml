@@ -34,7 +34,7 @@ de:
         subtitle: Untertitel
         target: Wer nimmt teil?
         title: Titel
-        weight: Gewicht
+        weight: Bestellposition
       participatory_process_group:
         description: Beschreibung
         developer_group: Gruppe der Unterstützer
@@ -403,6 +403,7 @@ de:
             more_information: Mehr Informationen
             participate: Sich beteiligen
             participate_in: Am Prozess %{resource_name} teilnehmen
+            processes_button_title: Link zur Prozess-Seite die alle Prozesse anzeigt
             see_all_processes: Alle Beteiligungsprozesses anzeigen
       participatory_process_steps:
         index:
@@ -442,32 +443,15 @@ de:
         end_date: Enddatum
         local_area: Organisationsbereich
         participatory_scope: Was wird entschieden?
-        participatory_structure: Wie ist es entschieden?
+        participatory_structure: Wie wird es entschieden
         private_space: Dies ist ein privater Prozess
         related_processes: Ähnliche Beteiligungsprozesse
         scope: Umfang
         start_date: Startdatum
         target: Wer nimmt teil?
         unspecified: Keine Angabe
-      statistics:
-        answers_count: Antworten
-        comments_count: Bemerkungen
-        debates_count: Debatten
-        endorsements_count: Empfehlungen
-        followers_count: Follower
-        headline: Statistiken
-        meetings_count: Meetings
-        no_stats: Es gibt noch keine Statistiken.
-        orders_count: Stimmen
-        pages_count: Seiten
-        participants_count: Teilnehmer
-        processes_count: Beteiligungsprozesse
-        projects_count: Projekte
-        proposals_count: Vorschläge
-        results_count: Ergebnisse
-        supports_count: Stimmen
-        surveys_count: Umfragen
-        users_count: Teilnehmer
+    statistics:
+      processes_count: Beteiligungsprozesse
   layouts:
     decidim:
       participatory_process_groups:

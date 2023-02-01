@@ -17,7 +17,6 @@ ga:
         parent_id: Tuismitheoir
       component:
         name: Ainm
-        weight: Meáchan
       id: ID
       newsletter:
         body: Corp
@@ -48,10 +47,8 @@ ga:
         content: Inneachar
         slug: Píosa URL
         title: Teideal
-        weight: Meáchan
       static_page_topic:
         title: Teideal
-        weight: Meáchan
       user_group_csv_verification:
         file: Comhad
   activerecord:
@@ -69,7 +66,6 @@ ga:
         browse: Brabhsáil
         category:
           new: Catagóir nua
-        export: Easpórtáil
         import: Iompórtáil
         manage: Bainistigh
         per_page: In aghaidh an leathanach
@@ -132,11 +128,26 @@ ga:
         category_id_eq:
           label: Catagóir
         filter_label: Scagaire
+        invitation_accepted_at_present:
+          values:
+            'false': 'Níl'
+            'true': 'Is ea'
+        last_sign_in_at_present:
+          values:
+            'false': 'Níl'
+            'true': 'Is ea'
         moderations:
           reportable_type_string_eq:
             label: Cineál
         officialized_at_null:
           label: Staid
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            values:
+              'true': Glactha
+          user_invitation_sent_at_not_null:
+            values:
+              'true': Seolta
         private_space_eq:
           label: Príobháideach
           values:
@@ -147,10 +158,6 @@ ga:
         search_label: Cuardaigh
         state_eq:
           label: Staid
-      forms:
-        file_help:
-          import:
-            message_1: Tugtar tacaíocht do chomhaid CSV, JSON agus Excel (.xls)
       help_sections:
         form:
           save: Sábháil
@@ -173,7 +180,6 @@ ga:
           accepted_mime_types:
             csv: csv
             json: json
-            xls: xls
           actions:
             back: Ar Ais
           import: Iompórtáil
@@ -307,6 +313,13 @@ ga:
         form:
           images:
             preview: Réamhamharc
+      organization_external_domain_whitelist:
+        edit:
+          update: Nuashonraigh
+        external_domain:
+          down: Ísligh
+          remove: Bain as
+          up: Ardaigh
       organization_homepage_content_blocks:
         edit:
           update: Nuashonraigh

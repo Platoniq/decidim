@@ -102,8 +102,14 @@ module Decidim
         it_behaves_like "a new production application"
       end
 
+      context "with --edge flag" do
+        let(:command) { "decidim --edge #{test_app}" }
+
+        it_behaves_like "a new production application"
+      end
+
       context "with --branch flag" do
-        let(:default_branch) { "release/0.24-stable" }
+        let(:default_branch) { "develop" }
         let(:command) { "decidim --branch #{default_branch} #{test_app}" }
 
         it_behaves_like "a new production application"

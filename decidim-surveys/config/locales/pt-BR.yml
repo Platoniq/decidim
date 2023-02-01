@@ -49,6 +49,8 @@ pt-BR:
         description: Número de pesquisas respondidas por usuários
         object: respostas para pesquisas
         title: Respostas para pesquisas
+    statistics:
+      answers_count: Respostas
     surveys:
       admin:
         exports:

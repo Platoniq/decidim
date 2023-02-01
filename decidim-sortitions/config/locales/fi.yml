@@ -19,6 +19,8 @@ fi:
   decidim:
     components:
       sortitions:
+        actions:
+          comment: Kommentoi
         name: Satunnaistamiset
         settings:
           global:
@@ -31,13 +33,6 @@ fi:
           email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta "%{participatory_space_title}". Voit lopettaa seuraamisen edellä esitetyn linkin kautta.
           email_subject: Uusi satunnaistaminen lisättiin kohteeseen %{participatory_space_title}
           notification_title: Satunnaistaminen <a href="%{resource_path}">%{resource_title}</a> on lisätty kohteeseen %{participatory_space_title}
-    pages:
-      home:
-        statistics:
-          sortitions_count: Satunnaistamiset
-    participatory_processes:
-      statistics:
-        sortitions_count: Satunnaistamiset
     sortitions:
       admin:
         actions:
@@ -141,7 +136,7 @@ fi:
           random_seed: Satunnainen jako
           selected_proposals:
             one: ehdotus valittu
-            other: '%{count} ehdotusta valittu'
+            other: ehdotuksia valittu
           view: Näytä
         sortition_author:
           deleted: Poistettu käyttäjä
@@ -151,3 +146,5 @@ fi:
           count:
             one: 1 satunnaisvalinta
             other: "%{count} satunnaisvalintaa"
+    statistics:
+      sortitions_count: Satunnaistamista

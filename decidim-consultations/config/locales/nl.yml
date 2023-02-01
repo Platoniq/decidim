@@ -120,6 +120,8 @@ nl:
           questions: vragen
           results: Resultaten
         questions_submenu:
+          attachments: Bijlagen
+          categories: Categorieën
           components: Onderdelen
           configuration: Configuratie
           consultation: Raadpleging
@@ -263,7 +265,7 @@ nl:
       index:
         title: Burgerinspraaken
       last_activity:
-        new_consultation: Nieuw overleg
+        new_consultation: Nieuwe raadpleging
         new_question_at_html: "<span>Nieuwe vraag op %{link}</span>"
       pages:
         home:
@@ -322,10 +324,6 @@ nl:
           title: Wat zijn raadplegingen?
     menu:
       consultations: Burgerinspraaken
-    pages:
-      home:
-        statistics:
-          consultations_count: Burgerinspraaken
     questions:
       next_button: Volgende vraag
       previous_button: Vorige vraag
@@ -359,13 +357,13 @@ nl:
     resources:
       consultations:
         actions:
+          comment: Reactie
           vote: Stem
+    statistics:
+      consultations_count: Raadplegingen
+      votes_count: Stemmen
   layouts:
     decidim:
-      admin:
-        question:
-          attachments: Bijlagen
-          categories: Categorieën
       consultation_voting_data:
         start_voting_date: Stemmen begint
       question_components:

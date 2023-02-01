@@ -37,13 +37,13 @@ ja:
         date: 日付
         link: リンク
         title: タイトル
-        weight: 重量
+        weight: 重みづけ
       conference_partner:
         link: リンク
         logo: ロゴ
         name: 名前
         partner_type: パートナータイプ
-        weight: 重量
+        weight: 重みづけ
       conference_registration_invite:
         email: Eメールアドレス
         name: 名前
@@ -53,7 +53,7 @@ ja:
         description: 説明
         price: 価格
         title: タイトル
-        weight: 重量
+        weight: 重みづけ
       conference_speaker:
         affiliation: 所属
         avatar: アバター
@@ -243,7 +243,7 @@ ja:
             price: 価格
             registrations_count: 登録数
             title: タイトル
-            weight: 重量
+            weight: 順番の位置
           name: 登録タイプ
       partners:
         create:
@@ -497,6 +497,7 @@ ja:
         home:
           highlighted_conferences:
             active_conferences: アクティブなカンファレンス
+            conferences_button_title: すべてのカンファレンスを表示するカンファレンス一覧ページへのリンク
             see_all_conferences: すべてのカンファレンスを見る
       photo:
         image:
@@ -528,23 +529,6 @@ ja:
         related_assemblies: 関連する参加スペース
         related_consultations: 関連する議案
         related_participatory_processes: 関連する参加型プロセス
-      statistics:
-        answers_count: 回答
-        comments_count: コメント
-        conference_count: カンファレンス
-        debates_count: ディベート
-        endorsements_count: オススメ
-        headline: アクティビティ
-        meetings_count: ミーティング
-        orders_count: サポート
-        pages_count: ページ
-        posts_count: 投稿
-        projects_count: プロジェクト
-        proposals_count: 提案
-        results_count: 結果
-        surveys_count: 調査
-        users_count: 参加者
-        votes_count: サポート
     events:
       conferences:
         conference_registration_confirmed:
@@ -592,6 +576,8 @@ ja:
         title: メディアとリンク
     menu:
       conferences: カンファレンス
+    statistics:
+      conferences_count: カンファレンス
   devise:
     mailer:
       join_conference:

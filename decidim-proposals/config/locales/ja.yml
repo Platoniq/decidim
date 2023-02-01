@@ -35,6 +35,7 @@ ja:
         origin_component_id: 提案をコピーするコンポーネント
       proposals_import:
         import_proposals: 提案をインポート
+        keep_answers: 状態と回答を保持
         keep_authors: オリジナルの作者を保持
       valuation_assignment:
         admin_log:
@@ -44,10 +45,12 @@ ja:
         participatory_text:
           attributes:
             document:
-              invalid_document_type: '無効なドキュメントの種類です。承認されたフォーマットは次のとおりです: %{valid_mime_types}'
+              invalid_document_type: '無効な種類のドキュメントです。承認されたフォーマットは次のとおりです: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: 再接続が必要
+            add_photos:
               needs_to_be_reattached: 再接続が必要
             body:
               cant_be_equal_to_template: はテンプレートと等しくすることはできません
@@ -109,9 +112,11 @@ ja:
       proposals:
         actions:
           amend: 修正
+          comment: コメント
           create: 作成
           endorse: オススメする
           vote: サポート
+          vote_comment: コメントに投票
           withdraw: 撤回する
         name: 提案
         settings:
@@ -373,7 +378,7 @@ ja:
             success: おめでとうございます。次のセクションが提案に変換されました。公開する前に確認して調整できます。
           index:
             info_1: 次のセクションが提案に変換されました。公開する前に確認して調整できます。
-            publish_document: 文書を公開
+            publish_document: ドキュメントを公開
             save_draft: 下書きを保存
             title: 参加者のテキストをプレビュー
           new_import:
@@ -703,7 +708,8 @@ ja:
           proposals_count:
             other: "%{count} の提案"
         dynamic_map_instructions:
-          instructions: <h3>地図上のポイントを移動することができます。 </h3><p>提案を公開する前に「位置を更新」ボタンをクリックしてください。</p>
+          description: '「プレビュー」ボタンをクリックすると座標が更新されますが、アドレスは変更されません。'
+          instructions: 地図上のポイントを移動できます。
         edit:
           add_documents: ドキュメント
           add_images: ファイル
@@ -773,7 +779,6 @@ ja:
             other: 提案が公開されてから最初の %{count} 分間、この提案を編集することができます。 この時間が経過すると、提案を編集することはできません。
           publish: 公開
           title: 提案を公開
-          update_position: 位置を更新
         proposal:
           creation_date: '作成: %{date}'
           view_proposal: 提案を表示
@@ -888,3 +893,7 @@ ja:
       included_proposals:
         proposal_project: 'これらのプロジェクトに表示される提案'
         proposal_result: 'これらの結果に提案が表示されます:'
+    statistics:
+      proposals_accepted: 承認された提案
+      proposals_count: 提案
+      supports_count: サポート

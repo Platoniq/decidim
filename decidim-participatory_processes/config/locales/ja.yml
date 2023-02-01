@@ -34,7 +34,7 @@ ja:
         subtitle: サブタイトル
         target: 参加者
         title: タイトル
-        weight: 重みづけ
+        weight: 順番の位置
       participatory_process_group:
         description: 説明
         developer_group: プロモーターグループ
@@ -119,7 +119,7 @@ ja:
         participatory_process:
           fields:
             created_at: 作成日時
-            private: 非公開
+            private: プライベート
             promoted: 強調表示
             published: 公開済み
             title: タイトル
@@ -241,7 +241,7 @@ ja:
           update: 更新
         index:
           not_published: 未公開
-          private: 非公開
+          private: プライベート
           public: 公開
           published: 公開済み
         new:
@@ -260,7 +260,7 @@ ja:
           success: 参加型プロセスグループを作成しました。
       titles:
         participatory_process_groups: 参加型プロセスグループ
-        participatory_processes: 参加型するプロセス
+        participatory_processes: 参加型プロセス
       users:
         resend_invitation:
           error: 招待状の再送信中に問題が発生しました。
@@ -315,7 +315,7 @@ ja:
         title: 参加型プロセス
     participatory_process:
       show:
-        related_assemblies: 関連する参加スペース
+        related_assemblies: 関連する参加型スペース
     participatory_process_groups:
       content_blocks:
         html_1:
@@ -399,6 +399,7 @@ ja:
             more_information: 詳細情報
             participate: 参加
             participate_in: 参加型プロセス %{resource_name} に参加する
+            processes_button_title: すべてのプロセスを表示するプロセスページへのリンク
             see_all_processes: すべての参加型プロセスを見る
       participatory_process_steps:
         index:
@@ -441,25 +442,8 @@ ja:
         start_date: 開始日
         target: 参加者
         unspecified: 指定されていない
-      statistics:
-        answers_count: 回答
-        comments_count: コメント
-        debates_count: ディベート
-        endorsements_count: オススメ
-        followers_count: フォロワー
-        headline: 統計情報
-        meetings_count: ミーティング
-        no_stats: 統計情報はまだありません。
-        orders_count: サポート
-        pages_count: ページ
-        participants_count: 参加者
-        processes_count: 参加型プロセス
-        projects_count: プロジェクト
-        proposals_count: 提案
-        results_count: 結果
-        supports_count: サポート
-        surveys_count: 調査
-        users_count: 参加者
+    statistics:
+      processes_count: プロセス
   layouts:
     decidim:
       participatory_process_groups:

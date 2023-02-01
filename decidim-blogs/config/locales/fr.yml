@@ -15,6 +15,7 @@ fr:
         edit: Modifier
         new: Nouvel article
         title: Actions
+        user_group_id: Créer un article en tant que
       admin:
         models:
           components:
@@ -58,6 +59,10 @@ fr:
       read_more: Voir la suite
     components:
       blogs:
+        actions:
+          create: Créer
+          destroy: Supprimer
+          update: Mettre à jour
         name: Actualités
         settings:
           global:
@@ -73,13 +78,8 @@ fr:
       blogs:
         post_created:
           email_intro: L'article "%{resource_title}" a été publié dans "%{participatory_space_title}" que vous suivez.
-          email_outro: Vous avez reçu cette notification parce que vous suivez "%{participatory_space_title}". Vous pouvez le retirer du lien précédent.
+          email_outro: Vous avez reçu cette notification parce que vous suivez "%{participatory_space_title}". Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Nouvel article publié dans %{participatory_space_title}
           notification_title: L'article <a href="%{resource_path}">%{resource_title}</a> a été publié dans %{participatory_space_title}
-    pages:
-      home:
-        statistics:
-          posts_count: Articles
-    participatory_processes:
-      statistics:
-        posts_count: Articles
+    statistics:
+      posts_count: Articles

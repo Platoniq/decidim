@@ -19,6 +19,7 @@ module Decidim
     include SafeRedirect
     include NeedsSnippets
     include UserBlockedChecker
+    include DisableRedirectionToExternalHost
 
     helper Decidim::MetaTagsHelper
     helper Decidim::DecidimFormHelper
@@ -83,6 +84,8 @@ module Decidim
     end
 
     def user_has_no_permission_path
+      return decidim.new_user_session_path unless user_signed_in?
+
       decidim.root_path
     end
 

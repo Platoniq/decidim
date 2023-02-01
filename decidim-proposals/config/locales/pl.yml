@@ -47,7 +47,9 @@ pl:
               invalid_document_type: 'Nieprawidłowy typ dokumentu. Akceptowane formaty to: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Musi zostać ponownie załączony
+            add_photos:
               needs_to_be_reattached: Musi zostać ponownie załączony
             body:
               cant_be_equal_to_template: nie może być taki sam jak szablon
@@ -121,9 +123,11 @@ pl:
       proposals:
         actions:
           amend: Popraw
+          comment: Skomentuj
           create: Tworzenie
           endorse: Rekomendacje
           vote: Wspieranie
+          vote_comment: Poprzyj komentarz
           withdraw: Wycofywanie
         name: Propozycje
         settings:
@@ -726,8 +730,6 @@ pl:
             few: "%{count} propozycji"
             many: "%{count} propozycji"
             other: "%{count} propozycji"
-        dynamic_map_instructions:
-          instructions: <h3>Możesz przesunąć punkt na mapie. </h3><p>Nie zapomnij kliknąć na przycisk "Aktualizuj pozycję" przed opublikowaniem propozycji.</p>
         edit:
           add_documents: Dokumenty
           add_images: Plik
@@ -803,7 +805,6 @@ pl:
             other: Będziesz mógł edytować tę propozycję w ciągu %{count} minut po jej opublikowaniu. Gdy ten czas minie nie będzie można edytować propozycji.
           publish: Publikuj
           title: Opublikuj swoją propozycję
-          update_position: Aktualizuj pozycję
         proposal:
           creation_date: 'Utworzono: %{date}'
           view_proposal: Zobacz propozycję
@@ -924,3 +925,6 @@ pl:
       included_proposals:
         proposal_project: 'Propozycja występująca w tych projektach:'
         proposal_result: 'Propozycja pojawiająca się w tych wynikach:'
+    statistics:
+      proposals_accepted: Przyjęte propozycje
+      proposals_count: Propozycje

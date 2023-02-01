@@ -43,11 +43,12 @@ ro:
         default_locale: Localizare implicită
         description: Descriere
         enable_omnipresent_banner: Afișează banner omniprezent
+        enable_participatory_space_filters: Activează filtrele pentru spațiul participativ
         facebook_handler: Responsabil Facebook
         favicon: Pictogramă
         force_authentication: Forțează autentificarea
         force_users_to_authenticate_before_access_organization: Forțează utilizatorii să se autentifice înainte de a accesa organizația
-        from: De la adresa de e-mail
+        from: Adresa de e-mail a expeditorului
         github_handler: Responsabil GitHub
         header_snippets: Elemente ale antetului
         highlight_alternative_color: Evidențiere, alternativă
@@ -157,7 +158,8 @@ ro:
         browse: Caută
         category:
           new: Categorie nouă
-        export: Exportă
+        export: Exportă tot
+        export-selection: Exportă selecția
         import: Importă
         manage: Gestionează
         new: '%{name} nou'
@@ -178,12 +180,12 @@ ro:
           success: Super! Ai acceptat termenii de utilizare ai administratorului.
         actions:
           accept: Sunt de acord cu următorii termeni
-          are_you_sure: Sigur dorești să refuzi termenii de utilizare ai administratorului?
+          are_you_sure: Sigur dorești să refuzi termenii de utilizare ai adiminstratorului?
           refuse: Refuz termenii
           title: Acceptă termenii și condițiile de utilizare
         required_review:
           alert: 'Obligatoriu: Revizuiți termenii de utilizare ai administratorului'
-          callout: Vă rugăm să acordați un moment pentru a revizui Termenii de utilizare. În caz contrar, nu veți putea administra platforma.
+          callout: Te rugăm acordă un moment pentru a revizui Termenii de utilizare ai administratorului. În caz contrar, nu vei putea administra platforma.
           cta: Revizuiește acum.
         title: Termeni de Utilizare ai Administratorului
       area_types:
@@ -206,7 +208,7 @@ ro:
           error: A apărut o problemă la crearea unei zone noi.
           success: Zona a fost creată cu succes.
         destroy:
-          has_spaces: Zona are spații dependente, pentru a putea fi ștearsă nu trebuie să aibă dependențe.
+          has_spaces: Această zonă are spații participative (procese, grupuri de lucru) dependente. Te rugăm să te asiguri că nu există referințe la spațiul participativ din această zonă înainte de a o șterge.
           success: Zona a fost eliminată cu succes
         edit:
           title: Editează zona
@@ -259,7 +261,7 @@ ro:
       block_user:
         new:
           action: Blochează contul și trimite justificarea
-          description: Blocarea unui utilizator va face contul inutilizabil, puteți oferi justificări și îndrumări cu privire la modul în care considerați că ați putea debloca utilizatorul.
+          description: Blocarea unui utilizator va face contul său inutilizabil. Poți să furnizezi în justificarea ta orice instrucțiuni cu privire la modul în care vei lua în considerare deblocarea utilizatorului.
           justification: Justificare
           title: Blochează utilizatorul %{name}
       categories:
@@ -322,7 +324,7 @@ ro:
         'false': 'Nr'
         managed_user_name: Gestionare utilizatori
         solved: Rezolvat
-        title: Verificare conflicte
+        title: Conflicte de verificare
         transfer:
           email: E-mail
           error: A apărut o problemă la transferul participantului curent drept participant gestionat.
@@ -336,6 +338,12 @@ ro:
         show:
           view_more_logs: Afișează mai multe înregistrări
           welcome: Bine ați venit în Panoul de administrare Decidim.
+      domain_whitelist:
+        form:
+          domain_too_short: Domeniul e prea scurt
+        update:
+          error: Actualizarea whitelist-ului domeniului a eșuat
+          success: Lista albă a domeniului a fost actualizată cu succes
       exports:
         export_as: "%{name} drept %{export_format}"
         formats:
@@ -348,6 +356,16 @@ ro:
         category_id_eq:
           label: Categorie
         filter_label: Filtru
+        invitation_accepted_at_present:
+          label: Invitaţie acceptată
+          values:
+            'false': 'Nu'
+            'true': 'Da'
+        last_sign_in_at_present:
+          label: Nicio autentificare
+          values:
+            'false': 'Nu'
+            'true': 'Da'
         moderations:
           reportable_type_string_eq:
             label: Tip
@@ -356,6 +374,17 @@ ro:
           values:
             'false': Verificat
             'true': Neverificat
+        participatory_space_private_users:
+          user_invitation_accepted_at_not_null:
+            label: Invitație acceptată
+            values:
+              'false': Neacceptat
+              'true': Acceptat
+          user_invitation_sent_at_not_null:
+            label: Invitaţie trimisă
+            values:
+              'false': Nu s-a trimis
+              'true': Trimis
         private_space_eq:
           label: Privat
           values:
@@ -373,13 +402,14 @@ ro:
           name_or_nickname_or_email_cont: Caută %{collection} după e-mail, nume sau pseudonim.
           reported_id_string_or_reported_content_cont: Caută %{collection} după id sau conținut.
           title_cont: Caută %{collection} după titlu.
+          user_name_or_user_email_cont: Caută %{collection} după nume sau e-mail.
         state_eq:
           label: Stadiu
       forms:
         file_help:
           import:
             explanation: 'Îndrumare pentru fișier:'
-            message_1: Fișierele CSV, JSON și Excel (.xls) sunt acceptate
+            message_1: Fișierele CSV, JSON și Excel (.xlsx) sunt acceptate
             message_2: Pentru fişierele CSV, separatorul dintre coloane trebuie să fie punct şi virgulă (";")
       help_sections:
         error: A apărut o eroare la actualizarea secțiunilor de ajutor
@@ -431,7 +461,7 @@ ro:
           accepted_mime_types:
             csv: csv
             json: json
-            xls: xls
+            xlsx: xlsx
           actions:
             back: Înapoi
           file_legend: Adaugă un fișier de import care va fi analizat.
@@ -457,6 +487,7 @@ ro:
         areas: Zone
         configuration: Configurare
         dashboard: Panou de administrare
+        external_domain_whitelist: Domenii externe permise
         help_sections: Secțiuni de ajutor
         homepage: Pagina principală
         impersonations: Impersonări
@@ -605,7 +636,7 @@ ro:
       newsletters:
         create:
           error: A apărut o eroare la crearea acestui buletin informativ.
-          success: Buletinul informativ a fost creat. Vă rugăm să îl revedeți înainte de trimitere.
+          success: Buletinul informativ a fost creat cu succes. Te rugăm să îl revizuiești înainte de a-l trimite.
         deliver:
           error: A apărut o eroare la livrarea acestui buletin informativ.
           success: Buletinul informativ a fost livrat cu succes.
@@ -688,12 +719,12 @@ ro:
           title: Validează participantul "%{name}"
         show_email_modal:
           close_modal: Închide fereastra
-          description: Dacă trebuie să contactați direct un participant, puteți face clic pe butonul Arată pentru a vedea adresa de e-mail. Această acțiune va fi înregistrată.
+          description: Dacă trebuie să contactezi direct un participant, poți apăsa pe butonul Arată pentru a vedea adresa lor de e-mail. Această acțiune va fi înregistrată.
           email_address: Adresa de e-mail
           full_name: Nume complet
           hidden: ascuns
           show: Afișează
-          title: Arată adresa de e-mail a participantului
+          title: Afișează adresa de e-mail a participantului
         unblock:
           error: A apărut o eroare la deblocarea participantului
           success: Participantul a fost deblocat cu succes
@@ -728,6 +759,17 @@ ro:
             layout_appearance_title: Editează aspectul aranjării în pagină
             preview: Previzualizează
           omnipresent_banner_appearance_title: Editează banner-ul omniprezent
+      organization_external_domain_whitelist:
+        edit:
+          update: Actualizează
+        external_domain:
+          down: Jos
+          external_domain: Domeniu extern
+          remove: Elimină
+          up: Sus
+        form:
+          add: Adaugă la lista albă
+          title: Lista albă pentru domenii externe
       organization_homepage:
         edit:
           active_content_blocks: Blocuri de conținut active
@@ -929,7 +971,7 @@ ro:
     forms:
       errors:
         impersonate_user:
-          reason: Trebuie să furnizați un motiv atunci când gestionați un participant negestionat
+          reason: Trebuie să furnizezi un motiv pentru gestionarea unui participant negestionat
     metrics:
       blocked_users:
         object: utilizatori blocați

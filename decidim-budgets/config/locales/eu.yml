@@ -6,7 +6,7 @@ eu:
         description: Deskribapena
         title: Izenburua
         total_budget: Aurrekontua guztira
-        weight: Pisua
+        weight: Kokapenaren hurrenkera
       project:
         budget_amount: Aurrekontuaren zenbatekoa
         decidim_category_id: Kategoria
@@ -108,6 +108,9 @@ eu:
         close_modal: Itxi modala
         continue: Jarraitu
         more_information: Informazio gehiago
+      budget_list_item:
+        voting_finished: Eman duzu botoa proiektu honetan
+        voting_started: Hasi zara botoa ematen proiektu honetan
       budgets_list:
         cancel_order:
           more_than_one: ezabatu zure botoa hemen %{name} eta hasi berriro
@@ -230,6 +233,7 @@ eu:
     components:
       budgets:
         actions:
+          comment: Egin iruzkina
           vote: Bozkatu
         name: Aurrekontuak
         settings:
@@ -290,6 +294,9 @@ eu:
         success: Zure botua zuzen ezeztatu da
     resource_links:
       included_proposals:
-        project_proposal: 'Proiektu honetan jasotako proposamenak:'
+        project_proposal: Proiektu honetan sartuta dauden proposamenak
+    statistics:
+      orders_count: Aldeko botoak
+      projects_count: Proiektuak
   index:
     confirmed_orders_count: Botoen zenbaketa

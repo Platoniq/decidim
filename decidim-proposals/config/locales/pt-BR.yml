@@ -35,6 +35,7 @@ pt-BR:
         origin_component_id: Componente para copiar as propostas de
       proposals_import:
         import_proposals: Importar propostas
+        keep_answers: Manter o estado e as respostas
         keep_authors: Mantenha os autores originais
       valuation_assignment:
         admin_log:
@@ -47,7 +48,9 @@ pt-BR:
               invalid_document_type: 'Tipo de documento inválido. Formatos aceitos são: %{valid_mime_types}'
         proposal:
           attributes:
-            attachment:
+            add_documents:
+              needs_to_be_reattached: Precisa ser recolocado
+            add_photos:
               needs_to_be_reattached: Precisa ser recolocado
             body:
               cant_be_equal_to_template: não pode ser igual ao modelo
@@ -113,9 +116,11 @@ pt-BR:
       proposals:
         actions:
           amend: Alterar
+          comment: Comentar
           create: Criar
           endorse: Endossar
           vote: Voto
+          vote_comment: Votar no documento
           withdraw: retirar o
         name: Propostas
         settings:
@@ -711,7 +716,8 @@ pt-BR:
             one: "%{count} proposta"
             other: "%{count} propostas"
         dynamic_map_instructions:
-          instructions: <h3>Você pode mover o ponto no mapa. </h3><p>Não se esqueça de clicar no botão "Atualizar Posição" antes de publicar sua proposta.</p>
+          description: As coordenadas serão atualizadas quando clicar no botão 'visualizar'. No entanto, o endereço não muda.
+          instructions: Você pode mover o ponto no mapa.
         edit:
           add_documents: Documentos
           add_images: Arquivo
@@ -783,7 +789,6 @@ pt-BR:
             other: Você poderá editar esta proposta durante o primeiro %{count} minutos após a publicação da proposta. Uma vez que esta janela de tempo passa, você não poderá editar a proposta.
           publish: Publicar
           title: Publique sua proposta
-          update_position: Atualizar posição
         proposal:
           creation_date: 'Criação: %{date}'
           view_proposal: Ver proposta
@@ -900,3 +905,7 @@ pt-BR:
       included_proposals:
         proposal_project: 'Proposta que aparece nesses projetos:'
         proposal_result: 'Proposta que aparece nesses resultados:'
+    statistics:
+      proposals_accepted: Propostas aceitas
+      proposals_count: Propostas
+      supports_count: Votos
