@@ -9,12 +9,19 @@ describe "Explore posts", type: :system do
   let!(:old_post) { create(:post, component: component, created_at: Time.current - 2.days) }
   let!(:new_post) { create(:post, component: component, created_at: Time.current) }
 
+  let!(:image) { create(:attachment, attached_to: old_post) }
+
   describe "index" do
     it "shows all posts for the given process" do
       visit_component
       expect(page).to have_selector(".card", count: 2)
       expect(page).to have_selector(".card--post", text: translated(new_post.title))
       expect(page).to have_selector(".card--post", text: translated(old_post.title))
+    end
+
+    it "shows images" do
+      visit_component
+      expect(page).to have_selector(".card--post img.card__image")
     end
 
     it "shows comment counts" do
