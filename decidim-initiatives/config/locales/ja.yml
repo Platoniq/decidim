@@ -2,6 +2,7 @@ ja:
   activemodel:
     attributes:
       initiative:
+        area_id: エリア
         decidim_user_group_id: 作成者
         description: 説明
         offline_votes: In-personal 署名
@@ -18,6 +19,8 @@ ja:
         title: タイトル
       initiatives_committee_member:
         user: 委員会メンバー
+      initiatives_settings:
+        initiatives_order: 順番
       initiatives_type:
         area_enabled: 作成者がイニシアチブの領域を選択できるようにする
         attachments_enabled: 添付ファイルを有効化
@@ -32,6 +35,7 @@ ja:
         online_signature_enabled: オンライン署名は有効です
         only_global_scope_enabled: グローバルスコープのイニシアチブの作成のみを許可する
         promoting_committee_enabled: 推進委員会を有効にする
+        signature_type: 署名の種別
         title: タイトル
         undo_online_signatures_enabled: 参加者がオンライン署名を取り消すことを有効にする
         validate_sms_code_on_votes: 署名プロセスにSMSコード検証ステップを追加
@@ -235,8 +239,6 @@ ja:
             edit: 編集
             new: 新規作成
             photos: 写真
-          show:
-            print: 印刷
           update:
             error: エラーが発生しました
             success: イニシアチブが正常に更新されました
@@ -271,8 +273,8 @@ ja:
             update: 更新
           form:
             authorizations: 認証設定
-            child_scope_threshold_enabled_help: 'この設定では、対面での署名収集をサポートせず、サブスコープの署名フラグを有効にし、スコープとユーザーを関連付ける承認ハンドラと連携します。オーソリゼーションの設定で、下記のオーソリゼーションを必ず選択してください。これが機能するためには、1つのスコープ - N個のサブスコープというように、階層的に構成されている必要があります。この設定がどのように機能するかについては、この<a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">リンク</a>を参照してください。'
-            only_global_scope_enabled_help: '「子スコープ署名」を有効にし、グローバルスコープを親スコープとして設定する場合、このフラグをチェックします。 これを有効にすると、イニシアチブ作成ウィザードでイニシアチブ種別の選択がスキップされます。 この設定の仕組みについての詳細は、この <a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">リンク</a> を参照してください。'
+            child_scope_threshold_enabled_help: "この設定では、対面での署名収集をサポートせず、サブスコープの署\n名フラグを有効にし、スコープとユーザーを関連付ける承認ハンドラと連携します。オーソリゼーションの設定で、下記のオーソリゼーションを必ず選択してください。これが機能するためには、1つのスコープ - N個のサブスコープというように、階層的に構成されている必要があります。この設定がどのように機能するかについては、 <a href=\"https://docs.decidim.org/en/admin/spaces/initiatives/\" target=\"_blank\">このリンク</a> を参照してください。"
+            only_global_scope_enabled_help: '「下層スコープ署名」を有効にし、グローバルスコープを親スコープとして設定する場合、このフラグをチェックします。これを有効にすると、イニシアチブ作成ウィザードでイニシアチブ種別の選択がスキップされます。この設定の仕組みについての詳細は、<a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">このリンク</a> を参照してください。'
             options: オプション
             title: 一般情報
           initiative_type_scopes:
@@ -501,6 +503,7 @@ ja:
             title: 'タイトル:'
             type: イニシアチブの種別
           legal_text: 収集された個人データは、現行の法律に基づき、組織によって機密情報として取り扱われます。
+          members_header: 推進委員会のメンバー
           phone_number: 電話番号
           place_date: 場所、日付
           postal_code: 郵便番号

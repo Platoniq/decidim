@@ -5,7 +5,7 @@ require "spec_helper"
 describe "Budgets component" do # rubocop:disable RSpec/DescribeClass
   let!(:component) { create(:budgets_component) }
   let(:organization) { component.organization }
-  let!(:current_user) { create(:user, :admin, organization: organization) }
+  let!(:current_user) { create(:user, :confirmed, :admin, organization: organization) }
 
   describe "on update" do
     let(:manifest) { component.manifest }
@@ -198,7 +198,7 @@ describe "Budgets component" do # rubocop:disable RSpec/DescribeClass
 
       context "when projects rule is checked" do
         before do
-          check "Enable rule: Selected projects with minimum and maximum number of projects to be voted on"
+          check "Enable rule: Minimum and maximum number of projects to be voted on"
         end
 
         it "is shown the number input" do

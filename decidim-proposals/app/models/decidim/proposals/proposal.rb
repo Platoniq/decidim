@@ -70,12 +70,13 @@ module Decidim
       scope :except_drafts, -> { where.not(published_at: nil) }
       scope :published, -> { where.not(published_at: nil) }
       scope :order_by_most_recent, -> { order(created_at: :desc) }
+
       scope :sort_by_valuation_assignments_count_asc, lambda {
-        order("#{sort_by_valuation_assignments_count_nulls_last_query}ASC NULLS FIRST")
+        order(Arel.sql("#{sort_by_valuation_assignments_count_nulls_last_query} ASC NULLS FIRST").to_s)
       }
 
       scope :sort_by_valuation_assignments_count_desc, lambda {
-        order("#{sort_by_valuation_assignments_count_nulls_last_query}DESC NULLS LAST")
+        order(Arel.sql("#{sort_by_valuation_assignments_count_nulls_last_query} DESC NULLS LAST").to_s)
       }
 
       def self.with_valuation_assigned_to(user, space)
@@ -226,6 +227,12 @@ module Decidim
       # Public: Overrides the `reported_content_url` Reportable concern method.
       def reported_content_url
         ResourceLocatorPresenter.new(self).url
+      end
+
+      # Returns the presenter for this author, to be used in the views.
+      # Required by ResourceRenderer.
+      def presenter
+        Decidim::Proposals::ProposalPresenter.new(self)
       end
 
       # Public: Overrides the `reported_attributes` Reportable concern method.

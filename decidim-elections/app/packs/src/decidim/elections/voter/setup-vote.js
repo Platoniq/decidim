@@ -1,11 +1,14 @@
 /* eslint-disable require-jsdoc */
 
-import { VoteComponent } from "@codegram/decidim-bulletin_board";
+// show a message to the user if comunication is lost
+import "src/decidim/elections/broken_promises_handler";
+import { VoteComponent } from "@decidim/decidim-bulletin_board";
 
-import * as VotingSchemesDummy from "@codegram/voting_schemes-dummy";
+import * as VotingSchemesDummy from "@decidim/voting_schemes-dummy";
 const DummyVoterWrapperAdapter = VotingSchemesDummy.VoterWrapperAdapter;
-import * as VotingSchemesElectionGuard from "@codegram/voting_schemes-electionguard";
-const ElectionGuardVoterWrapperAdapter = VotingSchemesElectionGuard.VoterWrapperAdapter;
+import * as VotingSchemesElectionGuard from "@decidim/voting_schemes-electionguard";
+const ElectionGuardVoterWrapperAdapter =
+  VotingSchemesElectionGuard.VoterWrapperAdapter;
 
 export default function setupVoteComponent($voteWrapper) {
   // Data
@@ -44,6 +47,12 @@ export default function setupVoteComponent($voteWrapper) {
     voterWrapperAdapter
   });
 }
+
+/* Fallback for non-handled failed promises */
+window.addEventListener("unhandledrejection", (event) => {
+  $("#server-failure .tech-info").html(event.reason);
+  $("#server-failure").foundation("open");
+});
 
 window.Decidim = window.Decidim || {};
 window.Decidim.setupVoteComponent = setupVoteComponent;

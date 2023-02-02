@@ -99,7 +99,6 @@ lv:
         name: Priekšlikumi
         settings:
           global:
-            allow_card_image: Atļaut kartītes attēlu
             amendments_enabled: Grozījumi ir iespējoti
             amendments_enabled_help: Ja aktīvs, tad konfigurējiet grozījumu iespējas katram solim.
             amendments_wizard_help_text: Grozījumu vedņa palīdzības teksts
@@ -143,7 +142,6 @@ lv:
             answers_with_costs: Iespējot izmaksas priekšlikumu atbildēs
             automatic_hashtags: Mirkļbirkas tiek pievienotas visiem priekšlikumiem
             comments_blocked: Komentāri ir bloķēti
-            creation_enabled: Priekšlikuma izveide ir iespējota
             endorsements_blocked: Atbalsti ir bloķēti
             endorsements_enabled: Atbalsti ir iespējoti
             proposal_answering_enabled: Atbilde uz priekšlikumiem ir iespējota
@@ -161,33 +159,21 @@ lv:
             email_subject: Kāds atstāja piezīmi par priekšlikumu %{resource_title}.
             notification_title: Kāds ir atstājis piezīmi par priekšlikumu <a href="%{resource_path}">%{resource_title}</a>. Pārbaudiet to <a href="%{admin_proposal_info_path}">administratora panelī</a>
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} ir pieņemts, lai piekļūtu kā līdzautors <a href="%{resource_path}">%{resource_title}</a> sadarbības projektā.'
-          email_outro: Jūs saņēmāt šo paziņojumu, jo līdzdarbojaties <a href="%{resource_path}">%{resource_title}</a>
           email_subject: "%{requester_name} ir pieņemts, lai piekļūtu kā līdzautors %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> ir <strong> pieņemts, lai piekļūtu kā līdzautors</strong> <a href="%{resource_path}">%{resource_title}</a> sadarbības projektā.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} ir atteikta piekļuve kā līdzautoram <a href="%{resource_path}">%{resource_title}</a> sadarbības projektā.'
-          email_outro: Jūs saņēmāt šo paziņojumu, jo līdzdarbojaties <a href="%{resource_path}">%{resource_title}</a>
           email_subject: "%{requester_name} ir atteikta piekļuve kā līdzautoram %{resource_title} sadarbības projektā."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> ir <strong> atteikta piekļuve, kā līdzautoram</strong><a href= "%{resource_path}">%{resource_title}</a> sadarbības projektā.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} pieprasīja piekļuvi kā līdzautors. Varat <strong> pieņemt vai noraidīt pieprasījumu </strong> no <a href="%{resource_path}">%{resource_title}</a> sadarbības projekta lapas.'
-          email_outro: Jūs saņēmāt šo paziņojumu, jo līdzdarbojaties <a href="%{resource_path}">%{resource_title}</a>
           email_subject: "%{requester_name} pieprasīja piekļuvi, lai līdzdarbotos %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> pieprasīja piekļuvi, lai līdzdarbotos <a href="%{resource_path}"> %{resource_title}</a> sadarbības projektā. Lūdzu, <strong>pieņemiet vai noraidiet pieprasījumu</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: Jums piešķirta piekļuve un iespēja kā līdzautoram <a href="%{resource_path}">%{resource_title}</a> sadarbības projektā.
-          email_outro: Jūs saņēmāt šo paziņojumu, jo vēlējāties līdzdarboties <a href="%{resource_path}">%{resource_title}</a>
           email_subject: Jūs pieņēma par %{resource_title} līdzautoru.
           notification_title: Jums <strong>piešķirta piekļuve kā līdzautoram</strong> <a href="%{resource_path}">%{resource_title}</a> sadarbības projektā.
         collaborative_draft_access_requester_rejected:
-          email_intro: Jums atteikta iespēja piekļūt kā līdzautoram <a href="%{resource_path}">%{resource_title}</a> sadarbības projektā.
-          email_outro: Jūs saņēmāt šo paziņojumu, jo vēlējāties līdzdarboties <a href="%{resource_path}">%{resource_title}</a>
           email_subject: Jūsu pieteikums kļūt par %{resource_title} līdzautoru ir atteikts.
           notification_title: Jums <strong>atteikta iespēja piekļūt kā līdzautoram</strong> <a href="%{resource_path}">%{resource_title}</a> sadarbības projektā.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> atsauca <a href="%{resource_path}">%{resource_title}</a> sadarbības projektu.
-          email_outro: Jūs saņēmāt šo paziņojumu, jo līdzdarbojaties <a href="%{resource_path}">%{resource_title}</a>
           email_subject: "%{author_name} %{author_nickname} atsauca %{resource_title} sadarbības projektu."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a><strong> atsauca </strong><a href="%{resource_path}">%{resource_title}</a> sadarbības projektu.
         creation_enabled:
@@ -236,12 +222,10 @@ lv:
           email_intro: Priekšlikums "%{resource_title}" ir pievienots "%{participatory_space_title}", kam jūs sekojat.
           email_outro: Jūs saņēmāt šo paziņojumu, jo sekojat "%{participatory_space_title}". Jūs varat atteikties no paziņojumu saņemšanas, sekojot iepriekšējai saitei.
           email_subject: Jauns priekšlikums "%{resource_title}" tika pievienots %{participatory_space_title}
-          notification_title: Priekšlikums <a href="%{resource_path}">%{resource_title}</a> ir pievienots %{participatory_space_title}
         proposal_rejected:
           affected_user:
             email_intro: 'Jūsu priekšlikums "%{resource_title}" tika noraidīts. Jūs varat izlasīt atbildi šajā lapā:'
             email_outro: Jūs saņēmāt šo paziņojumu, jo esat "%{resource_title}" autors.
-            email_subject: Jūsu priekšlikums tika noraidīts
             notification_title: Jūsu priekšlikums <a href="%{resource_path}">%{resource_title}</a> tika noraidīts.
           follower:
             email_intro: 'Priekšlikums "%{resource_title}" tika noraidīts. Jūs varat izlasīt atbildi šajā lapā:'
@@ -467,11 +451,9 @@ lv:
             select_states: Pārbaudiet importējamo priekšlikumu statusu
         proposals_merges:
           create:
-            invalid: Apvienojot atlasītos priekšlikumus, radās problēma.
             success: Visi priekšlikumi ir veiksmīgi apvienoti vienā jaunā priekšlikumā.
         proposals_splits:
           create:
-            invalid: Sadalot atlasītos priekšlikumus, radās problēma.
             success: Priekšlikumi ir veiksmīgi sadalīti jaunos priekšlikumos.
         valuation_assignments:
           create:
@@ -543,7 +525,6 @@ lv:
             one: "%{count} sadarbības projekts"
             other: "%{count} sadarbības projekti"
         create:
-          error: Šo sadarbības projektu izveides laikā radās problēma
           success: Sadarbības projekts ir veiksmīgi izveidots.
         edit:
           attachment_legend: "(Pēc izvēles) Pievienojiet pielikumu"
@@ -712,7 +693,6 @@ lv:
             other: atbalsta
         new:
           send: Turpināt
-          title: Izveidojiet savu priekšlikumu
         orders:
           label: 'Kārtot priekšlikumus pēc:'
           most_commented: Visvairāk komentētie

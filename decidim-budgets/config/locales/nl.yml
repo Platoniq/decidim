@@ -13,14 +13,29 @@ nl:
         decidim_scope_id: Reikwijdte
         description: Beschrijving
         proposal_ids: Verwante voorstellen
+        proposals: Voorstellen
         selected: Geselecteerd voor implementatie
         title: Titel
+      proposals_import:
+        scope_id: Scope
   activerecord:
     models:
       decidim/budgets/project:
         one: project
         other: projecten
   decidim:
+    admin:
+      filters:
+        projects:
+          category_id_eq:
+            label: Categorie
+          scope_id_eq:
+            label: Scope
+          selected_at_null:
+            label: Geselecteerd
+            values:
+              'false': Geselecteerd voor implementatie
+              'true': Niet geselecteerd voor implementatie
     budgets:
       actions:
         attachment_collections: Mappen
@@ -89,7 +104,10 @@ nl:
             success: "%{number} voorstellen succesvol geïmporteerd in projecten"
           new:
             create: Voorstellen importeren in projecten
+            default_budget: Standaard budget
+            import_all_accepted_proposals: Alle geaccepteerde voorstellen importeren
             no_components: Er zijn geen andere voorstelonderdelen in deze participatieruimte om voorstellen in projecten te kunnen importeren.
+            origin_component_id: Oorsprong component
             select_component: Selecteer een component
             title: Voorstellen importeren
       admin_log:
@@ -119,6 +137,9 @@ nl:
         highlighted_cta: Stem op %{name}
         if_change_opinion: Als je van gedachten veranderd bent, kun je
         my_budgets: Mijn budgetten
+        progress: Beëindig stemmen
+        show: Bekijk projecten
+        vote: Stem
         voted_on: Je hebt gestemd op %{links}
       limit_announcement:
         cant_vote: Je kunt niet stemmen op dit budget. <a href="%{landing_path}">Probeer een ander budget</a>.
@@ -131,6 +152,8 @@ nl:
             total_budget: Totale budget
         project:
           fields:
+            category: Categorie
+            id: ID
             title: Titel
       order_summary_mailer:
         order_summary:
@@ -147,13 +170,13 @@ nl:
           title: Bevestig de stem
         budget_excess:
           budget_excess:
-            description: Dit project overschrijdt het maximale budget en kan niet worden toegevoegd. Als je wil, kun je een project verwijderen dat je al had geselecteerd, of je stem uitbrengen volgens je voorkeuren.
+            description: Dit project overschrijdt het maximale budget en kan niet worden toegevoegd. Als je wil, kun je een project verwijderen dat je al had geselecteerd, om je stem opnieuw te kunnen uitbrengen.
             title: Maximum budget overschreden
           close: Sluit
-          description: Dit project overschrijdt het maximale budget en kan niet worden toegevoegd. Als je wil, kun je een project verwijderen dat je al had geselecteerd, of je stem uitbrengen volgens je eigen voorkeuren.
+          description: Dit project overschrijdt het maximale budget en kan niet worden toegevoegd. Als je wil, kun je een project verwijderen dat je al had geselecteerd, om je stem opnieuw te kunnen uitbrengen.
           ok: OK
           projects_excess:
-            description: Dit project overschrijdt het maximum aantal projecten en kan niet worden toegevoegd. Als je wil, kun je een project verwijderen dat je al had geselecteerd, of je stem uitbrengen volgens je eigen voorkeuren.
+            description: Dit project overschrijdt het maximale aantal projecten en kan niet worden toegevoegd. Als je wil, kun je een project verwijderen dat je al had geselecteerd, om je stem opnieuw te kunnen uitbrengen.
             title: Maximum aantal projecten overschreden
         budget_summary:
           are_you_sure: Weet u zeker dat u uw stem wilt annuleren?
@@ -183,6 +206,12 @@ nl:
           projects_count:
             one: 1 project
             other: "%{count} projecten"
+        exit_modal:
+          cancel: Terug naar stemmen
+          close_modal: Sluit venster
+          exit: Verlaat stemmen
+          message: Je stem is niet geregistreerd omdat je het stemproces nog niet hebt voltooid. Weet je zeker dat je stemmen wil verlaten?
+          title: Je hebt nog niet gestemd
         filters:
           category: Categorie
           scope: Reikwijdte

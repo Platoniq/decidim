@@ -24,9 +24,9 @@ edit_link(
       <% end %>
     <% end %>
 
-    <h1 class="heading3">
+    <h2 class="heading3">
       <%== present(election).title %>
-    </h1>
+    </h2>
     <div class="card__callout">
       <%= cell "decidim/elections/remaining_time_callout", election %>
     </div>
@@ -45,7 +45,7 @@ edit_link(
   <% end %>
   <div class="columns medium-8 mediumlarge-7">
     <div class="section">
-      <p><%= decidim_sanitize(simple_format(translated_attribute(election.description)), strip_tags: true) %></p>
+      <p><%= decidim_sanitize_editor(simple_format(translated_attribute(election.description)), strip_tags: true) %></p>
 
       <%= cell("decidim/elections/election_vote_cta", election) %>
 

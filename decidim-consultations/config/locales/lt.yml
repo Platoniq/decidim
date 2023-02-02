@@ -390,7 +390,6 @@ lt:
         start_voting_date: Balsavimas prasideda
       question_components:
         question_menu_item: Klausimas
-        unfold: Išskleisti
       question_header:
         back_to_consultation: Žiūrėti visas konsultacijas
         back_to_question: Atgal į klausimą

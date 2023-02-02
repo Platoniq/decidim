@@ -502,6 +502,9 @@ id:
         new:
           create: Membuat
           title: Pengguna Pribadi Ruang Partisipatif Baru.
+      participatory_space_private_users_csv_imports:
+        create:
+          invalid: Ada kesalahan saat membaca file CSV.
       resource_permissions:
         edit:
           submit: Menyerahkan
@@ -607,13 +610,6 @@ id:
           success: Kelompok pengguna berhasil diverifikasi
       user_groups:
         index:
-          filter:
-            all: Semua
-            pending: Menunggu keputusan
-            rejected: Ditolak
-            verified: Diverifikasi
-          filter_by: Filter berdasarkan
-          search: Pencarian
           state:
             pending: Menunggu keputusan
             rejected: Ditolak

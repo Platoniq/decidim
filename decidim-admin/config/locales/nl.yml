@@ -123,6 +123,10 @@ nl:
         file: Bestand
     errors:
       models:
+        newsletter:
+          attributes:
+            base:
+              at_least_one_space: Selecteer minstens één participatieve ruimte
         organization:
           attributes:
             official_img_footer:
@@ -132,6 +136,7 @@ nl:
       new_import:
         attributes:
           file:
+            invalid_file: Ongeldig bestand opgegeven, controleer of het bestand correct geformatteerd is
             invalid_mime_type: Ongeldig mime-type
   activerecord:
     attributes:
@@ -179,7 +184,6 @@ nl:
           error: Er is een fout opgetreden bij het accepteren van de admin gebruiksvoorwaarden.
           success: Geweldig! Je hebt de admin gebruiksvoorwaarden geaccepteerd.
         actions:
-          accept: Ik ga akkoord met de volgende voorwaarden
           are_you_sure: Weet je zeker dat je de Admin gebruiksvoorwaarden wil resetten?
           refuse: Weiger de admin gebruiksvoorwaarden
           title: Ga akkoord met de gebruiksvoorwaarden
@@ -366,6 +370,13 @@ nl:
           values:
             'false': 'Nee'
             'true': 'Ja'
+        moderated_users:
+          reports_reason_eq:
+            label: Reden rapportering
+            values:
+              does_not_belong: Hoort niet
+              offensive: Beledigend
+              spam: Spam
         moderations:
           reportable_type_string_eq:
             label: Type
@@ -400,11 +411,18 @@ nl:
         search_label: Zoeken
         search_placeholder:
           name_or_nickname_or_email_cont: Zoek %{collection} op e-mail, naam of bijnaam.
+          report_count_eq: Aantal rapporteringen
           reported_id_string_or_reported_content_cont: Zoek %{collection} op rapporteerbaar id of op inhoud.
           title_cont: Zoek %{collection} op titel.
           user_name_or_user_email_cont: '%{collection} doorzoeken op Id of titel.'
+          user_name_or_user_nickname_or_user_email_cont: Doorzoek %{collection} op e-mail, naam of bijnaam.
         state_eq:
           label: Provincie
+          values:
+            all: Alle
+            pending: In afwachting
+            rejected: Afgewezen
+            verified: Geverifieerd
       forms:
         file_help:
           import:
@@ -450,20 +468,40 @@ nl:
           impersonate_existing_user: Beheer deelnemer "%{name}"
           impersonate_new_managed_user: Beheer nieuwe deelnemer
       imports:
-        creators:
-          proposalcreator: Maker van het voorstel
+        and: en
+        data_errors:
+          duplicate_headers:
+            detail: Controleer of het bestand de vereiste kolommen of koppen maar één keer bevat.
+            message:
+              one: Dubbele kolom %{columns}.
+              other: Dubbele kolommen %{columns}.
+          invalid_indexes:
+            lines:
+              detail: Controleer of deze regels correct zijn geformatteerd en geldige records bevatten.
+              message:
+                one: Er is een fout opgetreden in het importbestand op regel %{indexes}.
+                other: Fouten gevonden in het importbestand op regels %{indexes}.
+            records:
+              detail: Controleer of deze records correct zijn geformatteerd en geldige records bevatten.
+              message:
+                one: Er is een fout opgetreden in het importbestand voor records met nummers %{indexes}.
+                other: Fouten gevonden in het importbestand voor records met nummers %{indexes}.
+          missing_headers:
+            detail: Controleer of het bestand de vereiste kolommen bevat.
+            message:
+              one: Ontbrekende kolom %{columns}.
+              other: Ontbrekende kolommen %{columns}.
         error: Er zijn fouten opgetreden bij het importeren
-        help:
-          proposalcreator: Het bestand moet kolomnamen titel/nl en body/en bevatten (of een andere locale die jij verkiest, bijv. title/ca en body/ca). Ook scope/id en category/id kolommen worden ondersteund.
-        import_from_file: Uit een bestand importeren
-        invalid_lines: Fout gevonden in bronnummer %{invalid_lines}
+        example_error: Kon geen voorbeeld maken voor het opgegeven type
         new:
           accepted_mime_types:
             csv: csv
             json: json
-            xlsx: xlsx
+            xlsx: Excel (.xlsx)
           actions:
             back: Terug
+          download_example: Download voorbeeld
+          download_example_format: Voorbeeld als %{name}
           file_legend: Een importbestand toevoegen dat zal worden verwerkt.
           import: Importeren
         notice: "%{number} %{resource_name} succesvol geïmporteerd"
@@ -750,6 +788,7 @@ nl:
         form:
           colors:
             colors_title: Organisatiekleuren
+            colors_warning_html: Waarschuwing! Het wijzigen van deze kleuren kan de toegankelijkheid verminderen door een te klein contrast. Je kunt het contrast van je keuze nakijken met <a href="%{link}">WebAIM Contrast Checker</a> of andere vergelijkbare tools.
             header_snippets_help: Gebruik dit veld om dingen toe te voegen aan de HTML-kop. Het meest voorkomende gebruik is het integreren van diensten van derden die extra JavaScript of CSS nodig hebben. U kunt het ook gebruiken om extra metatags toe te voegen aan de HTML. Houd er rekening mee dat dit alleen op openbare pagina's wordt weergegeven, niet in de beheerdersafdeling.
           cta_button_path_help: 'U kunt de verwijzing van de knop "Call to Action" overschrijven. Gebruik hier gedeeltelijke paden, niet volledige URL''s. Aanvaardt letters, cijfers, streepjes en streepjes en moet beginnen met een brief. De knop "Call to Action" wordt weergegeven op de homepage tussen de welkomsttekst en de omschrijving. Voorbeeld: %{url}'
           cta_button_text_help: U kunt de tekst voor "Call To Action" overschrijven op de homepage voor elke beschikbare taal in uw organisatie. Indien niet ingesteld, wordt de standaardwaarde gebruikt. De knop Call to Action wordt weergegeven op de homepage tussen de welkomsttekst en de omschrijving.
@@ -928,13 +967,6 @@ nl:
           success: Groep succesvol geverifieerd
       user_groups:
         index:
-          filter:
-            all: Alle
-            pending: In afwachting
-            rejected: Geweigerd
-            verified: Geverifieerd
-          filter_by: Sorteren op
-          search: Zoeken
           state:
             pending: In afwachting
             rejected: Geweigerd
@@ -1009,7 +1041,7 @@ nl:
             hidden_at: Verborgen op
             participatory_space: Participatieve ruimte
             report_count: Aantal
-            reportable_id: Id
+            reportable_id: ID
             reportable_type: Type
             reported_content_url: Gerapporteerde inhouds-URL
             reports: Meldingen

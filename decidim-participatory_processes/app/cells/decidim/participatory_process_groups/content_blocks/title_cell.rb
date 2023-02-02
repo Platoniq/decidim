@@ -6,6 +6,7 @@ module Decidim
       class TitleCell < Decidim::ViewModel
         include Decidim::SanitizeHelper
         include Decidim::IconHelper
+        include Decidim::TwitterSearchHelper
 
         delegate :group_url, to: :participatory_process_group
 
@@ -42,10 +43,17 @@ module Decidim
         end
 
         def participatory_processes_count
-          @participatory_processes_count ||= participatory_process_group.participatory_processes.count
+          @participatory_processes_count ||= processes.count
         end
 
         private
+
+        def processes
+          @processes ||= Decidim::ParticipatoryProcesses::GroupPublishedParticipatoryProcesses.new(
+            participatory_process_group,
+            current_user
+          ).query
+        end
 
         def group_uri
           @group_uri = URI.parse(group_url)

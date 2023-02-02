@@ -59,9 +59,9 @@ lt:
         birthplace: Gimimo vieta
         ceased_date: Nutraukimo data
         designation_date: Paskyrimo data
-        designation_mode: Paskyrimo būdas
         full_name: Vardas, pavardė
         gender: Lytis
+        non_user_avatar: Avataras
         position: Pozicija
         user_id: Vartotojas arba grupė
       assembly_user_role:
@@ -188,6 +188,9 @@ lt:
         update:
           error: Atnaujinant asamblėjos administratorių kilo problema.
           success: Šios asamblėjos administratorius sėkmingai atnaujintas.
+      filters:
+        decidim_assemblies_type_id_eq:
+          label: Asamblėjos tipas
       menu:
         assemblies: Asamblėjos
         assemblies_settings: Nustatymai
@@ -302,7 +305,10 @@ lt:
         assembly_members:
           form:
             existing_user: Egzistuojantis dalyvis
+            explanation: 'Paveikslėliui skirtos gairės:'
+            image_guide: Pageidautina, kad tai būtų vertikalaus formato paveikslėlis be teksto.
             non_user: Neturintis dalyvio statuso subjektas
+            non_user_avatar_help: Turite gauti naudotojų sutikimą prieš publikuodami juos kaip narius.
             select_a_position: Pasirinkti poziciją
             select_user: Pasirinkti dalyvį
             user_type: Dalyvio tipas
@@ -319,6 +325,9 @@ lt:
         new_import:
           accepted_types:
             json: JSON
+      assemblies:
+        show:
+          title: Apie šią asamblėją
       assembly_members:
         index:
           members: Nariai
@@ -386,7 +395,7 @@ lt:
         related_participatory_processes: Susiję dalyvaujamieji procesai
         scope: Apimtis
         social_networks: Socialiniai tinklai
-        social_networks_title: Bendrinti šią asamblėją
+        social_networks_title: Aplankyti asamblėją
         target: Kas dalyvauja
     assembly_members:
       assembly_member:
@@ -397,7 +406,7 @@ lt:
       assemblies:
         create_assembly_member:
           email_intro: <a href="%{resource_url}">%{resource_name}</a> asamblėjos administratorius įtraukė jus kaip vieną iš jos narių.
-          email_outro: Šį pranešimą gavote dėl to, kad esate pakviestas į asamblėją. Norėdami prisidėti, <a href="%{resource_path}"> apsilankykite asamblėjos puslapyje </a>!
+          email_outro: Šį pranešimą gavote dėl to, kad esate pakviestas į asamblėją. Norėdami prisidėti, <a href="%{resource_url}"> apsilankykite asamblėjos puslapyje </a>!
           email_subject: Esate pakviestas tapti %{resource_name} asamblėjos nariu!
           notification_title: Jūs registravotės kaip Asamblėjos <a href="%{resource_path}">%{resource_name} narys. Peržiūrėkite <a href="%{resource_path}"> asamblėjos puslapį, </a> kad prisidėti!
       assembly:

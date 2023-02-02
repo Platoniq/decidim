@@ -40,6 +40,27 @@ describe "Explore projects", :slow, type: :system do
         end
       end
 
+      it "updates the current URL with the text filter" do
+        create(:project, budget: budget, title: { en: "Foobar project" })
+        create(:project, budget: budget, title: { en: "Another project" })
+        visit_budget
+
+        within "form.new_filter" do
+          fill_in("filter[search_text]", with: "foobar")
+          click_button "Search"
+        end
+
+        within ".category_id_check_boxes_tree_filter" do
+          uncheck "All"
+        end
+
+        expect(page).not_to have_content("Another project")
+        expect(page).to have_content("Foobar project")
+
+        filter_params = CGI.parse(URI.parse(current_url).query)
+        expect(filter_params["filter[search_text]"]).to eq(["foobar"])
+      end
+
       it "allows filtering by scope" do
         scope = create(:scope, organization: organization)
         project.scope = scope
@@ -70,6 +91,33 @@ describe "Explore projects", :slow, type: :system do
           check translated(category.name)
         end
 
+        within "#projects" do
+          expect(page).to have_css(".budget-list__item", count: 1)
+          expect(page).to have_content(translated(project.title))
+        end
+      end
+
+      it "works with 'back to list' link" do
+        category = categories.first
+        project.category = category
+        project.save
+
+        visit_budget
+
+        within ".category_id_check_boxes_tree_filter" do
+          uncheck "All"
+          check translated(category.name)
+        end
+
+        within "#projects" do
+          expect(page).to have_css(".budget-list__item", count: 1)
+          expect(page).to have_content(translated(project.title))
+        end
+
+        page.find(".budget-list__item .card__link", match: :first).click
+        click_link "View all projects"
+
+        take_screenshot
         within "#projects" do
           expect(page).to have_css(".budget-list__item", count: 1)
           expect(page).to have_content(translated(project.title))

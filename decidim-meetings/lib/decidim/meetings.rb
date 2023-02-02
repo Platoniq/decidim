@@ -23,5 +23,18 @@ module Decidim
     config_accessor :enable_proposal_linking do
       Decidim.const_defined?("Proposals")
     end
+
+    # Public Setting that defines the interval when the upcoming meeting will be sent
+    config_accessor :upcoming_meeting_notification do
+      2.days
+    end
+  end
+
+  module ContentParsers
+    autoload :MeetingParser, "decidim/content_parsers/meeting_parser"
+  end
+
+  module ContentRenderers
+    autoload :MeetingRenderer, "decidim/content_renderers/meeting_renderer"
   end
 end

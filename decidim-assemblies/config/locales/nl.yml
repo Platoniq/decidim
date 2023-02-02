@@ -59,9 +59,9 @@ nl:
         birthplace: Geboorteplaats
         ceased_date: Sluitingsdatum
         designation_date: Ontwerpdatum
-        designation_mode: Ontwerpdatum
         full_name: Volledige naam
         gender: Geslacht
+        non_user_avatar: Profielfoto
         position: Positie
         user_id: Gebruiker of gebruikersgroep
       assembly_user_role:
@@ -182,6 +182,9 @@ nl:
         update:
           error: Er is een fout opgetreden bij het bijwerken van een admin voor deze groep.
           success: Admin is succesvol bijgewerkt voor deze groep.
+      filters:
+        decidim_assemblies_type_id_eq:
+          label: Groepstype
       menu:
         assemblies: Groepen
         assemblies_settings: Instellingen
@@ -296,7 +299,10 @@ nl:
         assembly_members:
           form:
             existing_user: Bestaande deelnemer
+            explanation: 'Eigenschappen afbeelding:'
+            image_guide: Bij voorkeur een afbeelding in 'portretmodus' (staand) die geen tekst bevat.
             non_user: Niet deelnemer
+            non_user_avatar_help: Je hebt de toestemming nodig van de personen voordat je ze als lid publiceert.
             select_a_position: Selecteer een positie
             select_user: Selecteer een deelnemer
             user_type: Type deelnemer
@@ -313,6 +319,9 @@ nl:
         new_import:
           accepted_types:
             json: JSON
+      assemblies:
+        show:
+          title: Over deze groep
       assembly_members:
         index:
           members: Leden
@@ -380,7 +389,7 @@ nl:
         related_participatory_processes: Verwante inspraakprocessen
         scope: Scope
         social_networks: Sociale netwerken
-        social_networks_title: Deze groep delen op
+        social_networks_title: Bezoek groep op
         target: Wie doet mee
     assembly_members:
       assembly_member:
@@ -391,7 +400,7 @@ nl:
       assemblies:
         create_assembly_member:
           email_intro: Een beheerder van de <a href="%{resource_url}">%{resource_name}</a> groep heeft je toegevoegd als een van haar leden.
-          email_outro: Je hebt deze melding ontvangen omdat je uitgenodigd bent voor een vergadering. Bekijk de <a href="%{resource_path}">vergaderpagina</a> om bij te dragen!
+          email_outro: Je hebt dit bericht ontvangen omdat je bent uitgenodigd voor een groep. Bekijk de pagina van de groep <a href="%{resource_path}"></a> om bij te dragen!
           email_subject: Je bent uitgenodigd om lid te worden van de groep %{resource_name}
           notification_title: Je bent geregistreerd als lid van de groep <a href="%{resource_path}">%{resource_name}</a>. Bekijk de <a href="%{resource_path}">pagina</a> om bij te dragen!
       assembly:

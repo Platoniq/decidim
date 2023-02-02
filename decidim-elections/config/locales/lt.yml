@@ -12,7 +12,6 @@ lt:
         start_time: Balsavimas prasideda
         title: Pavadinimas
       question:
-        description: Aprašymas
         max_selections: Didžiausias pasirenkimų skaičius
         min_selections: Nei vienas iš pasiūlytų variantų
         title: Pavadinimas
@@ -64,6 +63,11 @@ lt:
         few: Klausimai
         many: Klausimai
         other: Klausimai
+      decidim/voting:
+        one: Balsavimas
+        few: Balsavimai
+        many: Balsavimai
+        other: Balsavimai
       decidim/votings/census/dataset:
         one: Duomenų rinkinys
         few: Duomenų rinkiniai
@@ -198,6 +202,11 @@ lt:
         exports:
           elections: Rinkimai
           feedback_form_answers: Atsiliepimų formos atsakymai
+        mailers:
+          trustee_mailer:
+            body: "<p>Sveiki %{user_name},</p><p>Buvote pridėtas kaip %{resource_name} patikėtinis.</p>"
+            subject: Buvote pridėtas kaip %{resource_name} patikėtinis
+            trustee_zone: Eiti į patikėtinių zoną
         menu:
           trustees: Patikėtiniai
         models:
@@ -220,6 +229,7 @@ lt:
             title: Importuoti pasiūlymus
         questions:
           create:
+            election_started: Rinkimai jau prasidėjo
             invalid: Kuriant šį klausimą iškilo problema
             success: Klausimas sukurtas
           destroy:
@@ -238,12 +248,15 @@ lt:
             success: Klausimas atnaujintas
         steps:
           create_election:
+            census: Surašymas
             errors:
+              census_uploaded: Šiems rinkimams nėra surašymo.
+              component_published: Rinkimų komponentas <strong>nėra publikuotas</strong>.
               max_selections: Klausimai neturi <strong>teisingos vertės atsakymų kiekiui</strong>
               minimum_answers: Klausimai turi turėti bent <strong>du atsakymus</strong>.
               minimum_questions: Rinkimai <strong>turi turėti bent vieną klausimą</strong>.
               published: Rinkimai <strong>nėra publikuoti</strong>.
-              time_before: Pradžios laikas yra <strong>mažiau nei už 3 valandų </strong> iki rinkimų pradžios.
+              time_before: Pradžios laikas už mažiau nei <strong>%{hours} valandų</strong>.
               trustees_number: Dalyvaujomi erdvė <strong>turi turėti bent %{number} patikėtinių su viešų raktu</strong>.
             invalid: Konfigūruojant šiuos rinkimus iškilo problema
             no_trustees: Šiai dalyvaujamajai erdvei nėra sukonfigūruotų Patikėtinių
@@ -252,6 +265,8 @@ lt:
               'false': neturi <strong>viešo rakto</strong>
               'true': turi <strong>viešą raktą</strong>
             requirements:
+              census_uploaded: Surašymas įkeliamas.
+              component_published: Rinkimų komponentas <strong>paskelbtas</strong>.
               max_selections: Visi klausimai turi teisingą kiekį <strong>maksimalių klausimų</strong>.
               minimum_answers: Kiekvienas klausimas turi bent <strong>du atsakymus</strong>.
               minimum_questions: Rinkimai <strong>turi bent vieną klausimą</strong>.
@@ -269,8 +284,8 @@ lt:
             title: Rinkimai sukurti
             trustees: Patikėtiniai
           key_ceremony:
+            continue: Tęsti
             title: Raktų ceremonija
-            trustees: Patikėtiniai
           key_ceremony_ended:
             errors:
               time_before: Rinkimai paruošti pradžiai. Reikia palaukti %{hours} valandas prieš pradžios laiką %{start_time} tam, kad pradėti balsavimą.
@@ -290,8 +305,14 @@ lt:
             submit: Pateikti
             title: Rezultatai publikuoti
           tally:
+            continue: Tęsti
+            invalid: Raportuojant trūkstantį patikėtinį iškilo problema
+            mark_as_missing: Pažymėti neesančiu
+            mark_as_missing_description: Visi patikėtiniai turėtų dalyvauti procese, bet jei patikėtinis to padaryti negali, galite jį pažymėti kaip trūkstantį.
+            success: Trūkstančio patikėtinio ataskaita išsiųsta į Skelbimų Lentą
+            tally_completion: Šis procesas bus įvykdytas kai visi patikėtiniai bus aktyvūs arba pažymėti kaip trūkstantys. Reikia bent %{quorum} patikėtinių, kad įvykdyti šį procesą.
             title: Skaičiavimo procesas
-            trustees: Patikėtiniai
+            undo_mark_as_missing: Patikėtinis netyčia pažymėtas kaip trūkstantis gali dalyvauti prieš pasibaigiant procesui. Jis gali atlikti savo užduotis kaip įprasta.
           tally_ended:
             answer: Atsakymas
             not_selected: Nepasrinkta
@@ -344,14 +365,27 @@ lt:
             success: Patikėtinis %{trustee} sėkmingai atnaujintas
       admin_log:
         election:
-          end_vote: "%{user_name} baigė balsavimo periodą %{resource_name} rinkimams Skelbimų Lentoje"
-          publish: "%{user_name} paskelbė %{resource_name} rinkimus"
-          publish_results: "%{user_name} paskelbė rinkimų %{resource_name} rezultatus Skelbimų Lentoje"
-          setup: "%{user_name} sukūrė rinkimus %{resource_name} Skelbimų Lentoje"
-          start_key_ceremony: "%{user_name} pradėjo pagrindinę %{resource_name} rinkimų ceremoniją Skelbimų Lentoje"
-          start_tally: "%{user_name} pradėjo skaičiuoti %{resource_name} rinkimų balsus Skelbimų Lentoje"
-          start_vote: "%{user_name} pradėjo balsavimo periodą %{resource_name} Skelbimų Lentoje"
-          unpublish: "%{user_name} panaikino %{resource_name} rinkimų skelbimą"
+          create: "%{user_name} sukūrė rinkimus %{resource_name} erdvėje %{space_name}"
+          delete: "%{user_name} ištrynė rinkimus %{resource_name} erdvėje %{space_name}"
+          end_vote: "%{user_name} baigė balsavimo periodą %{resource_name} rinkimams %{space_name} erdvėje Skelbimų Lentoje"
+          publish: "%{user_name} paskelbė rinkimus %{resource_name} erdvėje%{space_name}"
+          publish_results: "%{user_name} paskelbė rinkimų %{resource_name} erdėje %{space_name} rezultatus Skelbimų Lentoje"
+          report_missing_trustee: "%{user_name} pranešė %{trustee_name} kaip trūkstantį patikėtinį rinkimų %{resource_name} esančių %{space_name} erdvėje skaičiavimui Skelbimų Lentoje"
+          setup: "%{user_name} sukūrė rinkimus %{resource_name} erdvėje %{space_name} Skelbimų Lentoje"
+          start_key_ceremony: "%{user_name} pradėjo raktų ceremoniją rinkimams %{resource_name} erdvėje %{space_name} Skelbimų Lentoje"
+          start_tally: "%{user_name} pradėjo skaičiavimą rinkimams %{resource_name} erdvėje %{space_name} Skelbimų Lentoje"
+          start_vote: "%{user_name} pradėjo balsavimo periodą rinkimams %{resource_name} erdvėje%{space_name} Skelbimų Lentoje"
+          unpublish: "%{user_name} depublikavo %{resource_name} rinkimus %{space_name} erdvėje"
+          update: "%{user_name} atnaujino %{resource_name} rinkimus %{space_name} erdvėje"
+        trustee:
+          create: "%{user_name} priskyrė naudotoją %{trustee_user} kaip patikėtinį"
+      connection:
+        failed:
+          modal:
+            close: Uždaryti
+            communication_lost: Deja, bet panašu, kad ryšys su balsavimo serveriu (Skelbimų Lenta) - prarastas. <br>Gali būti, kad taip yra dėl interneto ryšio arba serverio apkrovos. <br>Pabandykite vėliau arba susisiekite su serverių prižiūrėtojais.
+            generic_error: Iškilo nežinoma klaida. Gali būti, kad taip yra todėl, kad Jūsų naršyklė nepalaikoma arba naudojate "incognito" nustatymus.
+            title: Įvyko klaida
       election_m:
         badge_name:
           finished: Užbaigta
@@ -605,7 +639,7 @@ lt:
           audit: "Audituoti biuletenį"
           back: Vėl pradėti balsavimo procesą
           ballot_hash: 'Biuletenio identifikacinis kodas:'
-          cast: Balsuoti
+          cast: Užpildykite biuletenį norėdami baigti balsavimą
           description: Čia galite balsuoti arba patikrinti ar Jūsų balsas buvo teisingai užšifruotas. Saugumo sumetimais audito atlikimas sugadins jūsų balsavimo biuletenį. Tai reiškia, kad, norėdami atiduoti balsą, turėsite iš naujo pradėti balsavimo procesą.
           header: 'Biuletenis užšifruotas: galite jį įskaityti arba audituoti'
         casting:
@@ -636,6 +670,10 @@ lt:
         failed:
           header: Balsavimas nepavyko
           lead: Jūsų balsas nebuvo įskaičiuotas!
+          modal:
+            close: Uždaryti
+            communication_lost: Deja, bet panašu, kad ryšys su balsavimo serveriu (Skelbimų Lenta) - prarastas. <br>Gali būti, kad taip yra dėl interneto ryšio arba serverio apkrovos. <br>Pabandykite vėliau arba susisiekite su serverių prižiūrėtojais.
+            title: Įvyko klaida
           text: Įvyko klaida. Bandykite dar kartą.
           try_again: Bandykite dar kartą
         header:
@@ -991,14 +1029,20 @@ lt:
             assign_missing_officers: Kai kurie balsavimo punktai neturi prezidento ir/arba vadybininkų. Prašome juos priskirti
             update: Atnaujinti
           form:
-            census_contact_information_help: Ši kontaktinė informacija skirta dalyviams, norintiems pranešti apie surašymo problemas. Tai gali būti el. pašto adresas, kontaktinė forma kitoje svetainėje, „Decidim“ apklausa lankytojams ir kt.
+            banner_image: Reklamjuostės paveikslėlis
+            census_contact_information: Surašytojų kontaktinė informacija
+            census_contact_information_help: Ši kontaktinė informacija skirta dalyviams norintiems pranešti apie problemas. Tai gali būti el. pašto adresas, kontaktinė forma kitame puslapyje ir t. t.
+            introductory_image: Įvadinis paveikslėlis
+            promoted: Paremta
             select_a_voting_type: Pasirinkite balsavimo tipą
+            slug: Nuorodos dalis
             slug_help: 'Nuorodos priedėliai nukreipia į šią konkretų balsavimą. Priedėliai sudaromi iš raidžių, skaičių, brukšnių ir turi prasidėti nuo raidės. Pavyzdys: %{url}'
             title: Pavadinimas
             voting_type:
               hybrid: Hibridinis
               in_person: Fizinis
               online: Virtualus
+            voting_type_label: Balsavimo tipas
           new:
             create: Sukurti
             title: Naujas balsavimas
@@ -1010,6 +1054,24 @@ lt:
             invalid: Atnaujinant šį balsavimą iškilo problema
             success: Balsavimas sėkmingai atnaujintas
       admin_log:
+        ballot_style:
+          create: "%{user_name} sukūrė biuletenio tipą su kodu %{ballot_style_code} erdvėje %{space_name}"
+          delete: "%{user_name} ištrynė biuletenio tipą su kodu %{ballot_style_code} erdvėje %{space_name}"
+          update: "%{user_name} atnaujino biuletenio tipą su kodu %{ballot_style_code} erdvėje %{space_name}"
+        census:
+          create: "%{user_name} sukūrė surašymą %{space_name} erdvėje"
+          delete: "%{user_name} ištrynė surašymą erdvėje %{space_name}"
+          update: "%{user_name} atnaujino surašymą erdvėje %{space_name}"
+        monitoring_committee_member:
+          create: "%{user_name} priskyrė naudotoją %{monitoring_committee_member_user} kaip priežiūros komiteto narį erdvėje %{space_name}"
+          delete: "%{user_name} atskyrė naudotoją %{monitoring_committee_member_user} kaip priežiūros komiteto narį nuo erdvės %{space_name}"
+        polling_officer:
+          create: "%{user_name} priskyrė naudotoją %{polling_officer_user} kaip balsavimo prižiūrėtoją erdvėje %{space_name}"
+          delete: "%{user_name} atskyrė naudotoją %{polling_officer_user} kaip balsavimo prižiūrėtoją nuo erdvės %{space_name}"
+        polling_station:
+          create: "%{user_name} sukūrė balsavimo punktą %{resource_name} erdvėje %{space_name}"
+          delete: "%{user_name} pašalino balsavimo punktą %{resource_name} erdvėje %{space_name}"
+          update: "%{user_name} atnaujino balsavimo punktą %{resource_name} erdvėje %{space_name}"
         voting:
           create: "%{user_name} sukūrė %{resource_name} balsavimą"
           publish: "%{user_name} paskelbė %{resource_name} balsavimą"
@@ -1019,7 +1081,7 @@ lt:
           census:
             create:
               invalid: Kuriant surašymą kilo problema. Pabandykite dar kartą vėliau.
-              invalid_csv_header: CSV antraštėje nėra tinkamo laukų skaičiaus – atidžiai perskaitykite instrukcijas
+              invalid_csv_header: Trūksta CSV antraščių, arba jos nėra teisingos - prašome atidžiai perskaityti instrukcijas
             creating_data:
               info_message: "<strong>Prašome palaukti</strong>, aprodota %{processed_count} iš %{raw_count} eilučių iš %{file} failo."
             delete:
@@ -1032,7 +1094,7 @@ lt:
               button: Eksportuoti balsavimo prieigos kodus
               callout: Galite toliau tęsti prieigos kodų eksportą. Tai gali būti atlikta tik vieną kartą. Kai pradėsite eksportavimą, el. pašto dėžutėje rasite laišką su instrukcijomis į <strong>%{email}</strong>
               confirm: Galite eskportuoti prieigos kodą vieną kartą. Užtikrinkite, kad turite prieigą prie el. pašto <strong>%{email}</strong>.
-              file_not_exists: Failas neegzistuoja
+              file_not_exist: Failas neegzistuoja
               launch_error: Pradedant prieigos kodų eksportą kilo problema
               launch_success: Prieigos kodų eksportas prasidėjo. Neužilgo gausite el. laišką į %{email}
             exporting_access_codes:
@@ -1083,8 +1145,7 @@ lt:
           name: Paryškinti balsavimai
         landing_page:
           description:
-            show_less: Suskleisti
-            show_more: Skaityti toliau
+            title: Apie šį balsavimą
           metrics:
             heading: Rodikliai
           polling_stations:
@@ -1137,7 +1198,7 @@ lt:
             modal_ballots_count_error:
               btn_validate_total: Patvirtinti biuletenių perskaičiavimą
               close_modal: Uždaryti
-              info_explanation_text: 'Prašome peržiūrėti bendrą balsavimo biuletenių skaičių. Jei bendras skaičius teisingas, turite pateikti paaiškinimą Priežiūros Komitetui:'
+              info_explanation_text: 'Prašau peržiūrėkite visą biuletenių skaičių. Jei suminis skaičius neteisingas, prašau pateikite paaiškinimą priežiūros komitetui:'
               info_text: Įvestas visas biuletenių skaičius (vokai) neatitinka balsavusių balsavimo punkte skaičiaus.
               message_for_monitoring_committee: Žinutė priežiūros komitetui
               review_recount: Peržiūrėti perskaičiavimą
@@ -1262,12 +1323,13 @@ lt:
           check_status: Patikrinti būseną
           description: Čia galite patikrinti surašymo duomenis ir patikrinti ar galite dalyvauti. Turėtumėt turėti prieigos kodą, tačiau jei jį pametėt galėsite paprašyti kito kai duomenys bus teisingi.
           error:
-            info: 'Pabandykite iš naujo. Jei manote, kad duomenys sistemoje neteisingi, apie tai galite pranešti: %{census_contact_information}.'
-            title: Jūsų surašymo duomenys neteisingi!
+            info: 'Pabandykite iš naujo. Jei manote, kad duomenys sistemoje neteisingi, apie tai galite pranešti: %{census_contact_information}'
+            title: Duomenys, kuriuos įvedėte nėra šio balsavimo surašyme
           form_title: 'Užpildykite šią formą, kad patikrinti savo surašymo duomenis:'
           invalid: Tikrinant surašymo duomenis iškilo problema.
           success:
-            access_link: SMS ar el. paštu.
+            access_link: el. paštu.
+            access_link_with_sms: SMS ar el. paštu.
             info: Turėjote gauti prieigos kodą per paštą. Jei negavote, išsiųskite užklausą čia
             title: Jūsų surašymo duomenys teisingi!
           title: Ar galiu balsuoti?
@@ -1277,6 +1339,7 @@ lt:
           day_placeholder: DD
           document_number: Dokumento numeris
           document_number_placeholder: Asmens tapatybės dokumento numeris
+          document_type: Dokumento tipas
           month: Mėnuo
           month_placeholder: MM
           postal_code: Pašto kodas

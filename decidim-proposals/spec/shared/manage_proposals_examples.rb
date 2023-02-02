@@ -27,6 +27,19 @@ shared_examples "manage proposals" do
     end
   end
 
+  describe "listing" do
+    context "with enriched content" do
+      before do
+        proposal.update!(title: { en: "Proposal <strong>title</strong>" })
+        visit current_path
+      end
+
+      it "displays the correct title" do
+        expect(page.html).to include("Proposal &lt;strong&gt;title&lt;/strong&gt;")
+      end
+    end
+  end
+
   describe "creation" do
     context "when official_proposals setting is enabled" do
       before do
@@ -231,7 +244,7 @@ shared_examples "manage proposals" do
 
         context "when proposals comes from a meeting" do
           let!(:meeting_component) { create(:meeting_component, participatory_space: participatory_process) }
-          let!(:meetings) { create_list(:meeting, 3, component: meeting_component) }
+          let!(:meetings) { create_list(:meeting, 3, :published, component: meeting_component) }
 
           it "creates a new proposal with meeting as author" do
             click_link "New proposal"
@@ -335,6 +348,10 @@ shared_examples "manage proposals" do
         within find("tr", text: proposal_title) do
           expect(page).to have_content("Rejected")
         end
+
+        proposal.reload
+        expect(proposal.answered_at).to be_within(2.seconds).of Time.zone.now
+        expect(proposal.state_published_at).to be_within(2.seconds).of Time.zone.now
       end
 
       it "can accept a proposal" do
@@ -350,6 +367,10 @@ shared_examples "manage proposals" do
         within find("tr", text: proposal_title) do
           expect(page).to have_content("Accepted")
         end
+
+        proposal.reload
+        expect(proposal.answered_at).to be_within(2.seconds).of Time.zone.now
+        expect(proposal.state_published_at).to be_within(2.seconds).of Time.zone.now
       end
 
       it "can mark a proposal as evaluating" do
@@ -365,6 +386,37 @@ shared_examples "manage proposals" do
         within find("tr", text: proposal_title) do
           expect(page).to have_content("Evaluating")
         end
+
+        proposal.reload
+        expect(proposal.answered_at).to be_within(2.seconds).of Time.zone.now
+        expect(proposal.state_published_at).to be_within(2.seconds).of Time.zone.now
+      end
+
+      it "can mark a proposal as 'not answered'" do
+        proposal.update!(
+          state: "rejected",
+          answer: {
+            "en" => "I don't like it"
+          },
+          answered_at: Time.current
+        )
+
+        go_to_admin_proposal_page_answer_section(proposal)
+
+        within ".edit_proposal_answer" do
+          choose "Not answered"
+          click_button "Answer"
+        end
+
+        expect(page).to have_admin_callout("Proposal successfully answered")
+
+        within find("tr", text: proposal_title) do
+          expect(page).to have_content("Not answered")
+        end
+
+        proposal.reload
+        expect(proposal.answered_at).to eq(nil)
+        expect(proposal.state_published_at).to eq(nil)
       end
 
       it "can edit a proposal answer" do
@@ -394,6 +446,9 @@ shared_examples "manage proposals" do
         within find("tr", text: proposal_title) do
           expect(page).to have_content("Accepted")
         end
+
+        proposal.reload
+        expect(proposal.answered_at).to be_within(2.seconds).of Time.zone.now
       end
     end
 

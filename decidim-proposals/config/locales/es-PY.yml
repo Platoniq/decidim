@@ -57,6 +57,16 @@ es-PY:
               identical: Y el título no puede ser idéntico
             title:
               identical: Y el cuerpo no puede ser idéntico
+        proposals_merge:
+          attributes:
+            base:
+              not_official: No son oficiales
+              supported: Han recibido apoyos o adhesiones
+        proposals_split:
+          attributes:
+            base:
+              not_official: No son oficiales
+              supported: No han recibido apoyos ni adhesiones
     models:
       decidim/proposals/accepted_proposal_event: Propuesta aceptada
       decidim/proposals/admin/update_proposal_category_event: La categoría de la propuesta ha cambiado
@@ -125,7 +135,6 @@ es-PY:
         name: Propuestas
         settings:
           global:
-            allow_card_image: Permitir tarjeta con imagen
             amendments_enabled: Enmiendas habilitadas
             amendments_enabled_help: Si está activo, configura las opciones de enmiendas para cada fase.
             amendments_wizard_help_text: Asistente de ayuda de las enmiendas
@@ -135,6 +144,17 @@ es-PY:
             collaborative_drafts_enabled: Habilitar borradores colaborativos
             comments_enabled: Comentarios habilitados
             comments_max_length: Longitud máxima de los comentarios (deja 0 si quieres mantener la configuración por defecto)
+            default_sort_order: Ordenación por defecto de propuestas
+            default_sort_order_help: Por defecto significa que si los apoyos están habilitados, las propuestas se mostrarán en orden aleatorio, y si los apoyos están bloqueados, se ordenarán por las más apoyadas.
+            default_sort_order_options:
+              default: Por defecto
+              most_commented: Más comentadas
+              most_endorsed: Con más adhesiones
+              most_followed: Más seguidas
+              most_voted: Con más apoyos
+              random: Aleatorio
+              recent: Recientes
+              with_more_authors: Con más autoras
             geocoding_enabled: Geocodificación habilitada
             minimum_votes_per_user: Votos mínimos por usuario
             new_proposal_body_template: Plantilla para el texto de nueva propuesta
@@ -176,11 +196,24 @@ es-PY:
             answers_with_costs: Habilitar coste en las respuestas a propuestas
             automatic_hashtags: Hashtags añadidos a todas las propuestas.
             comments_blocked: Comentarios bloqueados
-            creation_enabled: Creación de propuesta habilitada
+            creation_enabled: Las participantes pueden crear propuestas
+            creation_enabled_readonly: Esta opción se desactiva cuando activas la funcionalidad de Textos Participativos. Para subir propuestas como texto participativo haz clic en el botón Textos Participativos y sigue las instrucciones.
+            default_sort_order: Orden predeterminado de propuestas
+            default_sort_order_help: Por defecto significa que si los apoyos están habilitados, las propuestas se mostrarán en orden aleatorio, y si los apoyos están bloqueados, se ordenarán por las más apoyadas.
+            default_sort_order_options:
+              default: Por defecto
+              most_commented: Más comentadas
+              most_endorsed: Con más adhesiones
+              most_followed: Más seguidas
+              most_voted: Con más apoyos
+              random: Aleatorio
+              recent: Recientes
+              with_more_authors: Con más autoras
             endorsements_blocked: Adhesiones bloqueados
             endorsements_enabled: Adhesiones habilitados
             proposal_answering_enabled: Contestación de propuesta habilitada
             publish_answers_immediately: Publicar respuestas a las propuestas inmediatamente
+            publish_answers_immediately_help_html: 'Ten en cuenta que si respondes a alguna propuesta sin que esto esté habilitado, tendrás que publicarlas manualmente seleccionándolas y utilizando la acción de publicar. Para más información sobre el funcionamiento, consulta la <a href="https://docs.decidim.org/en/admin/components/proposals/answers#_publication" target="_blank">página de documentación de respuestas a las propuestas</a>.'
             suggested_hashtags: Hashtags sugeridos a los usuarios para nuevas propuestas.
             votes_blocked: Votación bloqueada
             votes_enabled: Votación habilitada
@@ -194,33 +227,33 @@ es-PY:
             email_subject: Alguien dejó una nota en la propuesta %{resource_title}.
             notification_title: Alguien ha dejado una nota en la propuesta <a href="%{resource_path}">%{resource_title}</a>. Revísala ahora a través del <a href="%{admin_proposal_info_path}">panel de administración</a>
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} ha sido aceptado para acceder como contribuidor del borrador colaborativo de <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Has recibido esta notificación porque eres un contribuidor de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} ha sido aceptada para acceder como contribuidora del borrador colaborativo <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Has recibido esta notificación porque eres una contribuidora de <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} ha sido aceptado para acceder como contribuidor de %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> ha sido <strong>aceptado para acceder como colaborador</strong> del borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} ha sido rechazado para acceder como contribuidor del borrador colaborativo de <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Has recibido esta notificación porque eres un contribuidor de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: 'Se ha denegado que %{requester_name} acceda como contribuidora del borrador colaborativo <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Has recibido esta notificación porque eres una contribuidora de <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} ha sido rechazado para acceder como contribuidor del borrador colaborativo %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> ha sido <strong>rechazado para acceder como contribuidor</strong> del borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} ha solicitado acceso como colaborador. Puede <strong>aceptar o rechazar la solicitud</strong> de la página de borrador colaborativo de <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Has recibido esta notificación porque eres un contribuidor de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} ha solicitado acceso como contribuidora. Puede <strong>aceptar o rechazar la solicitud</strong> de la página de borrador colaborativo de <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Has recibido esta notificación porque eres contribuidora de <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{requester_name} solicitó acceso para contribuir a %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> solicitó acceso para contribuir al borrador de colaboración <a href="%{resource_path}">%{resource_title}</a>. Por favor <strong>aceptar o rechazar la solicitud</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: Has sido aceptado para acceder como contribuidor del borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Has sido aceptado para acceder como contribuidor del borrador colaboraivo <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Has sido aceptada para acceder como contribuidora del borrador colaborativo <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Has recibido esta notificación porque has solicitado ser contribuidora de <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: Has sido aceptado como contribuidor de %{resource_title}.
           notification_title: Ha aceptado <strong>acceder como contribuidor</strong> del borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requester_rejected:
-          email_intro: Ha sido rechazado para acceder como contribuidor del borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Has recibido esta notificación porque has solicitado ser contribuidor de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Ha sido rechazada para acceder como contribuidora del borrador colaborativo <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Has recibido esta notificación porque has solicitado ser contribuidora de <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: Has sido rechazado como contribuidor de %{resource_title}.
           notification_title: Has sido <strong>rechazado para acceder como contribuidor</strong> al borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> ha retirado el borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Has recibido esta notificación porque eres un colaborador de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: <a href="%{author_url}">%{author_name} %{author_nickname}</a> ha retirado el borrador colaborativo <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Has recibido esta notificación porque eres contribuidora de <a href="%{resource_url}">%{resource_title}</a>.
           email_subject: "%{author_name} %{author_nickname} ha retirado el borrador colaborativo %{resource_title}."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>ha retirado</strong> el borrador colaborativo <a href="%{resource_path}">%{resource_title}</a>.
         creation_enabled:
@@ -269,12 +302,13 @@ es-PY:
           email_intro: La propuesta "%{resource_title}" se ha añadido a "%{participatory_space_title}" que estás siguiendo.
           email_outro: Recibiste esta notificación porque estás siguiendo "%{participatory_space_title}". Puedes dejar de seguirlo desde el enlace anterior.
           email_subject: Nueva propuesta "%{resource_title}" añadida a %{participatory_space_title}
-          notification_title: La propuesta <a href="%{resource_path}">%{resource_title}</a> se ha agregado a %{participatory_space_title}
+          notification_title: La propuesta <a href="%{resource_path}">%{resource_title}</a> ha sido añadida a %{participatory_space_title} por %{author}
+          notification_title_official: Se ha añadido la propuesta oficial <a href="%{resource_path}">%{resource_title}</a> en %{participatory_space_title}
         proposal_rejected:
           affected_user:
             email_intro: 'Su propuesta "%{resource_title}" ha sido rechazada. Puedes leer la respuesta en esta página:'
             email_outro: Has recibido esta notificación porque eres autor de "%{resource_title}".
-            email_subject: Su propuesta ha sido rechazada
+            email_subject: Tu propuesta ha sido rechazada
             notification_title: Su propuesta <a href="%{resource_path}">%{resource_title}</a> ha sido rechazada.
           follower:
             email_intro: 'La propuesta "%{resource_title}" ha sido rechazada. Puedes leer la respuesta en esta página:'
@@ -366,6 +400,36 @@ es-PY:
         exports:
           proposal_comments: Comentarios
           proposals: Propuestas
+        imports:
+          help:
+            answers: |
+              El documento de importación debe contener los siguientes nombres de columna en caso de archivos CSV o Excel. o nombres de claves en caso de archivos JSON:
+              <ul>
+              <li><b>id:</b> ID de la propuesta a responder</li>
+              <li>estado<b>:</b> Uno de estos "aceptada", "en evaluación" o "rechazada"</li>
+              <li><b>respuesta/en:</b> Respuesta en idioma inglés. Esto dependerá de la configuración de idioma predeterminado de tu plataforma.</li>
+              </ul>
+            proposals: |
+              El documento de importación debe contener los siguientes nombres de columna en caso de archivos CSV o Excel. o nombres de claves en caso de archivos JSON:
+              <ul>
+              <li><b>title/es:</b> Título en castellano. Esto dependerá de la configuración de idioma predeterminado de tu plataforma.</li>
+              <li><b>body/en:</b> Descripció en castellano. Esto dependerá de la configuración de idioma predeterminado de tu plataforma.</li>
+              <li><b>scope/id:</b> ID de l'Ámbito</li>
+              <li><b>category/id:</b> ID de la Categoria</li>
+              </ul>
+          label:
+            answers: Importar respuestas desde un archivo
+            proposals: Importar propuestas desde un archivo
+          resources:
+            answers:
+              one: respuesta a propuesta
+              other: respuestas a propuestas
+            proposals:
+              one: propuesta
+              other: propuestas
+          title:
+            answers: Importar respuestas de propuestas
+            proposals: Importar propuestas
         models:
           proposal:
             name: Propuesta
@@ -407,6 +471,7 @@ es-PY:
             accepted: Aceptadas
             answer_proposal: Respuesta
             evaluating: En evaluación
+            not_answered: No contestada
             rejected: Rechazada
             title: Responder a la propuesta %{title}
         proposal_notes:
@@ -509,11 +574,11 @@ es-PY:
             title: Importar propuestas
         proposals_merges:
           create:
-            invalid: Se produjo un error al fusionar las propuestas seleccionadas.
+            invalid: 'Ha habido un problema al fusionar las propuestas seleccionadas porque algunas de ellas:'
             success: Fusionó con éxito las propuestas en una nueva.
         proposals_splits:
           create:
-            invalid: Hubo un error dividiendo las propuestas seleccionadas.
+            invalid: 'Ha habido un problema al dividir las propuestas seleccionadas porque algunas de ellas:'
             success: Dividió con éxito las propuestas en otras nuevas.
         valuation_assignments:
           create:
@@ -584,7 +649,7 @@ es-PY:
             one: "%{count} borrador colaborativo"
             other: "%{count} borrador colaborativo"
         create:
-          error: Ha habido un problema al crear este borradores colaborativo
+          error: Hubo un problema al crear este borrador colaborativo.
           success: Borrador colaborativo creado con éxito.
         edit:
           attachment_legend: "(Opcional) Añadir un archivo adjunto"
@@ -753,9 +818,12 @@ es-PY:
           filter_by: Filtrar por
           unfold: Desplegar
         index:
+          click_here: Ver todas las propuestas
           collaborative_drafts_list: Acceder a borradores colaborativos
           new_proposal: Nueva propuesta
+          see_all: Ver todas las propuestas
           see_all_withdrawn: Ver todas las propuestas retiradas
+          text_banner: Estás viendo la lista de propuestas retiradas por sus autoras. %{go_back_link}.
           view_proposal: Ver propuesta
         linked_proposals:
           proposal_votes:

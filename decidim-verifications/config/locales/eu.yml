@@ -78,7 +78,10 @@ eu:
     events:
       verifications:
         verify_with_managed_user:
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> parte-hartzailea saiatu da bere burua identifikatzen <a href="%{managed_user_path}">%{managed_user_name}</a> kudeatutako parte-hartzailearen datuekin
+          email_intro: <a href="%{resource_url}">%{resource_title}</a> parte-hartzailea (<a href="%{managed_user_url}">%{managed_user_name}</a>) parte-hartzaileaen datuekin egiaztatzen saiatu da.
+          email_outro: Egiaztau <a href="%{conflicts_url}">gatazken zerrenda </a> eta jarri harremanetan parte-hartzailearekin bere datuak egiaztatu eta arazoa konpontzeko.
+          email_subject: Errorea beste parte-hartzaile baten bidez egiaztatzeagatik
+          notification_title: <a href="%{resource_url}">%{resource_title}</a> parte-hartzailea (<a href="%{managed_user_url}">%{managed_user_name}</a>) parte-hartzaileaen datuekin egiaztatzen saiatu da.
     verifications:
       authorizations:
         authorization_metadata:

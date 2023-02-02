@@ -49,6 +49,24 @@ module Decidim
       end
     end
 
+    describe "name" do
+      context "with an empty name" do
+        let(:name) { "" }
+
+        it "is invalid" do
+          expect(subject).not_to be_valid
+        end
+      end
+
+      context "with invalid characters" do
+        let(:name) { "foo@bar" }
+
+        it "is invalid" do
+          expect(subject).not_to be_valid
+        end
+      end
+    end
+
     describe "email" do
       context "with an empty email" do
         let(:email) { "" }
@@ -59,10 +77,20 @@ module Decidim
       end
 
       context "when it's already in use in the same organization" do
-        let!(:existing_user) { create(:user, email: email, organization: organization) }
+        context "and belongs to a user" do
+          let!(:existing_user) { create(:user, email: email, organization: organization) }
 
-        it "is invalid" do
-          expect(subject).not_to be_valid
+          it "is invalid" do
+            expect(subject).not_to be_valid
+          end
+        end
+
+        context "and belongs to a group" do
+          let!(:existing_group) { create(:user_group, email: email, organization: organization) }
+
+          it "is invalid" do
+            expect(subject).not_to be_valid
+          end
         end
       end
 
@@ -85,10 +113,20 @@ module Decidim
       end
 
       context "when it's already in use in the same organization" do
-        let!(:existing_user) { create(:user, nickname: nickname, organization: organization) }
+        context "and belongs to a user" do
+          let!(:existing_user) { create(:user, nickname: nickname, organization: organization) }
 
-        it "is invalid" do
-          expect(subject).not_to be_valid
+          it "is invalid" do
+            expect(subject).not_to be_valid
+          end
+        end
+
+        context "and belongs to a group" do
+          let!(:existing_group) { create(:user_group, nickname: nickname, organization: organization) }
+
+          it "is invalid" do
+            expect(subject).not_to be_valid
+          end
         end
       end
 

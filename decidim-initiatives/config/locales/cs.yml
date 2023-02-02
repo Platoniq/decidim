@@ -2,6 +2,7 @@ cs:
   activemodel:
     attributes:
       initiative:
+        area_id: Oblast
         decidim_user_group_id: Autor
         description: Popis
         offline_votes: Osobní fyzické podpisy
@@ -12,18 +13,20 @@ cs:
         signature_type: Typ sbírky podpisu
         signature_type_values:
           any: Online nebo naživo
-          offline: Z očí do očí
+          offline: Osobně
           online: OnLine
         state: Stav
         title: Titul
       initiatives_committee_member:
         user: Člen výboru
+      initiatives_settings:
+        initiatives_order: Pořadí
       initiatives_type:
         area_enabled: Povolit autorům vybrat tematickou oblast pro jejich iniciativu
         attachments_enabled: Povolit přílohy
         banner_image: Obrázek banneru
         child_scope_threshold_enabled: Povolit podpisy podřízené oblasti působnosti
-        collect_user_extra_fields: Sbírejte osobní údaje uživatelů podpisem
+        collect_user_extra_fields: Shromažďovat osobní údaje účastníků při podpisu
         custom_signature_end_date_enabled: Povolit autorům zvolit konec doby sběru podpisů
         description: Popis
         document_number_authorization_handler: Autorizace k ověření čísla dokumentu pro podpisy
@@ -32,6 +35,7 @@ cs:
         online_signature_enabled: Online podpis povolen
         only_global_scope_enabled: Umožnit pouze vytvoření iniciativ globálního rozsahu
         promoting_committee_enabled: Povolit podporu výboru
+        signature_type: Typ podpisu
         title: Titul
         undo_online_signatures_enabled: Povolit účastníkům vrátit zpět své online podpisy
         validate_sms_code_on_votes: Přidejte krok ověření SMS kódu do procesu podpisu
@@ -55,9 +59,9 @@ cs:
   activerecord:
     models:
       decidim/initiative:
-        one: Initativní
+        one: Iniciativa
         few: Iniciativy
-        many: Iniciativy
+        many: Iniciativ
         other: Iniciativy
       decidim/initiative_comittee:
         one: Výbor
@@ -244,8 +248,6 @@ cs:
             edit: Upravit
             new: Nový
             photos: Fotky
-          show:
-            print: Tisk
           update:
             error: Došlo k chybě
             success: Iniciativa občanů byla úspěšně aktualizována
@@ -280,8 +282,8 @@ cs:
             update: Aktualizovat
           form:
             authorizations: Nastavení autorizace
-            child_scope_threshold_enabled_help: 'Tento příznak konfigurace nepodporuje offline hlasování, povoluje dílčí oblasti působnosti a pracuje s obslužnou rutinou autorizace, která přidruží oblast působnosti uživateli. ujistěte se, že jste vybrali tuto autorizaci níže v nastavení autorizace. Aby to fungovalo, je třeba hierarchicky nakonfigurovat oblasti působnosti: 1 Nadřazený - N Podřazených. Další informace o tom, jak tato konfigurace funguje, naleznete v tomto <a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank"> odkazu </a>.'
-            only_global_scope_enabled_help: Zaškrtněte tuto poznámku, pokud jste povolili "Podřazená oblast působnosti" a nakonfigurovali globální rozsah jako vaši nadřazenou oblast působnosti. Povolením této možnosti bude výběr typu iniciativy přeskočeno v průvodci vytvořením iniciativy. Více informací o tom, jak tato konfigurace funguje, naleznete na tomto <a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">odkazu</a>.
+            child_scope_threshold_enabled_help: 'Tento příznak konfigurace nepodporuje offline hlasování, umožňuje podřízené oblasti působnosti a pracuje s obslužnou rutinou autorizace, která uživateli přiřazuje rozsah, Ujistěte se, že jste vybrali tuto autorizaci, níže v nastavení autorizace. Aby fungovala obblast působnosti, musí být nastavena hierarchickým způsobem: 1 nadřazený - N podřazených. Více informací o tom, jak tato konfigurace funguje, naleznete na tomto <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">odkazu</a>.'
+            only_global_scope_enabled_help: Zaškrtněte tuto poznámku, pokud jste povolili "Podřazená oblast působnosti" a nakonfigurovali globální rozsah jako vaši nadřazenou oblast působnosti. Povolením této možnosti bude výběr typu iniciativy přeskočeno v průvodci vytvořením iniciativy. Více informací o tom, jak tato konfigurace funguje, naleznete na tomto <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">odkazu</a>.
             options: Možnosti
             title: Obecná informace
           initiative_type_scopes:
@@ -315,7 +317,7 @@ cs:
           all: Vše
           answered: Odpovězeno
           closed: Uzavřeno
-          open: otevřeno
+          open: Otevřeno
           rejected: Nedostatek podpisů
         filter_type_values:
           all: Vše
@@ -331,7 +333,7 @@ cs:
           success: Vaše žádost byla zaslána autorovi iniciativy.
       content_blocks:
         highlighted_initiatives:
-          name: Zdůrazněné iniciativy
+          name: Zvýrazněné iniciativy
       create_initiative:
         fill_data:
           back: Zpět
@@ -414,7 +416,7 @@ cs:
           notification_title: <a href="%{applicant_profile_url}">%{applicant_nickname}</a> požádal o funkci ve výboru vaší iniciativy <a href="%{resource_url}">%{resource_title}</a>. Chcete-li přijmout nebo odmítnout <a href="%{resource_url}/edit">, klepněte zde</a>.
       form:
         add_attachments: Dokumenty
-        attachment_legend: "(Volitelné) přidat přílohy"
+        attachment_legend: "(Volitelné) Přidat přílohu"
         delete_attachment: Smazat
       index:
         title: Iniciativy
@@ -519,6 +521,7 @@ cs:
             title: 'Titul:'
             type: Typ iniciativy
           legal_text: Shromážděné osobní údaje organizace začlení a bude s nimi nakládat důvěrně v souladu s platnými právními předpisy.
+          members_header: Členové propagačního výboru iniciativy
           phone_number: Telefonní číslo
           place_date: Místo, datum
           postal_code: PSČ/ZIP
@@ -550,10 +553,10 @@ cs:
           votes_blocked: Podpis zakázán
         votes_count:
           count:
-            one: PODPIS
-            few: PODPISY
-            many: PODPISY
-            other: PODPISY
+            one: Podpis
+            few: Podpisy
+            many: Podpisů
+            other: Podpisů
           most_popular_initiative: Nejoblíbenější iniciativa
           need_more_votes: Potřebujete další podpisy
       initiatives_mailer:

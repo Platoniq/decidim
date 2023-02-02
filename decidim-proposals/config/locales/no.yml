@@ -54,6 +54,16 @@
               identical: OG tittelen kan ikke være identisk
             title:
               identical: OG teksten kan ikke være identisk
+        proposals_merge:
+          attributes:
+            base:
+              not_official: Er ikke offisiell
+              supported: Har mottatt støtte eller påtegninger
+        proposals_split:
+          attributes:
+            base:
+              not_official: Er ikke offisiell
+              supported: Har mottatt støtte eller påtegninger
     models:
       decidim/proposals/accepted_proposal_event: Forslag akseptert
       decidim/proposals/admin/update_proposal_category_event: Forslags kategorien ble endret
@@ -120,7 +130,6 @@
         name: Forslag
         settings:
           global:
-            allow_card_image: Tillat kortbilde
             amendments_enabled: Endringer aktivert
             amendments_enabled_help: Hvis aktiv, konfigurer du endringsfunksjoner for hvert trinn.
             amendments_wizard_help_text: Endrings Veiviser hjelpetekst
@@ -130,6 +139,17 @@
             collaborative_drafts_enabled: Samarbeids utkaster aktivert
             comments_enabled: Kommentarer aktivert
             comments_max_length: Maks lengde på kommentarer (Sett 0 for standardverdi)
+            default_sort_order: Standard sortering av forslag
+            default_sort_order_help: Standardverdien betyr at hvis støtte er aktivert, vil forslagene bli vist i tilfeldig rekkefølge og hvis støttene er blokkert, vil de bli sortert etter de mest støttede forslagene.
+            default_sort_order_options:
+              default: Standardverdi
+              most_commented: Mest kommenterte
+              most_endorsed: Mest påtegnet
+              most_followed: Mest fulgte
+              most_voted: Mest støttet
+              random: Tilfeldig
+              recent: Nylig
+              with_more_authors: Med flere forfattere
             geocoding_enabled: Geokoding aktivert
             minimum_votes_per_user: Minimum støtter per bruker
             new_proposal_body_template: Nytt forslag korppsmal
@@ -171,7 +191,18 @@
             answers_with_costs: Aktiver kostnader på forslag til svar
             automatic_hashtags: Hashtagger lagt til i alle forslag
             comments_blocked: Kommentarer blokkert
-            creation_enabled: Opprettelse av forslag aktivert
+            creation_enabled: Deltakerne kan opprette forslag
+            default_sort_order: Standard sortering av forslag
+            default_sort_order_help: Standard betyr at hvis støttene er aktivert, vil forslagene bli vist i tilfeldig rekkefølge, og hvis støttene er blokkert, vil de bli sortert etter de mest støttede støttene.
+            default_sort_order_options:
+              default: Standardverdi
+              most_commented: Mest kommentert
+              most_endorsed: Mest påtegnet
+              most_followed: Mest fulgt
+              most_voted: Mest støttet
+              random: Tilfeldig
+              recent: Nylig
+              with_more_authors: Med flere forfattere
             endorsements_blocked: Påtegnelser blokkert
             endorsements_enabled: Påtegnelser aktivert
             proposal_answering_enabled: Forslags besvaring aktivert
@@ -186,33 +217,21 @@
           proposal_note_created:
             email_intro: Noen har lagt ut en merknad på forslaget "%{resource_title}". Sjekk det ut i <a href="%{admin_proposal_info_url}">administratorpanelet</a>
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} har blitt akseptert tilgang som bidragsyter til <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.'
-          email_outro: Du har mottatt denne varslingen fordi du er en samarbeidspartner av <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} har blitt akseptert tilgang som bidragsyter til %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har blitt <strong>akseptert tilgang som bidragsyter</strong> av <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} har blitt avslått tilgang som bidragsyter til <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.'
-          email_outro: Du har mottatt denne varslingen fordi du er en samarbeidspartner av <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} har blitt avslått tilgang som bidragsyter til %{resource_title} samarbeids utkastet."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> har blitt <strong>avvist tilgang som bidragsyter</strong> av <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} ba om tilgang som bidragsyter. Du kan <strong>godta eller avslå forespørselen</strong> fra <a href="%{resource_path}">%{resource_title}</a> samarbeids utkast siden.'
-          email_outro: Du har mottatt denne varslingen fordi du er en samarbeidspartner av <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} ba om tilgang som bidragsyter til %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> forespurte om tilgang til å bidra til <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet. Vennligst <strong>godta eller avslå forespørselen</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: Du har blitt akseptert tilgang som bidragsgiver av <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
-          email_outro: Du har mottatt denne varslingen fordi du ba om å bli en samarbeidspartner av <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Du er blitt akseptert som en bidragsgiver av %{resource_title}.
           notification_title: Du har blitt <strong>akseptert tilgang som bidragsgiver</strong> av <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
         collaborative_draft_access_requester_rejected:
-          email_intro: Du har blitt avvist tilgang som bidragsgiver av <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
-          email_outro: Du har mottatt denne varslingen fordi du ba om å bli en samarbeidspartner av <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Du er blitt avvist som en bidragsgiver av %{resource_title}.
           notification_title: Du har blitt <strong>avvist tilgang som bidragsgiver</strong> av <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> trakk <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
-          email_outro: Du har mottatt denne varslingen fordi du er en samarbeidspartner av <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{author_name}%{author_nickname} trukket tilbake %{resource_title} samarbeids utkast."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>trakk</strong> <a href="%{resource_path}">%{resource_title}</a> samarbeids utkastet.
         creation_enabled:
@@ -260,12 +279,10 @@
           email_intro: Forslaget "%{resource_title}" er blitt lagt til "%{participatory_space_title}" som du følger.
           email_outro: Du har mottatt denne varslingen fordi du følger "%{participatory_space_title}". Du kan slutte å motta varsler hvis du følger den forrige lenken.
           email_subject: Nytt forslag "%{resource_title}" lagt til %{participatory_space_title}
-          notification_title: Forslaget <a href="%{resource_path}">%{resource_title}</a> har blitt lagt til %{participatory_space_title}
         proposal_rejected:
           affected_user:
             email_intro: 'Forslaget ditt "%{resource_title}" er blitt avvist. Du kan lese svaret på denne siden:'
             email_outro: Du har mottatt denne varslingen fordi du er en forfatter av "%{resource_title}".
-            email_subject: Forslaget ditt har blitt avvist
             notification_title: Forslaget ditt <a href="%{resource_path}">%{resource_title}</a> har blitt avvist.
           follower:
             email_intro: 'Forslaget "%{resource_title}" er blitt avvist. Du kan lese svaret på denne siden:'
@@ -354,6 +371,20 @@
         exports:
           proposal_comments: Kommentarer
           proposals: Forslag
+        imports:
+          label:
+            answers: Importer svar fra fil
+            proposals: Importer forslag fra en fil
+          resources:
+            answers:
+              one: svar på forslag
+              other: svar på forslag
+            proposals:
+              one: forslag
+              other: forslag
+          title:
+            answers: Importer svar på forslag
+            proposals: Importer forslag
         models:
           proposal:
             name: Forslag
@@ -483,11 +514,9 @@
             select_states: Sjekk statusen til forslagene som skal importeres
         proposals_merges:
           create:
-            invalid: Det oppstod et problem med å slå sammen de valgte forslagene.
             success: Slo sammen forslagene til et nytt ett.
         proposals_splits:
           create:
-            invalid: Det oppstod et problem med å splitte de valgte forslagene.
             success: Delte forslagene vellykket til nye.
       admin_log:
         proposal:
@@ -547,7 +576,6 @@
             one: "%{count} samarbeids utkast"
             other: "%{count} samarbeids utkaster"
         create:
-          error: Det oppsto et problem med å lage disse samarbeidsutkastene
           success: Samarbeids utkast opprettet.
         edit:
           attachment_legend: "(Valgfritt) Legg til et vedlegg"
@@ -703,7 +731,9 @@
         index:
           collaborative_drafts_list: Lag utkast sammen med andre
           new_proposal: Nytt forslag
+          see_all: Se alle forslag
           see_all_withdrawn: Se alle tilbaketrukne forslag
+          text_banner: Du ser en liste med forslag tilbaketrukket av deres forfattere. %{go_back_link}.
           view_proposal: Se forslag
         linked_proposals:
           proposal_votes:
@@ -711,7 +741,6 @@
             other: støtter
         new:
           send: Fortsett
-          title: Opprett Ditt forslag
         orders:
           label: 'Sorter forslag:'
           most_commented: Flest kommentarer

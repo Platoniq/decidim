@@ -14,14 +14,29 @@ en:
         decidim_scope_id: Scope
         description: Description
         proposal_ids: Related proposals
+        proposals: Proposals
         selected: Selected for implementation
         title: Title
+      proposals_import:
+        scope_id: Scope
   activerecord:
     models:
       decidim/budgets/project:
         one: Project
         other: Projects
   decidim:
+    admin:
+      filters:
+        projects:
+          category_id_eq:
+            label: Category
+          scope_id_eq:
+            label: Scope
+          selected_at_null:
+            label: Selected
+            values:
+              'false': Selected for implementation
+              'true': Not selected for implementation
     budgets:
       actions:
         attachment_collections: Folders
@@ -90,7 +105,10 @@ en:
             success: "%{number} proposals successfully imported into projects"
           new:
             create: Import proposals to projects
+            default_budget: Default budget
+            import_all_accepted_proposals: Import all accepted proposals
             no_components: There are no other proposal components in this participatory space to import the proposals into projects.
+            origin_component_id: Origin component
             select_component: Please select a component
             title: Import proposals
       admin_log:
@@ -120,6 +138,9 @@ en:
         highlighted_cta: Vote on %{name}
         if_change_opinion: If you've changed your mind, you can
         my_budgets: My budgets
+        progress: Finish voting
+        show: See projects
+        vote: Vote
         voted_on: You've voted on %{links}
       limit_announcement:
         cant_vote: You can't vote on this budget. <a href="%{landing_path}">Try on another budget</a>.
@@ -132,6 +153,8 @@ en:
             total_budget: Total budget
         project:
           fields:
+            category: Category
+            id: ID
             title: Title
       order_summary_mailer:
         order_summary:
@@ -148,13 +171,13 @@ en:
           title: Confirm vote
         budget_excess:
           budget_excess:
-            description: This project exceeds the maximum budget and can not be added. If you want, you can delete a project you have already selected to add, or make your vote according to your preferences.
+            description: This project exceeds the maximum budget and can not be added. If you want, you can delete a project you have already selected, in order to be able to vote again according to your preferences.
             title: Maximum budget exceeded
           close: Close
-          description: This project exceeds the maximum budget and can not be added. If you want, you can delete a project you have already selected to add, or make your vote according to your preferences.
+          description: This project exceeds the maximum budget and can not be added. If you want, you can delete a project you have already selected, in order to be able to vote again according to your preferences.
           ok: OK
           projects_excess:
-            description: This project exceeds the maximum number of projects and cannot be added. If you want, you can delete a project you have already selected to add, or make your vote according to your preferences.
+            description: This project exceeds the maximum number of projects and cannot be added. If you want, you can delete a project you have already selected, in order to be able to vote again according to your preferences.
             title: Maximum projects exceeded
         budget_summary:
           are_you_sure: Are you sure you want to cancel your vote?
@@ -184,6 +207,12 @@ en:
           projects_count:
             one: 1 project
             other: "%{count} projects"
+        exit_modal:
+          cancel: Return to voting
+          close_modal: Close modal
+          exit: Exit voting
+          message: Your vote has not been registered because you have not yet completed the voting process. Are you sure you want to exit voting?
+          title: You have not yet voted
         filters:
           category: Category
           scope: Scope
@@ -221,7 +250,7 @@ en:
           votes:
             one: vote
             other: votes
-          you_voted: You voted this
+          you_voted: You voted for this
         project_budget_button:
           add: Add to your vote
           add_descriptive: Add project %{resource_name} to your vote
@@ -256,7 +285,7 @@ en:
             total_budget: Total budget
             vote_minimum_budget_projects_number: Minimum number of projects to vote
             vote_rule_minimum_budget_projects_enabled: 'Enable rule: Minimum number of projects to be voted on'
-            vote_rule_selected_projects_enabled: 'Enable rule: Selected projects with minimum and maximum number of projects to be voted on'
+            vote_rule_selected_projects_enabled: 'Enable rule: Minimum and maximum number of projects to be voted on'
             vote_rule_threshold_percent_enabled: 'Enable rule: Minimum budget percentage'
             vote_selected_projects_maximum: Maximum amount of projects to be selected
             vote_selected_projects_minimum: Minimum amount of projects to be selected

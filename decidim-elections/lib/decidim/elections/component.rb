@@ -56,7 +56,8 @@ Decidim.register_component(:elections) do |component|
 
   component.exports :elections do |exports|
     exports.collection do |component_instance|
-      Decidim::Elections::Question.where(election: Decidim::Elections::Election.where(component: component_instance).bb_results_published).collect(&:answers).flatten
+      Decidim::Elections::Answer
+        .where(decidim_elections_question_id: Decidim::Elections::Election.where(component: component_instance).bb_results_published.extract_associated(:questions))
     end
 
     exports.include_in_open_data = true
@@ -112,9 +113,6 @@ Decidim.register_component(:elections) do |component|
           {
             election: upcoming_election,
             title: Decidim::Faker::Localized.sentence(word_count: 2),
-            description: Decidim::Faker::Localized.wrapped("<p>", "</p>") do
-              Decidim::Faker::Localized.paragraph(sentence_count: 3)
-            end,
             max_selections: Faker::Number.between(from: 1, to: 3),
             weight: Faker::Number.number(digits: 1),
             random_answers_order: Faker::Boolean.boolean(true_ratio: 0.5),
@@ -212,9 +210,6 @@ Decidim.register_component(:elections) do |component|
           {
             election: finished_election,
             title: Decidim::Faker::Localized.sentence(word_count: 2),
-            description: Decidim::Faker::Localized.wrapped("<p>", "</p>") do
-              Decidim::Faker::Localized.paragraph(sentence_count: 3)
-            end,
             max_selections: 2,
             weight: Faker::Number.number(digits: 1),
             random_answers_order: Faker::Boolean.boolean(true_ratio: 0.5),
@@ -335,9 +330,6 @@ Decidim.register_component(:elections) do |component|
           {
             election: election_with_results,
             title: Decidim::Faker::Localized.sentence(word_count: 2),
-            description: Decidim::Faker::Localized.wrapped("<p>", "</p>") do
-              Decidim::Faker::Localized.paragraph(sentence_count: 3)
-            end,
             max_selections: 2,
             weight: Faker::Number.number(digits: 1),
             random_answers_order: Faker::Boolean.boolean(true_ratio: 0.5),
@@ -455,9 +447,6 @@ Decidim.register_component(:elections) do |component|
         {
           election: ongoing_election,
           title: Decidim::Faker::Localized.sentence(word_count: 2),
-          description: Decidim::Faker::Localized.wrapped("<p>", "</p>") do
-            Decidim::Faker::Localized.paragraph(sentence_count: 3)
-          end,
           max_selections: 2,
           weight: Faker::Number.number(digits: 1),
           random_answers_order: Faker::Boolean.boolean(true_ratio: 0.5),

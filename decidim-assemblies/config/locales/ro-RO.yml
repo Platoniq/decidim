@@ -59,9 +59,9 @@ ro:
         birthplace: Locul nașterii
         ceased_date: Data încetării
         designation_date: Data desemnării
-        designation_mode: Modul de desemnare
         full_name: Numele complet
         gender: Sexul
+        non_user_avatar: Avatar
         position: Poziție
         user_id: Utilizator sau grup
       assembly_user_role:
@@ -185,6 +185,9 @@ ro:
         update:
           error: A apărut o eroare la actualizarea unui administrator pentru acest grup de lucru.
           success: Administratorul a fost actualizat cu succes pentru acest grup de lucru.
+      filters:
+        decidim_assemblies_type_id_eq:
+          label: Tipul grupului de lucru
       menu:
         assemblies: Grupuri de lucru
         assemblies_settings: Setări
@@ -299,7 +302,10 @@ ro:
         assembly_members:
           form:
             existing_user: Participant existent
+            explanation: 'Îndrumare pentru imagine:'
+            image_guide: Este de preferat o imagine pe format orizontal care să nu conțină text deloc.
             non_user: Non participant
+            non_user_avatar_help: Ar trebui să obţii consimţământul persoanelor înainte de a îi publica drept membri.
             select_a_position: Selectaţi o poziţie
             select_user: Selectați un participant
             user_type: Tipul participantului
@@ -316,6 +322,9 @@ ro:
         new_import:
           accepted_types:
             json: JSON
+      assemblies:
+        show:
+          title: Despre această adunare
       assembly_members:
         index:
           members: Membri
@@ -383,7 +392,7 @@ ro:
         related_participatory_processes: Procese participative asociate
         scope: Domeniu de interes
         social_networks: Rețele sociale
-        social_networks_title: Distribuie aceast grup de lucru pe
+        social_networks_title: Vizitează adunarea pe
         target: Cine participă
     assembly_members:
       assembly_member:
@@ -394,7 +403,6 @@ ro:
       assemblies:
         create_assembly_member:
           email_intro: Un administrator al grupului de lucru <a href="%{resource_url}">%{resource_name}</a> te-a adăugat ca unul dintre membrii săi.
-          email_outro: Ai primit această notificare deoarece ai fost invitat la un grup de lucru. Verifică <a href="%{resource_path}">pagina organizației</a> pentru a colabora!
           email_subject: Ai primit invitație drept membru al grupului de lucru %{resource_name}!
           notification_title: Ai fost înregistrat ca membru al grupului de lucru <a href="%{resource_path}">%{resource_name}</a>. Verificați pagina <a href="%{resource_path}">grupului de lucru</a> pentru a accepta!
       assembly:

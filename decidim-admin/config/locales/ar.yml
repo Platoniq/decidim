@@ -159,7 +159,6 @@ ar:
         accept:
           success: رائع! لقد قمت بالموافقة على شروط الإستخدام للمدير.
         actions:
-          accept: أوافق على شروط الإستخدام التالية
           refuse: ارفض شروط المدير
           title: وافق على شروط وأحكام الإستخدام
         required_review:
@@ -339,6 +338,13 @@ ar:
           values:
             'false': 'لا'
             'true': 'نعم'
+        moderated_users:
+          reports_reason_eq:
+            label: سبب الابلاغ
+            values:
+              does_not_belong: لا ينتمي
+              offensive: مسيء
+              spam: محتوى مزعج و احتيال
         moderations:
           reportable_type_string_eq:
             label: النوع
@@ -373,11 +379,18 @@ ar:
         search_label: بحث
         search_placeholder:
           name_or_nickname_or_email_cont: البحث عن %{collection} بحسب عنوان البريد الإكتروني أو الإسم أو الإسم المستعار.
+          report_count_eq: عدد التقارير يساوى
           reported_id_string_or_reported_content_cont: البحث عن %{collection} بواسطة رقم-مُعرف أو بالمحتوى.
           title_cont: البحث عن %{collection} بحسب العنوان.
           user_name_or_user_email_cont: البحث عن %{collection} حسب الاسم أو البريد الإلكتروني.
+          user_name_or_user_nickname_or_user_email_cont: البحث عن %{collection} بحسب عنوان البريد الإكتروني أو الإسم أو الإسم المستعار.
         state_eq:
           label: الحالة
+          values:
+            all: الكل
+            pending: قيد الانتظار
+            rejected: تم رفضه
+            verified: تم التحقق
       forms:
         file_help:
           import:
@@ -423,22 +436,24 @@ ar:
           impersonate_existing_user: إدارة المشارك "%{name}"
           impersonate_new_managed_user: إدارة مشارك جديد
       imports:
-        creators:
-          proposalcreator: منشئ الاقتراح
-        help:
-          proposalcreator: يجب أن يحتوي الملف على أسماء الأعمدة عنوان/ar و جسد/ar (أو لغة أخرى تفضل مثلا. title/en والجسم/en) أيضًا مدعومة أعمدة النطاق/الرقم-المعرف والفئة/الرقم-المعرف.
-        import_from_file: استيراد من مِلَفّ
-        invalid_lines: تم العثور على خطأ في المصدر برقم %{invalid_lines}
+        and: و
+        data_errors:
+          duplicate_headers:
+            detail: الرجاء التحقق من أن المِلَفّ يحتوي على أعمدة أو رؤوس مطلوبه لمرة واحدة فقط.
+          missing_headers:
+            detail: برجاء التحقق من أن الملف يحتوي على الأعمدة المطلوبة.
         new:
           accepted_mime_types:
-            csv: ملف قيم مفصولة بفواصل csv
-            json: ملف json
-            xlsx: ملف xlsx
+            csv: ملف (CSV)
+            json: ملفات بصيغة (JSON)
+            xlsx: ملف إكسل (.xlsx)
           actions:
             back: العودة
+          download_example: تنزيل المثال
+          download_example_format: مثال كـ %{name}
           file_legend: إضافة ملف استيراد سيتم تحليله.
           import: استيراد
-        notice: "تم استيراد %{number} %{resource_name} بنجاح"
+        notice: "تم استيراد %{count} %{resource_name} بنجاح"
       logs:
         logs_list:
           no_logs_yet: لا توجد سجلات حتى الآن
@@ -726,7 +741,7 @@ ar:
           title: مشارك جديد الفضاء الخاص المشارك.
       participatory_space_private_users_csv_imports:
         create:
-          invalid: حدثت مشكلة أثناء قراءة ملف CSV.
+          invalid: حدثت مشكلة في قراءة ملف CSV.
         new:
           title: حمّل ملف CSV الخاص بك
           upload: حمّل
@@ -844,13 +859,6 @@ ar:
           success: تم التحقق من المجموعة بنجاح
       user_groups:
         index:
-          filter:
-            all: الكل
-            pending: قيد الانتظار
-            rejected: مرفوض
-            verified: التحقق
-          filter_by: مصنف بواسطة
-          search: بحث
           state:
             pending: قيد الانتظار
             rejected: مرفوض
@@ -918,7 +926,6 @@ ar:
             hidden_at: مخبأة في
             participatory_space: الفضاء التشاركي
             report_count: عد
-            reportable_id: المعرف
             reportable_type: النوع
             reported_content_url: تم الإبلاغ عن عنوان URL للمحتوى
             reports: تقارير

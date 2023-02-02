@@ -50,7 +50,9 @@ module Decidim
               get :share
             end
             resources :exports, only: :create
-            resources :imports, only: [:new, :create]
+            resources :imports, only: [:new, :create] do
+              get :example, on: :collection
+            end
           end
 
           resources :moderations do
@@ -98,7 +100,9 @@ module Decidim
                         decidim_admin_assemblies.assemblies_path,
                         icon_name: "dial",
                         position: 2.2,
-                        active: :inclusive,
+                        active: is_active_link?(decidim_admin_assemblies.assemblies_path) ||
+                                is_active_link?(decidim_admin_assemblies.assemblies_types_path) ||
+                                is_active_link?(decidim_admin_assemblies.edit_assemblies_settings_path),
                         if: allowed_to?(:enter, :space_area, space_name: :assemblies)
         end
       end

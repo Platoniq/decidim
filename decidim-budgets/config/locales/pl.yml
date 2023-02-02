@@ -120,6 +120,8 @@ pl:
         highlighted_cta: Głosuj na %{name}
         if_change_opinion: Jeśli zmieniłeś zdanie, możesz
         my_budgets: Moje budżety
+        progress: Zakończ głosowanie
+        show: Zobacz projekty
         voted_on: Zagłosowałeś na %{links}
       limit_announcement:
         cant_vote: Nie możesz głosować na ten budżet. <a href="%{landing_path}">Spróbuj zagłosować na inny</a>.
@@ -148,13 +150,10 @@ pl:
           title: Potwierdź głosowanie
         budget_excess:
           budget_excess:
-            description: Ten projekt przekracza maksymalny budżet i nie można go dodać. Jeśli chcesz, możesz usunąć projekt, który już wybrałeś, lub oddać swój głos zgodnie ze swoimi preferencjami.
             title: Przekroczono maksymalny budżet
           close: Zamknij
-          description: Ten projekt przekracza maksymalny budżet i nie można go dodać. Jeśli chcesz, możesz usunąć projekt, który już wybrałeś, lub oddać swój głos zgodnie ze swoimi preferencjami.
           ok: ok
           projects_excess:
-            description: Ten projekt przekracza maksymalną liczbę projektów i nie można go dodać. Jeśli chcesz, możesz usunąć projekt, który już wybrałeś, lub oddać swój głos zgodnie ze swoimi preferencjami.
             title: Maksymalna liczba projektów została przekroczona
         budget_summary:
           are_you_sure: Czy na pewno chcesz anulować swój głos?
@@ -262,7 +261,6 @@ pl:
             total_budget: Całkowity budżet
             vote_minimum_budget_projects_number: Minimalna liczba projektów, na które można głosować
             vote_rule_minimum_budget_projects_enabled: 'Włącz regułę: minimalna liczba projektów, na które można głosować'
-            vote_rule_selected_projects_enabled: 'Włącz regułę: Minimalna i maksymalna liczba projektów do głosowania'
             vote_rule_threshold_percent_enabled: 'Włącz regułę: minimalny procent budżetu'
             vote_selected_projects_maximum: Maksymalna liczba wybranych projektów
             vote_selected_projects_minimum: Minimalna liczba wybranych projektów

@@ -57,6 +57,16 @@ nl:
               identical: EN titel kan niet identiek zijn
             title:
               identical: EN tekstgedeelte kan niet identiek zijn
+        proposals_merge:
+          attributes:
+            base:
+              not_official: Zijn niet officieel
+              supported: Heeft steun ontvangen
+        proposals_split:
+          attributes:
+            base:
+              not_official: Zijn niet officieel
+              supported: Heeft steun ontvangen
     models:
       decidim/proposals/accepted_proposal_event: Voorstel geaccepteerd
       decidim/proposals/admin/update_proposal_category_event: Voorstelcategorie gewijzigd
@@ -103,7 +113,6 @@ nl:
         name: Voorstellen
         settings:
           global:
-            allow_card_image: Kaart afbeelding toestaan
             amendments_enabled: Wijzigingen ingeschakeld
             amendments_enabled_help: 'Indien actief: stel de amendementsfunctionaliteiten in voor elke stap.'
             amendments_wizard_help_text: Hulptekst van de amendementen wizard
@@ -113,6 +122,17 @@ nl:
             collaborative_drafts_enabled: Samenwerkingsconcepten ingeschakeld
             comments_enabled: Reacties ingeschakeld
             comments_max_length: Commentaar maximale lengte (laat 0 voor standaard waarde)
+            default_sort_order: Standaardsortering
+            default_sort_order_help: Standaardsortering betekent dat als de ondersteuning is ingeschakeld, de voorstellen willekeurig worden weergegeven. Als de ondersteuning geblokkeerd is, zullen ze gesorteerd worden op de meest ondersteunde manier.
+            default_sort_order_options:
+              default: Standaard
+              most_commented: Meeste reacties
+              most_endorsed: Meest gesteund
+              most_followed: Meest gevolgd
+              most_voted: Meeste stemmen
+              random: Willekeurig
+              recent: Meest recent
+              with_more_authors: Met meer auteurs
             geocoding_enabled: Geolocatie ingeschakeld
             minimum_votes_per_user: Minimale stemmen per gebruiker
             new_proposal_body_template: Nieuw voorstel lichaamssjabloon
@@ -154,7 +174,18 @@ nl:
             answers_with_costs: Kosten inschakelen bij antwoorden op voorstel
             automatic_hashtags: Hashtags toegevoegd aan alle voorstellen
             comments_blocked: Reacties geblokkeerd
-            creation_enabled: Voorstelcreatie ingeschakeld
+            creation_enabled: Gebruikers kunnen voorstellen maken
+            default_sort_order: Standaardsortering
+            default_sort_order_help: Standaardsortering betekent dat als de ondersteuning is ingeschakeld, de voorstellen willekeurig worden weergegeven. Als de ondersteuning geblokkeerd is, zullen ze gesorteerd worden op de meest ondersteunde manier.
+            default_sort_order_options:
+              default: Standaard
+              most_commented: Meeste reacties
+              most_endorsed: Meest gesteund
+              most_followed: Meest gevolgd
+              most_voted: Meeste stemmen
+              random: Willekeurig
+              recent: Meest recent
+              with_more_authors: Met meer auteurs
             endorsements_blocked: Aanbevelingen geblokkeerd
             endorsements_enabled: "Aanbevelingen toegestaan\n"
             proposal_answering_enabled: Formeel antwoord op voorstellen toegestaan.
@@ -172,33 +203,21 @@ nl:
             email_subject: Iemand heeft een notitie achtergelaten bij het voorstel %{resource_title}.
             notification_title: Iemand heeft een briefje achtergelaten op het voorstel <a href="%{resource_path}">%{resource_title}</a>. Bekijk het op <a href="%{admin_proposal_info_path}">de beheerderspaneel</a>
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} is aanvaard om toegang te krijgen als bijdrager voor de <a href="%{resource_path}">%{resource_title}</a> gezamenlijk ontwerp.'
-          email_outro: U ontvangt deze melding omdat u een medewerker bent van <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} is geaccepteerd om toegang te krijgen als een bijdrager van de %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> is <strong> aanvaard om als bijdrager</strong> van de <a href="%{resource_path}">%{resource_title}</a> gezamenlijk ontwerp toegang te krijgen.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} is afgewezen om toegang te krijgen als een bijdrager van de <a href="%{resource_path}">%{resource_title}</a> gezamenlijke ontwerp.'
-          email_outro: U hebt deze melding ontvangen omdat u een bijdrager bent van <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} is afgewezen om toegang te krijgen als bijdrager van de %{resource_title} gezamenlijk ontwerp."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> is <strong>afgewezen om toegang te krijgen als bijdrager</strong> van de <a href="%{resource_path}">%{resource_title}</a> gezamenlijk ontwerp.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} verzocht toegang als een bijdrager. U kunt <strong>verzoek</strong> van de <a href="%{resource_path}">%{resource_title}</a> pagina met gezamenlijk ontwerp accepteren of weigeren.'
-          email_outro: U heeft deze melding ontvangen omdat u een bijdrager bent van <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} vroeg om toegang om bij te dragen aan %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> verzocht om toegang om bij te dragen aan de <a href="%{resource_path}">%{resource_title}</a> gezamenlijk ontwerp. Gelieve <strong>accepteren of het verzoek af te wijzen</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: U bent geaccepteerd om toegang te krijgen als bijdrager voor het gezamenlijk ontwerp <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: U heeft deze melding ontvangen omdat u heeft verzocht om een ​​medewerker van <a href="%{resource_path}">%{resource_title}</a> te worden.
           email_subject: Je bent geaccepteerd als een bijdrager van %{resource_title}.
           notification_title: U bent <strong>geaccepteerd om als bijdrager</strong> van de <a href="%{resource_path}">%{resource_title}</a> gezamenlijk ontwerp toegang te krijgen.
         collaborative_draft_access_requester_rejected:
-          email_intro: U bent afgewezen om toegang te krijgen als bijdrager voor de gezamenlijk ontwerp <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: U heeft deze melding ontvangen omdat u heeft verzocht om een ​​medewerker van <a href="%{resource_path}">%{resource_title}</a> te worden.
           email_subject: Je bent afgewezen als een bijdrager van %{resource_title}.
           notification_title: U bent <strong>afgewezen om toegang te krijgen als bijdrager</strong> van de <a href="%{resource_path}">%{resource_title}</a> gezamenlijke ontwerp.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> heeft het gezamenlijk ontwerp <a href="%{resource_path}">%{resource_title}</a> ingetrokken.
-          email_outro: U heeft deze melding ontvangen omdat u een bijdrager bent van <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{author_name} %{author_nickname} de %{resource_title} gezamenlijk ontwerp ingetrokken."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>teruggetrokken</strong> de <a href="%{resource_path}">%{resource_title}</a> gezamenlijk ontwerp.
         creation_enabled:
@@ -247,12 +266,11 @@ nl:
           email_intro: Het voorstel "%{resource_title}" is toegevoegd aan "%{participatory_space_title}" dat je volgt.
           email_outro: Je hebt deze melding ontvangen omdat je "%{participatory_space_title}" volgt. Schakel de meldingen uit door op bovenstaande link te klikken en te stoppen met volgen.
           email_subject: Nieuw voorstel "%{resource_title}" toegevoegd aan %{participatory_space_title}
-          notification_title: Het voorstel <a href="%{resource_path}">%{resource_title}</a> is toegevoegd aan %{participatory_space_title}
+          notification_title: Het voorstel <a href="%{resource_path}">%{resource_title}</a> is toegevoegd aan %{participatory_space_title} door %{author}
         proposal_rejected:
           affected_user:
             email_intro: 'Uw voorstel "%{resource_title}" is afgewezen. U kunt het antwoord op deze pagina lezen:'
             email_outro: U hebt deze melding ontvangen omdat u een auteur bent van "%{resource_title}".
-            email_subject: Uw voorstel is afgewezen
             notification_title: Uw voorstel <a href="%{resource_path}">%{resource_title}</a> is afgewezen.
           follower:
             email_intro: 'Het voorstel "%{resource_title}" is afgewezen. Je kan de reden hier lezen:'
@@ -344,6 +362,20 @@ nl:
         exports:
           proposal_comments: Reacties
           proposals: Voorstellen
+        imports:
+          label:
+            answers: Importeer antwoorden vanuit een bestand
+            proposals: Importeer voorstellen vanuit een bestand
+          resources:
+            answers:
+              one: antwoord op het voorstel
+              other: antwoorden op het voorstel
+            proposals:
+              one: voorstel
+              other: voorstellen
+          title:
+            answers: Importeer antwoorden op voorstellen
+            proposals: Importeer voorstellen
         models:
           proposal:
             name: Voorstel
@@ -486,11 +518,11 @@ nl:
             select_states: Controleer de status van de voorstellen om te importeren
         proposals_merges:
           create:
-            invalid: Er is een fout opgetreden bij het samenvoegen van de geselecteerde voorstellen.
+            invalid: 'Er is een probleem opgetreden bij het samenvoegen van de geselecteerde voorstellen omdat:'
             success: De voorstellen zijn succesvol samengevoegd tot een nieuwe.
         proposals_splits:
           create:
-            invalid: Er is een fout opgetreden bij het splitsen van de geselecteerde voorstellen.
+            invalid: 'Er is een probleem opgetreden bij het splitsen van de geselecteerde voorstellen omdat:'
             success: De voorstellen succesvol gesplitst in nieuwe.
         valuation_assignments:
           create:
@@ -561,7 +593,6 @@ nl:
             one: "%{count} gezamenlijk ontwerp"
             other: "%{count} gezamenlijke ontwerpen"
         create:
-          error: Er is een probleem opgetreden bij het maken van dit gezamenlijk ontwerp
           success: Gezamenlijk ontwerp met succes gemaakt.
         edit:
           attachment_legend: "(Optioneel) Voeg een bijlage toe"
@@ -730,9 +761,12 @@ nl:
           filter_by: Filteren op
           unfold: Uitvouwen
         index:
+          click_here: Bekijk alle voorstellen
           collaborative_drafts_list: Toegang tot samenwerkende concepten
           new_proposal: Nieuw voorstel
+          see_all: Bekijk alle voorstellen
           see_all_withdrawn: Bekijk alle ingetrokken voorstellen
+          text_banner: Je bekijkt de lijst van voorstellen die zijn ingetrokken door hun maker. %{go_back_link}.
           view_proposal: Bekijk voorstel
         linked_proposals:
           proposal_votes:
@@ -740,7 +774,6 @@ nl:
             other: stemmen
         new:
           send: Doorgaan
-          title: Maak voorstel aan
         orders:
           label: 'Bestelling sorteren op:'
           most_commented: Meeste reacties

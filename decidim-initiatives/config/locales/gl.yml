@@ -174,8 +174,6 @@ gl:
             actions_title: Acción
             preview: Vista previa
             print: Imprimir
-          show:
-            print: Imprimir
           update:
             error: Produciuse un erro
             success: A iniciativa cidadá foi actualizada con éxito
@@ -286,6 +284,8 @@ gl:
           email_outro: Recibiches esta notificación porque estás seguindo %{author_nickname}. Podes deixar de recibir notificacións seguindo a ligazón anterior.
           email_subject: Iniciativa aprobada por %{author_nickname}
           notification_title: A <a href="%{resource_path}">%{resource_title}</a> iniciativa foi aprobada por <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+      form:
+        attachment_legend: "(Opcional) Engade un anexo"
       index:
         title: Iniciativas
       initiative_signatures:

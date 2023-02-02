@@ -17,6 +17,8 @@ module Decidim
     has_many :notifications, foreign_key: "decidim_user_id", class_name: "Decidim::Notification", dependent: :destroy
     has_many :following_follows, foreign_key: "decidim_user_id", class_name: "Decidim::Follow", dependent: :destroy
 
+    has_one :blocking, class_name: "Decidim::UserBlock", foreign_key: :id, primary_key: :block_id, dependent: :destroy
+
     # Regex for name & nickname format validations
     REGEXP_NAME = /\A(?!.*[<>?%&\^*#@()\[\]=+:;"{}\\|])/.freeze
 
@@ -24,6 +26,13 @@ module Decidim
     validates_avatar :avatar, uploader: Decidim::AvatarUploader
 
     validates :name, format: { with: REGEXP_NAME }
+
+    scope :confirmed, -> { where.not(confirmed_at: nil) }
+    scope :not_confirmed, -> { where(confirmed_at: nil) }
+
+    scope :blocked, -> { where(blocked: true) }
+    scope :not_blocked, -> { where(blocked: false) }
+    scope :available, -> { where(deleted_at: nil, blocked: false, managed: false) }
 
     # Public: Returns a collection with all the public entities this user is following.
     #
@@ -49,6 +58,7 @@ module Decidim
       scope = scope.public_spaces if klass.try(:participatory_space?)
       scope = scope.includes(:component) if klass.try(:has_component?)
       scope = scope.filter(&:visible?) if klass.method_defined?(:visible?)
+      scope = scope.reject(&:blocked) if klass == Decidim::UserBaseEntity
       scope
     end
   end

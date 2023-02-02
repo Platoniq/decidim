@@ -4,8 +4,9 @@ require "spec_helper"
 
 describe "Initiative", type: :system do
   let(:organization) { create(:organization) }
+  let(:state) { :published }
   let(:base_initiative) do
-    create(:initiative, organization: organization)
+    create(:initiative, organization: organization, state: state)
   end
 
   before do
@@ -31,6 +32,20 @@ describe "Initiative", type: :system do
         visit decidim_initiatives.initiative_path(initiative)
       end
 
+      shared_examples_for "initiative shows signatures" do
+        it "shows signatures for the state" do
+          expect(page).to have_css(".progress__bar__number")
+          expect(page).to have_css(".progress__bar__text")
+        end
+      end
+
+      shared_examples_for "initiative does not show signatures" do
+        it "does not show signatures for the state" do
+          expect(page).not_to have_css(".progress__bar__number")
+          expect(page).not_to have_css(".progress__bar__text")
+        end
+      end
+
       it "shows the details of the given initiative" do
         within "main" do
           expect(page).to have_content(translated(initiative.title, locale: :en))
@@ -43,13 +58,74 @@ describe "Initiative", type: :system do
         end
       end
 
+      it_behaves_like "initiative shows signatures"
+
       it "shows the author name once in the authors list" do
         within ".initiative-authors" do
           expect(page).to have_content(initiative.author_name, count: 1)
         end
       end
 
+      context "when initiative state is rejected" do
+        let(:state) { :rejected }
+
+        it_behaves_like "initiative shows signatures"
+      end
+
+      context "when initiative state is accepted" do
+        let(:state) { :accepted }
+
+        it_behaves_like "initiative shows signatures"
+      end
+
+      context "when initiative state is created" do
+        let(:state) { :created }
+
+        it_behaves_like "initiative does not show signatures"
+      end
+
+      context "when initiative state is validating" do
+        let(:state) { :validating }
+
+        it_behaves_like "initiative does not show signatures"
+      end
+
+      context "when initiative state is discarded" do
+        let(:state) { :discarded }
+
+        it_behaves_like "initiative does not show signatures"
+      end
+
       it_behaves_like "has attachments"
+    end
+  end
+
+  describe "initiative components" do
+    let!(:initiative) { base_initiative }
+    let!(:meetings_component) { create(:component, :published, participatory_space: initiative, manifest_name: :meetings) }
+    let!(:proposals_component) { create(:component, :unpublished, participatory_space: initiative, manifest_name: :proposals) }
+
+    before do
+      create_list(:meeting, 3, :published, component: meetings_component)
+      allow(Decidim).to receive(:component_manifests).and_return([meetings_component.manifest, proposals_component.manifest])
+    end
+
+    context "when requesting the initiative path" do
+      before { visit decidim_initiatives.initiative_path(initiative) }
+
+      it "shows the components" do
+        within ".process-nav" do
+          expect(page).to have_content(translated(meetings_component.name, locale: :en).upcase)
+          expect(page).to have_no_content(translated(proposals_component.name, locale: :en).upcase)
+        end
+      end
+
+      it "allows visiting the components" do
+        within ".process-nav" do
+          click_link translated(meetings_component.name, locale: :en)
+        end
+        expect(page).to have_content("3 MEETINGS")
+      end
     end
   end
 end

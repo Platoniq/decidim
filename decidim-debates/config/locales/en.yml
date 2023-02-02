@@ -11,6 +11,7 @@ en:
         end_time: Ends at
         information_updates: Information updates
         instructions: Instructions to participate
+        scope_id: Scope
         start_time: Starts at
         title: Title
         user_group_id: Create debate as
@@ -18,7 +19,7 @@ en:
       decidim/debates/close_debate_event: Debate closed
       decidim/debates/create_debate_event: Debate
       decidim/debates/creation_disabled_event: Debates disabled
-      decidim/debates/creation_enabled_event: Debates enabled
+      decidim/debates/creation_enabled_event: Debates creation enabled
   activerecord:
     models:
       decidim/debates/debate:
@@ -42,7 +43,7 @@ en:
           step:
             announcement: Announcement
             comments_blocked: Comments blocked
-            creation_enabled: Debate creation by participants enabled
+            creation_enabled: Participants can create debates
             endorsements_blocked: Endorsements blocked
             endorsements_enabled: Endorsements enabled
     debates:

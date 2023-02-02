@@ -235,7 +235,6 @@ lb:
             registration_url_help: 'Link: Erlaubt den Teilnehmern den externen Service zu nutzen, den Sie für die Registrierung verwenden'
             select_a_meeting_type: Bitte eine Meeting-Typ auswählen
             select_a_registration_type: Bitte wählen Sie eine Registrierungsart aus
-            show_embedded_iframe_help: Intégrer ou non l'iframe correspondant à cette URL de vidéoconférence. Seuls quelques services permettent l'intégration (c.-à-d. Youtube, Twitch...)
           index:
             title: Versammlungen
           new:
@@ -302,15 +301,12 @@ lb:
         export_calendar: Kalender exportieren
       conference_venues: Tagungsstätten
       content_blocks:
-        upcoming_events:
-          name: Kommende Veranstaltungen
-          view_all_events: Alle ansehen
+        upcoming_meetings:
+          view_all_meetings: Alle ansehen
       directory:
         meetings:
           index:
-            all: Alle
             meetings: Meetings
-            search: Suche
             space_type: Partizipativer Raum
       last_activity:
         meeting_updated_at_html: "<span>Besprechung aktualisiert unter %{link}</span>"
@@ -391,7 +387,6 @@ lb:
           fields:
             closed: Geschlossen
             end_time: Schlussdatum
-            id: Id
             map: Kaart
             official_meeting: Offizielle Besprechung
             start_time: Ufanksdatum

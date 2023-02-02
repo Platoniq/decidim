@@ -432,6 +432,8 @@ hu:
           see: Lásd
         index:
           loading: Eredmények betöltése...
+        show:
+          title: Erről a folyamatról
       show:
         area: Terület
         belongs_to_group: Ide tartozik ez a folyamat

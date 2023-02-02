@@ -22,24 +22,31 @@ ca:
       user:
         about: Quant a
         email: El teu correu electrònic
+        locale: Configuració regional
         name: El teu nom
         nickname: Àlies
         password: Contrasenya
         password_confirmation: Confirma la teva contrasenya
         personal_url: URL personal
         remove_avatar: Elimina la imatge de perfil
+        tos_agreement: Acord de termes i condicions d'ús
     models:
       decidim/attachment_created_event: Arxiu adjunt
       decidim/component_published_event: Component actiu
       decidim/demoted_membership: Ja no ets una administradora del grup
       decidim/gamification/badge_earned_event: Insígnia obtinguda
       decidim/gamification/level_up_event: Has pujat de nivell
+      decidim/invited_to_group_event: Convidada al grup
       decidim/join_request_accepted_event: Sol·licitud d'incorporació acceptada
       decidim/join_request_rejected_event: Sol·licitud d'incorporació rebutjada
       decidim/profile_updated_event: Perfil actualitzat
       decidim/promote_to_admin: Promocionada a administradora del grup
+      decidim/promoted_to_admin_event: Promocionada a administradora del grup
       decidim/removed_from_group: Eliminada del grup
       decidim/resource_endorsed_event: Adhesió a recurs feta
+      decidim/resource_hidden_event: Recurs amagat
+      decidim/user_group_created_event: S'ha creat el grup de l'usuari
+      decidim/welcome_notification_event: Missatge de benvinguda
   activerecord:
     attributes:
       decidim/user:
@@ -76,9 +83,38 @@ ca:
       decidim_with_day_and_month_name: "%A %d %b %Y"
       decidim_with_month_name: "%d %B %Y"
       decidim_with_month_name_short: "%d %b"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: al voltant d’1 hora
+        other: al voltant de %{count} hores
+      about_x_months:
+        one: al voltant d’1 mes
+        other: al voltant de %{count} mesos
+      half_a_minute: mig minut
+      less_than_x_minutes:
+        one: menys d’un minut
+        other: menys de %{count} minuts
+      less_than_x_seconds:
+        one: ara mateix
+        other: menys de %{count} segons
+      x_days:
+        one: fa 1 dia
+        other: "fa %{count} dies"
+      x_hours:
+        one: fa 1 hora
+        other: "fa %{count} hores"
+      x_minutes:
+        one: fa 1 minut
+        other: "fa %{count} minuts"
+      x_seconds:
+        one: fa 1 segon
+        other: "fa %{count} segons"
+        zero: ara mateix
   decidim:
     accessibility:
       external_link: Enllaç extern
+      front_page_link: Anar a la pàgina principal
       logo: "Logo oficial de %{organization}"
       skip_button: Vés al contingut principal
     account:
@@ -504,6 +540,11 @@ ca:
           this_application_will_not_be_able_to: 'Aquesta aplicació no podrà:'
           update_profile: Actualitza el teu perfil
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> vol utilitzar el teu compte"
+    editor_images:
+      create:
+        error: S'ha produït un error en pujar la imatge
+        success: La imatge s'ha pujat correctament
+      drag_and_drop_help: Afegeix imatges arrossegant-les i deixant-les anar o bé enganxant-les.
     endorsable:
       endorsements: Adhesions
       endorsements_count: Número d'adhesions
@@ -663,6 +704,11 @@ ca:
           email_outro: Has rebut aquesta notificació perquè estàs seguint a %{nickname}. Pots deixar de rebre notificacions seguint l'enllaç anterior.
           email_subject: "%{nickname} ha actualitzat el seu perfil"
           notification_title: El <a href="%{resource_path}"> perfi l</a> de %{name} (%{nickname}), a qui estàs seguint, s'ha actualitzat.
+        user_officialized:
+          email_intro: La participant %{name} (%{nickname}) ha estat oficialitzada.
+          email_outro: Has rebut aquesta notificació perquè ets una de les administradores de la plataforma.
+          email_subject: "S'ha oficialitzat a %{name}"
+          notification_title: La participant %{name} (%{nickname}) ha estat oficialitzada.
     export_mailer:
       data_portability_export:
         click_button: 'Fes clic en el següent enllaç per descarregar les teves dades.<br/>L''arxiu estarà disponible fins %{date}.<br/>Necessitaràs <a href="https://www.7-zip.org/">7-Zip</a> (per a Windows), <a href="https://www.keka.io/en/">Keka</a> (per a MacOS) o <a href="https://peazip.github.io">PeaZip</a> (per a Linux) per obrir-lo. Contrasenya: %{password}'
@@ -743,18 +789,6 @@ ca:
           how: Com pots aconseguir-la
           page_description: Les insígnies són reconeixements de les accions de les participants i del progrés en la plataforma. A mesura que comencis a descobrir, participar i interactuar amb la plataforma, n'obtindràs de diferents tipus. Aquí tens la llista d'insígnies i algunes formes d'aconseguir-les.
           title: Insígnies
-        invitations:
-          conditions:
-            - Utilitza l'enllaç "convidar amigues" a la teva pàgina d'usuària per convidar a les teves amistats
-            - Personalitza, si vols, el missatge que estàs enviant
-            - Pujaràs per mitjà de l'enviament d'invitacions i de registrar-les.
-          description: Aquesta insígna s'aconsegueix quan has convidat a algunes persones a la plataforma %{organization_name}, i s'hi han registrat com a participants. Gràcies per donar a conèixer %{organization_name} a d'altres i ajudar a ampliar la comunitat!
-          description_another: Aquesta participant ha convidat a %{score} persones.
-          description_own: Has convidat %{score} persones.
-          name: Invitacions
-          next_level_in: Convida a %{score} persones més per arribar al següent nivell!
-          unearned_another: Aquesta participant encara no ha convidat ningú.
-          unearned_own: Encara no has convidat a ningú.
       description: Les insígnies són reconeixements de les accions de les participants i del progrés en la plataforma. A mesura que comencis a descobrir, participar i interactuar amb la plataforma, n'obtindràs de diferents tipus.
       level: Nivell %{level}
       reached_top: Has arribat al màxim nivell d'aquesta insígnia.
@@ -960,10 +994,11 @@ ca:
           next: Següent
           no_conversations: Encara no tens converses
           title: Converses
+          to: Per a
         reply:
           placeholder: La teva resposta...
           send: Enviar
-          title: Respon
+          title: Respondre
         show:
           back: Tornar a totes les converses
           chat_with: Conversa amb
@@ -972,7 +1007,7 @@ ca:
           title: Conversa amb %{usernames}
         start:
           send: Enviar
-          title: Comença una conversa
+          title: Iniciar una conversa
         update:
           error: El missatge no ha estat enviat degut a un error
     metrics:
@@ -1035,8 +1070,16 @@ ca:
         greetings: Salutacions,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: Hola,
         subject: Vols seguir rebent informació rellevant sobre %{organization_name}?
+    notification_mailer:
+      event_received:
+        no_translation_available: Ho sentim, no s'ha pogut recuperar la traducció automàtica en enviar el correu. Pots comprovar la traducció del text original a través del següent enllaç %{link}.
+        original_text: 'Text original:'
+        same_language: El contingut s'ha publicat en la teva llengua de preferència (%{language}), és per això que no es mostra cap traducció automàtica en aquest correu electrònic.
+        translated_text: 'Text de la traducció automàtica:'
     notifications:
       no_notifications: Encara no hi ha notificacions.
+      show:
+        missing_event: Vaja, aquesta notificació pertany a un element que ja no està disponible. Pots descartar-la.
     notifications_settings:
       show:
         administrators: Administradores
@@ -1490,15 +1533,6 @@ ca:
       updated_not_active: La teva contrasenya s'ha modificat correctament.
     registrations:
       destroyed: El teu compte s'ha cancel·lat correctament. Esperem tornar-te a veure aviat.
-      edit:
-        are_you_sure: Estàs segur?
-        cancel_my_account: Cancel·lar el meu compte
-        currently_waiting_confirmation_for_email: 'Estem esperant la confirmació per a: %{email}'
-        leave_blank_if_you_don_t_want_to_change_it: Deixa-ho en blanc si no vols canviar-lo
-        title: Edita %{resource}
-        unhappy: Infeliç?
-        update: Actualitzar
-        we_need_your_current_password_to_confirm_your_changes: Necessitem la teva contrasenya actual per confirmar els canvis
       new:
         sign_up: Registra't
       signed_up: Benvinguda! Has iniciat la sessió amb èxit.
@@ -1553,7 +1587,7 @@ ca:
         other: 'S''han produït múltiples errors en processar la vostra sol·licitud:'
       too_many_marks: Estàs fent servir massa signes de puntuació consecutius (p. ex. i?)
       too_much_caps: Estàs utilitzant massa lletres majúscules (més del 25% del text)
-      too_short: És massa curt (menys de 15 caràcters)
+      too_short: És massa curt (menys %{count} caràcters)
   forms:
     correct_errors: Hi ha errors al formulari, si us plau corregeix-los per continuar.
     length_validator:
@@ -1629,10 +1663,12 @@ ca:
     name: Català
     name_with_error: Català (error!)
   password_validator:
+    blacklisted: a la llista negra
     domain_included_in_password: és massa semblant a aquest nom de domini
     email_included_in_password: és massa similar al teu correu electrònic
     fallback: no és vàlid
     name_included_in_password: és massa semblant al teu nom
+    nickname_included_in_password: és massa semblant al teu àlies
     not_enough_unique_characters: no té prou caràcters únics
     password_not_allowed: no està permès
     password_too_common: és massa comú
@@ -1667,6 +1703,8 @@ ca:
       day_of_week: "%a"
       day_of_week_long: "%a %e"
       day_of_year: "%d/%m/%y"
+      ddmm: "%d.%m"
+      ddmmyyyy: "%d.%m.%Y"
       decidim_day_of_year: "%d %B %Y"
       decidim_short: "%d/%m/%Y %H:%M"
       default: "%a, %d %b %Y %H:%M:%S %z"
@@ -1674,8 +1712,8 @@ ca:
         mailer:
           invitation_instructions:
             accept_until_format: "%B %d, %Y %I:%M %p"
-      long: "%B %d, %Y %H:%M"
-      long_dashed: "%A-%m-%d %H:%M:%S"
+      long: "%d de %B, %Y %H:%M"
+      long_dashed: "%d-%m-%Y %H:%M:%S"
       short: "%d/%m/%Y %H:%M"
       time_of_day: "%H:%M"
   versions:
@@ -1685,6 +1723,7 @@ ca:
     dropdown:
       choose_diff_view_html: 'Vista HTML:'
       choose_diff_view_mode: 'Mode de vista de comparació:'
+      choose_diff_view_mode_menu: Triar el mode de comparació
       option_escaped: Escapada
       option_split: Costat per costat
       option_unescaped: No escapada

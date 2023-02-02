@@ -37,6 +37,9 @@ describe "Meeting registrations", type: :system do
       available_slots: available_slots,
       registration_terms: registration_terms
     )
+
+    # Make static map requests not to fail with HTTP 500 (causes JS error)
+    stub_request(:get, Regexp.new(Decidim.maps.fetch(:static).fetch(:url))).to_return(body: "")
   end
 
   context "when meeting registrations are not enabled" do
@@ -134,7 +137,7 @@ describe "Meeting registrations", type: :system do
             end
 
             within ".card.extra" do
-              click_button "Inscriu-te a la trobada"
+              click_button "Unir-se a la trobada"
             end
 
             within "#loginModal" do
@@ -313,6 +316,51 @@ describe "Meeting registrations", type: :system do
           expect(page).to have_no_i18n_content(question.body)
 
           expect(page).to have_button("Submit")
+        end
+      end
+
+      context "when the registration form has file question and file is invalid" do
+        let!(:question) { create(:questionnaire_question, questionnaire: questionnaire, position: 0, question_type: :files) }
+
+        before do
+          login_as user, scope: :user
+        end
+
+        it "shows errors for invalid file" do
+          visit questionnaire_public_path
+
+          input_element = find("input[type='file']", visible: :all)
+          input_element.attach_file(Decidim::Dev.asset("verify_user_groups.csv"))
+
+          expect(page).to have_field("public_participation", checked: false)
+          find(".tos-agreement").set(true)
+          click_button "Submit"
+
+          within ".confirm-modal-footer" do
+            find("a.button[data-confirm-ok]").click
+          end
+
+          expect(page).to have_content("Needs to be reattached")
+        end
+
+        context "and the announcement for the meeting is configured" do
+          before do
+            component.update!(
+              settings: {
+                announcement: {
+                  en: "An important announcement",
+                  es: "Un aviso muy importante",
+                  ca: "Un avís molt important"
+                }
+              }
+            )
+          end
+
+          it "the user should not see it" do
+            visit questionnaire_public_path
+
+            expect(page).not_to have_content("An important announcement")
+          end
         end
       end
     end

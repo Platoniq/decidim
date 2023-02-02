@@ -95,8 +95,9 @@ module Decidim
         text: { klass: String, default: nil },
         array: { klass: Array, default: [] },
         enum: { klass: String, default: nil },
+        select: { klass: String, default: nil },
         scope: { klass: Integer, default: nil },
-        time: { klass: Time, default: nil }
+        time: { klass: Decidim::Attributes::TimeWithZone, default: nil }
       }.freeze
 
       attribute :type, Symbol, default: :boolean
@@ -109,6 +110,7 @@ module Decidim
       attribute :required_for_authorization, Boolean, default: false
       attribute :readonly
       attribute :choices
+      attribute :include_blank, Boolean, default: false
 
       validates :type, inclusion: { in: TYPES.keys }
 

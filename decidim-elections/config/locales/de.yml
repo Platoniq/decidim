@@ -12,7 +12,6 @@ de:
         start_time: Die Abstimmung beginnt um
         title: Titel
       question:
-        description: Beschreibung
         max_selections: Maximale Anzahl Antworten
         min_selections: Nichts davon
         title: Titel
@@ -58,6 +57,9 @@ de:
       decidim/elections/question:
         one: Frage
         other: Fragen
+      decidim/voting:
+        one: Abstimmung
+        other: Abstimmungen
       decidim/votings/census/dataset:
         one: Datensatz
         other: Datensätze
@@ -204,6 +206,7 @@ de:
             title: Vorschläge importieren
         questions:
           create:
+            election_started: Die Wahl hat bereits begonnen
             invalid: Beim Erstellen dieser Frage ist ein Fehler aufgetreten
             success: Frage wurde erfolgreich erstellt
           destroy:
@@ -227,7 +230,6 @@ de:
               minimum_answers: Fragen müssen <strong>mindestens zwei Antworten</strong> haben.
               minimum_questions: Die Wahl <strong>muss mindestens eine Frage</strong> haben.
               published: Die Wahl ist <strong>nicht veröffentlicht</strong>.
-              time_before: Die Startzeit ist in <strong>weniger als 3 Stunden</strong> vor Beginn der Wahl.
               trustees_number: <strong>Mindestens %{number} Wahlhelfer mit Public Key</strong> werden benötigt.
             invalid: Beim Erstellen dieser Wahl ist ein Fehler aufgetreten
             no_trustees: Es sind keine Wahlhelfer eingetragen
@@ -253,8 +255,8 @@ de:
             title: Wahl erstellt
             trustees: Wahlhelfer
           key_ceremony:
+            continue: Fortfahren
             title: Schlüsselzeremonie
-            trustees: Wahlhelfer
           key_ceremony_ended:
             errors:
               time_before: Die Wahl ist startbereit. Sie können die Abstimmungsperiode frühestens %{hours} Stunden vor der Startzeit (%{start_time}) eröffnen.
@@ -274,8 +276,14 @@ de:
             submit: Absenden
             title: Ergebnisse veröffentlicht
           tally:
+            continue: Fortfahren
+            invalid: Es ist ein Problem beim Melden des Stimmenzählers aufgetreten
+            mark_as_missing: Als fehlend markieren
+            mark_as_missing_description: Alle Wahlhelfer sollten an diesem Prozess teilnehmen. Wenn ein Wahlhelfer nicht am Prozess teilnehmen kann, können Sie ihn als fehlend markieren.
+            success: Eine Meldung über das Fehlen des Wahlhelfers wurde erfolgreich ans Forum gesendet
+            tally_completion: Der Prozess wird abgeschlossen, wenn alle Wahlhelfer aktiv sind oder als fehlend markiert wurden. Mindestens %{quorum} Wahlhelfer sind erforderlich, um den Prozess abzuschließen.
             title: Stimmenzählung
-            trustees: Wahlhelfer
+            undo_mark_as_missing: Ein Wahlhelfer, der versehentlich als fehlend markiert wurde, kann vor Abschluss des Prozesses teilnehmen. Sie können wie gewohnt fortfahren und die fehlend-Markierung wird ignoriert.
           tally_ended:
             answer: Antwort
             not_selected: Nicht ausgewählt
@@ -326,16 +334,13 @@ de:
           update:
             invalid: Es ist ein Problem beim Aktualisieren des Wahlhelfers %{trustee} aufgetreten
             success: Wahlhelfer %{trustee} erfolgreich aktualisiert
-      admin_log:
-        election:
-          end_vote: "%{user_name} hat die Abstimmungsperiode für die Wahl %{resource_name} im Bulletin Board beendet"
-          publish: "%{user_name} hat die %{resource_name} Wahl veröffentlicht"
-          publish_results: "%{user_name} hat die Resultate für die Wahl %{resource_name} im Bulletin Board veröffentlicht"
-          setup: "%{user_name} hat die Wahl %{resource_name} auf dem Bulletin Board erstellt"
-          start_key_ceremony: "%{user_name} hat die Schlüssel-Zeremonie für die Wahl %{resource_name} im Bulletin Board eröffnet"
-          start_tally: "%{user_name} hat die Stimmenzählung für die Wahl %{resource_name} im Bulletin Board eröffnet"
-          start_vote: "%{user_name} hat die Abstimmungsperiode für die Wahl %{resource_name} im Bulletin Board eröffnet"
-          unpublish: "%{user_name} hat die %{resource_name} Wahl zurückgezogen"
+      connection:
+        failed:
+          modal:
+            close: Schliessen
+            communication_lost: Leider scheint die Kommunikation mit dem Abstimmungsserver (Bulletin Board) unterbrochen.<br>Möglicherweise ist die Internetverbindung gestört oder der Server ist überlastet.<br>Bitte versuche es später noch einmal oder kontaktiere den Support, falls das Problem weiterhin besteht.
+            generic_error: Leider ist ein unbekannter Fehler aufgetreten. Es ist wahrscheinlich, dass Ihr Browser nicht unterstützt wird oder dass Sie den Modus "incognito" oder "private" verwenden, der nicht unterstützt wird.
+            title: Etwas ist schiefgelaufen
       election_m:
         badge_name:
           finished: Abgeschlossen
@@ -586,7 +591,6 @@ de:
           audit: "(Stimmzettel überprüfen)"
           back: Abstimmungsvorgang erneut starten
           ballot_hash: 'Ihre Wahlurnen-ID ist:'
-          cast: Stimme abgeben
           description: Hier können Sie ihre Stimme abgeben, sodass sie gezählt wird, oder alternativ können Sie überprüfen ob ihre Stimme richtig verschlüsselt wurde. Aus Sicherheitsgründen wird die Überprüfung die Stimme ungültig machen. Das bedeutet, um Ihre Stimme danach abzugeben, müssen Sie den Abstimmungsprozess erneut durchlaufen.
         confirm:
           answer: Antwort
@@ -610,6 +614,10 @@ de:
         failed:
           header: Abstimmung fehlgeschlagen
           lead: Ihre Stimme wurde nicht abgegeben!
+          modal:
+            close: Schließen
+            communication_lost: Leider scheint die Kommunikation mit dem Abstimmungsserver (Bulletin Board) unterbrochen.<br>Möglicherweise ist die Internetverbindung gestört oder der Server ist überlastet.<br>Bitte versuche es später noch einmal oder kontaktiere den Support, falls das Problem weiterhin besteht.
+            title: Etwas ist schiefgelaufen
           text: Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.
           try_again: Erneut versuchen
         header:
@@ -870,7 +878,6 @@ de:
           edit:
             change_polling_station: Zurück zu den Wahllokalen
             monitoring_committee_notes: Bemerkungen
-            monitoring_committee_notes_placeholder: Melde jegliche Inzidenz hier
             title: Ergebnisse für die Wahl <i>%{election_title}</i> im Wahllokal <i>%{polling_station_title}</i>
           elections:
             title: Wählen Sie eine Wahl aus, die Sie überprüfen möchten
@@ -955,14 +962,17 @@ de:
             assign_missing_officers: Es gibt noch Wahllokale ohne Präsident und/oder Wahlleiter. Bitte ordnen Sie diese im Wahllokal-Abschnitt zu
             update: Aktualisieren
           form:
-            census_contact_information_help: Diese Kontaktinformationen richten sich an einen Teilnehmer, der Probleme mit einer Erhebung melden möchte. Es kann eine E-Mail-Adresse, ein Kontaktformular auf einer anderen Seite, eine Decidim-Umfrage für Besucher, etc. sein.
+            banner_image: Kopf-Bild
+            promoted: Hervorgehoben
             select_a_voting_type: Bitte einen Abstimmungs-Typ auswählen
+            slug: URL-Segment
             slug_help: 'URL-Slugs werden zum Generieren der URLs verwendet, die auf diese Abstimmung verweisen. Akzeptiert nur Buchstaben, Zahlen und Bindestriche und muss mit einem Buchstaben beginnen. Beispiel: %{url}'
             title: Titel
             voting_type:
               hybrid: Hybrid
               in_person: Persönlich
               online: Online
+            voting_type_label: Art der Abstimmung
           new:
             create: Erstellen
             title: Neue Abstimmung
@@ -983,12 +993,10 @@ de:
           census:
             create:
               invalid: Beim Hochladen der Erhebung ist ein Problem aufgetreten, bitte versuchen Sie es später erneut.
-              invalid_csv_header: Der CSV-Header hat nicht die richtige Anzahl Felder - bitte lesen Sie die Anweisungen sorgfältig
             creating_data:
               info_message: "<strong>Bitte warten</strong>, %{processed_count} von %{raw_count} Zeilen aus der Datei %{file} wurden verarbeitet."
             delete:
               button: Alle Erhebungsdaten löschen
-              confirm: Dies kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie fortfahren möchten?
             destroy:
               error: Beim Löschen der Erhebungsdaten ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.
               success: Erhebungsdaten gelöscht
@@ -996,7 +1004,7 @@ de:
               button: Zugangscodes für die Abstimmung exportieren
               callout: Sie können jetzt die Zugangscodes exportieren. Dies kann nur einmal geschehen. Sobald Sie den Export gestartet haben, werden Sie eine E-Mail mit den Anweisungen unter <strong>%{email}</strong> erhalten
               confirm: Sie können die Zugangscodes nur einmal exportieren. Stellen Sie sicher, dass Sie Zugang zum E-Mail-Konto <strong>%{email}</strong> haben.
-              file_not_exists: Diese Datei existiert nicht
+              file_not_exist: Diese Datei existiert nicht
               launch_error: Beim Starten des Zugangscode-Exports ist ein Problem aufgetreten
               launch_success: Der Zugangscode-Export wurde gestartet. Sie werden in Kürze eine E-Mail an %{email} erhalten
             exporting_access_codes:
@@ -1021,7 +1029,6 @@ de:
               has_ballot_styles_message: Sie haben Wahlkategorien eingerichtet. Bitte stellen Sie sicher dass das Feld "%{ballot_style_code_header}" im CSV dem Code der gewünschten Wahlkategorie entspricht.
               info_message: "<strong>Es gibt noch keine Erhebungsdaten.</strong> Bitte verwenden Sie das untenstehende Formular um die Erhebungsdaten aus einer CSV-Datei zu importieren."
               missing_ballot_styles_message: 'Es gibt noch keine Wahlkategorien für diese Abstimmung. Wenn Sie variable Fragen haben möchten (d.h. dem Wähler unterschiedliche Fragen anzeigen, je nach z.B. Wohnort), müssen Sie die <a href=%{ballot_styles_admin_path}>Wahlkategorien</a> einrichten, <strong>bevor</strong> Sie die Erhebungsdaten importieren. Wenn Sie allen Wählern die gleichen Fragen stellen wollen, können Sie mit dem Import für Erhebungsdaten fortfahren.'
-              submit: CSV absenden
               title: Erhebungsdaten erfassen
             show:
               heading: Erhebungsdaten der Abstimmung
@@ -1045,8 +1052,7 @@ de:
           name: Hervorgehobene Abstimmungen
         landing_page:
           description:
-            show_less: Weniger anzeigen
-            show_more: Mehr anzeigen
+            title: Über diese Abstimmung
           metrics:
             heading: Metriken
           polling_stations:
@@ -1099,7 +1105,7 @@ de:
             modal_ballots_count_error:
               btn_validate_total: Neue Gesamtzahl der Stimmen überprüfen
               close_modal: Schließen
-              info_explanation_text: 'Bitte überprüfen Sie die Gesamtzahl der Stimmzettel. Falls die Gesamtzahl korrekt ist, müssen Sie eine Erklärung für den Überwachungsausschuss geben:'
+              info_explanation_text: 'Bitte überprüfen Sie die Gesamtzahl der Stimmzettel. Wenn die Gesamtzahl falsch ist, müssen Sie dem Wahlausschuss eine Erklärung abgeben:'
               info_text: Die eingegebene Gesamtzahl der Umschläge stimmt nicht mit der Liste der Personen überein, welche in diesem Wahllokal abgestimmt haben.
               message_for_monitoring_committee: Nachricht für den Überwachungsausschuss
               review_recount: Neuzählung überprüfen
@@ -1223,13 +1229,11 @@ de:
         check_census:
           check_status: Status überprüfen
           description: Hier haben Sie die Möglichkeit, Ihre Erhebungsdaten zu überprüfen, um herauszufinden ob Sie das Recht haben, an dieser Abstimmung teilzunehmen. Sie sollten bereits einen Zugangscode haben, aber wenn Sie ihn verloren haben können Sie ihn erneut anfragen, sobald Ihre Daten korrekt sind.
-          error:
-            info: 'Bitte versuchen Sie es erneut. Wenn Sie denken, dass die Daten im System nicht korrekt sind, können Sie das hier melden: %{census_contact_information}.'
-            title: Ihre Erhebungsdaten sind nicht korrekt!
           form_title: 'Füllen Sie das folgende Formular aus, um Ihre Erhebungsdaten zu überprüfen:'
           invalid: Bei der Überprüfung der Erhebung ist ein Problem aufgetreten.
           success:
-            access_link: via SMS oder E-Mail.
+            access_link: per E-Mail.
+            access_link_with_sms: via SMS oder E-Mail.
             info: Sie sollten Ihren Zugangscode bereits via Briefpost bekommen haben. Falls nicht, können Sie ihn hier anfordern
             title: Ihre Erhebungsdaten sind korrekt!
           title: Kann ich abstimmen?
@@ -1239,6 +1243,7 @@ de:
           day_placeholder: TT
           document_number: Dokumentennummer
           document_number_placeholder: ID-Nummer
+          document_type: Dokumenttyp
           month: Monat
           month_placeholder: MM
           postal_code: Postleitzahl

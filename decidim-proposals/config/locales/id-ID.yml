@@ -103,7 +103,6 @@ id:
             announcement: Pengumuman
             automatic_hashtags: Hashtag ditambahkan ke semua proposal
             comments_blocked: Komentar diblokir
-            creation_enabled: Pembuatan proposal diaktifkan
             endorsements_blocked: Pengesahan dicekal
             endorsements_enabled: Pengesahan diaktifkan
             proposal_answering_enabled: Pengangkatan proposal diaktifkan
@@ -114,33 +113,21 @@ id:
     events:
       proposals:
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} telah diterima untuk diakses sebagai kontributor dari draft kolaboratif <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Anda telah menerima pemberitahuan ini karena Anda adalah kolaborator dari <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} telah diterima untuk diakses sebagai kontributor dari %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> telah <strong>diterima untuk mengakses sebagai kontributor</strong> dari <a href="%{resource_path}">%{resource_title}</a> draf kolaboratif.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} telah ditolak untuk diakses sebagai kontributor dari draf kolaboratif <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Anda telah menerima pemberitahuan ini karena Anda adalah kolaborator dari <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} telah ditolak untuk diakses sebagai kontributor dari %{resource_title} draf kolaboratif."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> telah ditolak <strong>sebagai kontributor</strong> dari <a href="%{resource_path}">%{resource_title}</a> draf kolaboratif.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} akses yang diminta sebagai kontributor. Anda dapat <strong>menerima atau menolak permintaan</strong> dari halaman draf kolaboratif <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Anda telah menerima pemberitahuan ini karena Anda adalah kolaborator dari <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} akses yang diminta untuk berkontribusi ke %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> meminta akses untuk berkontribusi</a> draf kolaboratif <a href="%{resource_path}">%{resource_title}</a> . Harap <strong>menerima atau menolak permintaan</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: Anda telah diterima untuk mengakses sebagai kontributor dari draf kolaboratif <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Anda telah menerima pemberitahuan ini karena Anda diminta untuk menjadi kolaborator <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Anda telah diterima sebagai kontributor %{resource_title}.
           notification_title: Anda telah <strong>diterima untuk mengakses sebagai kontributor</strong> dari draf kolaboratif <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requester_rejected:
-          email_intro: Anda telah ditolak untuk mengakses sebagai kontributor dari draf kolaboratif <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Anda telah menerima pemberitahuan ini karena Anda diminta untuk menjadi kolaborator <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Anda telah ditolak sebagai kontributor %{resource_title}.
           notification_title: Anda telah ditolak <strong>untuk mengakses sebagai kontributor</strong> dari draf kolaboratif <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> menarik draf kolaboratif <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Anda telah menerima pemberitahuan ini karena Anda adalah kolaborator dari <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{author_name} %{author_nickname} menarik %{resource_title} draf kolaboratif."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>menarik</strong> dari <a href="%{resource_path}">%{resource_title}</a> draft kolaboratif.
         creation_enabled:
@@ -188,12 +175,10 @@ id:
           email_intro: Proposal "%{resource_title}" telah ditambahkan ke "%{participatory_space_title}" yang Anda ikuti.
           email_outro: Anda telah menerima pemberitahuan ini karena Anda mengikuti "%{participatory_space_title}". Anda dapat berhenti mengikutinya dari tautan sebelumnya.
           email_subject: Proposal baru "%{resource_title}" ditambahkan ke %{participatory_space_title}
-          notification_title: Proposal <a href="%{resource_path}">%{resource_title}</a> telah ditambahkan ke %{participatory_space_title}
         proposal_rejected:
           affected_user:
             email_intro: 'Proposal Anda "%{resource_title}" telah ditolak. Anda dapat membaca jawabannya di halaman ini:'
             email_outro: Anda telah menerima pemberitahuan ini karena Anda adalah pengarang "%{resource_title}".
-            email_subject: Proposal Anda ditolak
             notification_title: Proposal Anda <a href="%{resource_path}">%{resource_title}</a> telah ditolak.
           follower:
             email_intro: 'Proposal "%{resource_title}" telah ditolak. Anda dapat membaca jawabannya di halaman ini:'
@@ -383,11 +368,9 @@ id:
             select_states: Periksa status proposal untuk diimpor
         proposals_merges:
           create:
-            invalid: Terjadi kesalahan saat menggabungkan proposal yang dipilih.
             success: Berhasil menggabungkan proposal menjadi proposal baru.
         proposals_splits:
           create:
-            invalid: Terjadi kesalahan saat membagi proposal yang dipilih.
             success: Berhasil membagi proposal menjadi proposal baru.
       admin_log:
         proposal:
@@ -446,7 +429,6 @@ id:
           drafts_count:
             other: "%{count} draf kolaboratif"
         create:
-          error: Ada masalah saat membuat draf kolaboratif ini
           success: Draf kolaboratif berhasil dibuat.
         edit:
           attachment_legend: "(Opsional) Tambahkan lampiran"
@@ -603,7 +585,6 @@ id:
             other: suara
         new:
           send: Terus
-          title: Buat Proposal Anda
         orders:
           label: 'Memesan proposal dengan:'
           most_voted: Sebagian besar memilih

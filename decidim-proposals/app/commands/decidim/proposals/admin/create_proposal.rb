@@ -40,8 +40,9 @@ module Decidim
             create_attachment if process_attachments?
             create_gallery if process_gallery?
             link_author_meeeting if form.created_in_meeting?
-            send_notification
           end
+
+          send_notification
 
           broadcast(:ok, proposal)
         end
@@ -61,7 +62,7 @@ module Decidim
 
         def attributes
           parsed_title = Decidim::ContentProcessor.parse_with_processor(:hashtag, form.title, current_organization: form.current_organization).rewrite
-          parsed_body = Decidim::ContentProcessor.parse_with_processor(:hashtag, form.body, current_organization: form.current_organization).rewrite
+          parsed_body = Decidim::ContentProcessor.parse(form.body, current_organization: form.current_organization).rewrite
           {
             title: parsed_title,
             body: parsed_body,
@@ -81,11 +82,13 @@ module Decidim
         end
 
         def send_notification
+          return unless proposal
+
           Decidim::EventsManager.publish(
             event: "decidim.events.proposals.proposal_published",
             event_class: Decidim::Proposals::PublishProposalEvent,
             resource: proposal,
-            followers: @proposal.participatory_space.followers,
+            followers: proposal.participatory_space.followers,
             extra: {
               participatory_space: true
             }

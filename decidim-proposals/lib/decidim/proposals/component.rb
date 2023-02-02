@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "decidim/components/namer"
+require "decidim/meetings"
 
 Decidim.register_component(:proposals) do |component|
   component.engine = Decidim::Proposals::Engine
@@ -22,6 +23,8 @@ Decidim.register_component(:proposals) do |component|
 
   component.permissions_class_name = "Decidim::Proposals::Permissions"
 
+  POSSIBLE_SORT_ORDERS = %w(default random recent most_endorsed most_voted most_commented most_followed with_more_authors).freeze
+
   component.settings(:global) do |settings|
     settings.attribute :scopes_enabled, type: :boolean, default: false
     settings.attribute :scope_id, type: :scope
@@ -34,12 +37,12 @@ Decidim.register_component(:proposals) do |component|
     settings.attribute :threshold_per_proposal, type: :integer, default: 0
     settings.attribute :can_accumulate_supports_beyond_threshold, type: :boolean, default: false
     settings.attribute :proposal_answering_enabled, type: :boolean, default: true
+    settings.attribute :default_sort_order, type: :select, default: "default", choices: -> { POSSIBLE_SORT_ORDERS }
     settings.attribute :official_proposals_enabled, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :comments_max_length, type: :integer, required: false
     settings.attribute :geocoding_enabled, type: :boolean, default: false
     settings.attribute :attachments_allowed, type: :boolean, default: false
-    settings.attribute :allow_card_image, type: :boolean, default: false
     settings.attribute :resources_permissions_enabled, type: :boolean, default: true
     settings.attribute :collaborative_drafts_enabled, type: :boolean, default: false
     settings.attribute :participatory_texts_enabled,
@@ -63,10 +66,11 @@ Decidim.register_component(:proposals) do |component|
     settings.attribute :votes_blocked, type: :boolean
     settings.attribute :votes_hidden, type: :boolean, default: false
     settings.attribute :comments_blocked, type: :boolean, default: false
-    settings.attribute :creation_enabled, type: :boolean
+    settings.attribute :creation_enabled, type: :boolean, readonly: ->(context) { context[:component].settings[:participatory_texts_enabled] }
     settings.attribute :proposal_answering_enabled, type: :boolean, default: true
     settings.attribute :publish_answers_immediately, type: :boolean, default: true
     settings.attribute :answers_with_costs, type: :boolean, default: false
+    settings.attribute :default_sort_order, type: :select, include_blank: true, choices: -> { POSSIBLE_SORT_ORDERS }
     settings.attribute :amendment_creation_enabled, type: :boolean, default: true
     settings.attribute :amendment_reaction_enabled, type: :boolean, default: true
     settings.attribute :amendment_promotion_enabled, type: :boolean, default: true
@@ -128,7 +132,7 @@ Decidim.register_component(:proposals) do |component|
       collection = Decidim::Proposals::Proposal
                    .published
                    .where(component: component_instance)
-                   .includes(:category, :component)
+                   .includes(:scope, :category, :component)
 
       if space.user_roles(:valuator).where(user: user).any?
         collection.with_valuation_assigned_to(user, space)
@@ -146,7 +150,7 @@ Decidim.register_component(:proposals) do |component|
     exports.collection do |component_instance|
       Decidim::Comments::Export.comments_for_resource(
         Decidim::Proposals::Proposal, component_instance
-      )
+      ).includes(:author, :user_group, root_commentable: { component: { participatory_space: :organization } })
     end
 
     exports.include_in_open_data = true
@@ -155,7 +159,37 @@ Decidim.register_component(:proposals) do |component|
   end
 
   component.imports :proposals do |imports|
-    imports.creator Decidim::Proposals::ProposalCreator
+    imports.form_view = "decidim/proposals/admin/imports/proposals_fields"
+    imports.form_class_name = "Decidim::Proposals::Admin::ProposalsFileImportForm"
+
+    imports.messages do |msg|
+      msg.set(:resource_name) { |count: 1| I18n.t("decidim.proposals.admin.imports.resources.proposals", count: count) }
+      msg.set(:title) { I18n.t("decidim.proposals.admin.imports.title.proposals") }
+      msg.set(:label) { I18n.t("decidim.proposals.admin.imports.label.proposals") }
+      msg.set(:help) { I18n.t("decidim.proposals.admin.imports.help.proposals") }
+    end
+
+    imports.creator Decidim::Proposals::Import::ProposalCreator
+  end
+
+  component.imports :answers do |imports|
+    imports.messages do |msg|
+      msg.set(:resource_name) { |count: 1| I18n.t("decidim.proposals.admin.imports.resources.answers", count: count) }
+      msg.set(:title) { I18n.t("decidim.proposals.admin.imports.title.answers") }
+      msg.set(:label) { I18n.t("decidim.proposals.admin.imports.label.answers") }
+      msg.set(:help) { I18n.t("decidim.proposals.admin.imports.help.answers") }
+    end
+
+    imports.creator Decidim::Proposals::Import::ProposalAnswerCreator
+    imports.example do |import_component|
+      organization = import_component.organization
+      [
+        %w(id state) + organization.available_locales.map { |l| "answer/#{l}" },
+        [1, "accepted"] + organization.available_locales.map { "Example answer" },
+        [2, "rejected"] + organization.available_locales.map { "Example answer" },
+        [3, "evaluating"] + organization.available_locales.map { "Example answer" }
+      ]
+    end
   end
 
   component.seeds do |participatory_space|
@@ -250,8 +284,8 @@ Decidim.register_component(:proposals) do |component|
 
         author = Decidim::User.find_or_initialize_by(email: email)
         author.update!(
-          password: "password1234",
-          password_confirmation: "password1234",
+          password: "decidim123456",
+          password_confirmation: "decidim123456",
           name: name,
           nickname: Faker::Twitter.unique.screen_name,
           organization: component.organization,
@@ -316,8 +350,8 @@ Decidim.register_component(:proposals) do |component|
 
         author = Decidim::User.find_or_initialize_by(email: email)
         author.update!(
-          password: "password1234",
-          password_confirmation: "password1234",
+          password: "decidim123456",
+          password_confirmation: "decidim123456",
           name: name,
           nickname: Faker::Twitter.unique.screen_name,
           organization: component.organization,
@@ -338,8 +372,8 @@ Decidim.register_component(:proposals) do |component|
 
           author = Decidim::User.find_or_initialize_by(email: email)
           author.update!(
-            password: "password1234",
-            password_confirmation: "password1234",
+            password: "decidim123456",
+            password_confirmation: "decidim123456",
             name: name,
             nickname: Faker::Twitter.unique.screen_name,
             organization: component.organization,

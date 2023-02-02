@@ -7,10 +7,19 @@ module Decidim
     #
     class MeetingPresenter < Decidim::ResourcePresenter
       include Decidim::ResourceHelper
+      include ActionView::Helpers::UrlHelper
       include Decidim::SanitizeHelper
 
       def meeting
         __getobj__
+      end
+
+      def meeting_path
+        Decidim::ResourceLocatorPresenter.new(meeting).path
+      end
+
+      def display_mention
+        link_to title, meeting_path
       end
 
       def title(links: false, html_escape: false, all_locales: false)
@@ -58,7 +67,7 @@ module Decidim
         return unless meeting
 
         handle_locales(meeting.closing_report, all_locales) do |content|
-          renderer = Decidim::ContentRenderers::HashtagRenderer.new(decidim_sanitize(content))
+          renderer = Decidim::ContentRenderers::HashtagRenderer.new(sanitized(content))
           renderer.render(links: links).html_safe
         end
       end
@@ -67,7 +76,7 @@ module Decidim
         return unless meeting
 
         handle_locales(meeting.registration_email_custom_content, all_locales) do |content|
-          renderer = Decidim::ContentRenderers::HashtagRenderer.new(decidim_sanitize(content))
+          renderer = Decidim::ContentRenderers::HashtagRenderer.new(sanitized(content))
           renderer.render(links: links).html_safe
         end
       end
@@ -100,7 +109,7 @@ module Decidim
         resource_locator(meeting).path
       end
 
-      def avatar_url
+      def avatar_url(_variant = nil)
         ActionController::Base.helpers.asset_pack_path("media/images/decidim_meetings.svg")
       end
 
@@ -130,7 +139,7 @@ module Decidim
       end
 
       def sanitized(content)
-        decidim_sanitize(content)
+        decidim_sanitize_editor(content)
       end
     end
   end

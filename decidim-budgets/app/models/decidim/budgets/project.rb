@@ -46,7 +46,8 @@ module Decidim
         # delimiter. Otherwise e.g. ID 2 would match ID "26" in the original
         # array. This is why we search for match ",2," instead to get the actual
         # position for ID 2.
-        order(Arel.sql("position(concat(',', id::text, ',') in ',#{ids.join(",")},')"))
+        concat_ids = connection.quote(",#{ids.join(",")},")
+        order(Arel.sql("position(concat(',', id::text, ',') in #{concat_ids})"))
       end
 
       def self.log_presenter_class_for(_log)
@@ -91,6 +92,32 @@ module Decidim
       # Public: Returns the attachment context for this record.
       def attachment_context
         :admin
+      end
+
+      ransacker :id_string do
+        Arel.sql(%{cast("decidim_budgets_projects"."id" as text)})
+      end
+
+      # Allow ransacker to search for a key in a hstore column (`title`.`en`)
+      ransacker :title do |parent|
+        Arel::Nodes::InfixOperation.new("->>", parent.table[:title], Arel::Nodes.build_quoted(I18n.locale.to_s))
+      end
+
+      ransacker :selected do
+        Arel.sql(%{("decidim_budgets_projects"."selected_at")::text})
+      end
+
+      ransacker :confirmed_orders_count do
+        query = <<-SQL.squish
+        (
+            SELECT COUNT(decidim_budgets_line_items.decidim_order_id)
+            FROM decidim_budgets_line_items
+            LEFT JOIN decidim_budgets_orders ON decidim_budgets_orders.id = decidim_budgets_line_items.decidim_order_id
+            WHERE decidim_budgets_orders.checked_out_at IS NOT NULL
+            AND decidim_budgets_projects.id = decidim_budgets_line_items.decidim_project_id
+        )
+        SQL
+        Arel.sql(query)
       end
     end
   end

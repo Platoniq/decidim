@@ -31,7 +31,7 @@ module Decidim
 
         def create_meeting!
           parsed_title = Decidim::ContentProcessor.parse_with_processor(:hashtag, form.title, current_organization: form.current_organization).rewrite
-          parsed_description = Decidim::ContentProcessor.parse_with_processor(:hashtag, form.description, current_organization: form.current_organization).rewrite
+          parsed_description = Decidim::ContentProcessor.parse(form.description, current_organization: form.current_organization).rewrite
           params = {
             scope: form.scope,
             category: form.category,
@@ -57,7 +57,11 @@ module Decidim
             questionnaire: Decidim::Forms::Questionnaire.new,
             customize_registration_email: form.customize_registration_email,
             registration_email_custom_content: form.registration_email_custom_content,
-            show_embedded_iframe: form.show_embedded_iframe
+            iframe_embed_type: form.iframe_embed_type,
+            comments_enabled: form.comments_enabled,
+            comments_start_time: form.comments_start_time,
+            comments_end_time: form.comments_end_time,
+            iframe_access_level: form.iframe_access_level
           }
 
           @meeting = Decidim.traceability.create!(

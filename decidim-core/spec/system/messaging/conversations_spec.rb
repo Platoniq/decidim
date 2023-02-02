@@ -57,6 +57,8 @@ describe "Conversations", type: :system do
       expect(page).to have_current_path decidim.new_conversation_path(recipient_id: recipient.id)
     end
 
+    it_behaves_like "conversation field with maximum length", "conversation_body"
+
     it_behaves_like "create new conversation"
 
     context "and recipient has restricted communications" do
@@ -197,15 +199,23 @@ describe "Conversations", type: :system do
           expect(page).to have_no_selector(".card--list__item .unread_message__counter")
         end
       end
+    end
 
-      context "and message is too long" do
-        let(:message_body) { Faker::Lorem.paragraph_by_chars(number: max_length + 1) }
-        let(:max_length) { Decidim.config.maximum_conversation_message_length }
+    context "when message is too long" do
+      let(:message_body) { message + overflow }
+      let(:message) { Faker::Lorem.paragraph_by_chars(number: max_length) }
+      let(:overflow) { "This should not be included in the message" }
+      let(:max_length) { Decidim.config.maximum_conversation_message_length }
 
-        it "shows the error message modal", :slow do
-          expect(page).to have_selector("#messageErrorModal .reveal__title", text: "Message was not sent due to an error")
-          expect(page).to have_selector("#messageErrorModal .reveal__body", text: "Body is too long (maximum is #{max_length} characters)")
-        end
+      it "shows the error message modal", :slow do
+        visit_inbox
+        click_link "conversation-#{conversation.id}"
+        expect(page).to have_content("Send")
+        fill_in "message_body", with: message_body
+        expect(page).to have_content("0 characters left")
+        click_button "Send"
+        expect(page).to have_content(message)
+        expect(page).not_to have_content(overflow)
       end
     end
 
@@ -536,6 +546,40 @@ describe "Conversations", type: :system do
           end
         end
       end
+    end
+  end
+
+  context "when user is deleted" do
+    let(:interlocutor) { create(:user, :confirmed, organization: organization) }
+
+    let!(:conversation) do
+      Decidim::Messaging::Conversation.start!(
+        originator: interlocutor,
+        interlocutors: [user],
+        body: "who wants apples?"
+      )
+    end
+
+    before do
+      Decidim::DestroyAccount.call(interlocutor, Decidim::DeleteAccountForm.from_params({}))
+      interlocutor.reload
+    end
+
+    it "shows user's conversation list" do
+      visit_inbox
+
+      within ".conversations" do
+        expect(page).to have_selector(".card.card--widget", text: /Participant deleted/i)
+        expect(page).to have_selector(".card.card--widget", text: "who wants apples?")
+      end
+    end
+
+    it "allows entering a conversation" do
+      visit_inbox
+      click_link "conversation-#{conversation.id}"
+
+      expect(page).to have_content("Conversation with Participant deleted")
+      expect(page).to have_content("who wants apples?")
     end
   end
 

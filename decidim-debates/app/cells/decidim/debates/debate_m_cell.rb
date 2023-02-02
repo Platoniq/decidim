@@ -32,11 +32,11 @@ module Decidim
       private
 
       def title
-        presenter.title
+        presenter.title(html_escape: true)
       end
 
       def body
-        decidim_sanitize(present(model).description)
+        decidim_sanitize_editor(present(model).description)
       end
 
       def description
@@ -49,6 +49,10 @@ module Decidim
 
       def spans_multiple_dates?
         start_date != end_date
+      end
+
+      def has_actions?
+        false
       end
 
       def debate_date

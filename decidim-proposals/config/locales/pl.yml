@@ -132,7 +132,6 @@ pl:
         name: Propozycje
         settings:
           global:
-            allow_card_image: Zezwalaj na obraz
             amendments_enabled: Można dodawać poprawki
             amendments_enabled_help: Jeśli aktywne, skonfiguruj funkcje poprawek dla każdego kroku.
             amendments_wizard_help_text: Tekst pomocy Kreatora poprawek
@@ -183,7 +182,6 @@ pl:
             answers_with_costs: Zezwalaj na koszty w odpowiedziach na propozycje
             automatic_hashtags: Hashtagi dodane do wszystkich propozycji
             comments_blocked: Komentarze zablokowane
-            creation_enabled: Włączono tworzenie propozycji
             endorsements_blocked: Rekomendacje zostały zablokowane
             endorsements_enabled: Rekomendacje włączone
             proposal_answering_enabled: Włączono odpowiadanie na propozycję
@@ -201,33 +199,21 @@ pl:
             email_subject: Ktoś zostawił notatkę do propozycji %{resource_title}.
             notification_title: Ktoś zostawił notatkę do propozycji <a href="%{resource_path}">%{resource_title}</a>. Sprawdź ją w <a href="%{admin_proposal_info_path}">panelu administratora</a>
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} otrzymał(a) dostęp jako współtwórca wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Otrzymałeś to powiadomienie, ponieważ jesteś współtwórcą <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} otrzymał(a) dostęp jako współtwórca %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> otrzymał(a) <strong>dostęp jako współtwórca</strong> wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} nie otrzymał(a) dostępu jako współtwórca wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Otrzymałeś to powiadomienie, ponieważ jesteś współtwórcą <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} nie otrzymał(a) dostępu jako współtwórca wspólnego szkicu %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> <strong>nie otrzymał(a) dostępu jako współtwórca</strong> wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} poprosił(a) o dostęp jako współtwórca. Możesz <strong>zaakceptować lub odrzucić prośbę</strong> na stronie wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Otrzymałeś to powiadomienie, ponieważ jesteś współtwórcą <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} prosi o dostęp do współtworzenia %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> prosi o dostęp do współtworzenia wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>. <strong>Zaakceptuj lub odrzuć prośbę</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: Zostałeś zaakceptowany jak współtwórca wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Otrzymałeś to powiadomienie, ponieważ poprosiłeś o dostęp jako współtwórca <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Zostałeś zaakceptowany jak współtwórca %{resource_title}.
           notification_title: Otrzymałeś <strong>zgodę na dostęp jako współtwórca</strong> wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requester_rejected:
-          email_intro: Nie otrzymałeś dostępu jako współtwórca wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Otrzymałeś to powiadomienie, ponieważ poprosiłeś o dostęp jako współtwórca <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Zostałeś odrzucony jako współtwórca %{resource_title}.
           notification_title: <strong>Nie otrzymałeś dostępu jako współtwórca</strong> wspólnego szkicu <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> wycofał(a) wspólny szkic <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Otrzymałeś to powiadomienie, ponieważ jesteś współtwórcą <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{author_name} %{author_nickname} wycofał(a) wspólny szkic %{resource_title}."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>wycofał(a)</strong> wspólny szkic <a href="%{resource_path}">%{resource_title}</a>.
         creation_enabled:
@@ -276,12 +262,10 @@ pl:
           email_intro: Propozycja "%{resource_title}" została dodana do przestrzeni "%{participatory_space_title}", którą obserwujesz.
           email_outro: Otrzymałeś to powiadomienie, ponieważ obserwujesz "%{participatory_space_title}". Aby przestać otrzymywać powiadomienia kliknij w powyższy link, a następnie na stronie kliknij w przycisk obserwowania.
           email_subject: Nowa propozycja "%{resource_title}" została dodana do %{participatory_space_title}
-          notification_title: Propozycja <a href="%{resource_path}">%{resource_title}</a> została dodana do %{participatory_space_title}
         proposal_rejected:
           affected_user:
             email_intro: 'Twoja propozycja "%{resource_title}" została odrzucona. Możesz przeczytać odpowiedź na tej stronie:'
             email_outro: Otrzymałeś to powiadomienie, ponieważ jesteś autorem "%{resource_title}".
-            email_subject: Twoja propozycja została odrzucona
             notification_title: Twoja propozycja <a href="%{resource_path}">%{resource_title}</a> została odrzucona.
           follower:
             email_intro: 'Propozycja "%{resource_title}" została odrzucona. Możesz przeczytać odpowiedź na tej stronie:'
@@ -518,11 +502,9 @@ pl:
             title: Importuj propozycje
         proposals_merges:
           create:
-            invalid: Podczas łączenia wybranych propozycji wystąpił błąd.
             success: Pomyślnie połączono propozycje.
         proposals_splits:
           create:
-            invalid: Wystąpił błąd podczas podziału wybranych propozycji.
             success: Pomyślnie podzielono propozycje.
         valuation_assignments:
           create:
@@ -595,7 +577,6 @@ pl:
             many: "%{count} wspólne szkice"
             other: "%{count} wspólne szkice"
         create:
-          error: Podczas tworzenia wspólnych szkiców wystąpił błąd
           success: Utworzono wspólny szkic.
         edit:
           attachment_legend: "(Opcjonalnie) Dodaj załącznik"
@@ -777,7 +758,6 @@ pl:
             other: wsparcia
         new:
           send: Dalej
-          title: Utwórz swoją propozycję
         orders:
           label: 'Sortuj propozycje według:'
           most_commented: Najczęściej komentowane

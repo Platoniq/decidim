@@ -125,7 +125,7 @@ FactoryBot.define do
 
   factory :user, class: "Decidim::User" do
     email { generate(:email) }
-    password { "password1234" }
+    password { "decidim123456" }
     password_confirmation { password }
     name { generate(:name) }
     nickname { generate(:nickname) }
@@ -139,6 +139,7 @@ FactoryBot.define do
     accepted_tos_version { organization.tos_version }
     email_on_notification { true }
     email_on_moderations { true }
+    extended_data { {} }
 
     trait :confirmed do
       confirmed_at { Time.current }
@@ -225,13 +226,20 @@ FactoryBot.define do
       confirmed_at { Time.current }
     end
 
+    trait :blocked do
+      blocked { true }
+      blocked_at { Time.current }
+      extended_data { { user_name: generate(:name) } }
+      name { "Blocked user group" }
+    end
+
     after(:build) do |user_group, evaluator|
-      user_group.extended_data = {
-        document_number: evaluator.document_number,
-        phone: evaluator.phone,
-        rejected_at: evaluator.rejected_at,
-        verified_at: evaluator.verified_at
-      }
+      user_group.extended_data = user_group.extended_data.merge({
+                                                                  document_number: evaluator.document_number,
+                                                                  phone: evaluator.phone,
+                                                                  rejected_at: evaluator.rejected_at,
+                                                                  verified_at: evaluator.verified_at
+                                                                })
     end
 
     after(:create) do |user_group, evaluator|
@@ -248,7 +256,7 @@ FactoryBot.define do
   end
 
   factory :user_group_membership, class: "Decidim::UserGroupMembership" do
-    user
+    user { create(:user, :confirmed, organization: user_group.organization) }
     role { :creator }
     user_group
   end
@@ -748,5 +756,11 @@ FactoryBot.define do
       times_used { 3 }
       last_used_at { 1.hour.ago }
     end
+  end
+
+  factory :editor_image, class: "Decidim::EditorImage" do
+    organization
+    author { create(:user, :admin, :confirmed, organization: organization) }
+    file { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
   end
 end

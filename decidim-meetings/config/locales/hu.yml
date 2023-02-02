@@ -44,8 +44,8 @@ hu:
       models:
         meeting:
           attributes:
-            show_embedded_iframe:
-              not_embeddable: Ez az URL nem ágyazható be
+            iframe_embed_type:
+              not_embeddable: Ez az URL nem ágyazható be az értekezlet vagy az élő esemény oldalába
         meeting_agenda:
           attributes:
             base:
@@ -90,7 +90,6 @@ hu:
               'false': Előzmények
               'true': Közelgő
           origin_eq:
-            label: Származás
             values:
               citizen: Polgár
               official: Hivatalos
@@ -100,7 +99,7 @@ hu:
           type_eq:
             label: Értekezlet típusa
             values:
-              hybrid: Mindkettő
+              hybrid: Hibrid
               in_person: Személyesen
               online: Online
       meeting_copies:
@@ -184,7 +183,7 @@ hu:
           notification_title: A(z) <a href="%{resource_path}">%{resource_title}</a> találkozó kevesebb, mint 48 óra múlva kezdődik.
     forms:
       meetings:
-        attendees_count_help_text: Ne felejtse el megadni az eseményen résztvevők teljes számát. Akár személyesen, akár hibrid, akár online, fontos, hogy tudjuk, hányan vesznek részt.
+        attendees_count_help_text: Ne felejtse el megadni a találkozón részt vevők teljes számát, akár személyesen, akár online, akár vegyesen.
     gamification:
       badges:
         attended_meetings:
@@ -312,7 +311,8 @@ hu:
             registration_url_help: 'Link: lehetővé teszi a résztvevők számára, hogy a regisztrációhoz a külső szolgáltatást használják'
             select_a_meeting_type: Válassza ki a találkozó típusát
             select_a_registration_type: Kérjük, válassza ki a regisztráció típusát
-            show_embedded_iframe_help: Beágyazza-e az iframe-et ehhez a videokonferencia URL-hez. Csak néhány szolgáltatás engedélyezi a beágyazást (például Youtube, Twitch...)
+            select_an_iframe_access_level: Kérjük, válassz iframe hozzáférési szintet
+            show_embedded_iframe_help: Csak néhány szolgáltatás engedélyezi a beágyazást megbeszélésekbe vagy élő eseményekbe (YouTube, Twitch és Jitsi)
           index:
             title: Találkozók
           new:
@@ -382,26 +382,37 @@ hu:
           value_types:
             organizer_presenter:
               not_found: 'A szervező nem található az adatbázisban (ID: %{id})'
+      application_helper:
+        filter_category_values:
+          all: Összes
+        filter_meeting_space_values:
+          all: Összes
+        filter_scope_values:
+          all: Összes
       calendar_modal:
         calendar_url: Naptár URL
         close_window: Ablak bezárása
         export_calendar: Naptár exportálása
       conference_venues: Konferencia helyszínek
       content_blocks:
-        upcoming_events:
-          name: Közelgő események
-          upcoming_events: Közelgő találkozók
-          view_all_events: Összes megtekintése
+        upcoming_meetings:
+          name: Közelgő találkozók
+          upcoming_meetings: Közelgő találkozók
+          view_all_meetings: Összes megtekintése
       directory:
         meetings:
           index:
-            all: Összes
-            date: Dátum
             meetings: találkozók
-            past: Korábban
-            search: Keresés
             space_type: Részvételi hely
-            upcoming: Közelgő
+      iframe_access_level:
+        all: Minden látogató
+        registered: A találkozó regisztrált résztvevői
+        signed_in: Csak bejelentkezett résztvevők
+      iframe_embed_type:
+        embed_in_meeting_page: Beágyazás az értekezlet oldalába
+        none: Nincs
+        open_in_live_event_page: Megnyitás az élő esemény oldalán (opcionális szavazásokkal)
+        open_in_new_tab: Megnyitás új fülön
       last_activity:
         meeting_updated_at_html: "<span>Találkozó frissítve %{link}</span>"
         new_meeting_at_html: "<span>Új találkozó %{link}</span>kor"
@@ -459,7 +470,7 @@ hu:
           type: Típus
           type_values:
             all: Összes
-            hybrid: Mindkettő
+            hybrid: Hibrid
             in_person: Személyes
             online: Online
         filters_small_view:
@@ -471,7 +482,7 @@ hu:
           address_help: 'Cím: Geocoder használata a helymeghatározáshoz'
           available_slots_help: Hagyd "0" értéken, ha a jelentkezők száma korlátlan
           create_as: Ülés létrehozása mint
-          show_embedded_iframe_help: Beágyazza-e az iframe-et ehhez a videokonferencia URL-hez. Csak néhány szolgáltatás engedélyezi a beágyazást (például Youtube, Twitch...)
+          show_embedded_iframe_help: Csak néhány szolgáltatás engedélyezi a beágyazást megbeszélésekbe vagy élő eseményekbe (YouTube, Twitch és Jitsi)
         meeting_minutes:
           related_information: Kapcsolódó információ
         meetings:
@@ -513,14 +524,11 @@ hu:
           fields:
             closed: Lezárt
             end_time: Befejezés dátuma
-            id: Id
             map: Térkép
             start_time: Kezdő dátum
             title: Cím
       polls:
         questions:
-          index_admin:
-            edit: Szerkesztés az admin felületen
           published_question:
             question_replied: Kérdés megválaszolva
             reply_question: Válasz a kérdésre
@@ -547,14 +555,18 @@ hu:
           invalid: Probléma történt a találkozó elhagyása közben.
           success: Sikeresen elhagytad a találkozót.
       type_of_meeting:
-        hybrid: Mindkettő
+        hybrid: Hibrid
         in_person: Személyesen
         online: Online
       types:
         private_meeting: Privát találkozó
         transparent: Átlátszó
+        withdraw: Visszavonva
       versions:
         back_to_resource: Vissza a találkozóhoz
+      withdraw:
+        error: A találkozó visszavonása során hiba történt
+        success: A találkozó visszavonása sikeres
     metrics:
       meetings:
         description: A létrehozott találkozók száma

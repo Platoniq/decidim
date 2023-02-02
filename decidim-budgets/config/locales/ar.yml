@@ -21,6 +21,11 @@ ar:
         many: مشاريع
         other: مشاريع
   decidim:
+    admin:
+      filters:
+        projects:
+          category_id_eq:
+            label: الفئة
     budgets:
       actions:
         attachment_collections: المجلدات
@@ -70,6 +75,7 @@ ar:
             success: "%{number} مقترحات تم استيرادها بنجاح في المشروعات"
           new:
             create: استيراد مقترحات للمشاريع
+            default_budget: الميزانية الافتراضية
             no_components: لا توجد مكونات أخرى مقترحة في هذه المساحة التشاركية لاستيراد المقترحات إلى المشروعات.
             select_component: يرجى اختيار عنصر
       admin_log:
@@ -88,6 +94,7 @@ ar:
             name: الإسم
         project:
           fields:
+            category: الفئة
             title: عنوان
       projects:
         budget_confirm:

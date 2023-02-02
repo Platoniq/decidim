@@ -19,7 +19,7 @@ module Decidim
     private
 
     def resource_path
-      resource_locator(model).path(filter_link_params)
+      resource_locator(model).path
     end
 
     def resource_image_path
@@ -57,14 +57,14 @@ module Decidim
     end
 
     def title
-      translated_attribute model.title
+      decidim_html_escape(translated_attribute(model.title))
     end
 
     def description
       attribute = model.try(:short_description) || model.try(:body) || model.description
       text = translated_attribute(attribute)
 
-      decidim_sanitize(html_truncate(text, length: 100))
+      decidim_sanitize_editor(html_truncate(text, length: 100))
     end
 
     def has_authors?

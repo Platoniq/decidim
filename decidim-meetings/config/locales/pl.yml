@@ -90,7 +90,6 @@ pl:
               official: Oficjalny
           type_eq:
             values:
-              hybrid: Oba
               online: Online
       meeting_copies:
         create:
@@ -297,6 +296,7 @@ pl:
             registration_url_help: 'Link: zezwól użytkownikom na korzystanie z usługi zewnętrznej, której używasz do rejestracji'
             select_a_meeting_type: Wybierz typ spotkania
             select_a_registration_type: Wybierz typ rejestracji
+            show_embedded_iframe_help: Tylko kilka usług pozwala na osadzanie w spotkaniu lub wydarzeniu na żywo (YouTube, Twitch i Jitsi)
           index:
             title: Spotkania
           new:
@@ -371,20 +371,13 @@ pl:
         export_calendar: Eksportuj kalendarz
       conference_venues: Sale konferencyjne
       content_blocks:
-        upcoming_events:
-          name: Nadchodzące wydarzenia
-          upcoming_events: Nadchodzące spotkania
-          view_all_events: Pokaż wszystkie
+        upcoming_meetings:
+          view_all_meetings: Pokaż wszystkie
       directory:
         meetings:
           index:
-            all: Wszystko
-            date: Data
             meetings: Spotkania
-            past: Przeszłe
-            search: Szukaj
             space_type: Przestrzeń partycypacyjna
-            upcoming: Nadchodzące
       last_activity:
         meeting_updated_at_html: "<span>Spotkanie zaktualizowane o %{link}</span>"
         new_meeting_at_html: "<span>Nowe spotkanie %{link}</span>"
@@ -443,7 +436,6 @@ pl:
           type: Typ
           type_values:
             all: Wszystko
-            hybrid: Oba
             in_person: Osobiście
             online: Online
         filters_small_view:
@@ -463,6 +455,7 @@ pl:
           select_a_category: Wybierz kategorię
           select_a_meeting_type: Wybierz typ spotkania
           select_a_registration_type: Wybierz typ rejestracji
+          show_embedded_iframe_help: Tylko kilka usług pozwala na osadzanie w spotkaniu lub wydarzeniu na żywo (YouTube, Twitch i Jitsi)
         index:
           new_meeting: Nowe spotkanie
         meeting_minutes:
@@ -553,7 +546,7 @@ pl:
           invalid: Wystąpił błąd podczas próby opuszczenia tego spotkania.
           success: Opuściłeś spotkanie.
       type_of_meeting:
-        hybrid: Oba
+        hybrid: Hybrydowe
         in_person: Osobiście
         online: Online
       types:

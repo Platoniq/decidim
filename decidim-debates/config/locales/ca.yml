@@ -10,6 +10,7 @@ ca:
         end_time: Data de finalització
         information_updates: Actualitzacions d'informació
         instructions: Instruccions per participar
+        scope_id: Àmbit
         start_time: Data d'inici
         title: Títol
         user_group_id: Crea un debat com
@@ -17,7 +18,7 @@ ca:
       decidim/debates/close_debate_event: Debat tancat
       decidim/debates/create_debate_event: Debat
       decidim/debates/creation_disabled_event: Debats deshabilitats
-      decidim/debates/creation_enabled_event: Debats habilitats
+      decidim/debates/creation_enabled_event: Creació de debats activada
   activerecord:
     models:
       decidim/debates/debate:
@@ -41,7 +42,7 @@ ca:
           step:
             announcement: Avís
             comments_blocked: Comentaris bloquejats
-            creation_enabled: Creació de debats per part de les participants habilitada
+            creation_enabled: Les participants poden crear debats
             endorsements_blocked: Adhesions bloquejades
             endorsements_enabled: Adhesions habilitades
     debates:

@@ -59,9 +59,7 @@ it:
         avatar: Avatar
         conference_meeting_ids: Conferenze correlate
         full_name: Nome e cognome
-        personal_url: URL personale
         position: Posizione
-        short_bio: Biografia breve
         twitter_handle: Identificativo Twitter
         user_id: Utente
       conference_user_role:
@@ -379,7 +377,7 @@ it:
         invite_join_conference_mailer:
           invite:
             decline: Rifiuta l'invito '%{conference_title}'
-            invited_you_to_join_a_conference: "%{invited_by} ti ha invitato a partecipare alla conferenza %{application}. Puoi rifiutare o accettare tramite i link sottostanti."
+            invited_existing_user_to_join_a_conference: "%{invited_by} ti ha invitato a partecipare alla conferenza %{application}. Puoi rifiutare o accettare tramite i link sottostanti."
             registration: Registrazione a '%{conference_title}'
         partners:
           index:

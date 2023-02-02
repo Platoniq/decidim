@@ -44,8 +44,8 @@ ja:
       models:
         meeting:
           attributes:
-            show_embedded_iframe:
-              not_embeddable: このURLは埋め込めません
+            iframe_embed_type:
+              not_embeddable: このURLはミーティングまたはライブイベントページに埋め込むことができません
         meeting_agenda:
           attributes:
             base:
@@ -181,7 +181,7 @@ ja:
           notification_title: <a href="%{resource_path}">%{resource_title}</a> のミーティングは48時間以内に開始されます．
     forms:
       meetings:
-        attendees_count_help_text: イベントに参加者の合計数を含めることを忘れないでください。 対面、ハイブリッド、オンラインに関わらず、何人が関わっているかを知ることが重要です。
+        attendees_count_help_text: 会議に出席者の総数に、対面・オンライン・ハイブリッドを含めることを忘れないでください
     gamification:
       badges:
         attended_meetings:
@@ -307,7 +307,8 @@ ja:
             registration_url_help: 'リンク: 参加者が登録に使用している外部サービスにアクセスできるようにします'
             select_a_meeting_type: ミーティング種別を選択してください
             select_a_registration_type: 登録種別を選択してください
-            show_embedded_iframe_help: このビデオ会議URLのiframeを埋め込むかどうか。いくつかのサービスのみが埋め込めます (例：YouTube、Twitchなど) 。
+            select_an_iframe_access_level: Iframeアクセスレベルを選択してください
+            show_embedded_iframe_help: ミーティングやライブイベント( YouTube、Twitch、Jitsi) に埋め込むことができるサービスは限られたもののみです。
           index:
             title: ミーティング
           new:
@@ -376,26 +377,37 @@ ja:
           value_types:
             organizer_presenter:
               not_found: '主催者がデータベース上に見つかりませんでした (ID: %{id})'
+      application_helper:
+        filter_category_values:
+          all: すべて
+        filter_meeting_space_values:
+          all: すべて
+        filter_scope_values:
+          all: すべて
       calendar_modal:
         calendar_url: カレンダー URL
         close_window: ウィンドウを閉じる
         export_calendar: カレンダーをエクスポート
       conference_venues: カンファレンス会場
       content_blocks:
-        upcoming_events:
-          name: 今後の予定
-          upcoming_events: 今後のミーティング
-          view_all_events: すべて表示
+        upcoming_meetings:
+          name: これからのミーティング
+          upcoming_meetings: これからのミーティング
+          view_all_meetings: すべて表示
       directory:
         meetings:
           index:
-            all: すべて
-            date: 日付
             meetings: ミーティング
-            past: 過去
-            search: 検索
             space_type: 参加型スペース
-            upcoming: 近日公開
+      iframe_access_level:
+        all: すべての訪問者
+        registered: このミーティングに参加者を登録しました
+        signed_in: ログイン済みの参加者のみ
+      iframe_embed_type:
+        embed_in_meeting_page: ミーティングページに埋め込む
+        none: なし
+        open_in_live_event_page: ライブイベントページで開く (オプションの投票付き)
+        open_in_new_tab: URLを新しいタブで開く
       last_activity:
         meeting_updated_at_html: "<span>ミーティングが %{link} に更新されました</span>"
         new_meeting_at_html: "<span> %{link}に新しいミーティング</span>"
@@ -477,9 +489,14 @@ ja:
           select_a_category: カテゴリを選択してください
           select_a_meeting_type: ミーティング種別を選択してください
           select_a_registration_type: 登録種別を選択してください
-          show_embedded_iframe_help: このビデオ会議URLのiframeを埋め込むかどうか。いくつかのサービスのみが埋め込めます (例：YouTube、Twitchなど) 。
+          select_an_iframe_access_level: iframeアクセスレベルを選択してください
+          show_embedded_iframe_help: ミーティングやライブイベント（YouTube、Twitch、Jitsi）に埋め込むことができるサービスは限られたもののみです。
         index:
+          click_here: すべてのミーティングを見る
           new_meeting: 新しいミーティング
+          see_all: すべてのミーティングを見る
+          see_all_withdrawn: 撤回されたすべてのミーティングを見る
+          text_banner: 作成者が取り消したミーティングの一覧を表示しています． %{go_back_link}
         meeting_minutes:
           related_information: 関連情報
         meetings:
@@ -498,6 +515,7 @@ ja:
           close_meeting: ミーティングを閉じる
           contributions: コントリビューション数
           date: 日付
+          edit_close_meeting: ミーティングレポートを編集
           edit_meeting: ミーティングを編集
           going: このミーティングにログインしました
           join: ミーティングに参加
@@ -518,6 +536,9 @@ ja:
             other: "残り%{count} スロット"
           view: 表示
           visit_finished: 過去のミーティングを表示
+          withdraw_btn_hint: 気が変わった場合はミーティングを取り消せます．ミーティングは削除されません．取り消されたミーティングのリストに表示されます．
+          withdraw_confirmation_html: このミーティングを取り消してもよろしいですか?<br><br><strong>この操作はキャンセルできません!</strong>
+          withdraw_meeting: ミーティングを撤回する
         update:
           invalid: ミーティングの更新に問題がありました。
           success: ミーティングを更新しました．
@@ -594,8 +615,12 @@ ja:
       types:
         private_meeting: プライベートミーティング
         transparent: 透明性
+        withdraw: 取り消し
       versions:
         back_to_resource: ミーティングに戻る
+      withdraw:
+        error: ミーティングの取り消し中にエラーが発生しました
+        success: ミーティングは正常に取り消されました
     metrics:
       meetings:
         description: 作成されたミーティング数

@@ -3,7 +3,7 @@
 require "bundler"
 require "rails/generators"
 require "rails/generators/rails/app/app_generator"
-require "decidim/generators/version"
+require "decidim/generators"
 require_relative "install_generator"
 
 module Decidim
@@ -68,6 +68,10 @@ module Decidim
       class_option :force_ssl, type: :string,
                                default: "true",
                                desc: "Doesn't force to use ssl"
+
+      class_option :skip_webpack_install, type: :boolean,
+                                          default: true,
+                                          desc: "Don't run Webpack install"
 
       def database_yml
         template "database.yml.erb", "config/database.yml", force: true
@@ -237,7 +241,7 @@ module Decidim
       def branch
         return if options[:path]
 
-        @branch ||= options[:edge] ? "develop" : options[:branch].presence
+        @branch ||= options[:edge] ? Decidim::Generators.edge_git_branch : options[:branch].presence
       end
 
       def app_name

@@ -44,8 +44,8 @@ sv:
       models:
         meeting:
           attributes:
-            show_embedded_iframe:
-              not_embeddable: URL:en kan inte integreras
+            iframe_embed_type:
+              not_embeddable: Denna URL kan inte bäddas in på ett mötes- eller liveevenemangssida
         meeting_agenda:
           attributes:
             base:
@@ -100,7 +100,7 @@ sv:
           type_eq:
             label: Mötestyp
             values:
-              hybrid: Båda
+              hybrid: Hybrid
               in_person: Fysiska
               online: Online
       meeting_copies:
@@ -182,9 +182,6 @@ sv:
           email_outro: Du har fått det här meddelandet eftersom du följer mötet "%{resource_title}". Du kan sluta följa det på föregående länk.
           email_subject: Mötet "%{resource_title}" börjar om färre än 48 timmar.
           notification_title: Mötet <a href="%{resource_path}">%{resource_title}</a> startar inom mindre än 48 timmar.
-    forms:
-      meetings:
-        attendees_count_help_text: Glöm inte att inkludera det totala antalet deltagare på ditt evenemang. Det är viktigt att hålla koll på hur många människor, oavsett om de deltog fysiskt eller online.
     gamification:
       badges:
         attended_meetings:
@@ -312,7 +309,8 @@ sv:
             registration_url_help: 'Länk: tillåt deltagare att registrera sig på en extern tjänst'
             select_a_meeting_type: Välj mötestyp
             select_a_registration_type: Välj en registreringsmetod
-            show_embedded_iframe_help: Välj om adressen ska integreras som iframe. Endast ett fåtal tjänster tillåter integrering (t.ex. Youtube, Twitch...)
+            select_an_iframe_access_level: Välj vem får tillgång till denna iframe
+            show_embedded_iframe_help: Endast ett fåtal tjänster tillåter inbäddning i möten eller live-event (t.ex. YouTube, Twitch och Jitsi)
           index:
             title: Möten
           new:
@@ -382,26 +380,37 @@ sv:
           value_types:
             organizer_presenter:
               not_found: 'Arrangören hittades inte i databasen (ID: %{id})'
+      application_helper:
+        filter_category_values:
+          all: Alla
+        filter_meeting_space_values:
+          all: Alla
+        filter_scope_values:
+          all: Alla
       calendar_modal:
         calendar_url: Kalender-URL
         close_window: Stäng fönster
         export_calendar: Exportera kalender
       conference_venues: Konferenslokaler
       content_blocks:
-        upcoming_events:
-          name: Kommande händelser
-          upcoming_events: Kommande möten
-          view_all_events: Visa alla
+        upcoming_meetings:
+          name: Kommande möten
+          upcoming_meetings: Kommande möten
+          view_all_meetings: Visa alla
       directory:
         meetings:
           index:
-            all: Allt
-            date: Datum
             meetings: Möten
-            past: Tidigare
-            search: Sök
             space_type: Deltagarutrymme
-            upcoming: Kommande
+      iframe_access_level:
+        all: Alla besökare
+        registered: Registrerade deltagare till detta möte
+        signed_in: Endast registrerade deltagare
+      iframe_embed_type:
+        embed_in_meeting_page: Bädda in på mötessidan
+        none: Ingen
+        open_in_live_event_page: Öppna i live event sida (med valfria omröstningar)
+        open_in_new_tab: Öppna länk i ny flik
       last_activity:
         meeting_updated_at_html: "<span>Mötet uppdaterades på %{link}</span>"
         new_meeting_at_html: "<span>Nytt möte på %{link}</span>"
@@ -464,7 +473,7 @@ sv:
           type: Typ
           type_values:
             all: Allt
-            hybrid: Båda
+            hybrid: Hybrid
             in_person: Fysiska
             online: Online
         filters_small_view:
@@ -484,9 +493,14 @@ sv:
           select_a_category: Välj en kategori
           select_a_meeting_type: Välj mötestyp
           select_a_registration_type: Välj en registreringsmetod
-          show_embedded_iframe_help: Välj om adressen ska integreras som iframe. Endast ett fåtal tjänster tillåter integrering (t.ex. Youtube, Twitch...)
+          select_an_iframe_access_level: Välj vem får tillgång till denna iframe
+          show_embedded_iframe_help: Endast ett fåtal tjänster tillåter inbäddning i möten eller live-event (t.ex. YouTube, Twitch och Jitsi)
         index:
+          click_here: Se alla möten
           new_meeting: Nytt möte
+          see_all: Se alla möten
+          see_all_withdrawn: Se alla tillbakadragna möten
+          text_banner: Du tittar på listan över möten som dragits tillbaka av sina författare. %{go_back_link}.
         meeting_minutes:
           related_information: Relaterad information
         meetings:
@@ -505,6 +519,7 @@ sv:
           close_meeting: Avsluta möte
           contributions: Antal bidrag
           date: Datum
+          edit_close_meeting: Redigera mötesrapport
           edit_meeting: Redigera möte
           going: Du har anmält dig för detta möte
           join: Gå med i mötet
@@ -526,6 +541,9 @@ sv:
             other: "%{count} platser kvar"
           view: Visa
           visit_finished: Visa tidigare möten
+          withdraw_btn_hint: Du kan dra tillbaka ditt möte om du ändrar dig. Mötet raderas inte utan kommer att synas i listan över möten som dragits tillbaka.
+          withdraw_confirmation_html: Är du säker på att du vill dra tillbaka det här mötet?<br><br><strong>Den här åtgärden kan inte ångras!</strong>
+          withdraw_meeting: Dra tillbaka möte
         update:
           invalid: Det gick inte att uppdatera mötet.
           success: Du har uppdaterat mötet.
@@ -546,7 +564,7 @@ sv:
           fields:
             closed: Stängd
             end_time: Slutdatum
-            id: Id
+            id: ID
             map: Karta
             official_meeting: Officiellt möte
             start_time: Startdatum
@@ -559,7 +577,6 @@ sv:
             empty_questions: Under hela mötet kommer några frågor att skickas och du kommer kunna svara på dem. De kommer att visas här.
           index_admin:
             admin_dashboard: Adminpanel
-            edit: Redigera i adminpanelen
             question: Fråga
             received_answer: mottaget svar
             received_answers: mottagna svar
@@ -597,14 +614,18 @@ sv:
           invalid: Det gick inte att lämna mötet.
           success: Du har lämnat mötet.
       type_of_meeting:
-        hybrid: Båda
+        hybrid: Hybrid
         in_person: Fysiska
         online: Online
       types:
         private_meeting: Privat möte
         transparent: Transparent
+        withdraw: Tillbakadragna
       versions:
         back_to_resource: Gå tillbaka till mötet
+      withdraw:
+        error: Det gick inte att dra tillbaka mötet
+        success: Mötet har dragits tillbaka
     metrics:
       meetings:
         description: Antal skapade möten

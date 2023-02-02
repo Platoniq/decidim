@@ -143,7 +143,6 @@ tr:
           error: Yönetici kullanım şartlarını kabul ederken bir hata oluştu.
           success: Harika! Yönetici kullanım şartlarını kabul ettiniz.
         actions:
-          accept: Aşağıdaki şartları kabul ediyorum
           refuse: Yönetici şartlarını reddedin
           title: Kullanım şartlarını ve koşullarını kabul edin
         required_review:
@@ -814,13 +813,6 @@ tr:
           success: Kullanıcı grubu başarıyla doğrulandı
       user_groups:
         index:
-          filter:
-            all: Herşey
-            pending: kadar
-            rejected: Reddedilen
-            verified: Doğrulanmış
-          filter_by: Tarafından filtre
-          search: Arama
           state:
             pending: kadar
             rejected: Reddedilen
@@ -881,7 +873,6 @@ tr:
             hidden_at: Gizli
             participatory_space: Katılımcı alanı
             report_count: saymak
-            reportable_id: Id
             reportable_type: Türü
             reported_content_url: Raporlanan içerik URL'si
             reports: Raporlar

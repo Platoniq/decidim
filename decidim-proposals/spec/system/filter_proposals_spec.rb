@@ -31,6 +31,29 @@ describe "Filter Proposals", :slow, type: :system do
     end
   end
 
+  context "when filtering proposals by TEXT" do
+    it "updates the current URL" do
+      create(:proposal, component: component, title: { en: "Foobar proposal" })
+      create(:proposal, component: component, title: { en: "Another proposal" })
+      visit_component
+
+      within "form.new_filter" do
+        fill_in("filter[search_text]", with: "foobar")
+        click_button "Search"
+      end
+
+      within ".category_id_check_boxes_tree_filter" do
+        uncheck "All"
+      end
+
+      expect(page).not_to have_content("Another proposal")
+      expect(page).to have_content("Foobar proposal")
+
+      filter_params = CGI.parse(URI.parse(page.current_url).query)
+      expect(filter_params["filter[search_text]"]).to eq(["foobar"])
+    end
+  end
+
   context "when filtering proposals by ORIGIN" do
     context "when official_proposals setting is enabled" do
       before do
@@ -683,6 +706,32 @@ describe "Filter Proposals", :slow, type: :system do
       page.go_forward
 
       expect(page).to have_css(".card.card--proposal", count: 6)
+    end
+  end
+
+  context "when using the 'back to list' link", :slow do
+    before do
+      create_list(:proposal, 2, component: component)
+      create_list(:proposal, 2, :official, component: component)
+      create_list(:proposal, 2, :official, :accepted, component: component)
+      create_list(:proposal, 2, :official, :rejected, component: component)
+
+      visit_component
+    end
+
+    it "saves and restores the filtering" do
+      expect(page).to have_css(".card.card--proposal", count: 6)
+
+      within ".filters .state_check_boxes_tree_filter" do
+        check "Rejected"
+      end
+
+      expect(page).to have_css(".card.card--proposal", count: 8)
+
+      page.find(".card.card--proposal .card__link", match: :first).click
+      click_link "Back to list"
+
+      expect(page).to have_css(".card.card--proposal", count: 8)
     end
   end
 end

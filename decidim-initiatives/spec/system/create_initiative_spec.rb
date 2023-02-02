@@ -64,7 +64,7 @@ describe "Initiative", type: :system do
         it "they are redirected to the initiative form after log in" do
           click_button "New initiative"
           fill_in "Email", with: authorized_user.email
-          fill_in "Password", with: "password1234"
+          fill_in "Password", with: "decidim123456"
           click_button "Log in"
 
           expect(page).to have_content("Which initiative do you want to launch")
@@ -79,13 +79,34 @@ describe "Initiative", type: :system do
         it "they are shown an error" do
           click_button "New initiative"
           fill_in "Email", with: authorized_user.email
-          fill_in "Password", with: "password1234"
+          fill_in "Password", with: "decidim123456"
           click_button "Log in"
 
           expect(page).to have_content("You are not authorized to perform this action")
         end
       end
     end
+  end
+
+  context "when rich text editor is enabled for participants" do
+    let(:initiative_type) do
+      create(:initiatives_type,
+             organization: organization,
+             minimum_committee_members: 2,
+             promoting_committee_enabled: true,
+             signature_type: "any")
+    end
+    let!(:other_initiative_type) { create(:initiatives_type, organization: organization) }
+    let!(:initiative_type_scope) { create(:initiatives_type_scope, type: initiative_type) }
+    let!(:other_initiative_type_scope) { create(:initiatives_type_scope, type: initiative_type) }
+
+    before do
+      organization.update(rich_text_editor_in_public_views: true)
+      click_link "New initiative"
+      find_button("I want to promote this initiative").click
+    end
+
+    it_behaves_like "having a rich text editor", "new_initiative_previous_form", "full"
   end
 
   describe "creating an initiative" do
@@ -109,20 +130,20 @@ describe "Initiative", type: :system do
       end
 
       context "and select initiative type" do
-        it "Offers contextual help" do
+        it "offers contextual help" do
           within ".callout.secondary" do
             expect(page).to have_content("Initiatives are a means by which the participants can intervene so that the organization can undertake actions in defence of the general interest. Which initiative do you want to launch?")
           end
         end
 
-        it "Shows the available initiative types" do
+        it "shows the available initiative types" do
           within "main" do
             expect(page).to have_content(translated(initiative_type.title, locale: :en))
             expect(page).to have_content(ActionView::Base.full_sanitizer.sanitize(translated(initiative_type.description, locale: :en), tags: []))
           end
         end
 
-        it "Do not show initiative types without related scopes" do
+        it "do not show initiative types without related scopes" do
           within "main" do
             expect(page).not_to have_content(translated(other_initiative_type.title, locale: :en))
             expect(page).not_to have_content(ActionView::Base.full_sanitizer.sanitize(translated(other_initiative_type.description, locale: :en), tags: []))
@@ -135,17 +156,17 @@ describe "Initiative", type: :system do
           find_button("I want to promote this initiative").click
         end
 
-        it "Has a hidden field with the selected initiative type" do
+        it "has a hidden field with the selected initiative type" do
           expect(page).to have_xpath("//input[@id='initiative_type_id']", visible: :all)
           expect(find(:xpath, "//input[@id='initiative_type_id']", visible: :all).value).to eq(initiative_type.id.to_s)
         end
 
-        it "Have fields for title and description" do
+        it "have fields for title and description" do
           expect(page).to have_xpath("//input[@id='initiative_title']")
-          expect(page).to have_xpath("//input[@id='initiative_description']", visible: :all)
+          expect(page).to have_xpath("//textarea[@id='initiative_description']", visible: :all)
         end
 
-        it "Offers contextual help" do
+        it "offers contextual help" do
           within ".callout.secondary" do
             expect(page).to have_content("What does the initiative consist of? Write down the title and description. We recommend a short and concise title and a description focused on the proposed solution.")
           end
@@ -165,17 +186,17 @@ describe "Initiative", type: :system do
           end
         end
 
-        it "Has a hidden field with the selected initiative type" do
+        it "has a hidden field with the selected initiative type" do
           expect(page).to have_xpath("//input[@id='initiative_type_id']", visible: :all)
           expect(find(:xpath, "//input[@id='initiative_type_id']", visible: :all).value).to eq(initiative_type.id.to_s)
         end
 
-        it "Have fields for title and description" do
+        it "have fields for title and description" do
           expect(page).to have_xpath("//input[@id='initiative_title']")
-          expect(page).to have_xpath("//input[@id='initiative_description']", visible: :all)
+          expect(page).to have_xpath("//textarea[@id='initiative_description']", visible: :all)
         end
 
-        it "Offers contextual help" do
+        it "offers contextual help" do
           within ".callout.secondary" do
             expect(page).to have_content("What does the initiative consist of? Write down the title and description. We recommend a short and concise title and a description focused on the proposed solution.")
           end
@@ -188,21 +209,21 @@ describe "Initiative", type: :system do
         before do
           find_button("I want to promote this initiative").click
           fill_in "Title", with: translated(initiative.title, locale: :en)
-          fill_in_editor "initiative_description", with: translated(initiative.description, locale: :en)
+          fill_in "initiative_description", with: translated(initiative.description, locale: :en)
           find_button("Continue").click
         end
 
-        it "Similar initiatives view is shown" do
+        it "similar initiatives view is shown" do
           expect(page).to have_content("Compare")
         end
 
-        it "Offers contextual help" do
+        it "offers contextual help" do
           within ".callout.secondary" do
             expect(page).to have_content("If any of the following initiatives is similar to yours we encourage you to sign it. Your proposal will have more possibilities to get done.")
           end
         end
 
-        it "Contains data about the similar initiative found" do
+        it "contains data about the similar initiative found" do
           expect(page).to have_content(translated(initiative.title, locale: :en))
           expect(page).to have_content(ActionView::Base.full_sanitizer.sanitize(translated(initiative.description, locale: :en), tags: []))
           expect(page).to have_content(translated(initiative.type.title, locale: :en))
@@ -211,7 +232,7 @@ describe "Initiative", type: :system do
         end
       end
 
-      context "when Create initiative" do
+      context "when create initiative" do
         let(:initiative) { build(:initiative) }
 
         context "when there is only one initiative type" do
@@ -219,7 +240,7 @@ describe "Initiative", type: :system do
 
           before do
             fill_in "Title", with: translated(initiative.title, locale: :en)
-            fill_in_editor "initiative_description", with: translated(initiative.description, locale: :en)
+            fill_in "initiative_description", with: translated(initiative.description, locale: :en)
             find_button("Continue").click
           end
 
@@ -229,19 +250,19 @@ describe "Initiative", type: :system do
           end
         end
 
-        context "when there is several initiatives type" do
+        context "when there are several initiatives type" do
           before do
             find_button("I want to promote this initiative").click
             fill_in "Title", with: translated(initiative.title, locale: :en)
-            fill_in_editor "initiative_description", with: translated(initiative.description, locale: :en)
+            fill_in "initiative_description", with: translated(initiative.description, locale: :en)
             find_button("Continue").click
           end
 
-          it "Create view is shown" do
+          it "create view is shown" do
             expect(page).to have_content("Create")
           end
 
-          it "Offers contextual help" do
+          it "offers contextual help" do
             within ".callout.secondary" do
               expect(page).to have_content("Review the content of your initiative. Is your title easy to understand? Is the objective of your initiative clear?")
               expect(page).to have_content("You have to choose the type of signature. In-person, online or a combination of both")
@@ -249,10 +270,10 @@ describe "Initiative", type: :system do
             end
           end
 
-          it "Information collected in previous steps is already filled" do
+          it "shows information collected in previous steps already filled" do
             expect(find(:xpath, "//input[@id='initiative_type_id']", visible: :all).value).to eq(initiative_type.id.to_s)
             expect(find(:xpath, "//input[@id='initiative_title']").value).to eq(translated(initiative.title, locale: :en))
-            expect(find(:xpath, "//input[@id='initiative_description']", visible: :all).value).to eq(translated(initiative.description, locale: :en))
+            expect(find(:xpath, "//textarea[@id='initiative_description']", visible: :all).value).to eq(translated(initiative.description, locale: :en))
           end
 
           context "when only one signature collection and scope are available" do
@@ -264,6 +285,14 @@ describe "Initiative", type: :system do
               expect(page).not_to have_content("Scope")
               expect(find(:xpath, "//input[@id='initiative_type_id']", visible: :all).value).to eq(initiative_type.id.to_s)
               expect(find(:xpath, "//input[@id='initiative_signature_type']", visible: :all).value).to eq("offline")
+            end
+          end
+
+          context "when the scope isn't selected" do
+            it "shows an error" do
+              select("Online", from: "Signature collection type")
+              find_button("Continue").click
+              expect(page).to have_content("There's an error in this field")
             end
           end
 
@@ -297,14 +326,14 @@ describe "Initiative", type: :system do
         end
       end
 
-      context "when Promotal committee" do
+      context "when there's a promoter committee" do
         let(:initiative) { build(:initiative, organization: organization, scoped_type: initiative_type_scope) }
 
         before do
           find_button("I want to promote this initiative").click
 
           fill_in "Title", with: translated(initiative.title, locale: :en)
-          fill_in_editor "initiative_description", with: translated(initiative.description, locale: :en)
+          fill_in "initiative_description", with: translated(initiative.description, locale: :en)
           find_button("Continue").click
 
           select("Online", from: "Signature collection type")
@@ -316,17 +345,17 @@ describe "Initiative", type: :system do
           expect(page).to have_content("Promoter committee")
         end
 
-        it "Offers contextual help" do
+        it "offers contextual help" do
           within ".callout.secondary" do
             expect(page).to have_content("This kind of initiative requires a Promoting Commission consisting of at least #{initiative_type_minimum_committee_members} people (attestors). You must share the following link with the other people that are part of this initiative. When your contacts receive this link they will have to follow the indicated steps.")
           end
         end
 
-        it "Contains a link to invite other users" do
+        it "contains a link to invite other users" do
           expect(page).to have_content("/committee_requests/new")
         end
 
-        it "Contains a button to continue with next step" do
+        it "contains a button to continue with next step" do
           expect(page).to have_content("Continue")
         end
 
@@ -351,14 +380,14 @@ describe "Initiative", type: :system do
         end
       end
 
-      context "when Finish" do
+      context "when finish" do
         let(:initiative) { build(:initiative) }
 
         before do
           find_button("I want to promote this initiative").click
 
           fill_in "Title", with: translated(initiative.title, locale: :en)
-          fill_in_editor "initiative_description", with: translated(initiative.description, locale: :en)
+          fill_in "initiative_description", with: translated(initiative.description, locale: :en)
           find_button("Continue").click
 
           select(translated(initiative_type_scope.scope.name, locale: :en), from: "Scope")

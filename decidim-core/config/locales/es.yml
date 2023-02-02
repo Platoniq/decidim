@@ -22,24 +22,31 @@ es:
       user:
         about: Acerca de
         email: Tu correo electrónico
+        locale: Configuración regional
         name: Tu nombre
         nickname: Alias
         password: Contraseña
         password_confirmation: Confirma tu contraseña
         personal_url: URL personal
         remove_avatar: Eliminar imagen de perfil
+        tos_agreement: Acuerdo de términos y condiciones de uso
     models:
       decidim/attachment_created_event: Archivo adjunto
       decidim/component_published_event: Componente activo
       decidim/demoted_membership: Ya no eres una administradora de grupo
       decidim/gamification/badge_earned_event: Insignia obtenida
       decidim/gamification/level_up_event: Has subido de nivel
+      decidim/invited_to_group_event: Invitada al grupo
       decidim/join_request_accepted_event: Solicitud de incorporación aceptada
       decidim/join_request_rejected_event: Solicitud de incorporación rechazada
       decidim/profile_updated_event: Perfil actualizado
       decidim/promote_to_admin: Promocionada a administradora del grupo
+      decidim/promoted_to_admin_event: Promocionada a administradora del grupo
       decidim/removed_from_group: Eliminada del grupo
       decidim/resource_endorsed_event: Adhesión a recurso realizada
+      decidim/resource_hidden_event: Recurso oculto
+      decidim/user_group_created_event: Grupo creado
+      decidim/welcome_notification_event: Mensaje de bienvenida
   activerecord:
     attributes:
       decidim/user:
@@ -76,9 +83,38 @@ es:
       decidim_with_day_and_month_name: "%A %d %b %Y"
       decidim_with_month_name: "%d %B %Y"
       decidim_with_month_name_short: "%d %b"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente 1 mes
+        other: aproximadamente %{count} meses
+      half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: ahora mismo
+        other: menos de %{count} segundos
+      x_days:
+        one: hace 1 día
+        other: "hace %{count} días"
+      x_hours:
+        one: hace 1 hora
+        other: "hace %{count} días"
+      x_minutes:
+        one: hace 1 minuto
+        other: "hace %{count} minutos"
+      x_seconds:
+        one: hace 1 segundo
+        other: "hace %{count} segundos"
+        zero: ahora mismo
   decidim:
     accessibility:
       external_link: Enlace externo
+      front_page_link: Ir a la página principal
       logo: "Logo oficial de %{organization}"
       skip_button: Saltar al contenido principal
     account:
@@ -504,6 +540,11 @@ es:
           this_application_will_not_be_able_to: 'Esta aplicación no podrá:'
           update_profile: Actualiza tu perfil
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> quiere usar tu cuenta"
+    editor_images:
+      create:
+        error: Error al subir la imagen
+        success: Imagen subida con éxito
+      drag_and_drop_help: Puedes añadir imágenes arrastrando y soltándolas o también pegándolas.
     endorsable:
       endorsements: Adhesiones
       endorsements_count: Número de adhesiones
@@ -529,12 +570,12 @@ es:
             email_intro: 'Se ha aceptado una enmienda para %{amendable_title}. Puedes verla desde esta página:'
             email_outro: Has recibido esta notificación porque eres una autora de %{amendable_title}.
             email_subject: Enmienda aceptada para %{amendable_title} de %{emendation_author_nickname}
-            notification_title: El <a href="%{emendation_path}">enmienda</a> creado por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido aceptado para <a href="%{amendable_path}">%{amendable_title}</a>.
+            notification_title: La <a href="%{emendation_path}">enmienda</a> creada por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido aceptada para <a href="%{amendable_path}">%{amendable_title}</a>.
           follower:
             email_intro: 'Se ha aceptado una enmienda para %{amendable_title}. Puedes verla desde esta página:'
             email_outro: Has recibido esta notificación porque estás siguiendo a %{amendable_title}. Puedes dejar de recibir notificaciones siguiendo el enlace anterior.
             email_subject: Enmienda aceptada para %{amendable_title} de %{emendation_author_nickname}
-            notification_title: El <a href="%{emendation_path}">enmienda</a> creado por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido aceptado para <a href="%{amendable_path}">%{amendable_title}</a>.
+            notification_title: La <a href="%{emendation_path}">enmienda</a> creada por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido aceptada para <a href="%{amendable_path}">%{amendable_title}</a>.
         amendment_created:
           affected_user:
             email_intro: 'Se ha creado una nueva enmienda para %{amendable_title}. Puedes verla desde esta página:'
@@ -562,12 +603,12 @@ es:
             email_intro: 'Una enmienda ha sido rechazada por %{amendable_title}. Puedes verla desde esta página:'
             email_outro: Has recibido esta notificación porque eres autora de %{amendable_title}.
             email_subject: Enmienda rechazada por %{amendable_title} de %{emendation_author_nickname}
-            notification_title: El <a href="%{emendation_path}">enmienda</a> creado por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido rechazada por <a href="%{amendable_path}">%{amendable_title}</a>.
+            notification_title: La <a href="%{emendation_path}">enmienda</a> creada por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido rechazada por <a href="%{amendable_path}">%{amendable_title}</a>.
           follower:
             email_intro: 'Una enmienda ha sido rechazada por %{amendable_title}. Puedes verla desde esta página:'
             email_outro: Has recibido esta notificación porque estás siguiendo a %{amendable_title}. Puedes dejar de recibir notificaciones siguiendo el enlace anterior.
             email_subject: Una enmienda rechazada por %{amendable_title} de %{emendation_author_nickname}
-            notification_title: El <a href="%{emendation_path}">enmienda</a> creado por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido rechazada por <a href="%{amendable_path}">%{amendable_title}</a>.
+            notification_title: La <a href="%{emendation_path}">enmienda</a> creada por <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> ha sido rechazada por <a href="%{amendable_path}">%{amendable_title}</a>.
       attachments:
         attachment_created:
           email_intro: 'Se ha añadido un nuevo documento a %{resource_title}. Puedes verlo desde esta página:'
@@ -663,6 +704,11 @@ es:
           email_outro: Has recibido esta notificación porque estás siguiendo a %{nickname}. Puedes dejar de recibir notificaciones siguiendo el enlace anterior.
           email_subject: "%{nickname} ha actualizado su perfil"
           notification_title: La página <a href="%{resource_path}"> de perfil </a> de %{name} (%{nickname}), a quien estás siguiendo, se ha actualizado.
+        user_officialized:
+          email_intro: La participante %{name} (%{nickname}) ha sido oficializada.
+          email_outro: Has recibido esta notificación porque eres una de las administradoras de la plataforma.
+          email_subject: "Se ha oficializado a %{name}"
+          notification_title: La participante %{name} (%{nickname}) ha sido oficializada.
     export_mailer:
       data_portability_export:
         click_button: 'Haz clic en el siguiente enlace para descargar tus datos.<br/>El archivo estará disponible hasta %{date}.<br/>Necesitarás <a href="https://www.7-zip.org/">7-Zip</a> (para Windows), <a href="https://www.keka.io/en/">Keka</a> (para MacOS) o <a href="https://peazip.github.io">PeaZip</a> (para Linux) para abrirlo. Contraseña: %{password}'
@@ -743,18 +789,6 @@ es:
           how: Como puedes conseguirla
           page_description: Las insignias son reconocimientos a las acciones de las participantes y al progreso en la plataforma. A medida que comiences a descubrir, participar e interactuar en la plataforma, conseguirás diferentes insignias. Aquí está la lista de insignias y algunas formas en que puedes conseguirlas.
           title: Insignias
-        invitations:
-          conditions:
-            - Usa el enlace "invitar amigas" en tu página de usuaria para invitar a tus amistades
-            - Personaliza, si quieres, el mensaje que estás enviando
-            - Subirás de nivel enviando invitaciones y consiguiendo nuevas participantes.
-          description: Esta insignia se consigue cuando has invitado a algunas personas a la plataforma %{organization_name}, y se han registrado como participantes. ¡Gracias por dar a conocer %{organization_name} a otras y ayudar a ampliar la comunidad!
-          description_another: Esta participante ha invitado a %{score} personas.
-          description_own: Has invitado a %{score} personas.
-          name: Invitaciones
-          next_level_in: '¡Invita a %{score} personas más para alcanzar el siguiente nivel!'
-          unearned_another: Esta participante aún no ha invitado a nadie.
-          unearned_own: Aún no has invitado a nadie.
       description: Las insignias son reconocimientos de las acciones de las participantes y el progreso en la plataforma. A medida que comienzas a descubrir, participar e interactuar en la plataforma, ganarás diferentes insignias.
       level: Nivel %{level}
       reached_top: Has alcanzado el nivel superior para esta insignia.
@@ -960,10 +994,11 @@ es:
           next: Siguiente
           no_conversations: Aún no tienes conversaciones
           title: Conversaciones
+          to: A
         reply:
           placeholder: Tu respuesta...
           send: Enviar
-          title: Respuesta
+          title: Responder
         show:
           back: Volver a todas las conversaciones
           chat_with: Conversación con
@@ -972,7 +1007,7 @@ es:
           title: Conversación con %{usernames}
         start:
           send: Enviar
-          title: Inicia una conversación
+          title: Iniciar una conversación
         update:
           error: El mensaje no fue enviado debido a un error
     metrics:
@@ -1035,8 +1070,16 @@ es:
         greetings: Saludos,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: Hola,
         subject: '¿Deseas seguir recibiendo información relevante sobre %{organization_name}?'
+    notification_mailer:
+      event_received:
+        no_translation_available: Lo sentimos, no se pudo recuperar la traducción automática al enviar el correo electrónico. Puedes comprobar la traducción del texto original en el siguiente enlace %{link}.
+        original_text: 'Texto original:'
+        same_language: El contenido ha sido publicado en tu idioma preferido (%{language}), por eso no se muestra ninguna traducción automática en este correo electrónico.
+        translated_text: 'Texto traducido automáticamente:'
     notifications:
       no_notifications: Aún no hay notificaciones.
+      show:
+        missing_event: Vaya, esta notificación pertenece a un elemento que ya no está disponible. Puedes descartarla.
     notifications_settings:
       show:
         administrators: Administradoras
@@ -1490,15 +1533,6 @@ es:
       updated_not_active: Tu contraseña se ha modificado correctamente.
     registrations:
       destroyed: Tu cuenta se ha cancelado correctamente. Esperamos volver a verte pronto.
-      edit:
-        are_you_sure: '¿Estás seguro?'
-        cancel_my_account: Cancelar mi cuenta
-        currently_waiting_confirmation_for_email: 'Estamos esperando la confirmación para: %{email}'
-        leave_blank_if_you_don_t_want_to_change_it: Déjalo en blanco si no quieres cambiarlo
-        title: Editar %{resource}
-        unhappy: '¿Infeliz?'
-        update: Actualizar
-        we_need_your_current_password_to_confirm_your_changes: Necesitamos tu contraseña actual para confirmar sus cambios
       new:
         sign_up: Regístrate
       signed_up: '¡Bienvenida! Te has registrado con éxito.'
@@ -1553,7 +1587,7 @@ es:
         other: 'Hubo varios errores al procesar tu solicitud:'
       too_many_marks: Estás usando demasiados signos de puntuación consecutivos (por ejemplo,! y?)
       too_much_caps: Está usando demasiadas letras mayúsculas (más del 25% del texto)
-      too_short: Es demasiado corto (menos de 15 caracteres)
+      too_short: Es demasiado corto (menos %{count} caracteres)
   forms:
     correct_errors: Hay errores en el formulario, por favor corrígelos para continuar.
     length_validator:
@@ -1629,10 +1663,12 @@ es:
     name: Castellano
     name_with_error: Castellano (¡error!)
   password_validator:
+    blacklisted: en la lista negra
     domain_included_in_password: es demasiado similar a este nombre de dominio
     email_included_in_password: es demasiado similar a tu correo electrónico
     fallback: no es válido
     name_included_in_password: es demasiado similar a tu nombre
+    nickname_included_in_password: es demasiado similar a tu alias
     not_enough_unique_characters: no tiene suficientes caracteres únicos
     password_not_allowed: no está permitido
     password_too_common: es demasiado común
@@ -1667,6 +1703,8 @@ es:
       day_of_week: "%a"
       day_of_week_long: "%a %e"
       day_of_year: "%d/%m/%y"
+      ddmm: "%d.%m"
+      ddmmyyyy: "%d.%m.%Y"
       decidim_day_of_year: "%d %B %Y"
       decidim_short: "%d/%m/%Y %H:%M"
       default: "%a, %d %b %Y %H:%M:%S %z"
@@ -1685,6 +1723,7 @@ es:
     dropdown:
       choose_diff_view_html: 'Modo de vista HTML:'
       choose_diff_view_mode: 'Comparar el modo de visualización:'
+      choose_diff_view_mode_menu: Elegir el modo de comparación
       option_escaped: Escapado
       option_split: En paralelo
       option_unescaped: Desescapado

@@ -435,6 +435,8 @@
           see: Se
         index:
           loading: Laster inn resultater...
+        show:
+          title: Om denne prosessen
       show:
         area: Område
         belongs_to_group: Denne prosessen tilhører

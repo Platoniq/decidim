@@ -12,7 +12,6 @@ ja:
         start_time: 投票開始
         title: タイトル
       question:
-        description: 説明
         max_selections: 選択範囲の最大数
         min_selections: 上記のどれでもない
         title: タイトル
@@ -55,6 +54,8 @@ ja:
         other: 選挙
       decidim/elections/question:
         other: 質問
+      decidim/voting:
+        other: 投票
       decidim/votings/census/dataset:
         other: データセット
       decidim/votings/census/datum:
@@ -174,6 +175,11 @@ ja:
         exports:
           elections: 選挙
           feedback_form_answers: フィードバックフォームの回答
+        mailers:
+          trustee_mailer:
+            body: "<p>こんにちは %{user_name}、</p><p>あなたは %{resource_name} に受託者として追加されました。</p>"
+            subject: あなたは %{resource_name} に受託者として追加されました
+            trustee_zone: 私を受託者ゾーンに連れて行ってください
         menu:
           trustees: 受託者
         models:
@@ -196,6 +202,7 @@ ja:
             title: 提案のインポート
         questions:
           create:
+            election_started: 選挙は既に開始されています
             invalid: この質問を作成中に問題が発生しました
             success: 問題を作成しました
           destroy:
@@ -214,12 +221,17 @@ ja:
             success: 問題が正常に更新されました
         steps:
           create_election:
+            census: センサス
             errors:
+              census_codes_generated: センサスのアクセスコードは生成されませんでした。
+              census_frozen: センサスのアクセスコードはエクスポートされませんでした。
+              census_uploaded: この選挙にアップロードされたセンサスはありません。
+              component_published: 選挙コンポーネントは <strong>未公開です</strong>。
               max_selections: 質問が <strong>回答の数に対して正しく</strong>ありません
               minimum_answers: 質問には <strong>少なくとも2つの回答</strong>が必要です
               minimum_questions: 選挙には <strong>少なくとも1つの質問</strong>が必要です。
               published: 選挙はが <strong>公開されていません</strong> 。
-              time_before: 開始時刻が、選挙開始まで<strong>3時間未満 </strong> しかありません。
+              time_before: 開始時刻は選挙が始まる <strong> %{hours} 時間以内</strong> になります。
               trustees_number: 参加スペースには <strong>少なくとも %{number} 人の公開鍵を持つ受託者</strong>が必要です。
             invalid: この選挙の設定中に問題が発生しました
             no_trustees: この参加スペースに設定された受託者はいません
@@ -228,6 +240,10 @@ ja:
               'false': <strong>公開鍵</strong>がありません
               'true': <strong>公開鍵</strong>があります
             requirements:
+              census_codes_generated: センサスのアクセスコードが生成されます。
+              census_frozen: センサスのアクセスコードはエクスポートされ、センサスは凍結されます。
+              census_uploaded: センサスがアップロードされました。
+              component_published: 選挙コンポーネントは <strong>公開済みです</strong>.
               max_selections: すべての質問は正しい <strong>回答の最大値</strong> を持っています。
               minimum_answers: 各質問には <strong>少なくとも2つの回答</strong>を持ちます。
               minimum_questions: 選挙には <strong>少なくとも1つの質問</strong>があります。
@@ -245,8 +261,8 @@ ja:
             title: 選挙の作成
             trustees: 受託者
           key_ceremony:
+            continue: 続ける
             title: キーセレモニー
-            trustees: 受託者
           key_ceremony_ended:
             errors:
               time_before: 選挙を開始する準備ができました。投票期間を開始するには、 開始時刻 ( %{start_time}) の%{hours} 時間前まで待つ必要があります。
@@ -266,8 +282,14 @@ ja:
             submit: 送信
             title: 結果を公開しました
           tally:
+            continue: 続ける
+            invalid: 受託者が見つからない報告する際に問題が発生しました
+            mark_as_missing: missing としてマーク
+            mark_as_missing_description: すべての受託者は、このプロセスに参加する必要がありますが、受託者がプロセスに参加できない場合は、missing とマークすることができます。
+            success: 不足していた受託者の報告は正しく掲示板に送信されました
+            tally_completion: すべての受託者がアクティブまたは missing とマークされた場合、プロセスは完了します。少なくとも %{quorum} 人の受託者がプロセスを完了する必要があります。
             title: 集計処理
-            trustees: 受託者
+            undo_mark_as_missing: 受託者は、プロセスが完了する前に、間違ってmissingとマークされていることができます。 その場合、通常通りに進行することができ、missingのマークは無視されます。
           tally_ended:
             answer: 回答
             not_selected: 未選択
@@ -320,14 +342,27 @@ ja:
             success: 受託者 %{trustee} が正常に更新されました
       admin_log:
         election:
-          end_vote: "%{user_name} が掲示板で %{resource_name} 選挙の投票期間を終了しました"
-          publish: "%{user_name} が %{resource_name} 選挙を公開しました"
-          publish_results: "%{user_name} が %{resource_name} 選挙の結果を掲示板に掲載しました"
-          setup: "%{user_name} が掲示板に %{resource_name} 選挙を作成しました"
-          start_key_ceremony: "%{user_name} が掲示板で %{resource_name} 選挙の重要なキーセレモニーを開始しました"
-          start_tally: "%{user_name} が掲示板で %{resource_name} 選挙の集計を開始しました"
-          start_vote: "%{user_name} が掲示板の %{resource_name} 選挙の投票期間を開始しました"
-          unpublish: "%{user_name} が %{resource_name} 選挙を非公開にしました"
+          create: "%{user_name} が %{space_name} の選挙 %{resource_name} を作成しました"
+          delete: "%{user_name} が %{space_name} の選挙 %{resource_name} を削除しました"
+          end_vote: "%{user_name} が掲示板の %{space_name} の選挙 %{resource_name} の投票期間を終了させました"
+          publish: "%{user_name} が %{space_name} の選挙 %{resource_name} を公開しました"
+          publish_results: "%{user_name} が %{space_name} の選挙 %{resource_name} の結果を掲載しました"
+          report_missing_trustee: "%{user_name} は、%{space_name} の選挙 %{resource_name} の集計で不足している受託者として %{trustee_name} を報告しました"
+          setup: "%{user_name} が掲示板に %{space_name} の選挙%{resource_name} を作成しました"
+          start_key_ceremony: "%{user_name} が掲示板で %{space_name} の選挙%{resource_name} のキーセレモニーを開始しました"
+          start_tally: "%{user_name} が %{space_name} の選挙%{resource_name} の集計を開始しました。"
+          start_vote: "%{user_name} が掲示板で %{space_name} の 選挙%{resource_name} の投票期間を開始しました"
+          unpublish: "%{user_name} が %{space_name} の 選挙 %{resource_name} を非公開にしました"
+          update: "%{user_name} が %{space_name} の選挙 %{resource_name} を更新しました"
+        trustee:
+          create: "%{user_name} がユーザー %{trustee_user} を受託者に割り当てました"
+      connection:
+        failed:
+          modal:
+            close: 閉じる
+            communication_lost: 投票サーバー (掲示板) との通信が切れているようです。<br>インターネット接続が切れているか、接続先のサーバーが混雑している可能性があります。<br>この問題が続くようでしたら、時間をおいて再度お試しいただくか、サポートまでお問い合わせください。
+            generic_error: 不明なエラーが発生しました。 お使いのブラウザがサポートされていないか、サポートされていない「シークレット」または「プライベート」モードを使用している可能性があります。
+            title: 問題が発生しました
       election_m:
         badge_name:
           finished: 完了
@@ -578,7 +613,7 @@ ja:
           audit: "(監査投票)"
           back: 投票プロセスを再度開始
           ballot_hash: '投票用紙の識別子:'
-          cast: 投票用紙のキャスト
+          cast: 投票を完了するには投票を行ってください
           description: ここでは、投票用紙を適切にカウントするか、または投票用紙が正しく暗号化されていることを監査することができます。 セキュリティ上の理由から、投票の監査はそれを台無しにします。つまり、投票を行うには、投票プロセスを再開する必要があります。
           header: '投票は暗号化されています：キャストまたは監査されます'
         casting:
@@ -609,6 +644,10 @@ ja:
         failed:
           header: 投票に失敗しました
           lead: 投票は行われませんでした！
+          modal:
+            close: 閉じる
+            communication_lost: 投票サーバー (掲示板) との通信が切れているようです。<br>インターネット接続が切れているか、接続先のサーバーが混雑している可能性があります。<br>この問題が続くようでしたら、時間をおいて再度お試しいただくか、サポートまでお問い合わせください。
+            title: 問題が発生しました
           text: 問題が発生しました。もう一度やり直してください。
           try_again: 再実行
         header:
@@ -879,7 +918,7 @@ ja:
           edit:
             change_polling_station: 投票所に戻る
             monitoring_committee_notes: 備考
-            monitoring_committee_notes_placeholder: インシデントをここで報告します
+            monitoring_committee_notes_placeholder: すべての事件をここで報告してください
             title: 投票所 <i>%{polling_station_title}</i> で行われた 選挙 <i>%{election_title}</i> の結果
           elections:
             title: 承認したい選挙を選択してください
@@ -964,14 +1003,20 @@ ja:
             assign_missing_officers: 投票管理者またはマネージャーがいない投票所があります。投票所セクションからアサインしてください
             update: 更新
           form:
-            census_contact_information_help: この連絡先情報は、センサスで問題を報告したい参加者のためのものです。 それは電子メールアドレス、別のサイトの連絡先フォーム、訪問者のためのDecidimアンケートなどである可能性があります。
+            banner_image: バナー画像
+            census_contact_information: センサスの連絡先情報
+            census_contact_information_help: この連絡先情報は、センサスについて問題を報告したい参加者のためのものです。 電子メールアドレス、別のサイトの連絡先フォーム、訪問者のための調査などが利用できます。
+            introductory_image: 導入画像
+            promoted: プロモート
             select_a_voting_type: 投票方式を選択してください
+            slug: スラグ
             slug_help: 'URLスラグは、この投票を指すURLを生成するために使用されます。 使用できるのはアルファベット、数字、ダッシュのみで、アルファベットから始める必要があります。例: %{url}'
             title: タイトル
             voting_type:
               hybrid: ハイブリッド
               in_person: 対面
               online: オンライン
+            voting_type_label: 投票タイプ
           new:
             create: 作成
             title: 新しい投票
@@ -983,6 +1028,24 @@ ja:
             invalid: 投票の更新中に問題が発生しました
             success: 投票が正常に更新されました
       admin_log:
+        ballot_style:
+          create: "%{user_name} がスペース %{space_name} にコード %{ballot_style_code} の投票スタイルを作成しました"
+          delete: "%{user_name} がスペース %{space_name} の コード %{ballot_style_code} の投票スタイルを削除しました"
+          update: "%{user_name} は、スペース %{space_name} のコード %{ballot_style_code} の投票スタイルを更新しました"
+        census:
+          create: "%{user_name} がスペース %{space_name} のセンサスを作成しました"
+          delete: "%{user_name} がスペース %{space_name} のセンサスを削除しました"
+          update: "%{user_name} がスペース %{space_name} のセンサスを更新しました"
+        monitoring_committee_member:
+          create: "%{user_name} がユーザー %{monitoring_committee_member_user} をスペース %{space_name} の監視委員に指名しました"
+          delete: "%{user_name} は、 %{monitoring_committee_member_user} をスペース %{space_name} の監視委員の割り当てから解除しました"
+        polling_officer:
+          create: "%{user_name} がユーザー %{polling_officer_user} をスペース %{space_name} の投票委員に割り当てました"
+          delete: "%{user_name} は、 %{polling_officer_user} をスペース %{space_name} の投票委員の割り当てから解除しました"
+        polling_station:
+          create: "%{user_name} がスペース %{resource_name} で投票所 %{space_name} を作成しました"
+          delete: "%{user_name} がスペース %{resource_name} の投票所 %{space_name} を削除しました"
+          update: "%{user_name} がスペース %{resource_name} の投票所 %{space_name} を更新しました"
         voting:
           create: "%{user_name} が %{resource_name} の投票を作成しました"
           publish: "%{user_name} が %{resource_name} の投票を公開しました"
@@ -992,12 +1055,12 @@ ja:
           census:
             create:
               invalid: センサスのアップロード中にエラーが発生しました。後でもう一度お試しください。
-              invalid_csv_header: CSVヘッダのフィールド数が正しくありません - 説明をもう一度ご確認ください
+              invalid_csv_header: CSVヘッダーが見つからないか正しくありません。手順をよくお読みください。
             creating_data:
               info_message: "<strong>しばらくお待ち下さい</strong>, ファイル %{file} の %{raw_count} 行中 %{processed_count} 行目を処理しています."
             delete:
               button: センサスデータをすべて削除する
-              confirm: センサスをすべて削除することはできません。続行してもよろしいですか？
+              confirm: センサスデータをすべて削除します。元に戻すことはできません。続行してもよろしいですか？
             destroy:
               error: センサスの削除中にエラーが発生しました。後でもう一度お試しください。
               success: センサスデータが削除されました
@@ -1005,7 +1068,7 @@ ja:
               button: 投票アクセスコードをエクスポート
               callout: これで、アクセスコードのエクスポートに進むことができます。これは一度だけ行うことができます。 エクスポートを開始すると、指示が記載されたメールが <strong>%{email}</strong> に届きます。
               confirm: アクセスコードは一度だけエクスポートできます。メールアカウント <strong>%{email}</strong> へのアクセス権があることを確認してください.
-              file_not_exists: このファイルは存在しません
+              file_not_exist: このファイルは存在しません
               launch_error: アクセスコードのエクスポートの起動に問題があります
               launch_success: アクセスコードのエクスポートが開始されました。まもなく %{email} にメールが届きます。
             exporting_access_codes:
@@ -1056,8 +1119,7 @@ ja:
           name: 注目の投票
         landing_page:
           description:
-            show_less: 詳細を閉じる
-            show_more: 続きを読む
+            title: この投票について
           metrics:
             heading: メトリクス
           polling_stations:
@@ -1110,7 +1172,7 @@ ja:
             modal_ballots_count_error:
               btn_validate_total: 投票の再集計を検証します。
               close_modal: 閉じる
-              info_explanation_text: '投票の合計数を確認してください。合計数が正しい場合は、監視委員会に説明する必要があります。'
+              info_explanation_text: '投票の合計数を確認してください。合計数が正しくない場合は、監視委員会に説明する必要があります。'
               info_text: 入力された総投票数(封筒) は、この投票所で投票した人々の記録と一致しません。
               message_for_monitoring_committee: 監視委員会へのメッセージ
               review_recount: 再集計を確認する
@@ -1235,12 +1297,13 @@ ja:
           check_status: ステータスの確認
           description: ここでは、あなたがこの投票に参加する権利があるかどうかを知るためにあなたのセンサスデータをチェックするオプションがあります。 すでにアクセスコードを持っているはずですが、紛失した場合は、データが正しいときにもう一度それを求めることができます。
           error:
-            info: 'もう一度やり直してください。システム内のデータが正しくないと思われる場合は、こちらから報告できます: %{census_contact_information}.'
-            title: あなたのセンサスデータが正しくありません！
+            info: 'もう一度やり直してください。システム内のデータが正しくないと思われる場合は、こちらから報告できます: %{census_contact_information}'
+            title: 入力したデータはこの投票のためのセンサスにありません
           form_title: 'あなたのセンサスデータを確認するには、次のフォームに記入してください:'
           invalid: センサスの確認中に問題がありました。
           success:
-            access_link: SMSまたは電子メールで
+            access_link: メール経由
+            access_link_with_sms: SMSまたは電子メールで
             info: すでに郵便番号でアクセスコードを受け取っているはずです。持っていない場合は、ここでリクエストできます。
             title: あなたのセンサスデータは正しいです！
           title: 投票できますか？
@@ -1250,6 +1313,7 @@ ja:
           day_placeholder: DD
           document_number: ドキュメント番号
           document_number_placeholder: ID 番号
+          document_type: ドキュメントの種類
           month: 月
           month_placeholder: MM
           postal_code: 郵便番号

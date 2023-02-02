@@ -14,6 +14,7 @@ module Decidim
       include Decidim::HasCategory
       include Decidim::Followable
       include Decidim::Comments::CommentableWithComponent
+      include Decidim::Comments::HasAvailabilityAttributes
       include Decidim::Searchable
       include Decidim::Traceable
       include Decidim::Loggable
@@ -44,6 +45,9 @@ module Decidim
         source: :user
       )
 
+      enum iframe_access_level: [:all, :signed_in, :registered], _prefix: true
+      enum iframe_embed_type: [:none, :embed_in_meeting_page, :open_in_live_event_page, :open_in_new_tab], _prefix: true
+
       component_manifest_name "meetings"
 
       validates :title, presence: true
@@ -53,13 +57,18 @@ module Decidim
       scope :published, -> { where.not(published_at: nil) }
       scope :past, -> { where(arel_table[:end_time].lteq(Time.current)) }
       scope :upcoming, -> { where(arel_table[:end_time].gteq(Time.current)) }
+      scope :withdrawn, -> { where(state: "withdrawn") }
+      scope :except_withdrawn, -> { where.not(state: "withdrawn").or(where(state: nil)) }
 
       scope :visible_meeting_for, lambda { |user|
         (all.distinct if user&.admin?) ||
           if user.present?
-            spaces = Decidim.participatory_space_registry.manifests.map do |manifest|
+            spaces = Decidim.participatory_space_registry.manifests.filter_map do |manifest|
+              table_name = manifest.model_class_name.constantize.try(:table_name)
+              next if table_name.blank?
+
               {
-                name: manifest.model_class_name.constantize.table_name.singularize,
+                name: table_name.singularize,
                 class_name: manifest.model_class_name
               }
             end
@@ -95,7 +104,7 @@ module Decidim
               "
             end
 
-            where(query, false, true, user.id, user.id, *user_role_queries.compact.map { user.id }).published.distinct
+            where(Arel.sql(query).to_s, false, true, user.id, user.id, *user_role_queries.compact.map { user.id }).published.distinct
           else
             published.visible
           end
@@ -120,6 +129,10 @@ module Decidim
 
       # we create a salt for the meeting only on new meetings to prevent changing old IDs for existing (Ether)PADs
       before_create :set_default_salt
+
+      def self.participants_iframe_embed_types
+        iframe_embed_types.except(:open_in_live_event_page)
+      end
 
       # Return registrations of a particular meeting made by users representing a group
       def user_group_registrations
@@ -153,6 +166,10 @@ module Decidim
         end_time < Time.current
       end
 
+      def emendation?
+        false
+      end
+
       def has_available_slots?
         return true if available_slots.zero?
 
@@ -169,6 +186,11 @@ module Decidim
 
       def maps_enabled?
         component.settings.maps_enabled?
+      end
+
+      # Public: Overrides the `accepts_new_comments?` CommentableWithComponent concern method.
+      def accepts_new_comments?
+        commentable? && !component.current_settings.comments_blocked && comments_allowed?
       end
 
       # Public: Overrides the `allow_resource_permissions?` Resourceable concern method.
@@ -199,6 +221,17 @@ module Decidim
         Decidim::Meetings::Meeting.visible_meeting_for(user).exists?(id: id)
       end
 
+      def iframe_access_level_allowed_for_user?(user)
+        case iframe_access_level
+        when "all"
+          true
+        when "signed_in"
+          user.present?
+        else
+          has_registration_for?(user)
+        end
+      end
+
       # Return the duration of the meeting in minutes
       def meeting_duration
         @meeting_duration ||= ((end_time - start_time) / 1.minute).abs
@@ -208,6 +241,21 @@ module Decidim
         return false if hidden?
 
         !private_meeting? || transparent?
+      end
+
+      # Public: Checks if the author has withdrawn the meeting.
+      #
+      # Returns Boolean.
+      def withdrawn?
+        state == "withdrawn"
+      end
+
+      # Checks whether the user can withdraw the given meeting.
+      #
+      # user - the user to check for withdrawability.
+      # past meetings cannot be withdrawn
+      def withdrawable_by?(user)
+        user && !withdrawn? && !past? && authored_by?(user)
       end
 
       # Overwrites method from Paddable to add custom rules in order to know
@@ -278,6 +326,13 @@ module Decidim
 
       def has_attendees?
         !!attendees_count && attendees_count.positive?
+      end
+
+      def live?
+        start_time &&
+          end_time &&
+          Time.current >= (start_time - 10.minutes) &&
+          Time.current <= end_time
       end
 
       def self.sort_by_translated_title_asc

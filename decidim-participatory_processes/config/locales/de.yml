@@ -435,6 +435,8 @@ de:
           see: Sehen
         index:
           loading: Ergebnisse werden geladen ...
+        show:
+          title: Über diesen Prozess
       show:
         area: Bereich
         belongs_to_group: Dieser Prozess gehört zu

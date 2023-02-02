@@ -22,24 +22,31 @@ ja:
       user:
         about: About
         email: あなたのメールアドレス
+        locale: 地域
         name: 表示名
         nickname: アカウントID
         password: パスワード
         password_confirmation: パスワードの確認
         personal_url: 個人用URL
         remove_avatar: アバターを削除
+        tos_agreement: ユーザー利用規約
     models:
       decidim/attachment_created_event: 添付ファイル
       decidim/component_published_event: アクティブなコンポーネント
       decidim/demoted_membership: グループ管理者ではありません
       decidim/gamification/badge_earned_event: バッジを獲得
       decidim/gamification/level_up_event: レベルアップしました
+      decidim/invited_to_group_event: グループに招待しました
       decidim/join_request_accepted_event: 参加リクエストが承認されました
       decidim/join_request_rejected_event: 参加リクエストが拒否されました
       decidim/profile_updated_event: プロフィールが更新されました
       decidim/promote_to_admin: グループ管理者に昇格しました
+      decidim/promoted_to_admin_event: グループ管理者に昇格しました
       decidim/removed_from_group: グループから削除しました
       decidim/resource_endorsed_event: オススメされた
+      decidim/resource_hidden_event: リソースを非表示
+      decidim/user_group_created_event: ユーザーグループが作成されました
+      decidim/welcome_notification_event: ウェルカムメッセージ
   activerecord:
     attributes:
       decidim/user:
@@ -72,9 +79,31 @@ ja:
       decidim_with_day_and_month_name: "%Y %b %d %A"
       decidim_with_month_name: "%Y %B %d"
       decidim_with_month_name_short: "%b %d"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        other: 約 %{count} 時間
+      about_x_months:
+        other: 約%{count} ヶ月
+      half_a_minute: 約30秒
+      less_than_x_minutes:
+        other: '%{count} 分未満'
+      less_than_x_seconds:
+        other: '%{count} 秒未満'
+      x_days:
+        other: "%{count} 日前"
+      x_hours:
+        other: "%{count} 時間前"
+      x_minutes:
+        other: "%{count} 分前"
+      x_seconds:
+        one: 1 秒前
+        other: "%{count} 秒前"
+        zero: たった今
   decidim:
     accessibility:
       external_link: 外部リンク
+      front_page_link: フロントページに移動
       logo: "%{organization}の公式ロゴ"
       skip_button: メインコンテンツにスキップ
     account:
@@ -499,6 +528,11 @@ ja:
           this_application_will_not_be_able_to: 'このアプリケーションは次のことができません：'
           update_profile: プロフィールを更新
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> があなたのアカウントを使用しようとしています"
+    editor_images:
+      create:
+        error: アップロード画像のエラー
+        success: 画像が正常にアップロードされました
+      drag_and_drop_help: ドラッグ&ドロップまたは貼り付けることで画像を追加できます。
     endorsable:
       endorsements: オススメ
       endorsements_count: オススメ数
@@ -658,6 +692,11 @@ ja:
           email_outro: '%{nickname}をフォローしているため、この通知を受け取りました。前のリンクに続く通知の受信を停止することができます。'
           email_subject: "%{nickname} がプロフィールを更新しました"
           notification_title: あなたがフォロー中の %{name} (%{nickname}) さんの <a href="%{resource_path}">プロフィールページ</a> が更新されました。
+        user_officialized:
+          email_intro: 参加者 %{name} (%{nickname}) が公式化されました。
+          email_outro: あなたは組織の管理者であるため、この通知を受け取りました。
+          email_subject: "%{name} が公式化されました"
+          notification_title: 参加者 %{name} (%{nickname}) が公式化されました。
     export_mailer:
       data_portability_export:
         click_button: '次のリンクをクリックするとあなたのデータがダウンロードできます。<br/>このファイルは %{date} まで利用できます。<br/>ファイルを開くには <a href="https://www.7-zip.org/">7-Zip</a> (Windowsユーザー向け), <a href="https://www.keka.io/en/">Keka</a> (MacOSユーザー向け) または <a href="https://peazip.github.io">PeaZip</a> (Linuxユーザー向け)等が必要です。パスワード:%{password}'
@@ -668,7 +707,7 @@ ja:
     filters:
       linked_classes:
         all: すべて
-        collaborative_draft: 共同ドラフト（下書き）
+        collaborative_draft: 共同草案
         dummy_resource: ダミーリソース
         meeting: ミーティング
         project: プロジェクト
@@ -737,18 +776,6 @@ ja:
           how: どうやって稼ぐことができますか？
           page_description: バッジは、プラットフォームの参加者の行動と進行状況を認識します。 プラットフォームで発見し、参加し、交流し始めると、異なるバッジを獲得できます。 ここにバッジのリストといくつかの方法があります。
           title: バッジ
-        invitations:
-          conditions:
-            - 友達を招待するには、ユーザーページの「友達招待」リンクを使用してください
-            - 必要に応じて、送信するメッセージをカスタマイズします
-            - 招待状を送信して登録することでレベルアップします。
-          description: このバッジは、あなたが何人かの人を招待し、その人たちが少し時間をかけて%{organization_name} に登録し、参加者になったときに与えられます。%{organization_name} を他の人に知らしめ、コミュニティの拡大に貢献してくれたことに感謝します！
-          description_another: この参加者は %{score} 人を招待しました。
-          description_own: '%{score} 人を招待しました。'
-          name: 招待
-          next_level_in: '%{score} 人を招待して次のレベルに到達しましょう！'
-          unearned_another: この参加者はまだ誰も招待していません。
-          unearned_own: まだ誰も招待していません。
       description: バッジは、プラットフォームの参加者の行動と進行状況を認識します。 プラットフォームで発見し、参加し、交流し始めると、異なるバッジを獲得できます。
       level: レベル %{level}
       reached_top: このバッジの最高レベルに達しました。
@@ -954,6 +981,7 @@ ja:
           next: 次へ
           no_conversations: 会話がまだありません
           title: 会話
+          to: 宛先
         reply:
           placeholder: あなたの返信...
           send: 送信
@@ -1029,8 +1057,16 @@ ja:
         greetings: こんにちは、<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: こんにちは、
         subject: '%{organization_name} に関する関連情報を引き続き受信しますか？'
+    notification_mailer:
+      event_received:
+        no_translation_available: 申し訳ありませんが、メール送信時に自動翻訳を取得できませんでした。 原文の翻訳は、次のリンク %{link} で確認できます。
+        original_text: '原文:'
+        same_language: コンテンツはあなたの設定された言語(%{language}) で投稿されました。このため、このメールには自動翻訳は表示されません。
+        translated_text: '自動翻訳されたテキスト:'
     notifications:
       no_notifications: まだ通知はありません。
+      show:
+        missing_event: この通知は利用できなくなった要素に属しています。破棄してください。
     notifications_settings:
       show:
         administrators: 管理者
@@ -1484,15 +1520,6 @@ ja:
       updated_not_active: パスワードが正常に変更されました。
     registrations:
       destroyed: お客様のアカウントは正常にキャンセルされました。しばらくお待ちください。
-      edit:
-        are_you_sure: よろしいですか？
-        cancel_my_account: アカウントをキャンセルする
-        currently_waiting_confirmation_for_email: '現在確認待ち: %{email}'
-        leave_blank_if_you_don_t_want_to_change_it: 変更したくない場合は空白のままにしてください
-        title: '%{resource} を編集'
-        unhappy: 不満？
-        update: 更新
-        we_need_your_current_password_to_confirm_your_changes: 変更を確認するには現在のパスワードが必要です
       new:
         sign_up: 新規登録
       signed_up: ようこそ！正常に登録完了しました。
@@ -1545,7 +1572,7 @@ ja:
         other: 'リクエストの処理中に複数のエラーが発生しました:'
       too_many_marks: '連続する句読点が多すぎます (例: !, ?)'
       too_much_caps: 大文字が多すぎます(テキストの25%以上)
-      too_short: 短すぎます（15文字未満）
+      too_short: は短すぎます( %{count} 文字以下)
   forms:
     correct_errors: 下記のフォームにエラーがありました。修正して継続してください。
     length_validator:
@@ -1620,10 +1647,12 @@ ja:
     name: 日本語
     name_with_error: 日本語 (エラー!)
   password_validator:
+    blacklisted: ブラックリストに登録済み
     domain_included_in_password: このドメイン名に似ています
     email_included_in_password: はあなたのメールアドレスに似ています
     fallback: 有効ではありません
     name_included_in_password: あなたの名前に似ています
+    nickname_included_in_password: ニックネームに類似しすぎています
     not_enough_unique_characters: ユニークな文字が十分ではありません
     password_not_allowed: は許可されていません
     password_too_common: あまりにも一般的です
@@ -1658,6 +1687,8 @@ ja:
       day_of_week: "%a"
       day_of_week_long: "%e %a"
       day_of_year: "%y.%m.%d"
+      ddmm: "%m/%d"
+      ddmmyyyy: "%Y/%m/%d"
       decidim_day_of_year: "%Y %B %d"
       decidim_short: "%Y/%m/%d %H:%M"
       default: "%Y %d %b (%a) %H:%M:%S %z"
@@ -1676,6 +1707,7 @@ ja:
     dropdown:
       choose_diff_view_html: 'HTML ビューモード:'
       choose_diff_view_mode: 'ビューモードを比較:'
+      choose_diff_view_mode_menu: 比較モードを選択
       option_escaped: エスケープあり
       option_split: 並べて表示
       option_unescaped: エスケープなし

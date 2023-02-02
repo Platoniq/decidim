@@ -451,6 +451,8 @@ lt:
           see: Žiūrėti
         index:
           loading: Įkeliami rezultatai...
+        show:
+          title: Apie šį procesą
       show:
         area: Aplinka
         belongs_to_group: Šis procesas priklauso

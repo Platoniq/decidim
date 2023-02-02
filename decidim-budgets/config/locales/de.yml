@@ -13,6 +13,7 @@ de:
         decidim_scope_id: Umfang
         description: Beschreibung
         proposal_ids: Ähnliche Vorschläge
+        proposals: Vorschläge
         selected: Zur Implementierung ausgewählt
         title: Titel
   activerecord:
@@ -21,6 +22,18 @@ de:
         one: Projekt
         other: Projekte
   decidim:
+    admin:
+      filters:
+        projects:
+          category_id_eq:
+            label: Kategorie
+          scope_id_eq:
+            label: Themenbereich
+          selected_at_null:
+            label: Ausgewählt
+            values:
+              'false': Zur Umsetzung ausgewählt
+              'true': Nicht zur Umsetzung ausgewählt
     budgets:
       actions:
         attachment_collections: Ordner
@@ -89,6 +102,7 @@ de:
             success: "%{number} Vorschläge wurden erfolgreich in Projekte importiert"
           new:
             create: Importieren Sie Vorschläge in Projekte
+            import_all_accepted_proposals: Alle akzeptierten Vorschläge importieren
             no_components: Es gibt keine weiteren Vorschlagskomponenten in diesem partizipativen Raum, um die Vorschläge in Projekte zu importieren.
             select_component: Bitte wählen Sie eine Komponente aus
             title: Vorschläge importieren
@@ -119,6 +133,9 @@ de:
         highlighted_cta: Über %{name} abstimmen
         if_change_opinion: Wenn sie ihr Meinung geändert haben, können sie
         my_budgets: Meine Budgets
+        progress: Abstimmung beenden
+        show: Projekte ansehen
+        vote: Abstimmen
         voted_on: Sie haben über %{links} abgestimmt
       limit_announcement:
         cant_vote: Sie können nicht über dieses Budget abstimmen. <a href="%{landing_path}">Versuchen Sie es mit einem anderen Budget</a>.
@@ -131,6 +148,8 @@ de:
             total_budget: Gesamt Budget
         project:
           fields:
+            category: Kategorie
+            id: ID
             title: Titel
       order_summary_mailer:
         order_summary:
@@ -147,13 +166,13 @@ de:
           title: Bestätigung der Abstimmung
         budget_excess:
           budget_excess:
-            description: Dieses Projekt überschreitet das maximale Budget und kann nicht hinzugefügt werden. Wenn Sie möchten können Sie ein bereits gewähltes Projekt wieder entfernen, oder gemäss Ihren Präferenzen abstimmen.
+            description: Mit diesem Projekt überschreiten Sie das maximale Budget. Deshalb kann es nicht hinzugefügt werden. Entfernen Sie ein bereits ausgewähltes Projekt um diesem Projekt eine Stimme zu geben.
             title: Maximales Budget überschritten
           close: Schließen
-          description: Dieses Projekt überschreitet das maximale Budget und kann nicht hinzugefügt werden. Wenn Sie möchten können Sie ein bereits gewähltes Projekt wieder entfernen, oder gemäss Ihren Präferenzen abstimmen.
+          description: Mit diesem Projekt überschreiten Sie das maximale Budget. Deshalb kann es nicht hinzugefügt werden. Entfernen Sie ein bereits ausgewähltes Projekt um diesem Projekt eine Stimme zu geben.
           ok: OK
           projects_excess:
-            description: Dieses Projekt überschreitet die maximale Anzahl Projekte und kann nicht hinzugefügt werden. Wenn Sie möchten können Sie ein bereits gewähltes Projekt wieder entfernen, oder gemäss Ihren Präferenzen abstimmen.
+            description: Mit diesem Projekt überschreiten Sie die maximale Anzahl auszuwählende Projekte. Deshalb kann es nicht hinzugefügt werden. Entfernen Sie ein bereits ausgewähltes Projekt um diesem Projekt eine Stimme zu geben.
             title: Maximale Anzahl Projekte überschritten
         budget_summary:
           are_you_sure: Sind Sie sicher, dass Sie Ihre Stimme zurückziehen wollen?
@@ -183,6 +202,12 @@ de:
           projects_count:
             one: 1 Projekt
             other: "%{count} Projekte"
+        exit_modal:
+          cancel: Zurück zur Abstimmung
+          close_modal: Dialog schließen
+          exit: Abstimmung verlassen
+          message: Ihre Stimme wurde nicht registriert, weil Sie den Abstimmungsprozess noch nicht abgeschlossen haben. Sind Sie sicher, dass Sie die Abstimmung beenden möchten?
+          title: Sie haben noch nicht abgestimmt
         filters:
           category: Kategorie
           scope: Umfang
@@ -255,7 +280,7 @@ de:
             total_budget: Gesamtbudget; Gesamtetat
             vote_minimum_budget_projects_number: Mindestanzahl von Projekten, um abzustimmen
             vote_rule_minimum_budget_projects_enabled: 'Regel aktivieren: Mindestanzahl von Projekten, um abzustimmen'
-            vote_rule_selected_projects_enabled: 'Regel aktivieren: Minimale und maximale Anzahl Projekte, für die gestimmt werden soll'
+            vote_rule_selected_projects_enabled: 'Regel aktivieren: Mindest- und Maximalanzahl abzustimmender Projekte'
             vote_rule_threshold_percent_enabled: 'Regel aktivieren: Minimaler Budgetprozentsatz'
             vote_selected_projects_maximum: Maximale Anzahl auszuwählender Projekte
             vote_selected_projects_minimum: Minimale Anzahl auszuwählender Projekte

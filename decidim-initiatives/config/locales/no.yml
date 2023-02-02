@@ -238,8 +238,6 @@
             edit: Rediger
             new: Ny
             photos: Bilder
-          show:
-            print: Skriv ut
           update:
             error: Det oppstod en feil
             success: Initiativet er oppdatert
@@ -399,7 +397,7 @@
           notification_title: <a href="%{author_profile_url}">%{author_nickname}</a> avviste søknaden din om å være en del av promotørutvalget i følgende initiativ <a href="%{resource_url}">%{resource_title}</a>.
       form:
         add_attachments: Dokumenter
-        attachment_legend: "(Valgfritt) Legg til vedlegg"
+        attachment_legend: "(Valgfritt) Legg til et vedlegg"
         delete_attachment: Slett
       index:
         title: Initiativer

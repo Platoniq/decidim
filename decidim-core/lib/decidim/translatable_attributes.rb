@@ -43,7 +43,14 @@ module Decidim
 
           define_method attribute_name do
             field = public_send(name) || {}
-            value = field[locale.to_s] || field[locale.to_sym]
+            value =
+              if field.is_a?(Hash)
+                field[locale.to_s] || field[locale.to_sym]
+              else
+                # The value may not be a hash in case the attribute type was
+                # changed and the old value is still stored against the record.
+                field
+              end
             attribute_set[attribute_name].coerce(value)
           end
 
@@ -71,7 +78,7 @@ module Decidim
       # given_organization - An optional Organization to get the default locale from.
       #
       # Returns a String with the translation.
-      def translated_attribute(attribute, given_organization = nil)
+      def translated_attribute(attribute, given_organization = nil, override_machine_translation_settings = nil)
         return "" if attribute.nil?
         return attribute unless attribute.is_a?(Hash)
 
@@ -81,7 +88,7 @@ module Decidim
         organization_locale = given_organization.try(:default_locale)
 
         attribute[I18n.locale.to_s].presence ||
-          machine_translation_value(attribute, given_organization) ||
+          machine_translation_value(attribute, given_organization, override_machine_translation_settings) ||
           attribute[organization_locale].presence ||
           attribute[attribute.keys.first].presence ||
           ""
@@ -92,18 +99,18 @@ module Decidim
       #
       # It uses `RequestStore` so that the method works from inside presenter
       # classes, which don't have access to controller instance variables.
-      def machine_translation_value(attribute, organization)
+      def machine_translation_value(attribute, organization, override_machine_translation_settings = nil)
         return unless organization
         return unless organization.enable_machine_translations?
 
-        attribute.dig("machine_translations", I18n.locale.to_s).presence if must_render_translation?(organization)
+        attribute.dig("machine_translations", I18n.locale.to_s).presence if must_render_translation?(organization, override_machine_translation_settings)
       end
 
-      def must_render_translation?(organization)
+      def must_render_translation?(organization, override_machine_translation_settings = nil)
         translations_prioritized = organization.machine_translation_prioritizes_translation?
         translations_toggled = RequestStore.store[:toggle_machine_translations]
 
-        translations_prioritized != translations_toggled
+        (override_machine_translation_settings || translations_prioritized) != translations_toggled
       end
     end
 

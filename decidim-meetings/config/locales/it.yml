@@ -42,10 +42,6 @@ it:
         type_of_meeting: Tipo
     errors:
       models:
-        meeting:
-          attributes:
-            show_embedded_iframe:
-              not_embeddable: Questo URL non può essere incorporato
         meeting_agenda:
           attributes:
             base:
@@ -100,7 +96,6 @@ it:
           type_eq:
             label: Tipologia di incontro
             values:
-              hybrid: Entrambi
               in_person: Fisiche
               online: Online
       meeting_copies:
@@ -182,9 +177,6 @@ it:
           email_outro: Hai ricevuto questa notifica perché stai seguendo la riunione "%{resource_title}". Puoi smettere di seguirlo dal link precedente.
           email_subject: La riunione "%{resource_title}" inizierà tra meno di 48 ore.
           notification_title: La riunione <a href="%{resource_path}">%{resource_title}</a> inizierà tra meno di 48 ore.
-    forms:
-      meetings:
-        attendees_count_help_text: Non dimenticare di includere il numero totale di partecipanti al tuo evento. Sia fisiche, ibrido o online, è importante sapere quante persone sono coinvolte.
     gamification:
       badges:
         attended_meetings:
@@ -309,7 +301,6 @@ it:
             registration_url_help: 'Link: consentire ai partecipanti di accedere al servizio esterno che stai utilizzando per le iscrizioni'
             select_a_meeting_type: Seleziona un tipo di riunione
             select_a_registration_type: Seleziona un tipo di registrazione
-            show_embedded_iframe_help: Indica se incorporare o meno l'iframe per questo URL della videoconferenza. Solo alcuni servizi consentono l'incorporazione (es. Youtube, Twitch...)
           index:
             title: Incontri
           new:
@@ -385,20 +376,13 @@ it:
         export_calendar: Esporta il calendario
       conference_venues: Sale per conferenze
       content_blocks:
-        upcoming_events:
-          name: Prossimi eventi
-          upcoming_events: Prossimi incontri
-          view_all_events: Guarda tutto
+        upcoming_meetings:
+          view_all_meetings: Guarda tutto
       directory:
         meetings:
           index:
-            all: Tutti
-            date: Data
             meetings: Incontri
-            past: Passata
-            search: Ricerca
             space_type: Spazio partecipativo
-            upcoming: Imminente
       last_activity:
         meeting_updated_at_html: "<span>Dibattito aggiornato su %{link}</span>"
         new_meeting_at_html: "<span>Nuovo incontro al %{link}</span>"
@@ -461,7 +445,6 @@ it:
           type: Tipo
           type_values:
             all: Tutti
-            hybrid: Entrambi
             in_person: Faccia a faccia
             online: Online
         filters_small_view:
@@ -481,7 +464,6 @@ it:
           select_a_category: Scegli una categoria
           select_a_meeting_type: Seleziona un tipo di riunione
           select_a_registration_type: Seleziona un tipo di registrazione
-          show_embedded_iframe_help: Indica se incorporare o meno l'iframe per questo URL della videoconferenza. Solo alcuni servizi consentono l'incorporazione (es. Youtube, Twitch...)
         index:
           new_meeting: Nuova riunione
         meeting_minutes:
@@ -502,6 +484,7 @@ it:
           close_meeting: Chiusura meeting
           contributions: Conteggio dei contributi
           date: Data
+          edit_close_meeting: Modifica rapporto riunione
           edit_meeting: Modifica la riunione
           going: Ti sei iscritto a questa riunione
           join: Partecipa alla riunione
@@ -543,7 +526,6 @@ it:
           fields:
             closed: Chiuso
             end_time: Data di fine
-            id: Id
             map: Mappa
             official_meeting: Riunione ufficiale
             start_time: Data di inizio
@@ -556,7 +538,6 @@ it:
             empty_questions: Durante questa riunione, alcune domande saranno inviate e sarete in grado di rispondere. Verranno visualizzate qui.
           index_admin:
             admin_dashboard: Pannello di amministrazione
-            edit: Modifica nell'amministratore
             question: Domanda
             received_answer: risposta ricevuta
             received_answers: risposte ricevute
@@ -594,7 +575,6 @@ it:
           invalid: C'è stato un problema lasciare questa riunione.
           success: Hai lasciato l'incontro con successo.
       type_of_meeting:
-        hybrid: Entrambi
         in_person: Di persona
         online: Online
       types:

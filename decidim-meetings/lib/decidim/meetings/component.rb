@@ -25,7 +25,7 @@ Decidim.register_component(:meetings) do |component|
   end
 
   component.register_stat :meetings_count, primary: true, priority: Decidim::StatsRegistry::MEDIUM_PRIORITY do |components, start_at, end_at|
-    meetings = Decidim::Meetings::FilteredMeetings.for(components, start_at, end_at)
+    meetings = Decidim::Meetings::FilteredMeetings.for(components, start_at, end_at).except_withdrawn
     meetings.count
   end
 
@@ -42,11 +42,10 @@ Decidim.register_component(:meetings) do |component|
   component.exports :meetings do |exports|
     exports.collection do |component_instance|
       Decidim::Meetings::Meeting
-        .published
         .not_hidden
         .visible
         .where(component: component_instance)
-        .includes(component: { participatory_space: :organization })
+        .includes(:scope, :category, :attachments, component: { participatory_space: :organization })
     end
 
     exports.include_in_open_data = true
@@ -58,7 +57,7 @@ Decidim.register_component(:meetings) do |component|
     exports.collection do |component_instance|
       Decidim::Comments::Export.comments_for_resource(
         Decidim::Meetings::Meeting, component_instance
-      )
+      ).includes(:author, :user_group, root_commentable: { component: { participatory_space: :organization } })
     end
 
     exports.include_in_open_data = true
@@ -128,7 +127,7 @@ Decidim.register_component(:meetings) do |component|
     end
 
     2.times do
-      start_time = [rand(1..20).weeks.from_now, rand(1..20).weeks.ago].sample
+      start_time = Faker::Date.between(from: 20.weeks.ago, to: 20.weeks.from_now)
       end_time = start_time + [rand(1..4).hours, rand(1..20).days].sample
       params = {
         component: component,
@@ -157,14 +156,22 @@ Decidim.register_component(:meetings) do |component|
       _hybrid_meeting = Decidim.traceability.create!(
         Decidim::Meetings::Meeting,
         admin_user,
-        params.merge(type_of_meeting: :hybrid, online_meeting_url: "http://example.org"),
+        params.merge(
+          title: Decidim::Faker::Localized.sentence(word_count: 2),
+          type_of_meeting: :hybrid,
+          online_meeting_url: "http://example.org"
+        ),
         visibility: "all"
       )
 
       _online_meeting = Decidim.traceability.create!(
         Decidim::Meetings::Meeting,
         admin_user,
-        params.merge(type_of_meeting: :online, online_meeting_url: "http://example.org"),
+        params.merge(
+          title: Decidim::Faker::Localized.sentence(word_count: 2),
+          type_of_meeting: :online,
+          online_meeting_url: "http://example.org"
+        ),
         visibility: "all"
       )
 
@@ -200,8 +207,8 @@ Decidim.register_component(:meetings) do |component|
         user = Decidim::User.find_or_initialize_by(email: email)
 
         user.update!(
-          password: "password1234",
-          password_confirmation: "password1234",
+          password: "decidim123456",
+          password_confirmation: "decidim123456",
           name: name,
           nickname: Faker::Twitter.unique.screen_name,
           organization: component.organization,
@@ -275,7 +282,7 @@ Decidim.register_component(:meetings) do |component|
         author = user_group.users.sample
       end
 
-      start_time = [rand(1..20).weeks.from_now, rand(1..20).weeks.ago].sample
+      start_time = Faker::Date.between(from: 20.weeks.ago, to: 20.weeks.from_now)
       params = {
         component: component,
         scope: Faker::Boolean.boolean(true_ratio: 0.5) ? global : scopes.sample,

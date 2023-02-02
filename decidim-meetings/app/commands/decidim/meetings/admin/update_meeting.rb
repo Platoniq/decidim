@@ -37,7 +37,7 @@ module Decidim
 
         def update_meeting!
           parsed_title = Decidim::ContentProcessor.parse_with_processor(:hashtag, form.title, current_organization: form.current_organization).rewrite
-          parsed_description = Decidim::ContentProcessor.parse_with_processor(:hashtag, form.description, current_organization: form.current_organization).rewrite
+          parsed_description = Decidim::ContentProcessor.parse(form.description, current_organization: form.current_organization).rewrite
 
           Decidim.traceability.update!(
             meeting,
@@ -62,7 +62,11 @@ module Decidim
             transparent: form.transparent,
             customize_registration_email: form.customize_registration_email,
             registration_email_custom_content: form.registration_email_custom_content,
-            show_embedded_iframe: form.show_embedded_iframe
+            iframe_embed_type: form.iframe_embed_type,
+            comments_enabled: form.comments_enabled,
+            comments_start_time: form.comments_start_time,
+            comments_end_time: form.comments_end_time,
+            iframe_access_level: form.iframe_access_level
           )
         end
 
@@ -95,10 +99,12 @@ module Decidim
         end
 
         def schedule_upcoming_meeting_notification
+          return if meeting.start_time < Time.zone.now
+
           checksum = Decidim::Meetings::UpcomingMeetingNotificationJob.generate_checksum(meeting)
 
           Decidim::Meetings::UpcomingMeetingNotificationJob
-            .set(wait_until: meeting.start_time - 2.days)
+            .set(wait_until: meeting.start_time - Decidim::Meetings.upcoming_meeting_notification)
             .perform_later(meeting.id, checksum)
         end
       end

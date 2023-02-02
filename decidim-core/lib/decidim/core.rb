@@ -77,6 +77,7 @@ module Decidim
   autoload :Amendable, "decidim/amendable"
   autoload :Gamification, "decidim/gamification"
   autoload :Hashtag, "decidim/hashtag"
+  autoload :Etherpad, "decidim/etherpad"
   autoload :Paddable, "decidim/paddable"
   autoload :OpenDataExporter, "decidim/open_data_exporter"
   autoload :IoEncoder, "decidim/io_encoder"
@@ -95,6 +96,7 @@ module Decidim
   autoload :RecordEncryptor, "decidim/record_encryptor"
   autoload :AttachmentAttributes, "decidim/attachment_attributes"
   autoload :CarrierWaveMigratorService, "decidim/carrier_wave_migrator_service"
+  autoload :CommonPasswords, "decidim/common_passwords"
 
   include ActiveSupport::Configurable
   # Loads seeds from all engines.
@@ -145,9 +147,9 @@ module Decidim
   # the mails.
   config_accessor :mailer_sender
 
-  # Whether SSL should be enabled or not.
+  # Whether SSL should be forced or not.
   config_accessor :force_ssl do
-    true
+    Rails.env.starts_with?("production") || Rails.env.starts_with?("staging")
   end
 
   # Having this on true will change the way the svg assets are being served.
@@ -274,7 +276,7 @@ module Decidim
 
   # Time window were users can access the website even if their email is not confirmed.
   config_accessor :unconfirmed_access_for do
-    2.days
+    0.days
   end
 
   # Allow machine translations
@@ -382,6 +384,18 @@ module Decidim
   # set cookies.
   config_accessor :consent_cookie_name do
     "decidim-cc"
+  end
+
+  # Blacklisted passwords. Array may contain strings and regex entries.
+  config_accessor :password_blacklist do
+    []
+  end
+
+  # This is an internal key that allow us to properly configure the caching key separator. This is useful for redis cache store
+  # as it creates some namespaces within the cached data.
+  # use `config.cache_key_separator = ":"` in your initializer to have namespaced data
+  config_accessor :cache_key_separator do
+    "/"
   end
 
   # Public: Registers a global engine. This method is intended to be used
@@ -593,8 +607,11 @@ module Decidim
   end
 
   # Defines the time after which the machine translation job should be enabled.
-  # In some cases, it is required to have a delay, otherwise the ttanslation job will be discarded:
-  #  Discarded Decidim::MachineTranslationResourceJob due to a ActiveJob::DeserializationError.
+  # In some cases, like when Workers is processing faster than ActiveRecord can commit to Database,
+  # it is required to have a delay, to prevent any discarding with
+  # Decidim::MachineTranslationResourceJob due to a ActiveJob::DeserializationError.
+  # In some Decidim Installations, ActiveJob can be configured to discard jobs failing with
+  # ActiveJob::DeserializationError
   config_accessor :machine_translation_delay do
     0.seconds
   end

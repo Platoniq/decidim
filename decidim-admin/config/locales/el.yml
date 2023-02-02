@@ -179,7 +179,6 @@ el:
           error: Υπήρξε ένα σφάλμα κατά την αποδοχή των όρων χρήσης διαχειριστή.
           success: Εξαιρετικά! Αποδεχτήκατε τους όρους χρήσης διαχειριστή.
         actions:
-          accept: Συμφωνώ με τους ακόλουθους όρους
           are_you_sure: Είστε σίγουρος ότι θέλετε να αρνηθείτε τους όρους χρήσης του διαχειριστή;
           refuse: Απόρριψη των όρων διαχειριστή
           title: Αποδοχή των όρων και των προϋποθέσεων χρήσης
@@ -450,16 +449,8 @@ el:
           impersonate_existing_user: Διαχείριση συμμετέχοντα «%{name}»
           impersonate_new_managed_user: Διαχείριση νέου συμμετέχοντα
       imports:
-        creators:
-          proposalcreator: Δημιουργός της πρότασης
         error: Υπήρξε πρόβλημα κατά την εισαγωγή
-        help:
-          proposalcreator: Το αρχείο πρέπει να έχει ονόματα στηλών title/en και body/en (ή άλλη τοπική γλώσσα που προτιμάτε, π.χ. title/ca και body/ca). Υποστηρίζονται επίσης οι στήλες scope/id και category/id.
-        import_from_file: Εισαγωγή από αρχείο
-        invalid_lines: Βρέθηκε σφάλμα στον αριθμό πόρου %{invalid_lines}
         new:
-          accepted_mime_types:
-            json: JSON
           actions:
             back: Πίσω
           file_legend: Προσθέστε ένα αρχείο εισαγωγής που θα αναλυθεί.
@@ -926,13 +917,6 @@ el:
           success: Η ομάδα επαληθεύτηκε με επιτυχία
       user_groups:
         index:
-          filter:
-            all: Όλα
-            pending: Σε εκκρεμότητα
-            rejected: Απορρίφθηκε
-            verified: Επαληθεύτηκε
-          filter_by: Φιλτράρισμα κατά
-          search: Αναζήτηση
           state:
             pending: Σε εκκρεμότητα
             rejected: Απορρίφθηκε
@@ -1007,7 +991,6 @@ el:
             hidden_at: Αποκρύφτηκε στις
             participatory_space: Συμμετοχικός χώρος
             report_count: Πλήθος
-            reportable_id: Αναγνωριστικό ID
             reportable_type: Τύπος
             reported_content_url: Διεύθυνση URL περιεχομένου που έχει αναφερθεί
             reports: Αναφορές

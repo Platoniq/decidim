@@ -66,31 +66,59 @@ module Decidim
     end
 
     context "when the email already exists" do
-      let!(:user) { create(:user, organization: organization, email: email) }
+      context "and a user has the email" do
+        let!(:user) { create(:user, organization: organization, email: email) }
 
-      it { is_expected.to be_invalid }
+        it { is_expected.to be_invalid }
 
-      context "and is pending to accept the invitation" do
-        let!(:user) { create(:user, organization: organization, email: email, invitation_token: "foo", invitation_accepted_at: nil) }
+        context "and is pending to accept the invitation" do
+          let!(:user) { create(:user, organization: organization, email: email, invitation_token: "foo", invitation_accepted_at: nil) }
+
+          it { is_expected.to be_invalid }
+        end
+      end
+
+      context "and a user_group has the email" do
+        let!(:user_group) { create(:user_group, organization: organization, email: email) }
 
         it { is_expected.to be_invalid }
       end
     end
 
     context "when the nickname already exists" do
-      let!(:user) { create(:user, organization: organization, nickname: nickname) }
+      context "and a user has the nickname" do
+        let!(:user) { create(:user, organization: organization, nickname: nickname.upcase) }
 
-      it { is_expected.to be_invalid }
+        it { is_expected.to be_invalid }
 
-      context "and is pending to accept the invitation" do
-        let!(:user) { create(:user, organization: organization, nickname: nickname, invitation_token: "foo", invitation_accepted_at: nil) }
+        context "and is pending to accept the invitation" do
+          let!(:user) { create(:user, organization: organization, nickname: nickname, invitation_token: "foo", invitation_accepted_at: nil) }
 
-        it { is_expected.to be_valid }
+          it { is_expected.to be_valid }
+        end
+      end
+
+      context "and a user_group has the nickname" do
+        let!(:user_group) { create(:user_group, organization: organization, nickname: nickname) }
+
+        it { is_expected.to be_invalid }
       end
     end
 
     context "when the nickname is too long" do
       let(:nickname) { "verylongnicknamethatcreatesanerror" }
+
+      it { is_expected.to be_invalid }
+    end
+
+    context "when the name is an email" do
+      let(:name) { "test@example.org" }
+
+      it { is_expected.to be_invalid }
+    end
+
+    context "when the nickname has spaces" do
+      let(:nickname) { "test example" }
 
       it { is_expected.to be_invalid }
     end

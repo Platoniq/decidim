@@ -79,6 +79,7 @@ lt:
           form:
             add_question: Pridėti klausimą
             add_separator: Pridėti skyriklį
+            add_title_and_description: Pridėti pavadinimą ir aprašymą
             already_answered_warning: Kai kurie naudotojai jau atsakė į formos klausimus, todėl jos klausimų keisti nebegalite.
             collapse: Suskleisti visus klausimus
             expand: Išskleisti visus klausimus
@@ -108,6 +109,15 @@ lt:
             remove: Pašalinti
             separator: Skirtukas
             up: Į viršų
+          title_and_description:
+            collapse: Suskleisti
+            description: Aprašymas
+            down: Žemyn
+            expand: Išplėsti
+            remove: Pašalinti
+            title: Pavadinimas
+            title_and_description: Pavadinimas ir aprašymas
+            up: Aukštyn
           update:
             invalid: Išsaugant šią formą iškilo problema.
             success: Forma sėkmingai išsaugota.
@@ -131,6 +141,7 @@ lt:
         short_answer: Trumpas atsakymas
         single_option: Vienas variantas
         sorting: Rūšiavimas
+        title_and_description: Pavadinimas ir aprašymas
       questionnaires:
         answer:
           invalid: Atsakant į šią formą iškilo problema.

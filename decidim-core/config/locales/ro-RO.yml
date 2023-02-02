@@ -80,6 +80,13 @@ ro:
       decidim_with_day_and_month_name: "%A %d %b %Y"
       decidim_with_month_name: "%d %B %Y"
       decidim_with_month_name_short: "%d %b"
+  datetime:
+    distance_in_words:
+      half_a_minute: jumătate de minut
+      x_seconds:
+        one: Acum 1 sec
+        other: "%{count} secunde în urmă"
+        zero: chiar acum
   decidim:
     accessibility:
       external_link: Link extern
@@ -518,6 +525,11 @@ ro:
           this_application_will_not_be_able_to: 'Această aplicație nu va putea să:'
           update_profile: Actualizeză-ți profilul
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> vrea să folosească contul tău"
+    editor_images:
+      create:
+        error: Eroare la încărcarea imaginii
+        success: Imaginea a fost încărcată cu succes
+      drag_and_drop_help: Adaugă imagini prin tragere & plasare sau lipirea lor.
     endorsable:
       endorsements: Susținători
       endorsements_count: Număr de susțineri
@@ -758,18 +770,6 @@ ro:
           how: Cum poți să o câștigi
           page_description: Insignele sunt recunoașterea acțiunilor participanților și progresele înregistrate în cadrul platformei. Pe măsură ce începi să descoperi, să participi și să interacționezi în platformă, vei câștiga diferite insigne. Aici este lista de insigne și câteva modalități prin care le poți câștiga.
           title: Insigne
-        invitations:
-          conditions:
-            - Folosește link-ul "invită prieteni" de pe pagina ta de utilizator pentru a-ți invita prietenii
-            - Personalizează, dacă dorești, mesajul pe care îl trimiți
-            - Vei crește în nivel trimițând invitații și primindu-le înregistrate.
-          description: Această insignă este acordată atunci când ai invitat câțiva oameni și aceștia au petrecut puțin timp să se înregistreze în %{organization_name} și să devină participanți. Îți mulțumim că ai făcut %{organization_name} cunoscută și altora existența comunității și ai ajutat la extinderea ei!
-          description_another: Acest participant a invitat %{score} persoane.
-          description_own: Ai invitat %{score} persoane.
-          name: Invitații
-          next_level_in: Invită încă %{score} persoane să ajungă la următorul nivel!
-          unearned_another: Acest participant nu a invitat încă pe nimeni.
-          unearned_own: Nu ai invitat încă pe nimeni.
       description: Insignele sunt recunoașterea acțiunilor participanților și progresele înregistrate în cadrul platformei. Pe măsură ce începi să descoperi, să participi și să interacționezi în platformă, vei câștiga diferite insigne.
       level: Nivelul %{level}
       reached_top: Ai atins nivelul maxim pentru această insignă.
@@ -975,6 +975,7 @@ ro:
           next: Următoarea
           no_conversations: Încă nu aveți conversații
           title: Conversații
+          to: Către
         reply:
           placeholder: Răspunsul tău...
           send: Trimite
@@ -1050,6 +1051,12 @@ ro:
         greetings: Salutări,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: Salut,
         subject: Doriți să continuați să primiți informații relevante despre %{organization_name}?
+    notification_mailer:
+      event_received:
+        no_translation_available: Ne pare rău, traducerea automată nu a putut fi recuperată atunci când e-mailul a fost trimis. Puteți verifica traducerea textului original pe următorul link %{link}.
+        original_text: 'Text original:'
+        same_language: Conținutul a fost postat în limba preferată (%{language}), de aceea nu este afișată nicio traducere automată în acest e-mail.
+        translated_text: 'Text tradus automat:'
     notifications:
       no_notifications: Nici o notificare încă.
     notifications_settings:
@@ -1507,15 +1514,6 @@ ro:
       updated_not_active: Parola dvs. a fost schimbată cu succes.
     registrations:
       destroyed: Contul tău a fost anulat cu succes. Sperăm să te revedem în curând.
-      edit:
-        are_you_sure: Sigur dorești asta?
-        cancel_my_account: Anulează contul meu
-        currently_waiting_confirmation_for_email: 'În prezent se așteaptă confirmarea pentru: %{email}'
-        leave_blank_if_you_don_t_want_to_change_it: lasă necompletat dacă nu vrei să-l schimbi
-        title: Editează %{resource}
-        unhappy: Nefericit?
-        update: Actualizare
-        we_need_your_current_password_to_confirm_your_changes: avem nevoie de parola curentă pentru a confirma modificările
       new:
         sign_up: Înscrie-te
       signed_up: Bine ați venit! V-ați înregistrat cu succes.
@@ -1572,7 +1570,6 @@ ro:
         other: 'Au existat mai multe erori la procesarea cererii dvs.:'
       too_many_marks: folosește prea multe semne consecutive de punctuație (de ex. ! și ?)
       too_much_caps: utilizează prea multe majuscule (peste 25% din text)
-      too_short: este prea scurt (sub 15 caractere)
   forms:
     correct_errors: Există erori în formular, vă rugăm să le corectaţi pentru a continua.
     length_validator:
@@ -1653,6 +1650,7 @@ ro:
     email_included_in_password: este prea asemănător cu adresa de e-mail
     fallback: nu este valid
     name_included_in_password: este prea asemănător cu numele tău
+    nickname_included_in_password: este prea similar cu nickname-ul dvs
     not_enough_unique_characters: nu are destule caractere unice
     password_not_allowed: nu este permis
     password_too_common: este prea frecvent

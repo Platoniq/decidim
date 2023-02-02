@@ -42,10 +42,6 @@ eu:
         type_of_meeting: Mota
     errors:
       models:
-        meeting:
-          attributes:
-            show_embedded_iframe:
-              not_embeddable: URL hau ezin da txertatu
         meeting_agenda:
           attributes:
             base:
@@ -100,7 +96,6 @@ eu:
           type_eq:
             label: Topaketa mota
             values:
-              hybrid: Biok
               in_person: Aurrez aurre
               online: Lineakoa
       meeting_copies:
@@ -182,9 +177,6 @@ eu:
           email_outro: Jakinarazpen hori jaso duzu "%{resource_title}" bilera jarraitzen duzulako. Aurreko esteka estekan jarrai dezakezu.
           email_subject: '"%{resource_title}" topaketa 48 ordu baino gutxiagotan hasiko da.'
           notification_title: <a href="%{resource_path}">%{resource_title}</a> topaketa 48 ordu baino gutxiagoan hasiko da.
-    forms:
-      meetings:
-        attendees_count_help_text: Ez ahaztu zure topaketara joandako guztien kopurua sartzea, bai aurrez aurre, bai linean edo hibridoan.
     gamification:
       badges:
         attended_meetings:
@@ -309,7 +301,6 @@ eu:
             registration_url_help: 'Lotura: parte-hartzaileei aukera ematea izena emateko erabiltzen ari zaren kanpoko zerbitzura joateko'
             select_a_meeting_type: Mesedez, hautatu topaketa mota bat
             select_a_registration_type: Mesedez, hautatu erregistro mota bat
-            show_embedded_iframe_help: Sartu edo ez iframea bideokonferentziako URL honetarako. Zerbitzu batzuek baino ez dute aukera ematen (adibidez, Youtube, Twitch, etab.)
           index:
             title: Topaketa-zerrenda
           new:
@@ -379,26 +370,26 @@ eu:
           value_types:
             organizer_presenter:
               not_found: 'Antolatzailea ez da aurkitu datu-basean (ID: %{id})'
+      application_helper:
+        filter_category_values:
+          all: Guztiak
+        filter_meeting_space_values:
+          all: Guztiak
+        filter_scope_values:
+          all: Guztiak
       calendar_modal:
         calendar_url: Egutegiaren URLa
         close_window: Itxi leihoa
         export_calendar: Esportatu egutegia
       conference_venues: Hitzaldi aretoak
       content_blocks:
-        upcoming_events:
-          name: Hurrengo ekitaldiak
-          upcoming_events: Hurrengo topaketak
-          view_all_events: Ikusi dena
+        upcoming_meetings:
+          view_all_meetings: Ikusi dena
       directory:
         meetings:
           index:
-            all: guztiak
-            date: Data
             meetings: Bilerak
-            past: Aurrekoak
-            search: Search
             space_type: Partaidetza espazioa
-            upcoming: Hurrengoak
       last_activity:
         meeting_updated_at_html: "<span>eztabaida ordu honetan %{link}</span> eguneratuta"
         new_meeting_at_html: "<span>Bilera berria %{link}</span>"
@@ -461,7 +452,6 @@ eu:
           type: Mota
           type_values:
             all: Denak
-            hybrid: Biok
             in_person: Aurrez aurre
             online: Lineakoa
         filters_small_view:
@@ -481,9 +471,12 @@ eu:
           select_a_category: Mesedez, hautatu kategoria bat
           select_a_meeting_type: Mesedez, hautatu topaketa mota bat
           select_a_registration_type: Mesedez, hautatu erregistro mota bat
-          show_embedded_iframe_help: Sartu edo ez iframea bideokonferentziako URL honetarako. Zerbitzu batzuek baino ez dute aukera ematen (adibidez, Youtube, Twitch, etab.)
         index:
+          click_here: Ikusi topaketa guztiak
           new_meeting: Topaketa berria
+          see_all: Ikusi topaketa guztiak
+          see_all_withdrawn: Ikusi bertan behera utzitako topaketa guztiak
+          text_banner: Ikusten ari zara egileek bertan behera utzitako topaketak %{go_back_link}.
         meeting_minutes:
           related_information: Lotutako informazioa
         meetings:
@@ -502,6 +495,7 @@ eu:
           close_meeting: Itxi topaketa
           contributions: Ekarpen-kopurua
           date: Data
+          edit_close_meeting: Editatu bileraren txostena
           edit_meeting: Editatu topaketa
           going: Topaketa honetan eman duzu izena
           join: Izena eman topaketan
@@ -523,6 +517,7 @@ eu:
             other: "%{count} slot geratzen dira"
           view: ikusi
           visit_finished: Ikusi egindako topaketa
+          withdraw_meeting: Bertan behera utzi topaketa
         update:
           invalid: Arazo bat izan da topaketa hau eguneratzean.
           success: Topaketa zuzen eguneratu duzu.
@@ -543,7 +538,6 @@ eu:
           fields:
             closed: Itxita
             end_time: Bukaera-data
-            id: Id
             map: Mapa
             official_meeting: Topaketa ofiziala
             start_time: Hasiera-data
@@ -556,7 +550,6 @@ eu:
             empty_questions: Topaketa honetan zehar, galdera batzuk bidaliko dira eta erantzun ahal izango dituzu. Hemen erakutsiko dira.
           index_admin:
             admin_dashboard: Administrazio-panela
-            edit: Editatu administrazio-panelean
             question: Galdera
             received_answer: jasotako erantzuna
             received_answers: jasotako erantzunak
@@ -591,14 +584,17 @@ eu:
           invalid: Arazo bat izan da topaketa honetatik ateratzean.
           success: Topaketatik ongi atera zara.
       type_of_meeting:
-        hybrid: Biok
         in_person: Aurrez aurre
         online: Lineakoa
       types:
         private_meeting: Bilera pribatua
         transparent: gardena
+        withdraw: Kenduta
       versions:
         back_to_resource: Itzuli topaketara
+      withdraw:
+        error: Arazo bat izan da topaketa bertan behera uztean
+        success: Topaketa zuzen utzi da bertan behera
     metrics:
       meetings:
         description: Bilera kopurua sortu da

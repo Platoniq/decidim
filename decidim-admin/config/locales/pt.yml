@@ -179,7 +179,6 @@ pt:
           error: Ocorreu um erro ao aceitar os termos de utilização de administrador.
           success: Excelente! Aceitou os termos de utilização de administrador.
         actions:
-          accept: Concordo com os seguintes termos
           are_you_sure: Tem a certeza que quer rejeitar os termos de utilização de administrador?
           refuse: Recusar os termos de administrador
           title: Concordar com os termos e condições de utilização
@@ -405,6 +404,11 @@ pt:
           user_name_or_user_email_cont: Pesquisar %{coleção} por nome ou e-mail.
         state_eq:
           label: Estado
+          values:
+            all: Todos
+            pending: Pendentes
+            rejected: Rejeitados
+            verified: Verificados
       forms:
         file_help:
           import:
@@ -450,17 +454,12 @@ pt:
           impersonate_existing_user: Gerir participante "%{name}"
           impersonate_new_managed_user: Gerir novo participante
       imports:
-        creators:
-          proposalcreator: Criador de proposta
         error: Houve um problema durante a importação
-        help:
-          proposalcreator: O ficheiro deve ter nomes de coluna title/pt e body/pt (ou qualquer outro idioma que prefira exemplo title/en e body/en). Também são suportadas colunas âmbito/id e categoria/id.
-        import_from_file: Importar dum ficheiro
-        invalid_lines: Encontrado erro no recurso número %{invalid_lines}
         new:
           accepted_mime_types:
-            csv: csv
-            json: json
+            csv: CSV
+            json: JSON
+            xlsx: Excel (.xlsx)
           actions:
             back: Voltar
           file_legend: Adicionar ficheiro para importar a analisar.
@@ -927,13 +926,6 @@ pt:
           success: Grupo verificado corretamente
       user_groups:
         index:
-          filter:
-            all: Todos
-            pending: Pendente
-            rejected: Rejeitado
-            verified: Verificado
-          filter_by: Filtrar por
-          search: Pesquisa
           state:
             pending: Pendente
             rejected: Rejeitado
@@ -1008,7 +1000,6 @@ pt:
             hidden_at: Escondido em
             participatory_space: Espaço participativo
             report_count: Contagem
-            reportable_id: Identificação
             reportable_type: Tipo
             reported_content_url: URL de conteúdo reportado
             reports: Relatórios

@@ -77,6 +77,11 @@ label > [type="radio"]{
     margin-right: 1rem;
     flex-shrink: 0;
   }
+
+  &,
+  &.tiny{
+    height: auto;
+  }
 }
 
 .switch{
@@ -135,13 +140,18 @@ input[type="radio"]{
   }
 
   &__trigger{
+    position: relative;
+    top: -$form-spacing;
+  }
+
+  &__button{
     position: absolute;
     bottom: $global-margin * .5;
     right: $global-margin;
     cursor: pointer;
   }
 
-  &__trigger svg{
+  &__button svg{
     width: 1em;
   }
 }

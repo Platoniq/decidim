@@ -3,7 +3,10 @@
 module Decidim
   module Verifications
     class ManagedUserErrorEvent < Decidim::Events::SimpleEvent
+      include Rails.application.routes.mounted_helpers
+
       delegate :profile_path, :profile_url, :name, to: :updated_user
+      delegate :conflicts_path, :conflicts_url, to: :decidim_admin
 
       def i18n_scope
         "decidim.events.verifications.verify_with_managed_user"
@@ -22,7 +25,13 @@ module Decidim
       end
 
       def default_i18n_options
-        super.merge({ managed_user_path: managed_user.profile_path, managed_user_name: managed_user.name })
+        super.merge({
+                      conflicts_path: conflicts_path,
+                      conflicts_url: conflicts_url,
+                      managed_user_path: managed_user.profile_path,
+                      managed_user_url: managed_user.profile_url,
+                      managed_user_name: managed_user.name
+                    })
       end
 
       private
@@ -33,6 +42,10 @@ module Decidim
 
       def managed_user
         @managed_user ||= Decidim::UserPresenter.new(resource.managed_user)
+      end
+
+      def decidim_admin
+        @decidim_admin ||= Decidim::EngineRouter.new("decidim_admin", { host: managed_user.organization.host })
       end
     end
   end

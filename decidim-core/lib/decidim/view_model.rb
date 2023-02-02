@@ -15,7 +15,6 @@ module Decidim
     include Decidim::ReplaceButtonsHelper
     include Cell::Caching::Notifications
     include Decidim::MarkupHelper
-    include Decidim::FilterParamsHelper
     include ::Webpacker::Helper
 
     delegate :current_organization, to: :controller
@@ -36,6 +35,16 @@ module Decidim
     end
 
     private
+
+    def render_template(template, options, &block)
+      ActiveSupport::Notifications.instrument(
+        "render_template.action_view",
+        identifier: template.file,
+        layout: nil
+      ) do
+        super
+      end
+    end
 
     def instrument(name, **options)
       ActiveSupport::Notifications.instrument("render_#{name}.action_view", options) do |payload|

@@ -1,12 +1,15 @@
+// show a message to the user if comunication is lost
+import "src/decidim/elections/broken_promises_handler";
+
 import {
   TallyComponent,
   IdentificationKeys,
   MessageIdentifier,
   MESSAGE_RECEIVED
-} from "@codegram/decidim-bulletin_board";
+} from "@decidim/decidim-bulletin_board";
 
-import { TrusteeWrapperAdapter as DummyTrusteeWrapperAdapter } from "@codegram/voting_schemes-dummy";
-import { TrusteeWrapperAdapter as ElectionGuardTrusteeWrapperAdapter } from "@codegram/voting_schemes-electionguard";
+import { TrusteeWrapperAdapter as DummyTrusteeWrapperAdapter } from "@decidim/voting_schemes-dummy";
+import { TrusteeWrapperAdapter as ElectionGuardTrusteeWrapperAdapter } from "@decidim/voting_schemes-electionguard";
 
 $(() => {
   // UI Elements

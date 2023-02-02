@@ -16,6 +16,7 @@ module Decidim
         attribute :decidim_category_id, Integer
         attribute :finite, Boolean, default: true
         attribute :scope_id, Integer
+        attribute :comments_enabled, Boolean, default: true
 
         validates :title, translatable_presence: true
         validates :description, translatable_presence: true
@@ -28,6 +29,7 @@ module Decidim
         validates :scope_id, scope_belongs_to_component: true, if: ->(form) { form.scope_id.present? }
 
         def map_model(model)
+          self.finite = model.start_time.present? && model.end_time.present?
           self.decidim_category_id = model.categorization.decidim_category_id if model.categorization
           presenter = DebatePresenter.new(model)
 

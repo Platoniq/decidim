@@ -44,8 +44,8 @@ fr:
       models:
         meeting:
           attributes:
-            show_embedded_iframe:
-              not_embeddable: Cette URL ne peut pas être intégrée
+            iframe_embed_type:
+              not_embeddable: Cette URL ne peut pas être intégrée dans la page de rencontre ou d'événement en direct
         meeting_agenda:
           attributes:
             base:
@@ -184,7 +184,7 @@ fr:
           notification_title: La rencontre <a href="%{resource_path}">%{resource_title}</a> débutera dans moins de 48h.
     forms:
       meetings:
-        attendees_count_help_text: N’oubliez pas d’inclure le nombre total de participants à votre événement, que ce soit en présentiel, en ligne ou en hybride.
+        attendees_count_help_text: N'oubliez pas d'inclure le nombre total de participants à votre réunion, que ce soit en personne, en ligne ou en hybride.
     gamification:
       badges:
         attended_meetings:
@@ -312,7 +312,8 @@ fr:
             registration_url_help: 'Lien : permet aux participants de partir sur le service externe que vous utilisez pour les inscriptions'
             select_a_meeting_type: Veuillez sélectionner un type de rencontre
             select_a_registration_type: Veuillez sélectionner un type d'inscription
-            show_embedded_iframe_help: Intégrer ou non l'iframe correspondant à cette URL de vidéoconférence. Seuls quelques services permettent l'intégration (c.-à-d. Youtube, Twitch...)
+            select_an_iframe_access_level: Veuillez sélectionner un niveau d'accès iframe
+            show_embedded_iframe_help: Seuls quelques services permettent d'intégrer des rencontres ou des événements en direct (YouTube, Twitch et Jitsi)
           index:
             title: Rencontres
           new:
@@ -382,26 +383,37 @@ fr:
           value_types:
             organizer_presenter:
               not_found: 'L''organisateur n''a pas été trouvé dans la base de données (ID: %{id})'
+      application_helper:
+        filter_category_values:
+          all: Tout
+        filter_meeting_space_values:
+          all: Tout
+        filter_scope_values:
+          all: Tout
       calendar_modal:
         calendar_url: URL du calendrier
         close_window: Fermer la fenêtre
         export_calendar: Calendrier d'exportation
       conference_venues: Salles de conférence
       content_blocks:
-        upcoming_events:
-          name: Évènements à venir
-          upcoming_events: Rencontres à venir
-          view_all_events: Voir tout
+        upcoming_meetings:
+          name: Rencontres à venir
+          upcoming_meetings: Rencontres à venir
+          view_all_meetings: Voir tout
       directory:
         meetings:
           index:
-            all: Tout
-            date: Date
             meetings: Rencontres
-            past: Passées
-            search: Chercher
             space_type: Espace participatif
-            upcoming: À venir
+      iframe_access_level:
+        all: Tous les visiteurs
+        registered: Participants inscrits à cette rencontre
+        signed_in: Les participants inscrits uniquement
+      iframe_embed_type:
+        embed_in_meeting_page: Intégrer à la page de la rencontre
+        none: Aucun
+        open_in_live_event_page: Ouvrir dans la page de l'événement en direct (avec sondages facultatifs)
+        open_in_new_tab: Ouvrir le lien dans un nouvel onglet
       last_activity:
         meeting_updated_at_html: "<span>Rencontre mise à jour à %{link}</span>"
         new_meeting_at_html: "<span>Nouvelle rencontre dans %{link}</span>"
@@ -484,9 +496,14 @@ fr:
           select_a_category: Veuillez sélectionner une catégorie
           select_a_meeting_type: Veuillez sélectionner un type de rencontre
           select_a_registration_type: Veuillez sélectionner un type d'inscription
-          show_embedded_iframe_help: Intégrer ou non l'iframe correspondant à cette URL de vidéoconférence. Seuls quelques services permettent l'intégration (c.-à-d. Youtube, Twitch...)
+          select_an_iframe_access_level: Veuillez sélectionner un niveau d'accès iframe
+          show_embedded_iframe_help: Seuls quelques services permettent d'intégrer des rencontres ou des événements en direct (YouTube, Twitch et Jitsi)
         index:
+          click_here: Voir toutes les rencontres
           new_meeting: Nouvelle rencontre
+          see_all: Voir toutes les rencontres
+          see_all_withdrawn: Voir toutes les rencontres annulées
+          text_banner: Vous consultez la liste des rencontres annulées par leurs auteurs. %{go_back_link}.
         meeting_minutes:
           related_information: Informations liées
         meetings:
@@ -505,6 +522,7 @@ fr:
           close_meeting: Clore la rencontre
           contributions: Décompte des contributions
           date: Date
+          edit_close_meeting: Modifier le compte-rendu de la rencontre
           edit_meeting: Modifier la rencontre
           going: Vous vous êtes inscrit à cette rencontre
           join: Participer à la rencontre
@@ -526,6 +544,9 @@ fr:
             other: "Il reste %{count} places"
           view: Voir
           visit_finished: Consulter l’historique des rencontres
+          withdraw_btn_hint: Vous pouvez annuler votre rencontre si vous changez d'avis. La rencontre n'est pas supprimée, elle apparaîtra dans la liste des rencontres retirées.
+          withdraw_confirmation_html: Êtes-vous sûr de vouloir annuler cette rencontre ?<br><br><strong>Cette action ne peut pas être annulée !</strong>
+          withdraw_meeting: Annuler la rencontre
         update:
           invalid: Une erreur s'est produite lors de la mise à jour de la rencontre.
           success: La rencontre a été mise à jour avec succès.
@@ -546,7 +567,7 @@ fr:
           fields:
             closed: Fermée
             end_time: Date de fin
-            id: Id
+            id: ID
             map: Carte
             official_meeting: Rencontre officielle
             start_time: Date de début
@@ -559,7 +580,7 @@ fr:
             empty_questions: Tout au long de cette rencontre, certaines questions seront envoyées et vous pourrez y répondre. Elles seront affichées ici.
           index_admin:
             admin_dashboard: Administration du sondage
-            edit: Modifier le sondage dans le panneau d'administration (attention, une fois qu'une question a commencé à recevoir des réponses, vous ne pouvez plus modifier le sondage)
+            edit: Modifier dans le panneau d'administration
             question: Question
             received_answer: réponse reçue
             received_answers: réponses reçues
@@ -603,8 +624,12 @@ fr:
       types:
         private_meeting: Rencontre privée
         transparent: Visible par les non-membres
+        withdraw: Retirée
       versions:
         back_to_resource: Revenir à la rencontre
+      withdraw:
+        error: Une erreur s'est produite lors de l'annulation de la rencontre
+        success: La réunion a été annulée avec succès
     metrics:
       meetings:
         description: Nombre de rencontres créées

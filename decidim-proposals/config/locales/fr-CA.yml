@@ -57,6 +57,16 @@ fr-CA:
               identical: ET le titre ne peut pas être identique
             title:
               identical: ET le corps ne peut pas être identique
+        proposals_merge:
+          attributes:
+            base:
+              not_official: Non officiels
+              supported: Avoir reçu des soutiens ou des approbations
+        proposals_split:
+          attributes:
+            base:
+              not_official: Non officiels
+              supported: A reçu des soutiens ou des approbations
     models:
       decidim/proposals/accepted_proposal_event: Proposition acceptée
       decidim/proposals/admin/update_proposal_category_event: Catégorie de proposition modifiée
@@ -125,7 +135,6 @@ fr-CA:
         name: Propositions
         settings:
           global:
-            allow_card_image: Afficher les images sur les cartes de l'index de proposition
             amendments_enabled: Modifications activées
             amendments_enabled_help: Si actif, configurez les fonctionnalités d'amendement pour chaque étape.
             amendments_wizard_help_text: Texte d'aide de l'assistant
@@ -135,6 +144,17 @@ fr-CA:
             collaborative_drafts_enabled: Brouillons collaboratifs activés
             comments_enabled: Activer le module de commentaire
             comments_max_length: Longueur maximum (en caractères) des commentaires (laisser 0 pour la valeur par défaut)
+            default_sort_order: Tri des propositions par défaut
+            default_sort_order_help: Par défaut, si l’es aides sont activés, les propositions seront affichées par ordre aléatoire, et si les aides sont bloqués, alors ils seront triés par l’aide le plus soutenu.
+            default_sort_order_options:
+              default: Défaut
+              most_commented: Les plus commentées
+              most_endorsed: Les plus approuvées
+              most_followed: Les plus suivies
+              most_voted: Les plus soutenues
+              random: Aléatoire
+              recent: Les plus récents
+              with_more_authors: Avec le plus d'auteurs
             geocoding_enabled: Géocodage activé
             minimum_votes_per_user: Nombre minimum de votes par utilisateur
             new_proposal_body_template: Modèle de corps d'une nouvelle proposition
@@ -176,11 +196,24 @@ fr-CA:
             answers_with_costs: Activer les coûts sur les réponses aux propositions
             automatic_hashtags: Hashtags ajoutés à toutes les propositions
             comments_blocked: Bloquer la création de nouveaux commentaires
-            creation_enabled: Autoriser la création de nouvelles propositions
+            creation_enabled: Les participants peuvent créer des propositions
+            creation_enabled_readonly: Ce paramètre est désactivé lorsque vous activez la fonctionnalité Textes participatifs. Pour télécharger des propositions sous forme de texte participatif, cliquez sur le bouton Textes participatifs et suivez les instructions.
+            default_sort_order: Tri des propositions par défaut
+            default_sort_order_help: Par défaut, si les aides sont activés, les propositions seront affichées par ordre aléatoire, et si les aides sont bloqués, alors ils seront triés par l’aide le plus soutenu.
+            default_sort_order_options:
+              default: Par défaut
+              most_commented: Les plus commentées
+              most_endorsed: Les plus soutenues
+              most_followed: Les plus suivies
+              most_voted: Les plus votées
+              random: Aléatoire
+              recent: Récentes
+              with_more_authors: Avec le plus d'auteurs
             endorsements_blocked: Bloquer les soutiens
             endorsements_enabled: Activer le module de soutiens
             proposal_answering_enabled: Autoriser la réponse officielle aux propositions
             publish_answers_immediately: Publier immédiatement les réponses à la proposition
+            publish_answers_immediately_help_html: 'N''oubliez pas que si vous répondez à une proposition sans cette option, vous devrez la publier manuellement en les sélectionnant et en utilisant l''action de publication. Pour plus d''informations sur comment cela fonctionne, voir la page de documentation de <a href="https://docs.decidim.org/en/admin/components/proposals/answers#_publication" target="_blank">propositions</a>.'
             suggested_hashtags: Hashtags suggérés aux utilisateurs pour de nouvelles propositions
             votes_blocked: Bloquer les votes
             votes_enabled: Activer le module de vote simple
@@ -194,33 +227,33 @@ fr-CA:
             email_subject: Quelqu'un a laissé une note sur la proposition %{resource_title}.
             notification_title: Quelqu'un a laissé une note sur la proposition <a href="%{resource_path}">%{resource_title}</a>. Consultez-la à <a href="%{admin_proposal_info_path}">le panneau d'administration</a>
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} a été accepté en tant que contributeur du projet collaboratif <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} a été accepté en tant que contributeur du brouillon collaboratif <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_url}">%{resource_title}</a>. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: "%{requester_name} a été accepté pour accéder en tant que contributeur du %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> a été <strong>admis à l' accès en tant que contributeur</strong> du <a href="%{resource_path}">%{resource_title}</a> projet de collaboration.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} a été refusé d''accès en tant que contributeur du projet collaboratif <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} a été refusé d''accès en tant que contributeur du brouillpn collaboratif <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_url}">%{resource_title}</a>. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: "%{requester_name} a été rejetée pour accéder en tant que contributeur du %{resource_title} projet de collaboration."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> a été <strong>rejeté pour accéder en tant que contributeur</strong> du <a href="%{resource_path}">%{resource_title}</a> projet de collaboration.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} demandé l''accès en tant que contributeur. Vous pouvez <strong>accepter ou rejeter la demande</strong> de la page de brouillon collaboratif <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: '%{requester_name} a demandé à contribuer au brouillon. Vous pouvez <strong>accepter ou rejeter la demande</strong> depuis la page du brouillon collaboratif <a href="%{resource_url}">%{resource_title}</a>.'
+          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_url}">%{resource_title}</a>. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: "%{requester_name} demandé un accès pour contribuer à %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> demandé un accès pour contribuer au projet de collaboration <a href="%{resource_path}">%{resource_title}</a> . S'il vous plaît <strong>accepter ou rejeter la demande</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: Vous avez été accepté pour accéder en tant que contributeur du projet collaboratif <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Vous avez reçu cette notification car vous avez demandé à devenir collaborateur de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Vous avez été accepté pour accéder en tant que contributeur du brouillon collaboratif <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Vous avez reçu cette notification car vous avez demandé à devenir contributeur de <a href="%{resource_url}">%{resource_title}</a>. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous avez été accepté comme contributeur de %{resource_title}.
           notification_title: Vous avez été <strong>accepté d'accéder en tant que contributeur</strong> du <a href="%{resource_path}">%{resource_title}</a> projet de collaboration.
         collaborative_draft_access_requester_rejected:
-          email_intro: Vous avez été refusé à accéder en tant que contributeur du projet collaboratif <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Vous avez reçu cette notification car vous avez demandé à devenir collaborateur de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: Votre demande d'accès au brouillon collaboratif <a href="%{resource_url}">%{resource_title}</a> a été rejetée.
+          email_outro: Vous avez reçu cette notification car vous avez demandé à devenir contributeur de <a href="%{resource_url}">%{resource_title}</a>. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: Vous avez été rejeté en tant que contributeur de %{resource_title}.
           notification_title: Vous avez été <strong>rejeté pour accéder en tant que contributeur</strong> du <a href="%{resource_path}">%{resource_title}</a> projet de collaboration.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> retiré le projet de collaboration <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_path}">%{resource_title}</a>.
+          email_intro: <a href="%{author_url}">%{author_name} %{author_nickname}</a> a retiré le brouillon collaboratif <a href="%{resource_url}">%{resource_title}</a>.
+          email_outro: Vous avez reçu cette notification car vous êtes collaborateur de <a href="%{resource_url}">%{resource_title}</a>. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
           email_subject: "%{author_name} %{author_nickname} retiré le %{resource_title} projet de collaboration."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>retiré</strong> le <a href="%{resource_path}">%{resource_title}</a> projet de collaboration.
         creation_enabled:
@@ -269,7 +302,8 @@ fr-CA:
           email_intro: La proposition "%{resource_title}" a été publiée dans "%{participatory_space_title}" que vous suivez.
           email_outro: Vous avez reçu cette notification parce que vous suivez "%{participatory_space_title}". Vous pouvez cesser de le suivre en cliquant sur le lien précédent.
           email_subject: Nouvelle proposition "%{resource_title}" ajoutée à %{participatory_space_title}
-          notification_title: La proposition <a href="%{resource_path}">%{resource_title}</a> a été publiée dans %{participatory_space_title}
+          notification_title: La proposition <a href="%{resource_path}">%{resource_title}</a> a été ajoutée à %{participatory_space_title} par %{author}
+          notification_title_official: La proposition officielle <a href="%{resource_path}">%{resource_title}</a> a été ajoutée à %{participatory_space_title}
         proposal_rejected:
           affected_user:
             email_intro: 'Votre proposition "%{resource_title}" a été rejetée. Vous pouvez lire la réponse sur cette page:'
@@ -366,6 +400,36 @@ fr-CA:
         exports:
           proposal_comments: Commentaires
           proposals: Propositions
+        imports:
+          help:
+            answers: |
+              Le document d'importation doit contenir les noms de colonnes suivants en cas de fichiers CSV ou Excel ou noms de clés suivants dans le cas de fichiers JSON :
+              <ul>
+              <li><b>id:</b> ID de la proposition auquel on répond</li>
+              <li><b>state:</b>"accepted", "evaluating", ou "rejected"</li>
+              <li><b>answer/en:</b> Réponse en langue anglaise. Cela dépendra de la configuration de langue de votre plateforme.</li>
+              </ul>
+            proposals: |
+              Le fichier doit avoir les noms de colonnes suivants en cas de fichiers CSV ou Excel ou noms de clés suivants en cas de fichiers JSON :
+              <ul>
+              <li><b>title/en:</b> Titre en langue anglaise. Cela dépendra de la configuration de la langue de votre plateforme.</li>
+              <li><b>corps/en:</b> Corps en langue anglaise. Cela dépendra de la configuration de la langue de votre plateforme.</li>
+              <li><b>scope/id :</b> ID du périmêtre d'application</li>
+              <li><b>category/id :</b> ID de la catégorie</li>
+              </ul>
+          label:
+            answers: Importer des valeurs depuis un fichier
+            proposals: Importer des propositions depuis un fichier
+          resources:
+            answers:
+              one: réponse à la proposition
+              other: réponses à la proposition
+            proposals:
+              one: proposition
+              other: propositions
+          title:
+            answers: Importer des réponses aux propositions
+            proposals: Importer des propositions
         models:
           proposal:
             name: Proposition
@@ -407,6 +471,7 @@ fr-CA:
             accepted: Retenue
             answer_proposal: Répondre
             evaluating: En cours d'évaluation
+            not_answered: Non répondu
             rejected: Non retenue
             title: Réponse à la proposition %{title}
         proposal_notes:
@@ -509,11 +574,11 @@ fr-CA:
             title: Importer des propositions
         proposals_merges:
           create:
-            invalid: Une erreur s'est produite lors de la fusion des propositions sélectionnées.
+            invalid: 'Une erreur est survenue lors de la fusion des propositions à cause de certaines d''entre elles:'
             success: A fusionné avec succès les propositions dans un nouveau.
         proposals_splits:
           create:
-            invalid: Une erreur s'est produite lors de la division des propositions sélectionnées.
+            invalid: 'Une erreur est survenue lors de la division des propositions sélectionnées à cause de certaines d''entre elles:'
             success: Divisé avec succès les propositions en nouvelles.
         valuation_assignments:
           create:
@@ -584,7 +649,7 @@ fr-CA:
             one: "%{count} brouillon collaboratif"
             other: "%{count} brouillons collaboratifs"
         create:
-          error: Il y a eu un problème lors de la création de ces brouillons collaboratifs
+          error: Il y a eu un problème lors de la création de ce brouillon collaboratif.
           success: Brouillon collaboratif créé avec succès.
         edit:
           attachment_legend: "(Facultatif) Ajouter une pièce jointe"
@@ -753,9 +818,12 @@ fr-CA:
           filter_by: Filtrer par
           unfold: Voir plus
         index:
+          click_here: Voir toutes les propositions
           collaborative_drafts_list: Accéder aux brouillons collaboratifs
           new_proposal: Nouvelle proposition
+          see_all: Voir toutes les propositions
           see_all_withdrawn: Voir toutes les propositions retirées
+          text_banner: Vous voyez actuellemnent la liste des propositions retirées par leurs auteurs. %{go_back_link}.
           view_proposal: Voir la proposition
         linked_proposals:
           proposal_votes:

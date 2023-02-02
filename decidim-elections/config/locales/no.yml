@@ -12,7 +12,6 @@
         start_time: Stemmegivning starter
         title: Tittel
       question:
-        description: Beskrivelse
         max_selections: Maksimalt antall valg
         min_selections: Ingen av valgene over
         title: Tittel
@@ -227,7 +226,6 @@
               minimum_answers: Spørsmål må ha <strong>minst to svar</strong>.
               minimum_questions: Valget <strong>må ha minst ett spørsmål</strong>.
               published: Valget er <strong>og ikke publisert</strong>.
-              time_before: Starttiden er <strong>mindre enn 3 timer</strong> før valget starter.
               trustees_number: Deltakerområdet <strong>må ha minst %{number} tillitsmenn med offentlig nøkkel</strong>.
             invalid: Det oppstod et problem med opprettelsen av dette valget
             no_trustees: Det er ikke satt opp noen tillitsmenn for dette deltakelsesrommet
@@ -253,8 +251,8 @@
             title: Valget opprettet
             trustees: Tillitsmenn
           key_ceremony:
+            continue: Fortsett
             title: Hovedseremoni
-            trustees: Tillitsmenn
           key_ceremony_ended:
             errors:
               time_before: Valget er klart til å starte. Du må vente %{hours} timer før starttidspunktet (%{start_time}) for å starte avstemmingsperioden.
@@ -274,8 +272,14 @@
             submit: Send inn
             title: Resultater publisert
           tally:
+            continue: Fortsett
+            invalid: Kunne ikke rapportere manglende tillitsmann
+            mark_as_missing: Marker som manglende
+            mark_as_missing_description: Alle tillitsmenn bør delta i denne prosessen, men dersom en tillitsmann ikke kan delta i prosessen, kan du merke det som manglende.
+            success: Manglende tillitsmannrapport ble sendt til oppslagstavle
+            tally_completion: Prosessen vil bli fullført når alle tillitsmenn er aktive eller merket som manglende. Minst %{quorum} tillitsmenn er nødvendig for å fullføre prosessen.
             title: Opptellingsprosess
-            trustees: Tillitsmenn
+            undo_mark_as_missing: En tillitsmann merket som feilaktig merkes som manglende vil kunne delta før prosessen fullføres. De kan fortsette som vanlig og merket for "manglende" vil bli ignorert.
           tally_ended:
             answer: Svar
             not_selected: Ikke valgt
@@ -328,14 +332,20 @@
             success: Tillitsmann %{trustee} oppdatert
       admin_log:
         election:
-          end_vote: "%{user_name} avsluttet avstemmingsperioden for valget av %{resource_name} i Bulletin Board"
-          publish: "%{user_name} publiserte %{resource_name} -valget"
-          publish_results: "%{user_name} offentliggjorde resultatet for valget %{resource_name} på opplysningstavlen"
-          setup: "%{user_name} opprettet %{resource_name} valg på oppslagstavlen"
-          start_key_ceremony: "%{user_name} startet hovedseremoni for valget %{resource_name} på oppslagstavlen"
-          start_tally: "%{user_name} startet opptellingen for %{resource_name}-valget på oppslagstavlen"
-          start_vote: "%{user_name} startet valgperioden for %{resource_name}-valget på oppslagstavlen"
-          unpublish: "%{user_name} avpubliserte %{resource_name} -valget"
+          create: "%{user_name} opprettet valget %{resource_name} i %{space_name}"
+          delete: "%{user_name} slettet valget %{resource_name} i %{space_name}"
+          end_vote: "%{user_name} avsluttet avstemmingen for valget %{resource_name} i %{space_name} på oppslagstavlen"
+          publish: "%{user_name} publiserte valget %{resource_name} i %{space_name}"
+          publish_results: "%{user_name} publiserte resultatet for valget %{resource_name} i %{space_name} på opplysningstavlen"
+          report_missing_trustee: "%{user_name} rapporterte %{trustee_name} som en manglende tillitsmann under opptellingen for valget %{resource_name} i %{space_name} på oppslagstavlen"
+          setup: "%{user_name} opprettet valget %{resource_name} i %{space_name} på oppslagstavlen"
+          start_key_ceremony: "%{user_name} startet nøkkelseremonien for valget %{resource_name} i %{space_name} på oppslagstavlen"
+          start_tally: "%{user_name} startet opptellingen for valget %{resource_name} i %{space_name} på oppslagstavlen"
+          start_vote: "%{user_name} startet avstemmingen for valget av %{resource_name} i %{space_name} på oppslagstavlen"
+          unpublish: "%{user_name} avpubliserte %{resource_name} i %{space_name}-valget"
+          update: "%{user_name} oppdaterte valget %{resource_name} i %{space_name}"
+        trustee:
+          create: "%{user_name} gjorde brukeren %{trustee_user} til tillitsmann"
       election_m:
         badge_name:
           finished: Fullført
@@ -525,6 +535,9 @@
           feedback: Gi oss en tilbakemelding
           header: Avstemning bekreftet
           text: 'Du kan sjekke at stemmen din har blitt lagt til i stemmeboksen med følgende identifikator: <strong class="evote__poll-id">%{e_vote_poll_id}</strong>'
+        failed:
+          modal:
+            close: Lukk
         header:
           confirm: Bekreft stemmen din
           confirmed: Avstemning bekreftet
@@ -561,16 +574,6 @@
         menu:
           votings_submenu:
             monitoring_committee: Kontrollgruppe
-      census:
-        admin:
-          census:
-            create:
-              invalid_csv_header: Topptekst i CSV-en har feil antall felt - vennligst les instruksjonene nøye
-      content_blocks:
-        landing_page:
-          description:
-            show_less: Les mindre
-            show_more: Les mer
       polling_officer_zone:
         in_person_votes:
           complete_voting:

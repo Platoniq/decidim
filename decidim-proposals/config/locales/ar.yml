@@ -109,7 +109,6 @@ ar:
         name: اقتراحات
         settings:
           global:
-            allow_card_image: السماح بالبطاقة الصورية
             amendments_enabled: تم تمكين التعديلات
             announcement: إعلان
             attachments_allowed: السماح للمرفقات
@@ -139,7 +138,6 @@ ar:
             announcement: إعلان
             automatic_hashtags: علامات التصنيف المضافة إلى جميع المقترحات
             comments_blocked: تم حظر التعليقات
-            creation_enabled: تمكين إنشاء الاقتراح
             endorsements_blocked: المصادقة المحظورة
             endorsements_enabled: تم التصديق
             proposal_answering_enabled: تم تمكين الرد على الاقتراح
@@ -150,33 +148,21 @@ ar:
     events:
       proposals:
         collaborative_draft_access_accepted:
-          email_intro: 'تم قبول %{requester_name} للوصول كمساهم في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: لقد تلقيت هذا الإشعار لأنك متعاون مع <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "تم قبول %{requester_name} للوصول كمساهم في %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> كان <strong>مقبولة للوصول كمساهم</strong> من <a href="%{resource_path}">%{resource_title}</a> مشروع تعاوني.
         collaborative_draft_access_rejected:
-          email_intro: 'تم رفض %{requester_name} للوصول كمساهم في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: لقد تلقيت هذا الإشعار لأنك متعاون مع <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "تم رفض %{requester_name} للوصول كمساهم في المسودة التعاونية %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> تم رفض الوصول إلى <strong>كمساهم</strong> في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} طلب الوصول كمساهم. يمكنك <strong>قبول أو رفض طلب</strong> من <a href="%{resource_path}">%{resource_title}</a> مشروع الصفحة التعاونية.'
-          email_outro: لقد تلقيت هذا الإشعار لأنك متعاون مع <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} طلب الوصول للمساهمة في %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> طلب الوصول للمساهمة في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a> . يرجى <strong>قبول أو رفض الطلب</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: لقد تم قبولك للدخول كمساهم في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: لقد تلقيت هذا الإشعار لأنك طلبت أن تصبح متعاونًا مع <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: تم قبولك كمساهم بـ %{resource_title}.
           notification_title: لقد تم قبول <strong>للدخول كمساهم</strong> في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requester_rejected:
-          email_intro: لقد تم رفض وصولك كمساهم في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: لقد تلقيت هذا الإشعار لأنك طلبت أن تصبح متعاونًا مع <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: لقد تم رفضك كمساهم بـ %{resource_title}.
           notification_title: لقد تم رفض دخولك <strong>كمساهم</strong> في المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> سحبت المسودة التعاونية <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: لقد تلقيت هذا الإشعار لأنك متعاون مع <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{author_name} %{author_nickname} سحب المشروع %{resource_title} التعاوني."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>سحبت</strong> مشروع <a href="%{resource_path}">%{resource_title}</a> التعاوني.
         creation_enabled:
@@ -216,12 +202,10 @@ ar:
           email_intro: تمت إضافة الاقتراح "%{resource_title}" إلى "%{participatory_space_title}" الذي تتابعه.
           email_outro: لقد تلقيت هذا الإشعار لأنك تتابع "%{participatory_space_title}". يمكنك إيقاف تلقي الإخطارات باتباع الرابط السابق.
           email_subject: تمت إضافة اقتراح جديد "%{resource_title}" إلى %{participatory_space_title}
-          notification_title: تمت إضافة الاقتراح <a href="%{resource_path}">%{resource_title}</a> إلى %{participatory_space_title}
         proposal_rejected:
           affected_user:
             email_intro: 'تم رفض اقتراحك "%{resource_title}". يمكنك قراءة الإجابة في هذه الصفحة:'
             email_outro: لقد تلقيت هذا الإشعار لأنك مؤلف "%{resource_title}".
-            email_subject: تم رفض اقتراحك
             notification_title: تم رفض اقتراحك <a href="%{resource_path}">%{resource_title}</a>.
         proposal_update_category:
           email_intro: 'قام المشرف بتحديث فئة اقتراحك "%{resource_title}" ، تحقق من ذلك في هذه الصفحة:'
@@ -422,11 +406,9 @@ ar:
             select_states: تحقق من حالة مقترحات الاستيراد
         proposals_merges:
           create:
-            invalid: كانت هناك مشكلة في دمج المقترحات المحددة.
             success: دمج المقترحات بنجاح في واحدة جديدة.
         proposals_splits:
           create:
-            invalid: كانت هناك مشكلة في تقسيم المقترحات المحددة.
             success: تم تقسيم المقترحات بنجاح إلى مقترحات جديدة.
         valuation_assignments:
           create:
@@ -493,7 +475,6 @@ ar:
             many: "%{count} مسودات تعاونية"
             other: "%{count} مسودات تعاونية"
         create:
-          error: كانت هناك مشكلة في إنشاء هذه المسودات التعاونية
           success: تم إنشاء مشروع تعاوني بنجاح.
         edit:
           attachment_legend: "(اختياري) إضافة مرفق"
@@ -674,7 +655,6 @@ ar:
             other: الدعم
         new:
           send: استمر
-          title: إنشاء اقتراحك
         orders:
           label: 'ترتيب المقترحات حسب:'
           most_commented: الأكثر تعليقًا عليها

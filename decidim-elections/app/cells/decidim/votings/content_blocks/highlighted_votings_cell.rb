@@ -6,6 +6,10 @@ module Decidim
       class HighlightedVotingsCell < Decidim::ViewModel
         delegate :current_user, to: :controller
 
+        cache :show, expires_in: 10.minutes, if: :perform_caching? do
+          cache_hash
+        end
+
         def show
           render if highlighted_votings.any?
         end
@@ -26,6 +30,15 @@ module Decidim
 
         def decidim_votings
           Decidim::Votings::Engine.routes.url_helpers
+        end
+
+        private
+
+        def cache_hash
+          hash = []
+          hash.push(I18n.locale)
+          hash.push(highlighted_votings.map(&:cache_key_with_version))
+          hash.join(Decidim.cache_key_separator)
         end
       end
     end

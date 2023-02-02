@@ -103,6 +103,8 @@ module Decidim
       end
 
       def elections
+        raise ActionController::RoutingError, "Not Found" unless current_participatory_space
+
         Decidim::Elections::Election.where(component: current_participatory_space.components).where.not(bb_status: nil)
       end
 
@@ -127,8 +129,8 @@ module Decidim
       end
 
       def paginated_votings
-        @paginated_votings ||= paginate(search.results.published)
-        @paginated_votings = reorder(@paginated_votings)
+        @paginated_votings ||= reorder(search.results.published)
+        @paginated_votings = paginate(@paginated_votings)
       end
 
       def promoted_votings

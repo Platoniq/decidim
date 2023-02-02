@@ -20,10 +20,18 @@ eu:
               a: A aukera
               b: B aukera
               c: C aukera
+            test_options:
+              bar: Bar
+              baz: Baz
+              foo: foo
           step:
             endorsements_blocked: Atxikimenduak blokeatuta
             endorsements_enabled: Atxikimenduak gaituta
             readonly_step_attribute: Soilik irakurtzeko atributua
+            test_options:
+              bar: Bar
+              baz: Baz
+              foo: foo
     dummy:
       admin:
         exports:

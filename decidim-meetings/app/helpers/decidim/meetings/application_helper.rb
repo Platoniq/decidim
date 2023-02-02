@@ -41,13 +41,11 @@ module Decidim
       end
 
       def filter_date_values
-        TreeNode.new(
-          TreePoint.new("", t("decidim.meetings.meetings.filters.date_values.all")),
-          [
-            TreePoint.new("upcoming", t("decidim.meetings.meetings.filters.date_values.upcoming")),
-            TreePoint.new("past", t("decidim.meetings.meetings.filters.date_values.past"))
-          ]
-        )
+        [
+          ["all", t("decidim.meetings.meetings.filters.date_values.all")],
+          ["upcoming", t("decidim.meetings.meetings.filters.date_values.upcoming")],
+          ["past", t("decidim.meetings.meetings.filters.date_values.past")]
+        ]
       end
 
       # Options to filter meetings by activity.
@@ -67,7 +65,25 @@ module Decidim
 
       # If the content is safe, HTML tags are sanitized, otherwise, they are stripped.
       def render_meeting_body(meeting)
-        render_sanitized_content(meeting, :description)
+        Decidim::ContentProcessor.render(render_sanitized_content(meeting, :description), "div")
+      end
+
+      def prevent_timeout_seconds
+        return 0 unless respond_to?(:meeting)
+        return 0 if !current_user || !meeting || !meeting.live?
+        return 0 unless online_or_hybrid_meeting?(meeting)
+        return 0 unless iframe_embed_or_live_event_page?(meeting)
+        return 0 unless meeting.iframe_access_level_allowed_for_user?(current_user)
+
+        (meeting.end_time - Time.current).to_i
+      end
+
+      def online_or_hybrid_meeting?(meeting)
+        meeting.online_meeting? || meeting.hybrid_meeting?
+      end
+
+      def iframe_embed_or_live_event_page?(meeting)
+        %w(embed_in_meeting_page open_in_live_event_page).include? meeting.iframe_embed_type
       end
     end
   end

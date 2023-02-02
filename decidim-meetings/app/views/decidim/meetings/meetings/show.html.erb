@@ -17,7 +17,7 @@ edit_link(
 
 <div class="row column view-header">
   <div class="m-bottom">
-    <%= link_to meetings_path(filter_link_params), class: "small hollow" do %>
+    <%= link_to meetings_path, class: "small hollow js-back-to-list" do %>
       <%= icon "chevron-left", class: "icon--small", role: "img", "aria-hidden": true %>
       <%= t(".back") %>
     <% end %>
@@ -37,7 +37,8 @@ edit_link(
     <% end %>
 
     <% if allowed_to?(:close, :meeting, meeting: meeting) %>
-      <%= link_to t(".close_meeting"), edit_meeting_meeting_close_path(meeting_id: meeting.id, id: meeting.id), class: "button hollow expanded button-sc button--icon follow-button" %>
+      <% caption =  meeting.closed? ? t(".edit_close_meeting") : t(".close_meeting") %>
+      <%= link_to caption, edit_meeting_meeting_close_path(meeting_id: meeting.id, id: meeting.id), class: "button hollow expanded button-sc button--icon follow-button" %>
     <% end %>
 
     <div class="card extra">
@@ -118,13 +119,18 @@ edit_link(
           <%= t("transparent", scope: "decidim.meetings.types") %>
         </span>
       <% end %>
+      <% if meeting.withdrawn? %>
+        <span class="<%= meeting_type_badge_css_class("withdraw") %> label proposal-status">
+          <%= t("withdraw", scope: "decidim.meetings.types") %>
+        </span>
+      <% end %>
       <%= render_meeting_body(@meeting) %>
 
       <% if meeting.maps_enabled? && !meeting.online_meeting? %>
         <%= render partial: "decidim/shared/static_map", locals: { icon_name: "meetings", geolocalizable: meeting } %>
       <% end %>
 
-      <% unless meeting.in_person_meeting? %>
+      <% unless meeting.in_person_meeting? || meeting.withdrawn? %>
         <%= cell "decidim/meetings/online_meeting_link", meeting %>
       <% end %>
 
@@ -156,7 +162,7 @@ edit_link(
     <% if meeting.closed? && meeting.closing_visible? %>
       <div class="section">
         <h3 class="section-heading"><%= t(".meeting_minutes") %></h3>
-        <%= decidim_sanitize translated_attribute meeting.closing_report %>
+        <%= decidim_sanitize_editor translated_attribute meeting.closing_report %>
       </div>
     <% end %>
 

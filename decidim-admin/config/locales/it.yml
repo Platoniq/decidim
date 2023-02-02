@@ -179,7 +179,6 @@ it:
           error: Si è verificato un errore durante l'accettazione dei termini di utilizzo da parte dell'amministratore.
           success: Ottimo! Hai accettato i termini d'uso dell'amministratrice/tore.
         actions:
-          accept: Sono d'accordo con i seguenti termini
           are_you_sure: Sei sicuro di voler rifiutare i termini di utilizzo dell'amministratore?
           refuse: Rifiuta i termini di amministrazione
           title: Accetta i termini e le condizioni di utilizzo
@@ -405,6 +404,11 @@ it:
           user_name_or_user_email_cont: Cerca %{collection} per nome o email.
         state_eq:
           label: Stato
+          values:
+            all: Tutte
+            pending: In Sospeso
+            rejected: Respinto
+            verified: Verificato
       forms:
         file_help:
           import:
@@ -450,17 +454,12 @@ it:
           impersonate_existing_user: Gestisci partecipante %{name}"
           impersonate_new_managed_user: Gestisci nuovo partecipante
       imports:
-        creators:
-          proposalcreator: Autore della proposta
         error: Si è verificato un errore durante l'importazione
-        help:
-          proposalcreator: Il file deve avere nomi di colonna title/en e body/en (o un altro locale che preferisci, ad esempio title/it e body/it). Sono supportate anche le colonne scope/id e category/id.
-        import_from_file: Importare da un file
-        invalid_lines: Ci sono errori di importazione alle linee %{invalid_lines}
         new:
           accepted_mime_types:
             csv: csv
             json: json
+            xlsx: xlsx
           actions:
             back: Indietro
           file_legend: Aggiungi un file da importare che verrà analizzato.
@@ -927,13 +926,6 @@ it:
           success: Il gruppo utenti è stato verificato correttamente
       user_groups:
         index:
-          filter:
-            all: Tutti
-            pending: in attesa di
-            rejected: Rifiutata
-            verified: Verificato
-          filter_by: Filtra per
-          search: Ricerca
           state:
             pending: in attesa di
             rejected: Rifiutata
@@ -1008,7 +1000,6 @@ it:
             hidden_at: Nascosto a
             participatory_space: Spazio partecipativo
             report_count: Conteggio
-            reportable_id: Id
             reportable_type: Tipo
             reported_content_url: URL del contenuto riportato
             reports: Report

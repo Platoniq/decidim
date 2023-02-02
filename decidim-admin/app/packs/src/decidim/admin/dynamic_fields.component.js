@@ -6,8 +6,10 @@ class DynamicFieldsComponent {
     this.fieldSelector = options.fieldSelector;
     this.addFieldButtonSelector = options.addFieldButtonSelector;
     this.addSeparatorButtonSelector = options.addSeparatorButtonSelector;
+    this.addTitleAndDescriptionButtonSelector = options.addTitleAndDescriptionButtonSelector;
     this.fieldTemplateSelector = options.fieldTemplateSelector;
     this.separatorTemplateSelector = options.separatorTemplateSelector;
+    this.TitleAndDescriptionTemplateSelector = options.TitleAndDescriptionTemplateSelector;
     this.removeFieldButtonSelector = options.removeFieldButtonSelector;
     this.moveUpFieldButtonSelector = options.moveUpFieldButtonSelector;
     this.moveDownFieldButtonSelector = options.moveDownFieldButtonSelector;
@@ -68,6 +70,7 @@ class DynamicFieldsComponent {
       $(this).replaceAttribute("for", placeholder, value);
       $(this).replaceAttribute("tabs_id", placeholder, value);
       $(this).replaceAttribute("href", placeholder, value);
+      $(this).replaceAttribute("value", placeholder, value);
 
       return this;
     }
@@ -81,6 +84,12 @@ class DynamicFieldsComponent {
     if (this.addSeparatorButtonSelector) {
       $(this.wrapperSelector).on("click", this.addSeparatorButtonSelector, (event) =>
         this._bindSafeEvent(event, () => this._addField(this.separatorTemplateSelector))
+      );
+    }
+
+    if (this.addTitleAndDescriptionButtonSelector) {
+      $(this.wrapperSelector).on("click", this.addTitleAndDescriptionButtonSelector, (event) =>
+        this._bindSafeEvent(event, () => this._addField(this.TitleAndDescriptionTemplateSelector))
       );
     }
 

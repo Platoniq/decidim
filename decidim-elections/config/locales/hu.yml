@@ -12,7 +12,6 @@ hu:
         start_time: Szavazás indul
         title: Cím
       question:
-        description: Leírás
         max_selections: Kiválasztások maximális száma
         min_selections: Egyik opció sem a fentiek közül
         title: Cím
@@ -159,6 +158,7 @@ hu:
             title: Javaslatok importálása
         questions:
           create:
+            election_started: A választás megkezdődött
             invalid: Hiba történt a kérdés létrehozása során
             success: Kérdés létrehozása sikeres
           destroy:
@@ -180,9 +180,19 @@ hu:
             trustees: Választási megbízottak
           created:
             trustees: Felügyelők
+          key_ceremony:
+            continue: Folytatás
           key_ceremony_ended:
             invalid: Hiba történt a szavazási időszak elindításakor
             title: Készen áll a kezdésre
+          tally:
+            continue: Folytatás
+            invalid: Probléma volt a hiányzó megbízott bejelentésével
+            mark_as_missing: Hiányzóként megjelölt
+            mark_as_missing_description: Minden megbízottnaik részt kell vennie ebben a folyamatban, de ha egy megbízott nem tud részt venni a folyamatban, akkor jelölheti hiányzónak.
+            success: Hiányzó megbízottról szóló jelentést elküldtük a Hirdetőtáblára
+            tally_completion: A folyamat akkor fejeződik be, ha az összes megbízott aktív vagy hiányzónak van jelölve. A folyamat befejezéséhez legalább %{quorum} megbízottra van szükség.
+            undo_mark_as_missing: A tévedésből hiányzónak megjelölt megbízott az eljárás befejezése előtt részt vehet. A szokásos módon folytathatja a folyamatot, és a hiányzó jelölést figyelmen kívül hagyják.
       elections:
         results:
           votes:
@@ -222,11 +232,6 @@ hu:
         votings:
           form:
             census_contact_information_help: Ez a kapcsolatfelvételi információ azoknak a résztvevőknek szól, akik a népszámlálással kapcsolatos problémákat szeretnének jelenteni. Ez lehet e-mail cím, kapcsolatfelvételi űrlap egy másik oldalon, kérdőív a látogatók számára, stb.
-      census:
-        admin:
-          census:
-            create:
-              invalid_csv_header: A CSV fejléce nem megfelelő számú mezőt tartalmaz – kérjük, figyelmesen olvassa el az utasításokat
       polling_officer_zone:
         in_person_votes:
           complete_voting:
@@ -241,5 +246,10 @@ hu:
               role: A te szereped
               voting: Szavazás
       votings:
+        check_census:
+          error:
+            info: 'Kérjük, próbálja újra. Amennyiben Ön szerint a rendszerben rögzített adat hibás, itt jelentheti: %{census_contact_information}'
+          success:
+            access_link: e-mailen keresztül.
         login:
           start_voting: Szavazás kezdete

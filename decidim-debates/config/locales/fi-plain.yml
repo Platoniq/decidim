@@ -10,6 +10,7 @@ fi-pl:
         end_time: Päättymisaika
         information_updates: Tietojen päivitykset
         instructions: Osallistumisohjeet
+        scope_id: Teema
         start_time: Alkamisaika
         title: Otsikko
         user_group_id: Luo keskustelu käyttäjänä
@@ -17,7 +18,7 @@ fi-pl:
       decidim/debates/close_debate_event: Keskustelu suljettu
       decidim/debates/create_debate_event: Keskustelu
       decidim/debates/creation_disabled_event: Keskustelut poistettu käytöstä
-      decidim/debates/creation_enabled_event: Keskustelut käytössä
+      decidim/debates/creation_enabled_event: Keskustelujen luonti käytössä
   activerecord:
     models:
       decidim/debates/debate:
@@ -41,7 +42,7 @@ fi-pl:
           step:
             announcement: Ilmoitus
             comments_blocked: Kommentointi estetty
-            creation_enabled: Keskustelujen luominen käyttäjien toimesta sallittu
+            creation_enabled: Osallistujat voivat luoda keskusteluja
             endorsements_blocked: Suositukset estetty
             endorsements_enabled: Suositukset käytössä
     debates:

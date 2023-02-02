@@ -3,8 +3,13 @@ en:
   activemodel:
     attributes:
       initiative:
+        answer: Answer
+        answer_url: Answer URL
+        area_id: Area
+        decidim_scope_id: Scope
         decidim_user_group_id: Author
         description: Description
+        hashtag: Hashtag
         offline_votes: In-person signatures
         offline_votes_for_scope: In-person signatures for %{scope_name}
         scope_id: Scope
@@ -17,8 +22,11 @@ en:
           online: Online
         state: Status
         title: Title
+        type_id: Type
       initiatives_committee_member:
         user: Committee member
+      initiatives_settings:
+        initiatives_order: Order
       initiatives_type:
         area_enabled: Enable authors to choose the area for their initiative
         attachments_enabled: Enable attachments
@@ -33,9 +41,13 @@ en:
         online_signature_enabled: Online signature enabled
         only_global_scope_enabled: Only allow global scope initiatives creation
         promoting_committee_enabled: Enable promoting committee
+        signature_type: Signature type
         title: Title
         undo_online_signatures_enabled: Enable participants to undo their online signatures
         validate_sms_code_on_votes: Add SMS code validation step to signature process
+      initiatives_type_scope:
+        decidim_scopes_id: Scopes
+        supports_required: Supports required
       initiatives_vote:
         date_of_birth: Date of birth
         document_number: Document number
@@ -239,8 +251,6 @@ en:
             edit: Edit
             new: New
             photos: Photos
-          show:
-            print: Print
           update:
             error: An error has occurred
             success: The initiative has been successfully updated
@@ -275,8 +285,8 @@ en:
             update: Update
           form:
             authorizations: Authorization settings
-            child_scope_threshold_enabled_help: 'This config flag doesn''t support offline votes, it enables sub-scopes and works with an authorization handler that associates a scope to the user, make sure you select that authorization, bellow in authorization settings. For it to work scopes need to be configured in hierarchical way : 1 Parent - N Child. For more info on how this configuration works, see this <a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">link</a>.'
-            only_global_scope_enabled_help: Tick this flag if you enabled "Child scope signature" and configured the global scope as your parent scope. By enabling this, initiative type selection will be skipped in the initiative creation wizard. For more info on how this configuration works, see this <a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">link</a>.
+            child_scope_threshold_enabled_help: 'This config flag doesn''t support offline votes, it enables sub-scopes and works with an authorization handler that associates a scope to the user, make sure you select that authorization, bellow in authorization settings. For it to work scopes need to be configured in hierarchical way : 1 Parent - N Child. For more info on how this configuration works, see this <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">link</a>.'
+            only_global_scope_enabled_help: Tick this flag if you enabled "Child scope signature" and configured the global scope as your parent scope. By enabling this, initiative type selection will be skipped in the initiative creation wizard. For more info on how this configuration works, see this <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">link</a>.
             options: Options
             title: General information
           initiative_type_scopes:
@@ -409,7 +419,7 @@ en:
           notification_title: <a href="%{applicant_profile_url}">%{applicant_nickname}</a> applied for the promoter committee of your initiative <a href="%{resource_url}">%{resource_title}</a>. To accept or reject click <a href="%{resource_url}/edit">here</a>.
       form:
         add_attachments: Documents
-        attachment_legend: "(Optional) Add Attachments"
+        attachment_legend: "(Optional) Add an attachment"
         delete_attachment: Delete
       index:
         title: Initiatives
@@ -508,6 +518,7 @@ en:
             title: 'Title:'
             type: Type of initiative
           legal_text: The personal data collected will be incorporated and treated confidentially by the organization, according to current legislation.
+          members_header: Members of the initiative's promoter committee
           phone_number: Phone Number
           place_date: Place, Date
           postal_code: Postal Code/ZIP

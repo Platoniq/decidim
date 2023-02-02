@@ -123,6 +123,10 @@ de:
         file: Datei
     errors:
       models:
+        newsletter:
+          attributes:
+            base:
+              at_least_one_space: Wählen Sie mindestens einen partizipativen Bereich aus
         organization:
           attributes:
             official_img_footer:
@@ -132,6 +136,7 @@ de:
       new_import:
         attributes:
           file:
+            invalid_file: Ungültige Datei, bitte überprüfen Sie, ob die Datei korrekt formatiert ist
             invalid_mime_type: Ungültiger MIME-Typ
   activerecord:
     attributes:
@@ -179,7 +184,6 @@ de:
           error: Beim Akzeptieren der Nutzungsbedingungen ist ein Fehler aufgetreten.
           success: Super! Sie haben die Admin-Nutzungsbedingungen akzeptiert.
         actions:
-          accept: Ich stimme den folgenden Bedingungen zu
           are_you_sure: Sind Sie sicher, dass Sie die Admin-Nutzungsbedingungen ablehnen möchten?
           refuse: Die Admin-Nutzungsbedingungen ablehnen
           title: Den Admin-Nutzungsbedingungen zustimmen
@@ -366,6 +370,13 @@ de:
           values:
             'false': 'Nein'
             'true': 'Ja'
+        moderated_users:
+          reports_reason_eq:
+            label: Grund der Meldung
+            values:
+              does_not_belong: Gehört nicht hier hin
+              offensive: Offensiv
+              spam: Spam
         moderations:
           reportable_type_string_eq:
             label: Art
@@ -400,11 +411,18 @@ de:
         search_label: Suche
         search_placeholder:
           name_or_nickname_or_email_cont: Suche in %{collection} nach E-Mail, Name oder Benutzername.
+          report_count_eq: Anzahl Meldungen
           reported_id_string_or_reported_content_cont: Suche %{collection} nach meldbarer Id oder Inhalt.
           title_cont: In %{collection} nach Titel suchen.
           user_name_or_user_email_cont: In %{collection} nach Name oder E-Mail suchen.
+          user_name_or_user_nickname_or_user_email_cont: '%{collection} nach E-Mail, Name oder Benutzername durchsuchen.'
         state_eq:
           label: Bundesland
+          values:
+            all: Alle
+            pending: Ausstehend
+            rejected: Abgelehnt
+            verified: Überprüft
       forms:
         file_help:
           import:
@@ -450,13 +468,31 @@ de:
           impersonate_existing_user: Imitieren von Benutzer "%{name}"
           impersonate_new_managed_user: Sich als neuer verwalteter Benutzer ausgeben
       imports:
-        creators:
-          proposalcreator: Vorschlagsersteller
+        and: und
+        data_errors:
+          duplicate_headers:
+            detail: Bitte überprüfen Sie, dass die Datei benötigte Spalten oder Kopfzeilen nur einmal enthält.
+            message:
+              one: Spalte %{columns} duplizieren.
+              other: Spalten %{columns} duplizieren.
+          invalid_indexes:
+            lines:
+              detail: Bitte überprüfen Sie, ob diese Zeilen korrekt formatiert sind und gültige Datensätze enthalten.
+              message:
+                one: Fehler in der Importdatei auf Zeile %{indexes} gefunden.
+                other: Fehler in der Importdatei auf den Zeilen %{indexes} gefunden.
+            records:
+              detail: Bitte überprüfen Sie, ob diese Zeilen korrekt formatiert sind und gültige Datensätze enthalten.
+              message:
+                one: Fehler in der Importdatei beim Eintrag Nummer %{indexes} gefunden.
+                other: Fehler in der Importdatei bei den Einträgen Nummer %{indexes} gefunden.
+          missing_headers:
+            detail: Bitte überprüfen Sie, ob die Datei die erforderlichen Spalten enthält.
+            message:
+              one: Fehlende Spalte %{columns}.
+              other: Fehlende Spalten %{columns}.
         error: Beim Importieren ist ein Fehler aufgetreten
-        help:
-          proposalcreator: Die Datei muss die Spaltennamen title/de und body/de (oder andere Sprachen wie zum Beispiel title/en und body/en) enthalten. Zudem sind scope/id und category/id unterstützt.
-        import_from_file: Aus einer Datei importieren
-        invalid_lines: Fehler in der Ressource Nummer %{invalid_lines}
+        example_error: Konnte kein Beispiel für den angegebenen Typ erstellen
         new:
           accepted_mime_types:
             csv: CSV
@@ -464,6 +500,8 @@ de:
             xlsx: xlsx
           actions:
             back: Zurück
+          download_example: Beispiel herunterladen
+          download_example_format: Beispiel als %{name}
           file_legend: Datei zum Importieren hinzufügen.
           import: Importieren
         notice: "%{number}%{resource_name} erfolgreich importiert"
@@ -750,6 +788,7 @@ de:
         form:
           colors:
             colors_title: Organisationsfarben
+            colors_warning_html: Warnung! Das Ändern dieser Farben kann die für Barrierefreiheit notwendigen Kontraste brechen. Sie können den Kontrast Ihrer Wahl mit <a href="%{link}">WebAIM Contrast Checker</a> oder ähnlichen Tools überprüfen.
             header_snippets_help: Verwenden Sie dieses Feld, um Dinge zum HTML-Kopf hinzuzufügen. Die häufigste Verwendung ist die Integration von Drittanbieterdiensten, für die zusätzliches JavaScript oder CSS erforderlich ist. Außerdem können Sie damit dem HTML zusätzliche Meta-Tags hinzufügen. Beachten Sie, dass dies nur auf öffentlichen Seiten und nicht im Admin-Bereich erfolgt.
           cta_button_path_help: 'Sie können überschreiben, wo die Call To Action-Schaltfläche in der Homepage verlinkt ist. Verwenden Sie hier Teilpfade, nicht vollständige URLs. Akzeptiert Buchstaben, Zahlen, Bindestriche und Schrägstriche und muss mit einem Buchstaben beginnen. Die Call To Action-Schaltfläche wird auf der Startseite zwischen Begrüßungstext und Beschreibung angezeigt. Beispiel: %{url}'
           cta_button_text_help: Sie können den Text der Call To Action-Schaltfläche auf der Startseite für jede verfügbare Sprache in Ihrer Organisation überschreiben. Wenn nicht festgelegt, wird der Standardwert verwendet. Die Call To Action-Schaltfläche wird auf der Startseite zwischen Begrüßungstext und Beschreibung angezeigt.
@@ -928,13 +967,6 @@ de:
           success: Benutzergruppe erfolgreich verifiziert
       user_groups:
         index:
-          filter:
-            all: Alle
-            pending: steht aus
-            rejected: Abgelehnt
-            verified: Überprüft
-          filter_by: Filtern nach
-          search: Suche
           state:
             pending: steht aus
             rejected: Abgelehnt

@@ -57,6 +57,16 @@ ro:
               identical: Nici titlul nu poate fi identic
             title:
               identical: Nici conținutul nu poate fi identic
+        proposals_merge:
+          attributes:
+            base:
+              not_official: Nu sunt oficiale
+              supported: Au primit voturi sau susțineri
+        proposals_split:
+          attributes:
+            base:
+              not_official: Nu sunt oficiale
+              supported: Au primit voturi sau susțineri
     models:
       decidim/proposals/accepted_proposal_event: Propunere acceptată
       decidim/proposals/admin/update_proposal_category_event: Categorie de propunere modificată
@@ -129,7 +139,6 @@ ro:
         name: Propuneri
         settings:
           global:
-            allow_card_image: Permite imaginea cardului
             amendments_enabled: Trimiterea de amendamente este activată
             amendments_enabled_help: Dacă este activă, configurațI funcționalitățile aferente amendamentelor pentru fiecare pas.
             amendments_wizard_help_text: Text de ajutor pentru amendamente
@@ -139,6 +148,17 @@ ro:
             collaborative_drafts_enabled: Ciornele colaborative au fost activate
             comments_enabled: Comentariile au fost activate
             comments_max_length: Număr maxim de caractere a comentariilor (păstrează 0 pentru valoarea implicită)
+            default_sort_order: Mod implicit de sortare a propunerilor
+            default_sort_order_help: Implicit înseamnă că dacă este activată votarea, propunerile vor fi afișate aleatoriu, și dacă votarea este blocată, atunci vor fi sortate în funcție de cele mai multe voturi.
+            default_sort_order_options:
+              default: Implicit
+              most_commented: Cele mai comentate
+              most_endorsed: Cele mai susținute
+              most_followed: Cele mai urmărite
+              most_voted: Cele mai votate
+              random: Aleator
+              recent: Recente
+              with_more_authors: Cu mai mulți autori
             geocoding_enabled: Geocodarea a fost activată
             minimum_votes_per_user: Număr minim de voturi pe utilizator
             new_proposal_body_template: Model de conținut pentru o propunere nouă
@@ -180,7 +200,18 @@ ro:
             answers_with_costs: Activează opțiunea de cost în răspunsurile la propuneri
             automatic_hashtags: Hashtag-uri adăugate la toate propunerile
             comments_blocked: Comentarii blocate
-            creation_enabled: Crearea de propuneri este activată
+            creation_enabled: Participantul poate crea propuneri
+            default_sort_order: Mod implicit de sortare a propunerilor
+            default_sort_order_help: Implicit înseamnă că dacă este activată votarea, propunerile vor fi afișate aleatoriu, și dacă votarea este blocată, atunci vor fi sortate în funcție de cele mai multe voturi.
+            default_sort_order_options:
+              default: Implicit
+              most_commented: Cele mai comentate
+              most_endorsed: Cele mai susținute
+              most_followed: Cele mai urmărite
+              most_voted: Cele mai votate
+              random: Aleator
+              recent: Recente
+              with_more_authors: Cu mai mulți autori
             endorsements_blocked: Susțineri blocate
             endorsements_enabled: Susțineri activate
             proposal_answering_enabled: Modulul de răspuns pentru propuneri a fost activat
@@ -198,33 +229,21 @@ ro:
             email_subject: Cineva a trimis o notă la propunerea %{resource_title}.
             notification_title: Cineva a lăsat o notă la propunerea <a href="%{resource_path}">%{resource_title}</a>. Verifică detaliile în <a href="%{admin_proposal_info_path}">panoul de administrare</a>
         collaborative_draft_access_accepted:
-          email_intro: '%{requester_name} a fost acceptat drept colaborator pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Ai primit această notificare deoarece ești colaborator pentru <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "Utilizatorul %{requester_name} a fost acceptat drept colaborator pentru %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> a fost <strong>acceptat drept colaborator</strong> pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_rejected:
-          email_intro: '%{requester_name} a fost respins drept colaborator pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Ai primit această notificare deoarece ești colaborator pentru <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} a fost respins drept colaborator pentru ciorna colaborativă %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> a fost <strong>respins drept colaborator</strong> pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requested:
-          email_intro: '%{requester_name} a solicitat acces drept colaborator. Poți <strong>accepta sau respinge cererea</strong> din pagina ciornei colaborative <a href="%{resource_path}">%{resource_title}</a>.'
-          email_outro: Ai primit această notificare deoarece ești colaborator pentru <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{requester_name} a solicitat acces pentru a contribui la %{resource_title}."
           notification_title: <a href="%{requester_path}">%{requester_name} %{requester_nickname}</a> a solicitat acces pentru a contribui la ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>. Te rugăm <strong>acceptă sau respinge cererea</strong>.
         collaborative_draft_access_requester_accepted:
-          email_intro: Ai fost acceptat drept colaborator pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Ai primit această notificare deoarece ai solicitat să devii colaborator pentru <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Ai fost acceptat drept colaborator pentru %{resource_title}.
           notification_title: Ai fost <strong>acceptat drept colaborator</strong> pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_access_requester_rejected:
-          email_intro: Ai fost respins drept colaborator pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Ai primit această notificare deoarece ai solicitat să devii colaborator pentru <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: Ai fost respins drept colaborator pentru %{resource_title}.
           notification_title: Ai fost <strong>respins drept colaborator</strong> pentru ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
         collaborative_draft_withdrawn:
-          email_intro: <a href="%{author_path}">%{author_name} %{author_nickname}</a> a retras ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
-          email_outro: Ai primit această notificare deoarece ești colaborator pentru <a href="%{resource_path}">%{resource_title}</a>.
           email_subject: "%{author_name} %{author_nickname} a retras ciorna colaborativă %{resource_title}."
           notification_title: <a href="%{author_path}">%{author_name} %{author_nickname}</a> <strong>a retras</strong> ciorna colaborativă <a href="%{resource_path}">%{resource_title}</a>.
         creation_enabled:
@@ -273,12 +292,11 @@ ro:
           email_intro: Propunerea "%{resource_title}" a fost adăugată la "%{participatory_space_title}", spațiu participativ pe care îl urmărești.
           email_outro: Ai primit această notificare deoarece urmărești „%{participatory_space_title}”. Poți anula aceste notificări de la link-ul anterior.
           email_subject: O nouă propunere "%{resource_title}" a fost adăugată la %{participatory_space_title}
-          notification_title: Propunerea <a href="%{resource_path}">%{resource_title}</a> a fost adăugată la %{participatory_space_title}
+          notification_title: Propunerea <a href="%{resource_path}">%{resource_title}</a> a fost adăugată la %{participatory_space_title} de %{author}
         proposal_rejected:
           affected_user:
             email_intro: 'Propunerea ta "%{resource_title}" a fost respinsă. Poți citi răspunsul în această pagină:'
             email_outro: Ai primit această notificare deoarece ești autor al propunerii "%{resource_title}".
-            email_subject: Propunerea ta a fost respinsă
             notification_title: Propunerea ta <a href="%{resource_path}">%{resource_title}</a> a fost respinsă.
           follower:
             email_intro: 'Propunerea "%{resource_title}" a fost respinsă. Poţi citi răspunsul în această pagină:'
@@ -359,7 +377,7 @@ ro:
       actions:
         answer_proposal: Răspundeți la propunere
         edit_proposal: Editează propunerea
-        import: Importă din altă componentă
+        import: Importă propuneri din altă componentă
         new: Propunere nouă
         participatory_texts: Texte participative
         show: Afișează propunerea
@@ -370,6 +388,22 @@ ro:
         exports:
           proposal_comments: Comentarii
           proposals: Propuneri
+        imports:
+          label:
+            answers: Importă răspunsuri dintr-un fişier
+            proposals: Importă propuneri dintr-un fişier
+          resources:
+            answers:
+              one: răspuns la propunere
+              few: răspunsuri la propunere
+              other: răspunsuri la propunere
+            proposals:
+              one: propunere
+              few: propuneri
+              other: propuneri
+          title:
+            answers: Importă răspunsuri la propunere
+            proposals: Importă propuneri
         models:
           proposal:
             name: Propunere
@@ -514,11 +548,11 @@ ro:
             title: Importă propuneri
         proposals_merges:
           create:
-            invalid: A apărut o problemă la combinarea propunerilor selectate.
+            invalid: 'A apărut o problemă la combinarea propunerilor selectate, deoarece unele dintre ele:'
             success: Propunerile au fost combinate cu succes într-o propunere nouă.
         proposals_splits:
           create:
-            invalid: A apărut o problemă la separarea propunerilor selectate.
+            invalid: 'A apărut o problemă la împărțirea propunerilor selectate, deoarece unele dintre ele:'
             success: Propunerile au fost împărțite cu succes în altele noi.
         valuation_assignments:
           create:
@@ -590,7 +624,6 @@ ro:
             few: "%{count} ciorne colaborative"
             other: "%{count} ciorne colaborative"
         create:
-          error: A apărut o problemă la crearea acestor ciorne colaborative
           success: Ciorna colaborativă a fost creată cu succes.
         edit:
           attachment_legend: "(Opțional) Adaugă un atașament"
@@ -761,9 +794,12 @@ ro:
           filter_by: Filtrează după
           unfold: Extinde
         index:
+          click_here: Afișează toate propunerile
           collaborative_drafts_list: Accesează ciorne colaborative
           new_proposal: Propunere nouă
+          see_all: Afișează toate propunerile
           see_all_withdrawn: Afișează toate propunerile retrase
+          text_banner: Vizualizezi lista de propuneri retrase de autorii lor. %{go_back_link}.
           view_proposal: Vizualizează propunerea
         linked_proposals:
           proposal_votes:
@@ -772,7 +808,6 @@ ro:
             other: voturi
         new:
           send: Continuă
-          title: Creează propunerea ta
         orders:
           label: 'Ordonează propunerile după:'
           most_commented: Cele mai comentate

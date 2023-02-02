@@ -4,7 +4,10 @@ en:
     attributes:
       assemblies_setting:
         enable_organization_chart: Enable organization chart
+      assemblies_type:
+        title: Title
       assembly:
+        announcement: Announcement
         area_id: Area
         assembly_type: Assembly type
         assembly_type_other: Assembly type other
@@ -23,12 +26,16 @@ en:
         decidim_scope_id: Scope
         description: Description
         developer_group: Promoter group
+        document: Document
         domain: Domain
         duration: Duration
         facebook: Facebook
         github: GitHub
         hashtag: Hashtag
         hero_image: Home image
+        import_attachments: Import attachments
+        import_categories: Import categories
+        import_components: Import components
         included_at: Included at
         instagram: Instagram
         internal_organisation: Internal organisation
@@ -60,11 +67,12 @@ en:
         birthplace: Birthplace
         ceased_date: Ceased date
         designation_date: Designation date
-        designation_mode: Designation mode
         full_name: Full name
         gender: Gender
+        non_user_avatar: Avatar
         position: Position
         user_id: User or group
+        weight: Order position
       assembly_user_role:
         email: Email
         name: Name
@@ -183,6 +191,9 @@ en:
         update:
           error: There was a problem updating an admin for this assembly.
           success: Admin updated successfully for this assembly.
+      filters:
+        decidim_assemblies_type_id_eq:
+          label: Assembly type
       menu:
         assemblies: Assemblies
         assemblies_settings: Settings
@@ -297,7 +308,10 @@ en:
         assembly_members:
           form:
             existing_user: Existing participant
+            explanation: 'Guidance for image:'
+            image_guide: Preferrably a portrait image that does not have any text.
             non_user: Non participant
+            non_user_avatar_help: You should get the consent of the persons before publishing them as a member.
             select_a_position: Select a position
             select_user: Select a participant
             user_type: Participant type
@@ -314,6 +328,9 @@ en:
         new_import:
           accepted_types:
             json: JSON
+      assemblies:
+        show:
+          title: About this assembly
       assembly_members:
         index:
           members: Members
@@ -381,7 +398,7 @@ en:
         related_participatory_processes: Related participatory processes
         scope: Scope
         social_networks: Social Networks
-        social_networks_title: Share this assembly on
+        social_networks_title: Visit assembly on
         target: Who participates
     assembly_members:
       assembly_member:
@@ -392,7 +409,7 @@ en:
       assemblies:
         create_assembly_member:
           email_intro: An admin of the <a href="%{resource_url}">%{resource_name}</a> assembly has added you as one of its members.
-          email_outro: You have received this notification because you have been invited to an assembly. Check the <a href="%{resource_path}">assembly page</a> to contribute!
+          email_outro: You have received this notification because you have been invited to an assembly. Check the <a href="%{resource_url}">assembly page</a> to contribute!
           email_subject: You have been invited to be a member of the %{resource_name} assembly!
           notification_title: You have been registered as a member of Assembly <a href="%{resource_path}">%{resource_name}</a>. Check the <a href="%{resource_path}">assembly page</a> to contribute!
       assembly:

@@ -59,9 +59,7 @@ ar:
         avatar: الصورة الرمزية
         conference_meeting_ids: الاجتماعات ذات الصلة
         full_name: الاسم الكامل
-        personal_url: العنوان الشبكي الشخصي
         position: المنصب
-        short_bio: سيرة ذاتية قصيرة
         twitter_handle: مُعرّف حساب تويتر
         user_id: المستخدم
       conference_user_role:
@@ -395,7 +393,7 @@ ar:
         invite_join_conference_mailer:
           invite:
             decline: رفض الدعوة "%{conference_title}"
-            invited_you_to_join_a_conference: "%{invited_by} للانضمام إلى مؤتمر في %{application}. يمكنك رفضه أو قبوله من خلال الروابط أدناه."
+            invited_existing_user_to_join_a_conference: "%{invited_by} للانضمام إلى مؤتمر في %{application}. يمكنك رفضه أو قبوله من خلال الروابط أدناه."
             registration: التسجيل لـ "%{conference_title}"
         partners:
           index:

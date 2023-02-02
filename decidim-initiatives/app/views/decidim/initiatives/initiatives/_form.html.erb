@@ -5,7 +5,7 @@
 </div>
 
 <div class="field">
-  <%= form.editor :description, toolbar: :full, lines: 8, disabled: !allowed_to?(:update, :initiative, initiative: current_initiative), value: translated_attribute(@form.description) %>
+  <%= text_editor_for(form, :description, toolbar: :full, lines: 8, disabled: !allowed_to?(:update, :initiative, initiative: current_initiative), value: translated_attribute(@form.description)) %>
 </div>
 
 <div class="field">
@@ -64,7 +64,7 @@
   <%= form.select :signature_type, [], {}, { disabled: !@form.signature_type_updatable? } %>
 </div>
 <% if current_initiative.type.attachments_enabled? %>
-  <fieldset>
+  <fieldset class="attachments_container">
     <legend><%= t("attachment_legend", scope: "decidim.initiatives.form") %></legend>
 
     <% if @form.photos.any? %>

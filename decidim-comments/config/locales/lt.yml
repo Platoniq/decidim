@@ -3,6 +3,7 @@ lt:
     models:
       decidim/comments/comment_by_followed_user_event: Komentarai
       decidim/comments/comment_created_event: Komentarai
+      decidim/comments/comment_upvoted_event: Komentaras palaikytas
       decidim/comments/reply_created_event: Atsakymas į komentarą
       decidim/comments/user_group_mentioned_event: Paminėjimas
       decidim/comments/user_mentioned_event: Paminėti
@@ -20,6 +21,12 @@ lt:
         other: Balsai
   decidim:
     comments:
+      admin:
+        shared:
+          availability_fields:
+            enabled: Komentarai aktyvuoti
+            end_time: Komentarai aktyvuoti iki
+            start_time: Komentarai aktyvuoti nuo
       comments:
         create:
           error: Kuriant šį komentarą iškilo problema.
@@ -68,6 +75,7 @@ lt:
         edit: Redaguoti
         edited: Redaguota
         hide_replies: Paslėpti atsakymus
+        moderated_at: Komentaras moderuotas %{date}
         reply: Atsakyti
         report:
           action: Raportuoti
@@ -97,7 +105,7 @@ lt:
         blocked_comments_warning: Komentarai šiuo metu išjungti, tačiau galite perskaityti ankstesnius komentarus.
         comment_details_title: Komentaro detalės
         loading: Komentarai įkeliami...
-        single_comment_warning: Likusius komentarus galite peržiūrėti <a href="%{url}">čia</a>.
+        single_comment_warning: <a href="%{url}">Peržiūrėti visus komentarus</a>
         single_comment_warning_title: Matote vieną komentarą
         title:
           one: "%{count} komentaras"

@@ -24,7 +24,7 @@ hu:
       component:
         name: Név
         published_at: Publikálva
-        weight: Rendelési pozíció
+        weight: Pozíció sorrend
       id: ID
       import:
         user_group_id: Az importáltak létrehozása mint
@@ -104,7 +104,7 @@ hu:
         organization: Szervezet
         plural: Plurális
       settings:
-        scope_id: Hatáskör
+        scope_id: Hatókör
       static_page:
         allow_public_access: Hozzáférés engedélyezése authentikáció nélkül
         changed_notably: Észrevehető változások történtek.
@@ -123,6 +123,10 @@ hu:
         file: Fájl
     errors:
       models:
+        newsletter:
+          attributes:
+            base:
+              at_least_one_space: Válasszon legalább egy részvételi teret
         organization:
           attributes:
             official_img_footer:
@@ -132,6 +136,7 @@ hu:
       new_import:
         attributes:
           file:
+            invalid_file: Nem érvényes fájl, ellenőrizze le, hogy helyesen van formázva a fájl
             invalid_mime_type: Érvénytelen MIME típus
   activerecord:
     attributes:
@@ -179,7 +184,6 @@ hu:
           error: Hiba történt az adminra vonatkozó általános szerződési feltételek elfogadása során.
           success: Nagyszerű! Elfogadtad az admin felhasználási feltételeket.
         actions:
-          accept: Elfogadom a következő feltételeket
           are_you_sure: Biztosan visszautasítod az adminokra vonatkozó feltételek elfogadását?
           refuse: Admin feltételek elutasítása
           title: Elfogadom a felhasználási feltételeket
@@ -208,7 +212,7 @@ hu:
           error: Hiba történt az új terület létrehozásakor.
           success: Terület létrehozása sikeres.
         destroy:
-          has_spaces: Ez a terület mással összefüggő terekkel rendelkezik. Kérjük, győződjön meg róla, hogy egyetlen Részvételi tér sem hivatkozik erre a területre, mielőtt törölné.
+          has_spaces: Ez a terület mással összefüggő terekkel rendelkezik. Kérjük, győződjön meg róla, hogy egyetlen részvételi tér sem hivatkozik erre a területre, mielőtt törölné.
           success: Terület eltávolítása sikeres
         edit:
           title: Terület szerkesztése
@@ -366,6 +370,13 @@ hu:
           values:
             'false': 'Nincs'
             'true': 'Igen'
+        moderated_users:
+          reports_reason_eq:
+            label: A jelentés oka
+            values:
+              does_not_belong: Nem tartozik hozzá
+              offensive: Offenzív
+              spam: Spam
         moderations:
           reportable_type_string_eq:
             label: Típus
@@ -400,11 +411,18 @@ hu:
         search_label: Keresés
         search_placeholder:
           name_or_nickname_or_email_cont: Keresés %{collection} email, név vagy becenév alapján.
+          report_count_eq: Jelentések száma
           reported_id_string_or_reported_content_cont: Keresés %{gyűjtemény} a jelentendő azonosító vagy tartalom alapján.
           title_cont: Keresés %{collection} cím alapján.
           user_name_or_user_email_cont: Keresés itt %{collection} néva vagy emailcím alapján.
+          user_name_or_user_nickname_or_user_email_cont: Keresés %{collection} email, név vagy becenév alapján.
         state_eq:
           label: Állapot
+          values:
+            all: Összes
+            pending: Függőben levő
+            rejected: Elutasított
+            verified: Ellenőrizve
       forms:
         file_help:
           import:
@@ -450,13 +468,28 @@ hu:
           impersonate_existing_user: '"%{name}" felhasználó kezelése'
           impersonate_new_managed_user: Új résztvevő kezelése
       imports:
-        creators:
-          proposalcreator: Javaslat létrehozója
+        and: és
+        data_errors:
+          duplicate_headers:
+            detail: Kérjük, csak egyszer ellenőrizze, hogy a fájl tartalmazza-e a szükséges oszlopokat vagy fejléceket.
+            message:
+              one: Oszlop megkettőzése %{columns}.
+              other: '%{columns} Oszlopok megkettőzése.'
+          invalid_indexes:
+            lines:
+              detail: Ellenőrizze a sorok helyes formázását, valamint hogy érvényes rekordokat tartalmaznak.
+              message:
+                one: Hibát találtam az import fájlban a következő sorban %{indexes}.
+                other: Hibát találtam az import fájlban a következő sorokban %{indexes}.
+            records:
+              detail: Ellenőrizze a sorok helyes formázását, valamint hogy érvényes rekordokat tartalmaznak.
+              message:
+                one: Hibát találtam az importfájlban a rendelésszámmal rendelkező rekordnál %{indexes}.
+                other: Hibát találtam az importfájlban a rendelésszámmal rendelkező rekordoknál %{indexes}.
+          missing_headers:
+            detail: Kérjük, ellenőrizze, hogy a fájl tartalmazza-e a szükséges oszlopokat.
         error: Hiba történt az importálás során
-        help:
-          proposalcreator: A fájlnak title/en és body/en (vagy egy másik, általad preferált nyelvterület, pl. title/ca és body/ca) oszlopnevekkel kell rendelkeznie. A scope/id és category/id oszlopok is támogatottak.
-        import_from_file: Importálás fájlból
-        invalid_lines: Hiba található a(z) erőforrásban %{invalid_lines}
+        example_error: Nem sikerült példát létrehozni a megadott típusra
         new:
           accepted_mime_types:
             csv: csv
@@ -464,8 +497,11 @@ hu:
             xlsx: xlsx
           actions:
             back: Vissza
+          download_example: Példa letöltése
+          download_example_format: Példa mint %{name}
+          file_legend: Adjon hozzá egy importált fájlt, amelyet elemezni fog.
           import: Import
-        notice: "%{number} %{resource_name} sikeresen importálva"
+        notice: "%{count} %{resource_name} sikeresen importálva"
       logs:
         logs_list:
           no_logs_yet: Még nincsenek naplók
@@ -749,6 +785,7 @@ hu:
         form:
           colors:
             colors_title: Szervezet színei
+            colors_warning_html: Óvatosan! A színek megváltoztatása megtörik az akadálymentes kontrasztokat. Ellenőrizheti a kontrasztot a <a href="%{link}">WebAIM Contrast Checker</a> vagy más, hasonló eszköz segítségével.
             header_snippets_help: Ebben a mezőben a HTML fejlécet szerkesztheted. Ennek akkor van jelentősége, ha olyan külső szolgáltatásokat szeretnél intergálni, amelyekhez JavaScript vagy CSS szükséges. Sőt, metacímkéket is hozzáadhatsz. Ez az adminban nem, csak a nyilvános oldalakon jelenik majd meg.
           cta_button_path_help: 'Felülírhatod, hogy a kezdőlap felhívás gombja link hova mutasson. Részleges, ne pedig teljes URL címeket használj. A megengedett karakterek: betű, szám, kötőjel vagy perjel, de mindig betűvel kell kezdődnie. A felhívás gomb az üdvözlő szöveg és a leírás között jelenik meg a nyitólapon. Példa: %{url}'
           cta_button_text_help: A felhívás gomb szövegét a szervezethez tartozó minden egyes nyelven megjelenítheted. Amennyiben nincs beállítva, akkor akkor az alapértelmezett értéket fogja használni. A felhívás gomb az üdvözlő szöveg és a leírás között jelenik meg a nyitólapon.
@@ -791,7 +828,7 @@ hu:
           title: Új részvételi tér privát felhasználója.
       participatory_space_private_users_csv_imports:
         create:
-          invalid: Hiba történt a CSV fájl olvasásakor.
+          invalid: Hiba történt a CSV fájl olvasásában.
           success: A CSV-fájl sikeresen feltöltődött, meghívó e-mailt küldünk a résztvevőknek. Ez eltarthat egy ideig.
         new:
           explanation: 'Töltse fel a CSV-fájlt. Két oszlopnak kell lennie, e-mail címmel a fájl első oszlopában, és a fájl utolsó oszlopában (e-mail, név) azoknak a felhasználóknak az adataival, akiket fel akar venni a részvételi térbe, fejlécek nélkül. Kerülje az olyan érvénytelen karakterek használatát, mint a `<>?%&^*#@()[]=+:;"{}\|` a felhasználónévben.'
@@ -927,13 +964,6 @@ hu:
           success: A csoport sikeresen ellenőrzött
       user_groups:
         index:
-          filter:
-            all: Összes
-            pending: Függőben
-            rejected: Elutasítva
-            verified: Megerősítve
-          filter_by: 'Szűrés ez alapján:'
-          search: Keresés
           state:
             pending: Függőben
             rejected: Elutasítva
@@ -1005,10 +1035,11 @@ hu:
         moderation:
           fields:
             created_at: Létrehozás dátuma
+            deleted_resource: Törölt erőforrás
             hidden_at: 'Rejtett itt:'
             participatory_space: Részvételi tér
             report_count: Számol
-            reportable_id: Id
+            reportable_id: ID
             reportable_type: Típus
             reported_content_url: Jelentett URL tartalom
             reports: Jelentések

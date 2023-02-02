@@ -66,10 +66,10 @@ if !Rails.env.production? || ENV["SEED"]
       organization: organization
     )
 
-    3.times do
+    3.times do |time|
       parent = Decidim::Scope.create!(
         name: Decidim::Faker::Localized.literal(Faker::Address.unique.state),
-        code: Faker::Address.unique.country_code,
+        code: "#{Faker::Address.country_code}_#{time}",
         scope_type: province,
         organization: organization
       )
@@ -132,21 +132,23 @@ if !Rails.env.production? || ENV["SEED"]
     admin_terms_accepted_at: Time.current
   )
 
-  regular_user = Decidim::User.find_or_initialize_by(email: "user@example.org")
+  ["user@example.org", "user2@example.org"].each do |email|
+    Decidim::User.find_or_initialize_by(email: email).update!(
+      name: Faker::Name.name,
+      nickname: Faker::Twitter.unique.screen_name,
+      password: "decidim123456",
+      password_confirmation: "decidim123456",
+      confirmed_at: Time.current,
+      locale: I18n.default_locale,
+      organization: organization,
+      tos_agreement: true,
+      personal_url: Faker::Internet.url,
+      about: Faker::Lorem.paragraph(sentence_count: 2),
+      accepted_tos_version: organization.tos_version
+    )
+  end
 
-  regular_user.update!(
-    name: Faker::Name.name,
-    nickname: Faker::Twitter.unique.screen_name,
-    password: "decidim123456",
-    password_confirmation: "decidim123456",
-    confirmed_at: Time.current,
-    locale: I18n.default_locale,
-    organization: organization,
-    tos_agreement: true,
-    personal_url: Faker::Internet.url,
-    about: Faker::Lorem.paragraph(sentence_count: 2),
-    accepted_tos_version: organization.tos_version
-  )
+  regular_user = Decidim::User.find_or_initialize_by(email: "user@example.org")
 
   locked_user = Decidim::User.find_or_initialize_by(email: "locked_user@example.org")
 

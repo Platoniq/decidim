@@ -13,7 +13,10 @@ module Decidim
       isolate_namespace Decidim::Meetings
 
       routes do
-        resources :meetings, only: [:index, :show, :new, :create, :edit, :update] do
+        resources :meetings, only: [:index, :show, :new, :create, :edit, :update, :withdraw] do
+          member do
+            put :withdraw
+          end
           resources :meeting_closes, only: [:edit, :update] do
             get :proposals_picker, on: :collection
           end
@@ -36,6 +39,12 @@ module Decidim
         root to: "meetings#index"
         resource :calendar, only: [:show], format: :text do
           resources :meetings, only: [:show], controller: :calendars, action: :meeting_calendar
+        end
+      end
+
+      initializer "decidim.content_processors" do |_app|
+        Decidim.configure do |config|
+          config.content_processors += [:meeting]
         end
       end
 

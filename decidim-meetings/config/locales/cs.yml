@@ -35,7 +35,7 @@ cs:
         registration_terms: Podmínky registrace
         registration_url: URL registrace
         registrations_enabled: Registrace povoleny
-        show_embedded_iframe: Zobrazit vloženou iframe pro tuto URL
+        show_embedded_iframe: Zobrazit vložený iframe pro tuto URL
         start_time: Čas zahájení
         title: Název
         transparent: Transparentní
@@ -44,8 +44,8 @@ cs:
       models:
         meeting:
           attributes:
-            show_embedded_iframe:
-              not_embeddable: Tato adresa URL nemůže být vložena
+            iframe_embed_type:
+              not_embeddable: Tato adresa URL nemůže být vložena do stránky schůzky nebo živé události
         meeting_agenda:
           attributes:
             base:
@@ -106,7 +106,7 @@ cs:
           type_eq:
             label: Typ schůzky
             values:
-              hybrid: Obojí
+              hybrid: Hybridní
               in_person: Osobně
               online: Online
       meeting_copies:
@@ -164,7 +164,7 @@ cs:
         meeting_registration_confirmed:
           notification_title: Vaše registrace pro schůzku <a href="%{resource_url}">%{resource_title}</a> byla potvrzena. Váš registrační kód je %{registration_code}.
         meeting_registrations_over_percentage:
-          email_intro: Počet schůzek obsazených schůzem "%{resource_title}" je vyšší než %{percentage}%.
+          email_intro: Přidělených míst pro schůzku "%{resource_title}" je více než %{percentage}%.
           email_outro: Toto oznámení jste obdrželi, protože jste administrátor participačního prostoru schůzky.
           email_subject: Schůzky obsazené schůzkou "%{resource_title}" jsou nad %{percentage}%
           notification_title: Počet obsazených slotů <a href="%{resource_path}">%{resource_title}</a> je vyšší než %{percentage}%.
@@ -190,7 +190,7 @@ cs:
           notification_title: Setkání <a href="%{resource_path}">%{resource_title}</a> bude zahájeno za méně než 48 hodin.
     forms:
       meetings:
-        attendees_count_help_text: Nezapomeňte uvést celkový počet účastníků vaší akce. Ať už jde o osobní, kombinovanou nebo on-line, je důležité, abychom věděli, kolik lidí je zapojeno.
+        attendees_count_help_text: Nezapomeňte uvést celkový počet účastníků na vaší schůzce, ať už osobní, online nebo smíšené.
     gamification:
       badges:
         attended_meetings:
@@ -228,7 +228,7 @@ cs:
           agenda_item:
             add_agenda_item_child: Přidání položky agendy dítěte
             agenda_item: Položka agendy
-            agenda_item_children: Agenda Item Childs
+            agenda_item_children: Dílčí body programu
             down: Dolů
             remove: Odstranit
             up: Nahoru
@@ -322,7 +322,8 @@ cs:
             registration_url_help: 'Odkaz: umožnit účastníkům jít na externí službu, kterou používáte pro registrace'
             select_a_meeting_type: Vyberte prosím typ schůzky
             select_a_registration_type: Vyberte prosím typ registrace
-            show_embedded_iframe_help: Rozhodněte o vložení URL iframe pro tuto videokonferenci. Pouze některé služby umožňují vložení (např. Youtube, Twitch...)
+            select_an_iframe_access_level: Vyberte prosím úroveň přístupu iframe
+            show_embedded_iframe_help: Pouze pár služeb umožňuje vložení do schůzky nebo živé události (YouTube, Twitch a Jitsi)
           index:
             title: Setkání
           new:
@@ -394,26 +395,37 @@ cs:
           value_types:
             organizer_presenter:
               not_found: 'Organizátor nebyl nalezen v databázi (ID: %{id})'
+      application_helper:
+        filter_category_values:
+          all: Vše
+        filter_meeting_space_values:
+          all: Vše
+        filter_scope_values:
+          all: Vše
       calendar_modal:
         calendar_url: Adresa URL kalendáře
         close_window: Zavřete okno
         export_calendar: Exportovat kalendář
       conference_venues: Konferenční prostory
       content_blocks:
-        upcoming_events:
-          name: Připravované akce
-          upcoming_events: Nadcházející schůzky
-          view_all_events: Zobrazit vše
+        upcoming_meetings:
+          name: Nadcházející schůzky
+          upcoming_meetings: Nadcházející schůzky
+          view_all_meetings: Zobrazit vše
       directory:
         meetings:
           index:
-            all: Vše
-            date: Datum
             meetings: Setkání
-            past: Minulé
-            search: Vyhledávání
             space_type: Účastní prostor
-            upcoming: Nadcházející
+      iframe_access_level:
+        all: Všichni návštěvníci
+        registered: Registrovaní účastníci této schůzky
+        signed_in: Pouze přihlášení účastníci
+      iframe_embed_type:
+        embed_in_meeting_page: Vložit do stránky schůzky
+        none: Žádný
+        open_in_live_event_page: Otevřít na stránce živé události (s volitelnými anketami)
+        open_in_new_tab: Otevřít URL v nové kartě
       last_activity:
         meeting_updated_at_html: "<span>Schůzka aktualizována na %{link}</span>"
         new_meeting_at_html: "<span>Nové setkání v %{link}</span>"
@@ -478,7 +490,7 @@ cs:
           type: Typ
           type_values:
             all: Vše
-            hybrid: Obojí
+            hybrid: Hybridní
             in_person: Osobně
             online: Online
         filters_small_view:
@@ -498,9 +510,14 @@ cs:
           select_a_category: Vyberte prosím kategorii
           select_a_meeting_type: Vyberte prosím typ schůzky
           select_a_registration_type: Vyberte prosím typ registrace
-          show_embedded_iframe_help: Rozhodněte o vložení URL iframe pro tuto videokonferenci. Pouze některé služby umožňují vložení (např. Youtube, Twitch...)
+          select_an_iframe_access_level: Vyberte prosím úroveň přístupu iframe
+          show_embedded_iframe_help: Pouze pár služeb umožňuje vložení do schůzky nebo živé události (YouTube, Twitch a Jitsi)
         index:
+          click_here: Zobrazit všechny schůzky
           new_meeting: Nová schůzka
+          see_all: Zobrazit všechny schůzky
+          see_all_withdrawn: Zobrazit všechny stažené schůzky
+          text_banner: Zobrazujete seznam schůzek stažených jejich autory. %{go_back_link}.
         meeting_minutes:
           related_information: Související informace
         meetings:
@@ -519,6 +536,7 @@ cs:
           close_meeting: Ukončit schůzku
           contributions: Počet příspěvků
           date: Datum
+          edit_close_meeting: Upravit zprávu schůzky
           edit_meeting: Upravit schůzku
           going: Přihlásili jste se k této schůzce
           join: Připojte se k setkání
@@ -542,6 +560,9 @@ cs:
             other: "%{count} zbývajících bloků"
           view: Zobrazit
           visit_finished: Zobrazit minulou schůzku
+          withdraw_btn_hint: Schůzku můžete stáhnout, pokud změníte názor. Schůzka není smazána, objeví se v seznamu stažených schůzek.
+          withdraw_confirmation_html: Opravdu chcete tuto schůzku stáhnout?<br><br><strong>Tuto akci nelze zrušit!</strong>
+          withdraw_meeting: Stažení schůzky
         update:
           invalid: Při aktualizaci schůzky došlo k chybě.
           success: Úspěšně jste aktualizovali schůzku.
@@ -562,7 +583,7 @@ cs:
           fields:
             closed: Zavřeno
             end_time: Datum ukončení
-            id: Id
+            id: ID
             map: Mapa
             official_meeting: Oficiální schůzka
             start_time: Datum zahájení
@@ -575,7 +596,7 @@ cs:
             empty_questions: Během této schůzky budou zaslány některé dotazy a vy na ně budete moci odpovědět. Zobrazí se zde.
           index_admin:
             admin_dashboard: Řídicí panel administrace
-            edit: Upravit v administraci
+            edit: Upravit v panelu administrace
             question: Otázka
             received_answer: přijatá odpověď
             received_answers: přijaté odpovědi
@@ -615,14 +636,18 @@ cs:
           invalid: Při setkání došlo k problému.
           success: Zasedání jste úspěšně opustili.
       type_of_meeting:
-        hybrid: Obojí
+        hybrid: Hybridní
         in_person: Osobně
         online: Online
       types:
         private_meeting: Privátní setkání
         transparent: Průhledný
+        withdraw: Staženo
       versions:
         back_to_resource: Přejít zpět na schůzku
+      withdraw:
+        error: Došlo k chybě při stahování schůzky
+        success: Schůzka byla úspěšně stažena
     metrics:
       meetings:
         description: Počet vytvořených schůzek

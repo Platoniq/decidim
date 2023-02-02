@@ -2,6 +2,7 @@ eu:
   activemodel:
     attributes:
       initiative:
+        area_id: Arloa
         decidim_user_group_id: Egilea
         description: deskribapena
         offline_votes: Aurrez aurreko sinadurak
@@ -32,6 +33,7 @@ eu:
         online_signature_enabled: Sinadura elektronikoa gaituta dago
         only_global_scope_enabled: Eremu globaleko ekimenak soilik sortzeko aukera ematea
         promoting_committee_enabled: Batzorde sustatzailea gaitzea
+        signature_type: Sinadura mota
         title: Izenburua
         undo_online_signatures_enabled: Gaitu erabiltzaileek beren sinadurak desegin ditzaten
         validate_sms_code_on_votes: Gehitu SMS kodea baliozkotzeko urratsa sinadura prozesura
@@ -238,8 +240,6 @@ eu:
             edit: Editatu
             new: Berria
             photos: Argazkiak
-          show:
-            print: Inprimatu
           update:
             error: akats bat gertatu da
             success: Herritarren ekimena ondo eguneratu da
@@ -405,7 +405,6 @@ eu:
           notification_title: <a href="%{applicant_profile_url}">%{applicant_nickname}</a> k eskatu du <a href="%{resource_url}">%{resource_title}</a> zure ekimenaren batzorde bultzatzailearekin bat egitea. eskaera onartzeko edo ez onartzeko, egin klik hemen <a href="%{resource_url}/edit">aquí</a>.
       form:
         add_attachments: Dokumentuak
-        attachment_legend: "(Aukerakoa) Gehitu eranskinak"
         delete_attachment: Ezabatu
       index:
         title: Ekimenak

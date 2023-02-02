@@ -15,6 +15,10 @@ describe "Edit proposals", type: :system do
     switch_to_host user.organization.host
   end
 
+  def visit_proposal
+    click_link proposal_title, match: :first
+  end
+
   describe "editing my own proposal" do
     let(:new_title) { "This is my proposal new title" }
     let(:new_body) { "This is my proposal new body" }
@@ -26,7 +30,7 @@ describe "Edit proposals", type: :system do
     it "can be updated" do
       visit_component
 
-      click_link proposal_title
+      visit_proposal
       click_link "Edit proposal"
 
       expect(page).to have_content "EDIT PROPOSAL"
@@ -49,7 +53,7 @@ describe "Edit proposals", type: :system do
 
       it "can delete attachments" do
         visit_component
-        click_link translated(proposal.title)
+        visit_proposal
         expect(page).to have_content("RELATED DOCUMENTS")
         expect(page).to have_content("RELATED IMAGES")
         click_link "Edit proposal"
@@ -84,11 +88,11 @@ describe "Edit proposals", type: :system do
       it "can be updated with address", :serves_geocoding_autocomplete do
         visit_component
 
-        click_link translated(proposal.title)
+        visit_proposal
         click_link "Edit proposal"
         check "proposal_has_address"
 
-        expect(page).to have_field("Title", with: translated(proposal.title))
+        expect(page).to have_field("Title", with: proposal_title)
         expect(page).to have_field("Body", with: translated(proposal.body))
         expect(page).to have_field("Address", with: proposal.address)
         expect(page).to have_css("[data-decidim-map]")
@@ -112,10 +116,10 @@ describe "Edit proposals", type: :system do
         it "allows filling an empty address and unchecking the has address checkbox" do
           visit_component
 
-          click_link translated(proposal.title)
+          visit_proposal
           click_link "Edit proposal"
 
-          expect(page).to have_field("Title", with: translated(proposal.title))
+          expect(page).to have_field("Title", with: proposal_title)
           expect(page).to have_field("Body", with: translated(proposal.body))
           expect(page).to have_field("Address", with: proposal.address)
 
@@ -140,7 +144,7 @@ describe "Edit proposals", type: :system do
       it "returns an error message" do
         visit_component
 
-        click_link proposal_title
+        visit_proposal
         click_link "Edit proposal"
 
         expect(page).to have_content "EDIT PROPOSAL"
@@ -163,7 +167,7 @@ describe "Edit proposals", type: :system do
       it "keeps the submitted values" do
         visit_component
 
-        click_link proposal_title
+        visit_proposal
         click_link "Edit proposal"
 
         expect(page).to have_content "EDIT PROPOSAL"
@@ -182,18 +186,31 @@ describe "Edit proposals", type: :system do
     context "when rich text editor is enabled on the frontend" do
       before do
         organization.update(rich_text_editor_in_public_views: true)
-        body = proposal.body
-        body["en"] = 'Hello <a href="http://www.linux.org" target="_blank">external link</a> World'
-        proposal.update!(body: body)
       end
 
-      it "doesnt change the href" do
-        visit_component
+      context "when proposal body has link" do
+        let(:link) { "http://www.linux.org" }
+        let(:body_en) { %(Hello <a href="#{link}" target="_blank">this is a link</a> World) }
 
-        click_link proposal_title
-        click_link "Edit proposal"
+        before do
+          body = proposal.body
+          body["en"] = body_en
+          proposal.update!(body: body)
+          visit_component
+          visit_proposal
+        end
 
-        expect(page).to have_link("external link", href: "http://www.linux.org")
+        it "doesnt change the href" do
+          click_link "Edit proposal"
+          expect(page).to have_link("this is a link", href: link)
+        end
+
+        it "doesnt add external link container inside the editor" do
+          click_link "Edit proposal"
+          editor = page.find(".editor-container")
+          expect(editor).to have_selector("a[href='#{link}']")
+          expect(editor).not_to have_selector("a.external-link-container")
+        end
       end
     end
   end
@@ -206,7 +223,7 @@ describe "Edit proposals", type: :system do
     it "renders an error" do
       visit_component
 
-      click_link proposal_title
+      visit_proposal
       expect(page).to have_no_content("Edit proposal")
       visit "#{current_path}/edit"
 
@@ -224,7 +241,7 @@ describe "Edit proposals", type: :system do
     it "renders an error" do
       visit_component
 
-      click_link proposal_title
+      visit_proposal
       expect(page).to have_no_content("Edit proposal")
       visit "#{current_path}/edit"
 

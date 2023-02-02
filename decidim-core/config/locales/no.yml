@@ -76,6 +76,34 @@
       decidim_with_day_and_month_name: "%A %d %b %Y"
       decidim_with_month_name: "%d %B %Y"
       decidim_with_month_name_short: "%d %b"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: omtrent 1 time
+        other: omtrent %{count} timer
+      about_x_months:
+        one: omtrent 1 måned
+        other: omtrent %{count} måneder
+      half_a_minute: et halvt minutt
+      less_than_x_minutes:
+        one: mindre enn et minutt.
+        other: mindre enn %{count} minutter.
+      less_than_x_seconds:
+        one: akkurat nå
+        other: mindre enn %{count} sekunder.
+      x_days:
+        one: 1 dag siden
+        other: "%{count} dager siden"
+      x_hours:
+        one: 1 time siden
+        other: "%{count} timer siden"
+      x_minutes:
+        one: 1 minutt siden
+        other: "%{count} minutter siden"
+      x_seconds:
+        one: 1 sek. siden
+        other: "%{count} sek. siden"
+        zero: akkurat nå
   decidim:
     accessibility:
       external_link: Ekstern lenke
@@ -508,6 +536,11 @@
           this_application_will_not_be_able_to: 'Dette programmet vil ikke kunne:'
           update_profile: Oppdater profilen din
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> ønsker å bruke profilen din"
+    editor_images:
+      create:
+        error: Feil ved opplasting av bilde
+        success: Opplasting fullført
+      drag_and_drop_help: Legg til bilder ved å dra og slippe eller lime dem inn.
     endorsable:
       endorsements: Påtegnelser
       endorsements_count: Antall tilslutninger
@@ -747,18 +780,6 @@
           how: Hvordan kan du tjene det
           page_description: Merker er anerkjennelser for deltaker handlinger og fremdrift i plattformen. Når du begynner å oppdage, delta og samhandle i plattformen, vil du tjene forskjellige merker. Her er listen over merker og noen måter du kan tjene dem på.
           title: Merker
-        invitations:
-          conditions:
-            - Bruk "invitere venner" lenken på din bruker side for å invitere vennene dine
-            - Tilpass, hvis du vil, meldingen du sender
-            - Du vil gå opp i nivå ved å sende invitasjoner og få dem registrert.
-          description: Dette merket blir gitt når du har invitert noen og de har brukt lite tid på å registrere seg i %{organization_name} og bli deltakere. Takk for at du gjør %{organization_name} kjent til andre og hjelper med å utvide samfunnet!
-          description_another: Denne deltakeren har invitert %{score} folk.
-          description_own: Du har invitert %{score} folk.
-          name: Invitasjoner
-          next_level_in: Inviter %{score} flere folk for å nå neste nivå!
-          unearned_another: Denne deltakeren har ikke invitert noen ennå.
-          unearned_own: Du har ikke invitert noen ennå.
       description: Merker er anerkjennelser for deltaker handlinger og fremdrift i plattformen. Når du begynner å oppdage, delta og samhandle i plattformen, vil du tjene forskjellige merker.
       level: Nivå %{level}
       reached_top: Du har nådd det høyeste nivået for dette merket.
@@ -964,6 +985,7 @@
           next: Neste
           no_conversations: Du har ingen samtaler ennå
           title: Samtaler
+          to: Til
         reply:
           placeholder: Ditt svar...
           send: Send
@@ -1039,6 +1061,12 @@
         greetings: Hilsener,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: Hei,
         subject: Vil du fortsette å motta relevant informasjon om %{organization_name}?
+    notification_mailer:
+      event_received:
+        no_translation_available: Beklager, den automatiserte oversettelsen kunne ikke hentes når e-posten har blitt sendt. Du kan sjekke oversettelsen av den originale teksten på følgende lenke %{link}.
+        original_text: 'Opprinnelig tekst:'
+        same_language: Innholdet er postet på ditt foretrukne språk (%{language}), derfor vises ingen automatisert oversettelse i denne e-posten.
+        translated_text: 'Automatisk oversatt tekst:'
     notifications:
       no_notifications: Ingen varslinger ennå.
     notifications_settings:
@@ -1495,15 +1523,6 @@
       updated_not_active: Passordet ditt er blitt endret.
     registrations:
       destroyed: Din konto er lukket. Vi håper å se deg igjen snart.
-      edit:
-        are_you_sure: Er du sikker?
-        cancel_my_account: Avbryt kontoen min
-        currently_waiting_confirmation_for_email: 'Foreløpig venter for bekreftelse på: %{email}'
-        leave_blank_if_you_don_t_want_to_change_it: la stå tom hvis du ikke vil endre det
-        title: Endre %{resource}
-        unhappy: Ikke fornøyd?
-        update: Oppdater
-        we_need_your_current_password_to_confirm_your_changes: vi trenger ditt nåværende passord for å bekrefte endringene dine
       new:
         sign_up: Registrer deg
       signed_up: Velkommen! Din registrering er fullført. Husk å bekrefte epostadressen din via mailen vi har sendt deg.
@@ -1558,7 +1577,6 @@
         other: 'Det oppsto flere feil med å behandle forespørselen din:'
       too_many_marks: bruker for mange påfølgende skilletegn (f.eks. ! og ?)
       too_much_caps: bruker for mange store bokstaver (over 25% av teksten)
-      too_short: er for kort (under 15 tegn)
   forms:
     correct_errors: Det er feil i skjemaet, korriger dem for å fortsette.
     length_validator:
@@ -1634,10 +1652,12 @@
     name: Engelsk
     name_with_error: Norsk (feil!)
   password_validator:
+    blacklisted: er svartelistet
     domain_included_in_password: er for lik dette domenenavnet
     email_included_in_password: er for lik e-postadressen din
     fallback: er ikke gyldig
     name_included_in_password: er for likt navnet ditt
+    nickname_included_in_password: er for likt kallenavnet ditt
     not_enough_unique_characters: har ikke nok unike tegn
     password_not_allowed: er ikke tillatt
     password_too_common: er for vanlig
@@ -1672,6 +1692,8 @@
       day_of_week: "%a"
       day_of_week_long: "%a%e"
       day_of_year: "%d.%m.%y"
+      ddmm: "%d.%m"
+      ddmmyyyy: "%d.%m.%Y"
       decidim_day_of_year: "%d %B %Y"
       decidim_short: "%d/%m/%Y %H:%M"
       default: "%a, %d %b %Y %H:%M:%S %z"

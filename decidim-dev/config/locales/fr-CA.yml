@@ -14,16 +14,30 @@ fr-CA:
       dummy:
         settings:
           global:
+            guided: Entrée guidée
+            guided_help: Texte d'aide
+            guided_readonly: Entrée désactivée
+            guided_rich: Entrée riche guidée
+            guided_rich_help_html: Texte <strong>d'aide</strong> HTML
+            guided_rich_readonly_html: Texte <strong>d'aide</strong> HTML pour les entrées désactivées
             readonly_attribute: Attribut en lecture seule
             test: Un test
             test_choices:
               a: Choix A
               b: Choix B
               c: Choix C
+            test_options:
+              bar: Seuil
+              baz: Baz
+              foo: Foo
           step:
             endorsements_blocked: Bloquer les soutiens
             endorsements_enabled: Soutiens activés
             readonly_step_attribute: Attribut étape en lecture seule
+            test_options:
+              bar: Seuil
+              baz: Baz
+              foo: Foo
     dummy:
       admin:
         exports:

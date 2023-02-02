@@ -58,9 +58,7 @@ el:
         avatar: Εικόνα Χρήστη
         conference_meeting_ids: Σχετικές συναντήσεις
         full_name: Ονοματεπώνυμο
-        personal_url: Προσωπικό url
         position: Θέση
-        short_bio: Σύντομο Βιογραφικό
         twitter_handle: Ψευδώνυμο Twitter
         user_id: Χρήστης
       conference_user_role:
@@ -378,7 +376,7 @@ el:
         invite_join_conference_mailer:
           invite:
             decline: Απόρριψη πρόσκλησης «%{conference_title}»
-            invited_you_to_join_a_conference: "Ο χρήστης %{invited_by} σάς προσκάλεσε να συμμετάσχετε σε μια διάσκεψη στην εφαρμογή %{application}. Μπορείτε να την απορρίψετε ή να την αποδεχτείτε μέσω των παρακάτω συνδέσμων."
+            invited_existing_user_to_join_a_conference: "Ο χρήστης %{invited_by} σάς προσκάλεσε να συμμετάσχετε σε μια διάσκεψη στην εφαρμογή %{application}. Μπορείτε να την απορρίψετε ή να την αποδεχτείτε μέσω των παρακάτω συνδέσμων."
             registration: Εγγραφή για τη διάσκεψη «%{conference_title}»
         partners:
           index:

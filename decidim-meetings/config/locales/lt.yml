@@ -44,8 +44,8 @@ lt:
       models:
         meeting:
           attributes:
-            show_embedded_iframe:
-              not_embeddable: Šis URL negali būti pridėtas
+            iframe_embed_type:
+              not_embeddable: Šio URL negalima įterpti į susitikimo ar tiesioginio įvykio puslapį
         meeting_agenda:
           attributes:
             base:
@@ -106,7 +106,7 @@ lt:
           type_eq:
             label: Susitikimo tipas
             values:
-              hybrid: Abu
+              hybrid: Hibridiniai
               in_person: Fizinis
               online: Virtualūs
       meeting_copies:
@@ -190,7 +190,7 @@ lt:
           notification_title: <a href="%{resource_path}">%{resource_title}</a> Susirinkimas prasidės už mažiau nei 48 val.
     forms:
       meetings:
-        attendees_count_help_text: Nepamirškite nurodyti viso renginio dalyvių skaičiaus. Nesvarbu, ar tai būtų fizinis dalyvavimas, ar hibridas, ar internetu, svarbu žinoti, kiek žmonių dalyvauja.
+        attendees_count_help_text: Nepamirškite įrašyti dalyvių susirinkime skaičiaus (tiek dalyvaujančių gyvai, tiek nuotoliniu būdu).
     gamification:
       badges:
         attended_meetings:
@@ -322,7 +322,8 @@ lt:
             registration_url_help: 'Nuoroda: leisti dalyviams eiti į išorinę registracijos sistemą'
             select_a_meeting_type: Prašome pasirinkti susirinkimo tipą
             select_a_registration_type: Prašome pasirinkti registracijos tipą
-            show_embedded_iframe_help: Ar įterpti šio vaizdo konferencijos URL „iframe“? Tik kelios paslaugos leidžia įterpimą (pvz., Youtube, Twitch...)
+            select_an_iframe_access_level: Pasirinkite iframe prieigos lygį
+            show_embedded_iframe_help: Tik kelios paslaugos gali būti integruotos susitikimuose (YouTube, Twitch, Jitsi)
           index:
             title: Susirinkimai
           new:
@@ -394,26 +395,37 @@ lt:
           value_types:
             organizer_presenter:
               not_found: 'Organizatorius duomenų bazėje nerastas (ID: %{id})'
+      application_helper:
+        filter_category_values:
+          all: Visi
+        filter_meeting_space_values:
+          all: Visi
+        filter_scope_values:
+          all: Visi
       calendar_modal:
         calendar_url: Kalendoriaus URL
         close_window: Uždaryti langą
         export_calendar: Eksportuoti kalendorių
       conference_venues: Konferencijos vietos
       content_blocks:
-        upcoming_events:
-          name: Būsimi renginiai
-          upcoming_events: Artėjantys susirinkimai
-          view_all_events: Peržiūrėti visus
+        upcoming_meetings:
+          name: Artėjantys susirinkimai
+          upcoming_meetings: Artėjantys susirinkimai
+          view_all_meetings: Peržiūrėti visus
       directory:
         meetings:
           index:
-            all: Visi
-            date: Data
             meetings: Susirinkimai
-            past: Praėję
-            search: Ieškoti
             space_type: Dalyvaujamoji erdvė
-            upcoming: Artėjantys
+      iframe_access_level:
+        all: Visi lankytojai
+        registered: Registruoti dalyviai
+        signed_in: Tik prisijungę dalyviai
+      iframe_embed_type:
+        embed_in_meeting_page: Integruoti į susirinkimo puslapį
+        none: Nėra
+        open_in_live_event_page: Atidaryti renginio puslapyje (pasirinktinai - su apklausomis)
+        open_in_new_tab: Atidaryti naujame skirtuke
       last_activity:
         meeting_updated_at_html: "<span>Diskusija atnaujinta %{link}</span>"
         new_meeting_at_html: "<span>Naujas susirinkimas %{link}</span>"
@@ -478,7 +490,7 @@ lt:
           type: Tipas
           type_values:
             all: Visi
-            hybrid: Abu
+            hybrid: Hibridiniai
             in_person: Fiziniai
             online: Virtualūs
         filters_small_view:
@@ -498,9 +510,14 @@ lt:
           select_a_category: Pasirinkite kategoriją
           select_a_meeting_type: Pasirinkite susitikimo tipą
           select_a_registration_type: Pasirinkite registracijos tipą
-          show_embedded_iframe_help: Ar įterpti šio vaizdo konferencijos URL „iframe“? Tik kelios paslaugos leidžia įterpimą (pvz., Youtube, Twitch...)
+          select_an_iframe_access_level: Pasirinkite iframe prieigos lygį
+          show_embedded_iframe_help: Tik kelios paslaugos gali būti integruotos susitikimuose (YouTube, Twitch, Jitsi)
         index:
+          click_here: Žiūrėti visus susitikimus
           new_meeting: Naujas susitikimas
+          see_all: Žiūrėti visus susitikimus
+          see_all_withdrawn: Žiūrėti visus atšauktus susitikimus
+          text_banner: Jūs žiūrite susitikimų, kuriuos atšaukė jų autoriai, sąrašą. %{go_back_link}.
         meeting_minutes:
           related_information: Susijusi informacija
         meetings:
@@ -519,6 +536,7 @@ lt:
           close_meeting: Uždaryti susitikimą
           contributions: Nuomonių skaičius
           date: Data
+          edit_close_meeting: Redaguoti susitikimo ataskaitą
           edit_meeting: Redaguoti susitikimą
           going: Jūs užsiregistravote šiame susitikime
           join: Prisijunkite prie susitikimo
@@ -542,6 +560,9 @@ lt:
             other: "Liko %{count} vietos"
           view: Peržiūrėti
           visit_finished: Peržiūrėti susirinkimą
+          withdraw_btn_hint: Galite išimti susirinkimą jei apsigalvojoje. Susirinkimas nebus ištrintas - jis atsidurs išimtų susirinkimų sąraše.
+          withdraw_confirmation_html: Ar tikrai norite išimti šį susirinkimą? <br><br><strong>Šio veiksmo atšaukti negalima!</strong>
+          withdraw_meeting: Išimti susirinkimą
         update:
           invalid: Atnaujinant susirinkimą iškilo problema.
           success: Sėkmingai atnaujinote susirinkimą.
@@ -562,7 +583,7 @@ lt:
           fields:
             closed: Uždaryta
             end_time: Pabaigos data
-            id: Id
+            id: ID
             map: Žemėlapis
             official_meeting: Oficialus susirinkimas
             start_time: Pradžios data
@@ -615,14 +636,18 @@ lt:
           invalid: Paliekant šį susirinkimą iškilo problema.
           success: Sėkmingai palikote susirinkimą.
       type_of_meeting:
-        hybrid: Abu
+        hybrid: Hibridinis
         in_person: Fizinis
         online: Virtualus
       types:
         private_meeting: Uždaras posėdis
         transparent: Skaidrus
+        withdraw: Atsiimta
       versions:
         back_to_resource: Grįžti į susirinkimą
+      withdraw:
+        error: Išimant susirinkimą įvyko klaida
+        success: Susirinkimas sėkmingai išimtas
     metrics:
       meetings:
         description: Sukurtų susirinkimų skaičius

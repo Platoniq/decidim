@@ -178,7 +178,6 @@ pt-BR:
           error: Ocorreu um erro ao aceitar os termos de uso do administrador.
           success: Ótimo! Você aceitou os termos de uso do administrador.
         actions:
-          accept: Concordo com os seguintes termos
           refuse: Recusar os termos do admin
           title: Concorde com os termos e condições de uso
         required_review:
@@ -444,13 +443,7 @@ pt-BR:
           impersonate_existing_user: Representar usuário "%{name}"
           impersonate_new_managed_user: Representar novo usuário gerenciado
       imports:
-        creators:
-          proposalcreator: Criação de propostas
         error: Houve um problema durante a importação
-        help:
-          proposalcreator: O arquivo deve ter nomes de coluna título/en e corpo/en (ou outro idioma que você preferir. title/ca e corpo/ca). Também são suportadas colunas de escopo/id e categoria/id.
-        import_from_file: Importar de um arquivo
-        invalid_lines: Erro encontrado no número de recursos %{invalid_lines}
         new:
           accepted_mime_types:
             csv: csv
@@ -918,13 +911,6 @@ pt-BR:
           success: Grupo de usuários verificado com sucesso
       user_groups:
         index:
-          filter:
-            all: Tudo
-            pending: Pendente
-            rejected: Rejeitado
-            verified: Verificado
-          filter_by: Filtrar por
-          search: Buscar
           state:
             pending: Pendente
             rejected: Rejeitado
@@ -995,7 +981,6 @@ pt-BR:
             hidden_at: Escondido em
             participatory_space: Espaço participativo
             report_count: Contagem
-            reportable_id: Id
             reportable_type: Tipo
             reported_content_url: URL de conteúdo relatado
             reports: Denúncias

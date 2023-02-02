@@ -123,6 +123,10 @@ lt:
         file: Rinkmena
     errors:
       models:
+        newsletter:
+          attributes:
+            base:
+              at_least_one_space: Pasirinkite bent vieną dalyvavujamąją erdvę
         organization:
           attributes:
             official_img_footer:
@@ -132,6 +136,7 @@ lt:
       new_import:
         attributes:
           file:
+            invalid_file: Pateiktas nevalidus dokumentas, prašau patikrinkite ar dokumentas teisingai suformatuotas
             invalid_mime_type: Nevalidus mimo tipas
   activerecord:
     attributes:
@@ -179,7 +184,6 @@ lt:
           error: Sutinkant su administratoriaus naudojimosi sąlygomis įvyko klaida.
           success: Puiku! Jūs sutikote su administratoriaus naudojimosi sąlygomis.
         actions:
-          accept: Sutinku su šiomis nuostatomis
           are_you_sure: Ar tikrai norite nesutikti su administratoriaus naudojimosi sąlygomis?
           refuse: Nesutikti su administratoriaus nustatytomis sąlygomis
           title: Sutikti su naudojimosi sąlygomis
@@ -366,6 +370,13 @@ lt:
           values:
             'false': 'Ne'
             'true': 'Taip'
+        moderated_users:
+          reports_reason_eq:
+            label: Raporto priežastis
+            values:
+              does_not_belong: Nepriklauso
+              offensive: Įžeidžiamas turinys
+              spam: Šlamštas
         moderations:
           reportable_type_string_eq:
             label: Tipas
@@ -400,11 +411,18 @@ lt:
         search_label: Ieškoti
         search_placeholder:
           name_or_nickname_or_email_cont: Ieškoti %{collection} pagal el. pašto adresą, vardą ir pavardę arba naudotojo vardą.
+          report_count_eq: Raportuoti skaičių
           reported_id_string_or_reported_content_cont: Ieškoti %{collection} pagal ID arba turinį.
           title_cont: Ieškoti %{collection} pagal pavadinimą.
           user_name_or_user_email_cont: Ieškoti %{collection} pagal vardą ar el. paštą.
+          user_name_or_user_nickname_or_user_email_cont: Ieškoti %{collection} pagal el. pašto adresą, vardą arba naudotojo vardą.
         state_eq:
           label: Būsena
+          values:
+            all: Visi
+            pending: Laukiama
+            rejected: Atmesta
+            verified: Patvirtinta
       forms:
         file_help:
           import:
@@ -450,23 +468,51 @@ lt:
           impersonate_existing_user: Tvarkyti dalyvį "%{name}"
           impersonate_new_managed_user: Tvarkyti naują naudotoją
       imports:
-        creators:
-          proposalcreator: Pasiūlymų kūrėjas
+        and: ir
+        data_errors:
+          duplicate_headers:
+            detail: Prašau patikrinkit ar dokumentas turi vieną viršutinę dalį (angl. header) arba vienus stulpelius (angl. columns).
+            message:
+              one: Dublikuoti stulpelį %{columns}.
+              few: Dublikuoti stulpelius %{columns}.
+              many: Dublikuoti stulpelius %{columns}.
+              other: Dublikuoti stulpelius %{columns}.
+          invalid_indexes:
+            lines:
+              detail: Prašau patikrinkit ar šios eilutės suformatuotos teisingai ir turi teisingus įrašus.
+              message:
+                one: Importuoto dokumento %{indexes} eilutėje rasta klaida.
+                few: Importuoto dokumento %{indexes} eilutėje rastos klaidos.
+                many: Importuoto dokumento %{indexes} eilutėje rastos klaidos.
+                other: Importuoto dokumento %{indexes} eilutėje rastos klaidos.
+            records:
+              detail: Prašau patikrinkit ar šie įrašai suformatuoti teisingai ir turi teisingus įrašus.
+              message:
+                one: Importuotame dokumente su įrašais rasta klaida su eilės numeriais %{indexes}.
+                few: Importuotame dokumente su įrašais rasta klaida su eilės numeriais %{indexes}.
+                many: Importuotame dokumente su įrašais rasta klaida su eilės numeriais %{indexes}.
+                other: Importuotame dokumente su įrašais rasta klaida su eilės numeriais %{indexes}.
+          missing_headers:
+            detail: Prašau patikrinkit ar dokumentas turi būtinus stulpelius.
+            message:
+              one: Trūksta stulpelio %{columns}.
+              few: Trūksta stulpelių %{columns}.
+              many: Trūksta stulpelių %{columns}.
+              other: Trūksta stulpelių %{columns}.
         error: Importuojant iškilo problema
-        help:
-          proposalcreator: Dokumentas turi turėti sultpelių pavadinimus title/lt ir body/lt. Taip pat palaikomi sritis/id ir kategorija/id stulpeliai.
-        import_from_file: Importuoti iš failo
-        invalid_lines: Rasta klaida išteklio numeryje %{invalid_lines}
+        example_error: Nepavyko sukurti pavyzdžio duotajam tipui
         new:
           accepted_mime_types:
-            csv: csv
-            json: json
-            xlsx: xlsx
+            csv: CSV
+            json: JSON
+            xlsx: Excel (.xlsx)
           actions:
             back: Grįžti
+          download_example: Atsisiųsti pavyzdį
+          download_example_format: Pavyzdys kaip %{name}
           file_legend: Pridėkite importo failą, kuris bus analizuojamas.
           import: Importuoti
-        notice: "%{number} %{resource_name} sėkmingai importuotas"
+        notice: "%{count} %{resource_name} sėkmingai importuotas"
       logs:
         logs_list:
           no_logs_yet: Dar nėra įrašų
@@ -750,6 +796,7 @@ lt:
         form:
           colors:
             colors_title: Organizacijos spalvos
+            colors_warning_html: Dėmesio! Spalvų pakeitimas gali padaryti puslapį neprieinamu. Norėdami patikrinti spalvų prieinamumą naudokite <a href="%{link}"> WebAIM Contrast Checker </a> arba kitus panašius įrankius.
             header_snippets_help: Naudokite šį laukelį, kad į HTML antraštę (angl. head) įtraukti elementus. Dažniausiai įtraukiamos trečiųjų šalių paslaugos, kurioms reikia kai kurių papildomų „JavaScript“ arba CSS elementų. Be to, galite naudotis laukeliu ir prie HTML pridėti papildomų meta žymeklių. Atkreipkite dėmesį į tai, kad tai atsivaizduos tik viešuose puslapiuose, o ne administratoriaus skyrelyje.
           cta_button_path_help: 'Galite pakeisti į kur nukreipia pagrindinis numatytojo puslapio mygtukas. Naudokite dalines nuorodas, o ne URL nuoroda. Mygtuko pavyzdys - %{url}'
           cta_button_text_help: Galite pakeisti pagrindinio numatytojo puslapio mygtuko tekstą priklausomai nuo kalbos. Jei ne, bus naudojamas numatytasis mygtuko tekstas.
@@ -792,7 +839,7 @@ lt:
           title: Naujas dalyvaujamosios erdvės privatus dalyvis.
       participatory_space_private_users_csv_imports:
         create:
-          invalid: Skaitant CSV dokumentą iškilo problema.
+          invalid: Skaitant CSV rinkmeną iškilo problema.
           success: CSV dokumentas įkeltas sėkmingai, dalyviai kviečiami e. laišku - tai gali užtrukti.
         new:
           explanation: 'Įkelkite CSV dokumentą. Jis turi turėti du stulpelius su naudotojų el. paštu pirmajame ir vardu paskutiniąjame. Dokumente neturėtų būti laukų pavadinimų ir šių simbolių naudotojų varduose "<>?%&^*#@()[]=+:;"{}\|".'
@@ -928,13 +975,6 @@ lt:
           success: Grupė verifikuota
       user_groups:
         index:
-          filter:
-            all: Visi
-            pending: Laukiama
-            rejected: Atmesta
-            verified: Patvirtinta
-          filter_by: Filtruoti pagal
-          search: Ieškoti
           state:
             pending: Laukiama
             rejected: Atmesta
@@ -1009,7 +1049,7 @@ lt:
             hidden_at: Paslėpta
             participatory_space: Dalyvaujamoji erdvė
             report_count: Kiekis
-            reportable_id: Id
+            reportable_id: ID
             reportable_type: Tipas
             reported_content_url: Turinio, apie kurį pranešta, URL
             reports: Pranešimai

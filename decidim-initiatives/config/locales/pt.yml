@@ -238,8 +238,6 @@ pt:
             edit: Editar
             new: Novo
             photos: Fotos
-          show:
-            print: Impressão
           update:
             error: Ocorreu um erro
             success: A iniciativa foi atualizada corretamente
@@ -274,8 +272,6 @@ pt:
             update: Atualizar
           form:
             authorizations: Definições de autorização
-            child_scope_threshold_enabled_help: 'Este sinalizador não suporta votações off-line, activa sub-âmbitos e actua com um regulador de autorização que associa um âmbito ao utilizador, certifique-se que selecciona essa autorização, abaixo, na configuração de autorizações. Para que funcione os âmbitos precisam de estar configurados duma forma hierárquica: 1 Ascendente - N Descendentes. Para mais informação no funcionamento desta configuração, ver <a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">ligação</a>.'
-            only_global_scope_enabled_help: Active este sinalizador se activou a “assinatura de âmbito descendente” e configurou o âmbito global como sendo o seu âmbito ascendente. Ao activá-lo, a selecção do tipo de iniciativa será ignorada no assistente de criação de iniciativa. Para mais informação no funcionamento desta configuração, ver <a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">ligação</a>.
             options: Opções
             title: Informação geral
           initiative_type_scopes:
@@ -408,7 +404,6 @@ pt:
           notification_title: <a href="%{applicant_profile_url}">%{applicant_nickname}</a>  candidatou-se para a comissão promotora da sua iniciativa <a href="%{resource_url}">%{resource_title}</a>. Para aceitar ou rejeitar clique <a href="%{resource_url}/edit">aqui</a>.
       form:
         add_attachments: Documentos
-        attachment_legend: "(Opcional) Adicionar Anexos"
         delete_attachment: Eliminar
       index:
         title: Iniciativas

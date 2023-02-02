@@ -10,6 +10,7 @@ cs:
         end_time: Končí v
         information_updates: Aktualizace informací
         instructions: Pokyny k účasti
+        scope_id: Oblast působnosti
         start_time: Začíná v
         title: Titul
         user_group_id: Vytvořte debatu jako
@@ -17,7 +18,7 @@ cs:
       decidim/debates/close_debate_event: Debata byla uzavřena
       decidim/debates/create_debate_event: Debata
       decidim/debates/creation_disabled_event: Debaty zakázány
-      decidim/debates/creation_enabled_event: Debaty povoleny
+      decidim/debates/creation_enabled_event: Vytvoření debat povoleno
   activerecord:
     models:
       decidim/debates/debate:
@@ -43,7 +44,7 @@ cs:
           step:
             announcement: Oznámení
             comments_blocked: Komentáře blokovány
-            creation_enabled: Vytváření debaty účastníky povoleno
+            creation_enabled: Účastníci mohou vytvářet debaty
             endorsements_blocked: Schvalování blokováno
             endorsements_enabled: Schvalování povoleno
     debates:
@@ -163,7 +164,7 @@ cs:
           groups_count: Skupiny
           last_comment_by: Poslední komentář od
           no_comments_yet: Zatím žádné komentáře
-          open: Otevřít diskusi
+          open: Otevřená diskuse
           participants_count: Účastníci
         update:
           invalid: Při aktualizaci rozpravy došlo k chybě.

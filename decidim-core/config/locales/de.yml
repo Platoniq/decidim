@@ -22,6 +22,7 @@ de:
       user:
         about: Über
         email: Ihre E-Mail
+        locale: Spracheinstellung
         name: Ihr Name
         nickname: Spitzname
         password: Passwort
@@ -34,12 +35,17 @@ de:
       decidim/demoted_membership: Kein Gruppenadministrator mehr
       decidim/gamification/badge_earned_event: Abzeichen verdient
       decidim/gamification/level_up_event: Sie sind um ein Level aufgestiegen
+      decidim/invited_to_group_event: Zur Gruppe eingeladen
       decidim/join_request_accepted_event: Beitrittsanfrage akzeptiert
       decidim/join_request_rejected_event: Beitrittsanfrage abgelehnt
       decidim/profile_updated_event: Profil aktualisiert
       decidim/promote_to_admin: Zum Gruppenadministrator hochgestuft
+      decidim/promoted_to_admin_event: Zum Gruppenadministrator hochgestuft
       decidim/removed_from_group: Aus der Gruppe entfernt
       decidim/resource_endorsed_event: Ressource befürwortet
+      decidim/resource_hidden_event: Ressource versteckt
+      decidim/user_group_created_event: Benutzergruppe erstellt
+      decidim/welcome_notification_event: Willkommensnachricht
   activerecord:
     attributes:
       decidim/user:
@@ -76,9 +82,38 @@ de:
       decidim_with_day_and_month_name: "%A, %d. %b %Y"
       decidim_with_month_name: "%d %B %Y"
       decidim_with_month_name_short: "%d. %b"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: etwa eine Stunde
+        other: etwa %{count} Stunden
+      about_x_months:
+        one: etwa ein Monat
+        other: etwa %{count} Monate
+      half_a_minute: eine halbe Minute
+      less_than_x_minutes:
+        one: weniger als eine Minute
+        other: weingier als %{count} Minuten
+      less_than_x_seconds:
+        one: gerade eben
+        other: weniger als %{count} Sekunden
+      x_days:
+        one: Vor 1 Tag
+        other: "Vor %{count} Tagen"
+      x_hours:
+        one: Vor 1 Stunde
+        other: "Vor %{count} Stunden"
+      x_minutes:
+        one: Vor 1 Minute
+        other: "Vor %{count} Minuten"
+      x_seconds:
+        one: vor 1 Sekunde
+        other: "Vor %{count} Sekunden"
+        zero: sofort
   decidim:
     accessibility:
       external_link: Externer Link
+      front_page_link: Zur Startseite gehen
       logo: "Offizielles Logo von %{organization}"
       skip_button: Zu Hauptinhalten überspringen
     account:
@@ -505,6 +540,11 @@ de:
           this_application_will_not_be_able_to: 'Diese Anwendung kann nicht:'
           update_profile: Profil aktualisieren
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> möchte Ihr Konto verwenden"
+    editor_images:
+      create:
+        error: Fehler beim Hochladen des Bildes
+        success: Bild erfolgreich hochgeladen
+      drag_and_drop_help: Sie können Bilder per Drag & Drop hinzufügen oder per Copy & Paste.
     endorsable:
       endorsements: Empfehlungen
       endorsements_count: Anzahl Befürworter
@@ -664,6 +704,11 @@ de:
           email_outro: Sie haben diese Benachrichtigung erhalten, weil Sie %{nickname} folgen. Falls Sie keine solchen Benachrichtigungen mehr erhalten möchten, besuchen Sie den obigen Link.
           email_subject: "%{nickname} hat ihr Profil aktualisiert"
           notification_title: Die <a href="%{resource_path}">Profilseite</a> von %{name} (%{nickname}), der Sie folgen, wurde aktualisiert.
+        user_officialized:
+          email_intro: Teilnehmer %{name} (%{nickname}) wurde offiziell bestätigt.
+          email_outro: Sie haben diese Benachrichtigung erhalten, weil Sie ein Administrator der Organisation sind.
+          email_subject: "%{name} wurde offiziell bestätigt"
+          notification_title: Teilnehmer %{name} (%{nickname}) wurde offiziell bestätigt.
     export_mailer:
       data_portability_export:
         click_button: 'Klicken Sie auf den Link, um Ihre Daten herunterzuladen.<br/>Die Datei steht bis zum %{date} zur Verfügung.<br/>Sie benötigen <a href="https://www.7-zip.org/">7-Zip</a> (für Windows), <a href="https://www.keka.io/en/">Keka</a> (für MacOS) oder <a href="https://peazip.github.io">PeaZip</a> (für Linux) um die Datei zu öffnen. Passwort: %{password}'
@@ -744,18 +789,6 @@ de:
           how: Wie kannst du es verdienen?
           page_description: Badges sind Anerkennungen für Aktionen der Teilnehmer und Fortschritt in der Plattform. Wenn Sie auf der Plattform entdecken, teilnehmen und interagieren, verdienen Sie verschiedene Abzeichen. Hier ist die Liste der Abzeichen und einige Möglichkeiten, wie Sie sie verdienen können.
           title: Abzeichen
-        invitations:
-          conditions:
-            - Verwenden Sie den Link "Freunde einladen" auf Ihrer Nutzerseite, um Ihre Freunde einzuladen
-            - Passen Sie, wenn Sie möchten, die gesendete Nachricht an
-            - Sie werden auf den neuesten Stand gebracht, indem Sie Einladungen senden und sie registrieren lassen.
-          description: Dieses Abzeichen wird gewährt, wenn Sie einige Personen eingeladen haben und sie sich ein wenig Zeit genommen haben, um sich in %{organization_name} zu registrieren und Teilnehmer zu werden. Vielen Dank für die Herstellung von %{organization_name} anderen bekannt und helfen , die Gemeinschaft zu erweitern!
-          description_another: Diese*r Benutzer*in hat %{score} Benutzer*innen eingeladen.
-          description_own: Sie haben %{score} Benutzer*innen eingeladen.
-          name: Einladungen
-          next_level_in: Laden Sie %{score} weitere Benutzer*innen ein, um das nächste Level zu erreichen!
-          unearned_another: Diese*r Benutzer*in hat noch niemanden eingeladen.
-          unearned_own: Sie haben noch keine Benutzer*innen eingeladen.
       description: Badges sind Anerkennungen für Aktionen der Teilnehmer und Fortschritt in der Plattform. Wenn Sie auf der Plattform entdecken, teilnehmen und interagieren, verdienen Sie verschiedene Abzeichen.
       level: Level %{level}
       reached_top: Du hast die höchste Stufe für dieses Abzeichen erreicht.
@@ -961,6 +994,7 @@ de:
           next: Weiter
           no_conversations: Du hast noch keine Unterhaltungen
           title: Nachrichten
+          to: An
         reply:
           placeholder: Ihre Antwort...
           send: Senden
@@ -973,7 +1007,7 @@ de:
           title: Gespräch mit %{usernames}
         start:
           send: Senden
-          title: Ein Gespräch beginnen
+          title: Eine Unterhaltung beginnen
         update:
           error: Nachricht wurde aufgrund eines Fehlers nicht gesendet
     metrics:
@@ -1036,8 +1070,14 @@ de:
         greetings: Grüße,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: Hallo,
         subject: Möchten Sie weiterhin relevante Informationen über %{organization_name} erhalten?
+    notification_mailer:
+      event_received:
+        original_text: 'Originaltext:'
+        translated_text: 'Automatisch übersetzter Text:'
     notifications:
       no_notifications: Noch keine Benachrichtigungen
+      show:
+        missing_event: Hoppla, diese Benachrichtigung gehört zu einem Artikel, der nicht mehr verfügbar ist. Du kannst sie verwerfen.
     notifications_settings:
       show:
         administrators: Administratoren
@@ -1492,15 +1532,6 @@ de:
       updated_not_active: Ihr Passwort wurde erfolgreich geändert.
     registrations:
       destroyed: Tschüss! Ihr Konto wurde erfolgreich storniert. Wir hoffen, Sie bald wieder zu sehen.
-      edit:
-        are_you_sure: Bist du sicher?
-        cancel_my_account: Brechen Sie mein Konto ab
-        currently_waiting_confirmation_for_email: 'Momentan wartende Bestätigung für: %{email}'
-        leave_blank_if_you_don_t_want_to_change_it: lassen Sie das Feld leer, wenn Sie es nicht ändern möchten
-        title: Bearbeite %{resource}
-        unhappy: Unzufrieden?
-        update: Aktualisieren
-        we_need_your_current_password_to_confirm_your_changes: Wir benötigen Ihr aktuelles Passwort, um Ihre Änderungen zu bestätigen
       new:
         sign_up: Registrieren
       signed_up: Herzlich willkommen! Sie haben sich erfolgreich angemeldet.
@@ -1555,7 +1586,6 @@ de:
         other: 'Bei der Bearbeitung Ihrer Anfrage sind mehrere Fehler aufgetreten:'
       too_many_marks: benutzt zu viele aufeinanderfolgende Satzzeichen (zB! und?)
       too_much_caps: verwendet zu viele Großbuchstaben (über 25% des Textes)
-      too_short: ist zu kurz (unter 15 Zeichen)
   forms:
     correct_errors: Es gibt Fehler auf dem Formular, bitte korrigieren Sie sie, um fortzufahren.
     length_validator:
@@ -1631,10 +1661,12 @@ de:
     name: Deutsch
     name_with_error: Deutsch (Fehler!)
   password_validator:
+    blacklisted: ist gesperrt
     domain_included_in_password: ist diesem Domainnamen zu ähnlich
     email_included_in_password: ist Ihrer E-Mail zu ähnlich
     fallback: ist ungültig
     name_included_in_password: ist Ihrem Namen zu ähnlich
+    nickname_included_in_password: ist Ihrem Nicknamen zu ähnlich
     not_enough_unique_characters: hat nicht genug eindeutige Zeichen
     password_not_allowed: ist nicht erlaubt
     password_too_common: ist zu allgemein
@@ -1669,6 +1701,8 @@ de:
       day_of_week: "%a"
       day_of_week_long: "%a %e."
       day_of_year: "%d.%m.%y"
+      ddmm: "%d.%m"
+      ddmmyyyy: "%d.%m.%Y"
       decidim_day_of_year: "%d. %B %Y"
       decidim_short: "%d.%m.%Y %H:%M"
       default: "%a, %d. %b %Y %H:%M:%S %z"
@@ -1687,6 +1721,7 @@ de:
     dropdown:
       choose_diff_view_html: 'HTML-Ansicht:'
       choose_diff_view_mode: 'Vergleichsansicht:'
+      choose_diff_view_mode_menu: Vergleichsmodus wählen
       option_escaped: aus der Seite herausgekommen
       option_split: Nebeneinander
       option_unescaped: aus der Seite nicht herausgekommen

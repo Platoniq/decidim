@@ -59,9 +59,9 @@ ja:
         birthplace: 出生地
         ceased_date: 終了日
         designation_date: 指定日
-        designation_mode: 指定方法
         full_name: フルネーム
         gender: 性別
+        non_user_avatar: アバター
         position: ポジション
         user_id: ユーザー
       assembly_user_role:
@@ -179,6 +179,9 @@ ja:
         update:
           error: この参加スペースの管理者を更新中に問題が発生しました。
           success: 管理者はこの参加スペースの更新に成功しました。
+      filters:
+        decidim_assemblies_type_id_eq:
+          label: 参加スペース種別
       menu:
         assemblies: 参加スペース
         assemblies_settings: 設定
@@ -293,7 +296,10 @@ ja:
         assembly_members:
           form:
             existing_user: 既存の参加者
+            explanation: '画像のガイダンス:'
+            image_guide: テキストを持たない人物の画像を使用する必要があります。
             non_user: 参加者がいません
+            non_user_avatar_help: メンバーとして公開する前に同意を得る必要があります。
             select_a_position: ポジションを選択
             select_user: 参加者を選択
             user_type: 参加者の種類
@@ -310,6 +316,9 @@ ja:
         new_import:
           accepted_types:
             json: JSON
+      assemblies:
+        show:
+          title: この参加スペースについて
       assembly_members:
         index:
           members: メンバー
@@ -377,7 +386,7 @@ ja:
         related_participatory_processes: 関連する参加型プロセス
         scope: スコープ
         social_networks: ソーシャル ネットワーク
-        social_networks_title: この参加スペースを共有
+        social_networks_title: 参加スペースを訪問
         target: 参加者
     assembly_members:
       assembly_member:
@@ -388,7 +397,7 @@ ja:
       assemblies:
         create_assembly_member:
           email_intro: <a href="%{resource_url}">%{resource_name}</a> 参加スペースの管理者があなたをメンバーの一人として追加しました。
-          email_outro: 参加スペースに招待されたため、この通知を受け取りました。 <a href="%{resource_path}">参加スペースページ</a> を確認して貢献してください！
+          email_outro: 参加スペースに招待されたため、この通知を受け取りました。 <a href="%{resource_url}">参加スペースのページ</a> を確認して協力してください！
           email_subject: あなたは %{resource_name} 参加スペースのメンバーに招待されています！
           notification_title: 参加スペース <a href="%{resource_path}">%{resource_name}</a>のメンバーとして登録されました。貢献するには <a href="%{resource_path}">参加スペースページ</a> を確認してください！
       assembly:

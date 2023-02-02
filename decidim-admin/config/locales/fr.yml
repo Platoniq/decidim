@@ -123,6 +123,10 @@ fr:
         file: Fichier
     errors:
       models:
+        newsletter:
+          attributes:
+            base:
+              at_least_one_space: Sélectionnez au moins une concertation
         organization:
           attributes:
             official_img_footer:
@@ -132,6 +136,7 @@ fr:
       new_import:
         attributes:
           file:
+            invalid_file: Fichier fourni invalide , veuillez vérifier que le fichier est correctement formaté
             invalid_mime_type: Type MIME invalide
   activerecord:
     attributes:
@@ -179,7 +184,7 @@ fr:
           error: Une erreur s'est produite lorsque vous avez accepté les conditions d'utilisation administrateur.
           success: Super! Vous avez accepté les conditions d'utilisation administrateur.
         actions:
-          accept: J'accepte les conditions d'utilisation suivantes
+          accept: J'accepte les conditions d'utilisation
           are_you_sure: Êtes-vous sûr de vouloir refuser les conditions d'utilisation de l'administrateur ?
           refuse: Refuser les conditions d'utilisation administrateur
           title: Accepter les conditions d'utilisation
@@ -366,6 +371,13 @@ fr:
           values:
             'false': 'Non'
             'true': 'Oui'
+        moderated_users:
+          reports_reason_eq:
+            label: Raison du signalement
+            values:
+              does_not_belong: N'appartient pas
+              offensive: Offensant
+              spam: Spam
         moderations:
           reportable_type_string_eq:
             label: Type
@@ -400,11 +412,18 @@ fr:
         search_label: Rechercher
         search_placeholder:
           name_or_nickname_or_email_cont: Rechercher les %{collection} par e-mail, nom ou pseudo.
+          report_count_eq: Nombre de signalement
           reported_id_string_or_reported_content_cont: Rechercher %{collection} par Id ou par contenu.
           title_cont: Rechercher %{collection} par titre.
           user_name_or_user_email_cont: Rechercher %{collection} par nom ou par email.
+          user_name_or_user_nickname_or_user_email_cont: Rechercher les %{collection} par e-mail, nom ou pseudo.
         state_eq:
           label: État
+          values:
+            all: Tout
+            pending: En attente
+            rejected: Rejeté
+            verified: Vérifié
       forms:
         file_help:
           import:
@@ -450,23 +469,43 @@ fr:
           impersonate_existing_user: Représenter l'utilisateur standard "%{name}"
           impersonate_new_managed_user: Représenter un nouvel utilisateur
       imports:
-        creators:
-          proposalcreator: Créateur de proposition
+        and: et
+        data_errors:
+          duplicate_headers:
+            detail: Veuillez vérifier que le fichier ne contient qu'une fois les colonnes ou les en-têtes requis.
+            message:
+              one: Colonne dupliquée %{columns}.
+              other: Colonnes dupliquées %{columns}.
+          invalid_indexes:
+            lines:
+              detail: Veuillez vérifier que ces lignes sont correctement formatées et contiennent des données valides.
+              message:
+                one: Une erreur a été trouvée dans le fichier d'import à la ligne %{indexes}.
+                other: Des erreurs ont été trouvées dans le fichier d'import sur les lignes %{indexes}.
+            records:
+              detail: Veuillez vérifier que ces lignes sont correctement formatées et contiennent des données valides.
+              message:
+                one: Une erreur a été trouvée dans le fichier d'import pour les enregistrements avec le numéro de commande %{indexes}.
+                other: Des erreurs ont été trouvées dans le fichier d'import pour les enregistrements avec les numéros de commande %{indexes}.
+          missing_headers:
+            detail: Veuillez vérifier que le fichier contient les colonnes requises.
+            message:
+              one: Colonne %{columns} manquante.
+              other: Colonnes %{columns} manquantes.
         error: Un problème est survenu lors de l'import
-        help:
-          proposalcreator: Le fichier doit comprendre les colonnes title/fr et body/fr (ou une autre locale de votre choix). Les colonnes scope/id et category/id sont également prises en charge.
-        import_from_file: Importer à partir d'un fichier
-        invalid_lines: Erreur trouvée dans la ressource aux lignes %{invalid_lines}
+        example_error: Impossible de créer un exemple pour le type donné
         new:
           accepted_mime_types:
             csv: csv
             json: json
-            xlsx: xlsx
+            xlsx: Excel (.xlsx)
           actions:
             back: Retour
+          download_example: Télécharger l'exemple
+          download_example_format: Exemple comme %{name}
           file_legend: Ajouter un fichier d'import qui sera analysé.
           import: Importer
-        notice: "%{number} %{resource_name} importées avec succès"
+        notice: "%{count} %{resource_name} importées avec succès"
       logs:
         logs_list:
           no_logs_yet: Il n'y a pas encore de journal d'activité
@@ -750,6 +789,7 @@ fr:
         form:
           colors:
             colors_title: Couleurs de l'organisation
+            colors_warning_html: Attention ! La modification de ces couleurs peut rompre les contrastes d'accessibilité. Vous pouvez vérifier le contraste de votre choix avec <a href="%{link}">WebAIM Contrast Checker</a> ou d'autres outils similaires.
             header_snippets_help: Utilisez ce champ pour ajouter des éléments entre les balises HTML <head> </head>. L'utilisation la plus courante de champs consiste à intégrer des services tiers nécessitant du JavaScript ou du CSS supplémentaire. Vous pouvez aussi l'utiliser pour ajouter des méta-tags supplémentaires au code HTML. Notez que cela ne fonctionnera que dans sur les pages publiques, et non dans la section admin.
           cta_button_path_help: 'Vous pouvez remplacer le lien vers lequel renvoie le bouton de la page d''accueil. Utilisez ici des chemins partiels et non des URL complets. Il accepte les lettres, les chiffres, les tirets et les barres obliques, et doit commencer par une lettre. Le bouton apparaît sur la page d''accueil entre le texte de bienvenue et la description. Exemple : %{url}'
           cta_button_text_help: Vous pouvez remplacer le texte du bouton dans la page d'accueil pour chaque langue disponible dans votre organisation. Si elle n'est pas définie, la valeur par défaut sera utilisée. Le bouton apparaît sur la page d'accueil entre le texte de bienvenue et la description.
@@ -792,7 +832,7 @@ fr:
           title: Nouvel utilisateur privé de l'espace participatif.
       participatory_space_private_users_csv_imports:
         create:
-          invalid: Il y a eu un problème de lecture du fichier CSV.
+          invalid: Une erreur s'est produite lors de la lecture du fichier CSV.
           success: Fichier CSV a été transféré avec succès, nous envoyons un courriel d'invitation aux participants. Cela peut prendre un certain temps.
         new:
           explanation: 'Téléchargez votre fichier CSV. Il doit avoir deux colonnes avec dans la première colonne les emails, et dans la deuxième colonne les noms (email, nom) des utilisateurs que vous souhaitez ajouter à l''espace participatif, sans en-tête. Évitez les caractères spéciaux comme `<>?%&^*#@()[]=+:;"{}\|` dans les noms des utilisateurs.'
@@ -928,13 +968,6 @@ fr:
           success: Groupe d'utilisateurs vérifié avec succès
       user_groups:
         index:
-          filter:
-            all: Tout
-            pending: En attente
-            rejected: Non validés
-            verified: Vérifié
-          filter_by: Filtrer par
-          search: Rechercher
           state:
             pending: En attente
             rejected: Non validés
@@ -1006,6 +1039,7 @@ fr:
         moderation:
           fields:
             created_at: Date de création
+            deleted_resource: Ressource supprimée
             hidden_at: Masqué le
             participatory_space: Espace participatif
             report_count: Compteur

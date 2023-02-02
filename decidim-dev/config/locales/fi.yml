@@ -14,16 +14,30 @@ fi:
       dummy:
         settings:
           global:
+            guided: Ohjeistettu syöte
+            guided_help: Ohjeteksti
+            guided_readonly: Käytöstä poistettu syöte
+            guided_rich: Ohjeistettu rikas tekstisyöte
+            guided_rich_help_html: HTML <strong>ohjeteksti</strong>
+            guided_rich_readonly_html: Käytöstä poistettu HTML <strong>ohjeteksti</strong>
             readonly_attribute: Vain luku -attribuutti
             test: Testi
             test_choices:
               a: A-valinta
               b: B-valinta
               c: C-valinta
+            test_options:
+              bar: Palkki
+              baz: Baz
+              foo: Foo
           step:
             endorsements_blocked: Suositukset estetty
             endorsements_enabled: Suositukset käytössä
             readonly_step_attribute: Vain luku -attribuutti vaiheelle
+            test_options:
+              bar: Palkki
+              baz: Baz
+              foo: Foo
     dummy:
       admin:
         exports:

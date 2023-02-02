@@ -3,6 +3,7 @@ nl:
     models:
       decidim/comments/comment_by_followed_user_event: Commentaar
       decidim/comments/comment_created_event: Commentaar
+      decidim/comments/comment_upvoted_event: Reactie omhoog gestemd
       decidim/comments/reply_created_event: Reactie antwoord
       decidim/comments/user_group_mentioned_event: Vermelding
       decidim/comments/user_mentioned_event: Vermelding
@@ -16,6 +17,12 @@ nl:
         other: Stemmen
   decidim:
     comments:
+      admin:
+        shared:
+          availability_fields:
+            enabled: Reacties ingeschakeld
+            end_time: Reacties ingeschakeld tot
+            start_time: Commentaren ingeschakeld vanaf
       comments:
         create:
           error: Er is een probleem opgetreden bij het aanmaken van de reactie.
@@ -64,6 +71,7 @@ nl:
         edit: Bewerk
         edited: Bewerkt
         hide_replies: Antwoorden verbergen
+        moderated_at: Reactie gemodereerd op %{date}
         reply: Antwoord
         report:
           action: Melden
@@ -93,7 +101,7 @@ nl:
         blocked_comments_warning: Reacties zijn op dit moment uitgeschakeld, maar je kan de vorige berichten lezen.
         comment_details_title: Reactieonderdelen
         loading: Reacties laden...
-        single_comment_warning: U kunt de rest van de reacties <a href="%{url}">hier</a> controleren.
+        single_comment_warning: <a href="%{url}">Bekijk alle reacties</a>
         single_comment_warning_title: Je ziet een enkele reactie
         title:
           one: "%{count} reacties"

@@ -16,6 +16,12 @@
         other: Stemmer
   decidim:
     comments:
+      admin:
+        shared:
+          availability_fields:
+            enabled: Kommentarer aktivert
+            end_time: Kommentarer aktivert til
+            start_time: Kommentarer aktivert fra
       comments:
         create:
           error: Et problem oppstod med å opprette kommentaren.
@@ -93,7 +99,7 @@
         blocked_comments_warning: Kommenterer er deaktivert på dette tidspunktet, men du kan lese de forrige.
         comment_details_title: Kommenter detaljer
         loading: Laster inn kommenterer ...
-        single_comment_warning: Du kan sjekke resten av kommentarene <a href="%{url}">her</a>.
+        single_comment_warning: <a href="%{url}">Se alle kommentarer</a>
         single_comment_warning_title: Du ser en enkelt kommentar
         title:
           one: "%{count} kommentar"
