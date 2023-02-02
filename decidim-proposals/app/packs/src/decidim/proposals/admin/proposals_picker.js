@@ -25,14 +25,6 @@ $(() => {
       }
 
       if (jqxhr !== null) {
-        if (filter.length < 3) {
-          return
-        }
-
-        if (filter === filterBuffer) {
-          return
-        }
-
         jqxhr.abort()
       }
 
