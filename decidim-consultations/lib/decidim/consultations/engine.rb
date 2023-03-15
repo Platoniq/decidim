@@ -67,7 +67,7 @@ module Decidim
         Decidim.menu :menu do |menu|
           menu.add_item :consultations,
                         I18n.t("menu.consultations", scope: "decidim"),
-                        decidim_consultations.consultations_path,
+                        decidim_consultations.consultations_path(filter: { state: "active" }),
                         position: 2.65,
                         if: Decidim::Consultation.where(organization: current_organization).published.any?,
                         active: :inclusive
