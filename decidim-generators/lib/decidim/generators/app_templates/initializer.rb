@@ -21,6 +21,9 @@ Decidim.configure do |config|
   # this value for that specific organization.
   config.default_locale = Rails.application.secrets.decidim[:default_locale].presence || :en
 
+  # Enable the cache classes configuration.
+  config.cache_classes = Rails.application.secrets.decidim[:cache_classes].presence || true
+
   # Restrict access to the system part with an authorized ip list.
   # You can use a single ip like ("1.2.3.4"), or an ip subnet like ("1.2.3.4/24")
   # You may specify multiple ip in an array ["1.2.3.4", "1.2.3.4/24"]
