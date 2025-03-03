@@ -3,6 +3,7 @@
 module Decidim
   module Admin
     class Permissions < Decidim::DefaultPermissions
+      include Decidim::UserRoleChecker
       def permissions
         return permission_action if managed_user_action?
 
@@ -31,6 +32,8 @@ module Decidim
 
         apply_global_moderations_permission_for_admin!
 
+        allow! if admin_terms_accepted? && user_has_any_role?(user, nil, broad_check: true) && (permission_action.subject == :editor_image)
+
         if user.admin? && admin_terms_accepted?
           allow! if read_admin_log_action?
           allow! if read_user_statistics_action?
@@ -41,7 +44,6 @@ module Decidim
           allow! if user_action?
           allow! if admin_user_action?
 
-          allow! if permission_action.subject == :category
           allow! if permission_action.subject == :component
           allow! if permission_action.subject == :attachment
           allow! if permission_action.subject == :editor_image
@@ -59,12 +61,32 @@ module Decidim
           allow! if permission_action.subject == :help_sections
           allow! if permission_action.subject == :share_token
           allow! if permission_action.subject == :reminder
+
+          if permission_action.action.in? [:manage_trash, :restore, :soft_delete]
+            if permission_action.action == :soft_delete
+              toggle_allow(trashable_deleted_resource.respond_to?(:deleted?) && !trashable_deleted_resource.deleted?)
+            elsif permission_action.action == :restore
+              toggle_allow(trashable_deleted_resource&.deleted?)
+            else
+              allow!
+            end
+          end
+
+          if permission_action.subject == :taxonomy
+            permission_action.action == :destroy ? allow_destroy_taxonomy? : allow!
+          end
+          allow! if permission_action.subject == :taxonomy_filter
+          allow! if permission_action.subject == :taxonomy_item
         end
 
         permission_action
       end
 
       private
+
+      def trashable_deleted_resource
+        context.fetch(:trashable_deleted_resource, nil)
+      end
 
       def user_manager?
         user && !user.admin? && user.role?("user_manager")
@@ -218,11 +240,11 @@ module Decidim
         @organization ||= context.fetch(:organization, nil) || context.fetch(:current_organization, nil)
       end
 
-      def user_can_enter_space_area?(**args)
+      def user_can_enter_space_area?(**)
         return unless permission_action.action == :enter &&
                       permission_action.subject == :space_area
 
-        space_allows_admin_access_to_current_action?(**args)
+        space_allows_admin_access_to_current_action?(**)
       end
 
       def space_allows_admin_access_to_current_action?(require_admin_terms_accepted: false)
@@ -252,6 +274,18 @@ module Decidim
 
       def available_authorization_handlers?
         user.organization.available_authorization_handlers.any?
+      end
+
+      def allow_destroy_taxonomy?
+        return unless permission_action.action == :destroy
+
+        taxonomy = context.fetch(:taxonomy, nil)
+
+        toggle_allow(taxonomy&.removable?)
+      end
+
+      def component
+        context.fetch(:component, nil)
       end
     end
   end
